@@ -1,0 +1,160 @@
+#home_a_sec {
+  padding-top: 2%;
+  display: flex;
+  height: 99vh;
+  /* border: 1px solid red; */
+  align-items: center;
+  justify-content: space-around;
+}
+
+#home_a_sec > div:first-child {
+  width: 90vw;
+  /* border: 1px solid; */
+  align-items: center;
+  justify-content: space-around;
+}
+
+.home_1_img {
+  max-width: 100%;
+  max-height: 70vh;
+}
+
+/* ----> HOME B <------- */
+
+#home_b_sec {
+  height: 30vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+}
+
+#home_b_sec > div {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#home_b_sec > div > div {
+  display: flex;
+  gap: 15px;
+  border-radius: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 2%;
+}
+
+/*  Home C Loans ---------------->  */
+
+#home_c_sec {
+  /* border: 1px solid; */
+  padding: 2% 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.loans_sec {
+  width: 70%;
+  /* border: 1px solid; */
+  margin: auto;
+  justify-content: space-between;
+}
+
+/*  Home D Slabs ---------------->  */
+
+#home_d_sec {
+  padding-top: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+#home_d_sec > div {
+  display: flex;
+  width: 65%;
+  align-items: center;
+  margin: auto;
+}
+
+.slab_box {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  height: 20vh;
+}
+
+.slab_circle {
+  border-radius: 50%;
+  height: 40vh;
+  width: 40%;
+  overflow: hidden;
+}
+
+.slabs_img {
+  max-height: max-content;
+  height: 100%;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+
+#home_d_sec > div:nth-child(2),
+#home_d_sec > div:nth-child(4) {
+  flex-direction: row-reverse;
+}
+
+#home_d_sec > div:nth-child(2) > div,
+#home_d_sec > div:nth-child(4) > div {
+  text-align: right;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.slab_box > h5 {
+  font-weight: bold;
+}
+
+.slab_box > p {
+  width: 85%;
+}
+
+/* Home E Score -------> */
+
+#home_e_sec > div {
+  border: 1px solid #ccc;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.credit_score_img {
+  height: 45vh;
+  width: 50%;
+}
+
+#home_e_sec > div button{
+  padding: 10px 50px;
+}
+
+/* Home G sec ---------->  */
+
+#home_g_sec {
+  padding-top: 5%;
+  padding-bottom: 2%;
+  margin-bottom: 1%;
+}
+
+#home_g_sec > div {
+  display: flex;
+  gap: 10px;
+  justify-content: space-around;
+}
+
+#home_g_sec > div img{
+  height: 50px;
+}

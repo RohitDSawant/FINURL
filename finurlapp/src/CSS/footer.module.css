@@ -1,0 +1,15 @@
+#footer {
+  border: 1px solid;
+  height: 30vh;
+  padding: 2%;
+}
+
+#footer > div:first-child{
+    border: 1px solid #ccc;
+    padding: 20px;
+    justify-content: space-between;
+}
+
+.footer_logo {
+  height: 70px;
+}
