@@ -10,38 +10,12 @@ import LinkedinIcon from "@mui/icons-material/LinkedIn";
 const Footer = () => {
   return (
     <>
-      <section id={styles.footer}>
+      <footer id={styles.footer}>
         <Box>
-          <Grid container spacing={1}>
-            <Grid lg={4} border={"1px solid"}>
-              <img className={styles.footer_logo} src={logo} alt="" />
-            </Grid>
-            <Grid item lg={2.5}>
-              <Typography variant="h6">Products</Typography>
-              <Box>
-                <Typography variant="body2">Cards</Typography>
-                <Typography variant="body2">Invenstments</Typography>
-                <Typography variant="body2">Loans</Typography>
-              </Box>
-            </Grid>
-            <Grid item lg={2.5}>
-              <Typography variant="h6">Resources</Typography>
-              <Box>
-                <Typography variant="body2">Calculator</Typography>
-                <Typography variant="body2">Credit Score</Typography>
-                <Typography variant="body2">Financial Library</Typography>
-                <Typography variant="body2">Credit Management</Typography>
-              </Box>
-            </Grid>
-            <Grid item lg={2}>
-              <Typography variant="h6">Partner</Typography>
-              <Box>
-                <Typography variant="body2">Our Partner's</Typography>
-                <Typography variant="body2">Become a Partner</Typography>
-              </Box>
-            </Grid>
-            <Grid item lg={1}>
-              <Box display={"flex"} gap={"10px"}>
+          <Grid container justifyContent={"space-around"} spacing={1}>
+            <Grid lg={4}>
+              <img className={styles.footer_logo} src={logo} alt="logo" />
+              <Box display={"flex"} mt={5} ml={5} gap={"10px"}>
                 <Box>
                   <FacebookIcon />
                 </Box>
@@ -55,15 +29,67 @@ const Footer = () => {
                   <LinkedinIcon />
                 </Box>
               </Box>
+              <Box>
+                <Typography
+                  fontSize={"x-small"}
+                  variant="body2"
+                >
+                  Copyright Ⓒ 2023 FinURL. All Rights Reserved.
+                </Typography>
+              </Box>
             </Grid>
+            <Grid item lg={2}>
+              <Typography variant="h6" mb={2}>
+                Products
+              </Typography>
+              <Box>
+                <Typography variant="body2" mb={1}>
+                  Cards
+                </Typography>
+                <Typography variant="body2" mb={1}>
+                  Invenstments
+                </Typography>
+                <Typography variant="body2" mb={1}>
+                  Loans
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item lg={2}>
+              <Typography variant="h6" mb={2}>
+                Resources
+              </Typography>
+              <Box>
+                <Typography variant="body2" mb={1}>
+                  Calculator
+                </Typography>
+                <Typography variant="body2" mb={1}>
+                  Credit Score
+                </Typography>
+                <Typography variant="body2" mb={1}>
+                  Financial Library
+                </Typography>
+                <Typography variant="body2" mb={1}>
+                  Credit Management
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item lg={2}>
+              <Typography variant="h6" mb={2}>
+                Partner
+              </Typography>
+              <Box>
+                <Typography variant="body2" mb={1}>
+                  Our Partner's
+                </Typography>
+                <Typography variant="body2" mb={1}>
+                  Become a Partner
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item lg={1}></Grid>
           </Grid>
         </Box>
-        <Box>
-          <Typography variant="body2">
-            Copyright Ⓒ 2023 FinURL. All Rights Reserved.
-          </Typography>
-        </Box>
-      </section>
+      </footer>
     </>
   );
 };

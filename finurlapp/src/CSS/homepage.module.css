@@ -22,18 +22,17 @@
 /* ----> HOME B <------- */
 
 #home_b_sec {
-  height: 30vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  height: max-content;
   margin: auto;
 }
 
 #home_b_sec > div {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  width: 85%;
+  gap: 20px;
+  justify-content: center;
   align-items: center;
+  padding: 2%;
 }
 
 #home_b_sec > div > div {
@@ -41,7 +40,11 @@
   gap: 15px;
   border-radius: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 2%;
+  padding: 2% 1%;
+}
+
+.home_b_img {
+  height: 20vh;
 }
 
 /*  Home C Loans ---------------->  */
@@ -54,7 +57,7 @@
 }
 
 .loans_sec {
-  width: 70%;
+  width: 65%;
   /* border: 1px solid; */
   margin: auto;
   justify-content: space-between;
@@ -71,13 +74,13 @@
 
 #home_d_sec > div {
   display: flex;
-  width: 65%;
+  width: 75%;
   align-items: center;
   margin: auto;
 }
 
 .slab_box {
-  width: 80%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -86,10 +89,12 @@
 }
 
 .slab_circle {
-  border-radius: 50%;
+  border-radius: 2%;
   height: 40vh;
   width: 40%;
   overflow: hidden;
+  /* border-radius: 50%; */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
 
 .slabs_img {
@@ -112,19 +117,18 @@
   justify-content: center;
 }
 
-.slab_box > h5 {
-  font-weight: bold;
-}
-
-.slab_box > p {
-  width: 85%;
+.slab_box > p,
+.slab_box h5 {
+  line-break: loose;
 }
 
 /* Home E Score -------> */
 
 #home_e_sec > div {
-  border: 1px solid #ccc;
-  padding: 10%;
+  /* border: 1px solid #ccc; */
+  padding: 2%;
+  margin-top: 5%;
+  margin-bottom: 5%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -134,11 +138,49 @@
 
 .credit_score_img {
   height: 45vh;
-  width: 50%;
+  /* width: 50%; */
 }
 
-#home_e_sec > div button{
+#home_e_sec > div button {
   padding: 10px 50px;
+}
+
+/* home f - testmoinals */
+
+#home_f_sec {
+  height: max-content;
+}
+
+.testimonials {
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  padding-left: 3%;
+  padding-top: 3%;
+  border-radius: 5px;
+  position: relative;
+
+}
+
+.circle_quote {
+  background: lightblue;
+  padding: 15% 15% 5% 15%;
+  height: 100%;
+  border-top-left-radius: 35px;
+}
+
+.circle_quote > {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.circle_quote img {
+  transform: scaleX(-1);
+  height: 5vh;
+  position: absolute;
+  top: 20px;
+  left: 15px;
 }
 
 /* Home G sec ---------->  */
@@ -150,11 +192,111 @@
 }
 
 #home_g_sec > div {
-  display: flex;
-  gap: 10px;
-  justify-content: space-around;
+  display:flex;
+  gap: 30px;
+  animation: move 35s linear infinite;
+  white-space: nowrap;
 }
 
-#home_g_sec > div img{
+
+@keyframes move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+#home_g_sec > div img {
   height: 50px;
+}
+
+/*  */
+.carousel_container {
+  height: max-content;
+  position: relative;
+}
+
+.carousel_img {
+  height: 7vh;
+  width: auto;
+  display: block;
+  margin: auto;
+  /* border: 1px solid; */
+  margin-bottom: 15px;
+}
+
+#partner_box {
+  /* border: 1px solid blue; */
+  padding: 0 20px;
+}
+
+#carousel_apply_btn {
+  display: block;
+  margin: auto;
+  background: rgb(0, 98, 255);
+  color: #fff;
+  padding: 5px 25px;
+}
+
+#carousel_apply_btn:hover {
+  background: white;
+  color: rgb(0, 98, 255);
+  border: 3px solid rgb(0, 98, 255);
+}
+
+/* Add this CSS to your stylesheet */
+#slick_prev,
+#slick_next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 7px 9px;
+  width: fit-content;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+
+  /* border: none; */
+}
+
+#slick_next:hover,
+#slick_prev:hover {
+  border: 2px solid rgb(0, 98, 255);
+  color: #fff;
+  background: rgb(0, 98, 255);
+}
+
+#slick_prev {
+  left: -15%;
+}
+
+#slick_next {
+  right: -15%;
+}
+
+
+
+/* <------------------ Calcualiootr Css ---------------------------------> */
+
+.calculated_sheet{
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border-radius: 10px;
+  padding: 5%;
+}
+
+
+/* Media queries mobile */
+
+@media all and (min-width: 100px) and (max-width: 768px) {
+  .credit_score_img {
+    height: 30vh;
+    /* width: 50%; */
+  }
 }

@@ -1,41 +1,80 @@
 import React from "react";
 import styles from "./../../CSS/homepage.module.css";
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
+import quote_right from "./../../Assets/Images/quote-right.svg";
 
 const HomeFReviews = () => {
   return (
     <>
       <section id={styles.home_f_sec}>
-        <Typography variant="h5">What People are saying about us</Typography>
-        <Grid container>
-          <Grid item lg={3}>
-            <Typography>
-              I had a business registered for 2 years but was unable to get a
-              loan from anywhere. Thanks to Finurl, because of whose timely
-              service I was able to get a loan.
-            </Typography>
-            <Typography>
-                Pratik Verma
-            </Typography>
+        <Typography textAlign={"center"} mb={10} mt={5} variant="h5">
+          What Our Clients Say
+        </Typography>
+        <Grid width={"95%"} gap={"20px"} justifyContent={"space-around"} margin={"auto"} container >
+          <Grid
+            className={styles.testimonials}
+            item
+            lg={3}
+            md={5}
+            sm={5}
+            xs={10}
+          >
+            <Box className={styles.circle_quote}>
+              <img src={quote_right} alt="" />
+              <Box>
+                <Typography variant="body2">
+                  I had a business registered for 2 years but was unable to get
+                  a loan from anywhere. Thanks to Finurl, because of whose
+                  timely service I was able to get a loan.
+                </Typography>
+                <Typography variant="body1" mt={3} fontWeight={600}>
+                  Pratik Verma
+                </Typography>
+              </Box>
+            </Box>
           </Grid>
-          <Grid item lg={3}>
-            <Typography>
-              Finurls online platform is so easy to use. I was able to get
-              multiple offers for a loan online from their platform and got the
-              best interest rates.
-            </Typography>
-            <Typography>
-                Santosh Joshi
-            </Typography>
+          <Grid
+            className={styles.testimonials}
+            item
+            lg={3}
+            md={5}
+            sm={5}
+            xs={10}
+          >
+            <Box className={styles.circle_quote}>
+              <img src={quote_right} alt="" />
+              <Box>
+                <Typography variant="body2">
+                  Finurls online platform is so easy to use. I was able to get
+                  multiple offers for a loan online from their platform and got
+                  the best interest rates.
+                </Typography>
+                <Typography variant="body1" mt={3} fontWeight={600}>
+                  Santosh Joshi
+                </Typography>
+              </Box>
+            </Box>
           </Grid>
-          <Grid item lg={3}>
-            <Typography>
-              Because of Finurl and their tie-ups with multiple banks and NBCs,
-              I was able to get a loan within 48 hours.
-            </Typography>
-            <Typography>
-                Vijay Kumar
-            </Typography>
+          <Grid
+            className={styles.testimonials}
+            item
+            lg={3}
+            md={5}
+            sm={5}
+            xs={10}
+          >
+            <Box className={styles.circle_quote}>
+              <img src={quote_right} alt="" />
+              <Box>
+                <Typography variant="body2">
+                  Because of Finurl and their tie-ups with multiple banks and
+                  NBCs, I was able to get a loan within 48 hours.
+                </Typography>
+                <Typography variant="body1" mt={3} fontWeight={600}>
+                  Vijay Kumar
+                </Typography>
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </section>

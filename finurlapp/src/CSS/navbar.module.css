@@ -2,12 +2,13 @@
   height: max-content;
   position: fixed;
   top: 0;
-  width: 100vw;
-  /* border: 1px solid; */
+  width: 100%;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   display: flex;
   justify-content: space-between;
   padding: 10px 5% 10px 10%;
-  background: #fff;
+  background: lightgoldenrodyellow;
+  z-index: 1;
 }
 
 .navbar_menu {
@@ -38,4 +39,66 @@
 
 .user_section {
   display: flex;
+}
+
+.products_menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+#hamburger_menu {
+  display: none;
+}
+
+.drawer_icon {
+  height: 7vh;
+  /* border: 1px solid #ccc; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#products_btn,
+#resource_btn {
+  position: relative;
+}
+
+#products_btn:hover,
+#resource_btn:hover,
+#about_btn:hover {
+  font-weight: 600;
+  border-bottom: 2px solid darkcyan;
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+}
+
+.products_menu p:hover,
+.resource_menu p:hover {
+  font-weight: 600;
+}
+
+.resource_menu,
+.products_menu {
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  position: absolute;
+  background-color: lightyellow;
+  cursor: pointer;
+  top: 100%;
+  width: 40%;
+  padding: 1% 2%;
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  border-radius: 5px;
+}
+
+@media all and (min-width: 100px) and (max-width: 768px) {
+  .navbar_menu {
+    display: none;
+  }
+
+  #hamburger_menu {
+    display: block;
+  }
 }

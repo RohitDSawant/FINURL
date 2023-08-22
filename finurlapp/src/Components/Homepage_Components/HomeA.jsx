@@ -7,8 +7,8 @@ const HomeA = () => {
   return (
     <>
       <section id={styles.home_a_sec}>
-        <Grid container spacing={1}>
-          <Grid item lg={5} md={5} sm={12} xs={12} >
+        <Grid container spacing={5}>
+          <Grid item lg={5} md={5} sm={6} xs={12} >
             <Typography mb={-1} variant="h4">
               The Next
             </Typography>
@@ -25,7 +25,7 @@ const HomeA = () => {
               rates, annual fees.
             </Typography>
           </Grid>
-          <Grid item lg={5} md={5} sm={12} xs={12}>
+          <Grid item lg={5} md={5} sm={5} xs={12}>
             <img className={styles.home_1_img} src={maintheme} alt="home1" />
           </Grid>
         </Grid>

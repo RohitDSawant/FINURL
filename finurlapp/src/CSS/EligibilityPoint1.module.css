@@ -1,0 +1,16 @@
+#eligibility_sec {
+  border: 1px solid #ccc;
+  padding-top: 10%;
+  gap: 20%;
+  height: 100vh;
+}
+
+#eligibility_check {
+  height: 70vh;
+  width: 500px;
+}
+
+#application_pencil {
+  height: 60vh;
+  width: 500px;
+}

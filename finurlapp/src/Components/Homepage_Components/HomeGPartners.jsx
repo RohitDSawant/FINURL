@@ -1,37 +1,29 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import styles from "./../../CSS/homepage.module.css";
-import kreditbee from "./../../Assets/Images/kred.jpeg";
-import nira from "./../../Assets/Images/nira2.png";
-import faircent2 from "./../../Assets/Images/faircent2.png";
-import LNT from "./../../Assets/Images/l&t.jpg";
-import tata2 from "./../../Assets/Images/tata2.png";
-import binance from "./../../Assets/Images/binance.png";
+import { partners_img } from "../../Assets/Images/Partners_data/partners";
 
 const HomeGPartners = () => {
   return (
     <>
       <section id={styles.home_g_sec}>
-        <Typography textAlign={"center"} mb={5} variant="h5"> Our Partners</Typography>
+        <Typography textAlign={"center"} mb={7} variant="h5">
+          Our Partners
+        </Typography>
         <Box>
-          <Box>
-            <img src={tata2} alt="" />
-          </Box>
-          <Box>
-            <img src={binance} alt="" />
-          </Box>
-          <Box>
-            <img src={kreditbee} alt="" />
-          </Box>
-          <Box>
-            <img src={faircent2} alt="" />
-          </Box>
-          <Box>
-            <img src={nira} alt="" />
-          </Box>
-          <Box>
-            <img src={LNT} alt="" />
-          </Box>
+          {partners_img &&
+            partners_img.map((ele, id) => (
+              <Box key={id}>
+                <img height={"5vh"} src={ele.url} alt="partners_logo" />
+              </Box>
+            ))}
+          {partners_img && // Duplicate the list of images here
+            partners_img.map((ele, id) => (
+              <Box key={id + partners_img.length}>
+                {/* Ensure unique key */}
+                <img height={"5vh"} src={ele.url} alt="partners_logo" />
+              </Box>
+            ))}
         </Box>
       </section>
     </>

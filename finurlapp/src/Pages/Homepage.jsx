@@ -6,17 +6,19 @@ import HomeDSlabs from "../Components/Homepage_Components/HomeD.Slabs";
 import HomeEScore from "../Components/Homepage_Components/HomeEScore";
 import HomeFReviews from "../Components/Homepage_Components/HomeFReviews";
 import HomeGPartners from "../Components/Homepage_Components/HomeGPartners";
+import LoanCalculator from "../Components/Homepage_Components/LoanCalculator";
 
 const Homepage = () => {
   return (
     <>
       <HomeA />
       <HomeB />
-      <HomeCLoans />
       <HomeDSlabs />
+      <HomeCLoans />
+      <LoanCalculator />
       <HomeEScore />
       <HomeFReviews />
-      <HomeGPartners/>
+      <HomeGPartners />
     </>
   );
 };

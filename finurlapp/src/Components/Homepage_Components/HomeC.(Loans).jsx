@@ -1,39 +1,67 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
-import React from "react";
+import { Box, Button, Typography } from "@mui/material";
+import React, { useState } from "react";
+import TabContext from "@mui/lab/TabContext";
 import styles from "./../../CSS/homepage.module.css";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+import Tab from "@mui/material/Tab";
+import InstantLoansCarousel from "../Carousel_Components/InstantLoansCarousel";
+import BusinessLoansCarousel from "../Carousel_Components/BusinesssCarousel";
+import PersonalLoansCarousel from "../Carousel_Components/PersonalLoanCarousel";
+import CoomingSoon from "../Carousel_Components/ComingSoon";
 
 const HomeCLoans = () => {
+  const [tab, setCurrentTab] = useState("instant");
+
+  const handleChange = (event, newValue) => {
+    setCurrentTab(newValue);
+  };
+
   return (
     <>
       <section id={styles.home_c_sec}>
-        <Typography textAlign={"center"} mb={2} variant="h6">
+        <Typography textAlign={"center"} mb={2} variant="h5">
           Loans
         </Typography>
         <Typography textAlign={"center"} variant="body2">
           A wide range of loans offered by lending partners to fulfill your
           dreams.
         </Typography>
-        <Box  mt={5} className={styles.loans_sec}>
-          <Grid container>
-            <Grid item lg={2}>
-              <Box> Instant Loan</Box>
-            </Grid>
-            <Grid item lg={2}>
-              <Box> Personal Loan</Box>
-            </Grid>
-            <Grid item lg={2}>
-              <Box> Business Loan</Box>
-            </Grid>
-            <Grid item lg={2}>
-              <Box> Professional Loan</Box>
-            </Grid>
-            <Grid item lg={2}>
-              <Box> Home Loan</Box>
-            </Grid>
-            <Grid item lg={2}>
-              <Box> Loan against property</Box>
-            </Grid>
-          </Grid>
+        <Box mt={10} className={styles.loans_sec}>
+          <TabContext value={tab}>
+            <Box mb={2} sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <TabList
+                onChange={handleChange}
+                aria-label="lab API tabs example"
+              >
+                <Tab label="Instant Loan" value="instant" />
+                <Tab label="Personal Loan" value="personal" />
+                <Tab label="Business Loan" value="business" />
+                <Tab label="Home Loan" value="home" />
+                <Tab label="Professional Loan" value="professional" />
+                <Tab label="Loan against property" value="property" />
+              </TabList>
+            </Box>
+            <TabPanel value="instant">
+              <InstantLoansCarousel />
+            </TabPanel>
+            <TabPanel value="business">
+              <BusinessLoansCarousel />
+            </TabPanel>
+
+            <TabPanel value="personal">
+              <PersonalLoansCarousel />
+            </TabPanel>
+            <TabPanel value="professional">
+              <CoomingSoon />
+            </TabPanel>
+            <TabPanel value="home">
+              <CoomingSoon />
+            </TabPanel>
+            <TabPanel value="property">
+              <CoomingSoon />
+            </TabPanel>
+          </TabContext>
         </Box>
       </section>
     </>
