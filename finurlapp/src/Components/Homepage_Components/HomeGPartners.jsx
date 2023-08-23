@@ -10,21 +10,14 @@ const HomeGPartners = () => {
         <Typography textAlign={"center"} mb={7} variant="h5">
           Our Partners
         </Typography>
-        <Box>
+        {/* <Box className={styles.partner_grid}>
           {partners_img &&
             partners_img.map((ele, id) => (
               <Box key={id}>
                 <img height={"5vh"} src={ele.url} alt="partners_logo" />
               </Box>
-            ))}
-          {partners_img && // Duplicate the list of images here
-            partners_img.map((ele, id) => (
-              <Box key={id + partners_img.length}>
-                {/* Ensure unique key */}
-                <img height={"5vh"} src={ele.url} alt="partners_logo" />
-              </Box>
-            ))}
-        </Box>
+            ))} */}
+         {/* </Box> */}
       </section>
     </>
   );

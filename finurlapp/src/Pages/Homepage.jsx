@@ -7,6 +7,7 @@ import HomeEScore from "../Components/Homepage_Components/HomeEScore";
 import HomeFReviews from "../Components/Homepage_Components/HomeFReviews";
 import HomeGPartners from "../Components/Homepage_Components/HomeGPartners";
 import LoanCalculator from "../Components/Homepage_Components/LoanCalculator";
+import Footer from "../Components/Common/Footer";
 
 const Homepage = () => {
   return (
@@ -19,6 +20,8 @@ const Homepage = () => {
       <HomeEScore />
       <HomeFReviews />
       <HomeGPartners />
+      <Footer />
+
     </>
   );
 };

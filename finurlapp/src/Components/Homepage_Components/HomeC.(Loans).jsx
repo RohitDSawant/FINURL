@@ -31,8 +31,9 @@ const HomeCLoans = () => {
           <TabContext value={tab}>
             <Box mb={2} sx={{ borderBottom: 1, borderColor: "divider" }}>
               <TabList
+                variant={"scrollable"}
+                scrollButtons={"auto"}
                 onChange={handleChange}
-                aria-label="lab API tabs example"
               >
                 <Tab label="Instant Loan" value="instant" />
                 <Tab label="Personal Loan" value="personal" />

@@ -1,5 +1,5 @@
 #eligibility_sec {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
   padding-top: 10%;
   gap: 20%;
   height: 100vh;
@@ -7,10 +7,16 @@
 
 #eligibility_check {
   height: 70vh;
-  width: 500px;
+  /* border: 1px solid #ccc; */
+  /* width: 500px; */
+}
+
+.eligibility_check_form{
+  /* border: 1px solid #ccc; */
+  padding: 2%;
 }
 
 #application_pencil {
   height: 60vh;
-  width: 500px;
+  width: 40vw;
 }

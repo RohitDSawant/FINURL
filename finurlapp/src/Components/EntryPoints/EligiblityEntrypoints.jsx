@@ -10,15 +10,22 @@ import { useLocation } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import checking_img from "./../../Assets/Images/eligibility-check.jpg";
+import {useDispatch} from "react-redux"
+import { handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
 
 const EligiblityEntrypoints = () => {
+  
   const location = useLocation();
+  const current_path = location.pathname.split("/")[1]
+  const dispatch = useDispatch()
+  console.log(current_path)
+
 
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
-    mobileNo: "",
-    panNumber: "",
+    mobile_no: "",
+    pan_number: "",
     dob: "",
     income: "",
     pincode: "",
@@ -31,14 +38,22 @@ const EligiblityEntrypoints = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    if(current_path === "stashfin"){
+      dispatch(handleStashfinEligibility(formData))
+    }
+    else{
+      console.log("coming from other way")
+    }
+
+
   };
 
   return (
     <>
       <section id={styles.eligibility_sec}>
         <Grid container spacing={1} justifyContent={"center"} alignItems={"center"}>
-          <Grid item lg={5}>
+          <Grid className={styles.eligibility_check_form} item lg={5}>
             <Typography mb={1} variant="h6">
               Check Loan Eligibility :
             </Typography>

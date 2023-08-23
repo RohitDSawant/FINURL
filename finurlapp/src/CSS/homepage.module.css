@@ -57,8 +57,7 @@
 }
 
 .loans_sec {
-  width: 65%;
-  /* border: 1px solid; */
+  width: 68%; /* border: 1px solid; */
   margin: auto;
   justify-content: space-between;
 }
@@ -159,7 +158,6 @@
   padding-top: 3%;
   border-radius: 5px;
   position: relative;
-
 }
 
 .circle_quote {
@@ -191,14 +189,18 @@
   margin-bottom: 1%;
 }
 
-#home_g_sec > div {
-  display:flex;
+.partner_grid {
+  /* border: 1px solid #ccc; */
+  display: grid;
+  width: 70%;
+  margin: auto;
   gap: 30px;
-  animation: move 35s linear infinite;
-  white-space: nowrap;
+  grid-template-columns: repeat(4, 1fr);
+  /* animation: move 35s linear infinite;
+  white-space: nowrap; */
 }
 
-
+/* 
 @keyframes move {
   0% {
     transform: translateX(0);
@@ -206,10 +208,12 @@
   100% {
     transform: translateX(-100%);
   }
-}
+} */
 
 #home_g_sec > div img {
-  height: 50px;
+  height: 40px;
+  display: block;
+  margin: auto;
 }
 
 /*  */
@@ -281,22 +285,33 @@
   right: -15%;
 }
 
-
-
 /* <------------------ Calcualiootr Css ---------------------------------> */
 
-.calculated_sheet{
-  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+.calculated_sheet {
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
   border-radius: 10px;
   padding: 5%;
 }
 
-
 /* Media queries mobile */
 
-@media all and (min-width: 100px) and (max-width: 768px) {
+@media all and (min-width: 100px) and (max-width: 425px) {
   .credit_score_img {
     height: 30vh;
     /* width: 50%; */
   }
+
+  .partner_grid {
+    grid-template-columns: repeat(1, 1fr);
+
+  }
+}
+
+@media all and (min-width: 426px) and (max-width: 769px) {
+  .partner_grid {
+        grid-template-columns: repeat(2, 1fr);
+
+  }
+
 }

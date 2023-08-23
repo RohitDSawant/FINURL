@@ -2,7 +2,7 @@ import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 
 let theme = createTheme({
   typography: {
-    fontFamily: "Segoe UI", 
+    fontFamily: "Poppins", 
     h1: {
       fontSize: "large",
     },

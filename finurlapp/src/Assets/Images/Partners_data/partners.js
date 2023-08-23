@@ -141,9 +141,9 @@ export const Home_Lonas = [];
 export const loan_against_property = [];
 
 export const partners_img = [
-  {
-    url: require("./../partners_logo/binance.png"),
-  },
+  // {
+  //   url: require("./../partners_logo/binance.png"),
+  // },
   {
     url: require("./../partners_logo/cashe.png"),
   },
@@ -162,9 +162,9 @@ export const partners_img = [
   {
     url: require("./../partners_logo/lending2.png"),
   },
-  {
-    url: require("./../partners_logo/moneywide2.png"),
-  },
+  // {
+  //   url: require("./../partners_logo/moneywide2.png"),
+  // },
   {
     url: require("./../partners_logo/nira2.png"),
   },

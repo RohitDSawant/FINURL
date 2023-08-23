@@ -62,7 +62,6 @@ const InstantLoansCarousel = () => {
 
   const navigate = useNavigate()
   const Redirection = (path)=>{
-    console.log(path)
     const actual_path = path.split('/')[1]
     navigate(`/${actual_path}/dedupe`);
   }
