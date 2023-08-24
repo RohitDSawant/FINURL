@@ -10,16 +10,16 @@ import { useLocation } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import checking_img from "./../../Assets/Images/eligibility-check.jpg";
-import {useDispatch} from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
 
 const EligiblityEntrypoints = () => {
-  
   const location = useLocation();
-  const current_path = location.pathname.split("/")[1]
-  const dispatch = useDispatch()
-  console.log(current_path)
+  const current_path = location.pathname.split("/")[1];
+  const dispatch = useDispatch();
+  console.log(current_path);
 
+  const userId = useSelector((state) => state.authReducer.loggedInUser._id);
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -39,20 +39,35 @@ const EligiblityEntrypoints = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(current_path === "stashfin"){
-      dispatch(handleStashfinEligibility(formData))
-    }
-    else{
-      console.log("coming from other way")
-    }
+    console.log(formData)
 
-
+    if (current_path === "stashfin") {
+      dispatch(
+        handleStashfinEligibility({
+          // user_Id: userId + formData.pan_number,
+          phone: formData.mobile_no,
+          token: {
+            id: "20395df108eb4c7fb8d94b40f2fb6f8a",
+            client_secret: "BD2y7zO9D9Bq",
+          },
+          email: formData.email
+        })
+      );
+      document.querySelector("form").reset()
+    } else {
+      console.log("coming from other way");
+    }
   };
 
   return (
     <>
       <section id={styles.eligibility_sec}>
-        <Grid container spacing={1} justifyContent={"center"} alignItems={"center"}>
+        <Grid
+          container
+          spacing={1}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
           <Grid className={styles.eligibility_check_form} item lg={5}>
             <Typography mb={1} variant="h6">
               Check Loan Eligibility :
@@ -87,7 +102,7 @@ const EligiblityEntrypoints = () => {
                 <TextField
                   size={"small"}
                   sx={{ margin: "5px" }}
-                  name="mobileNo"
+                  name="mobile_no"
                   label="Mobile No."
                   variant="outlined"
                   required
@@ -96,7 +111,7 @@ const EligiblityEntrypoints = () => {
                 <TextField
                   size={"small"}
                   sx={{ margin: "5px" }}
-                  name="panNumber"
+                  name="pan_number"
                   label="PAN Number"
                   variant="outlined"
                   required

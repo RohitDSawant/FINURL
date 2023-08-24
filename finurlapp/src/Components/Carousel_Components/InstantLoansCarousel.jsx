@@ -8,9 +8,11 @@ import { instantLoan_carousel } from "../../Assets/Images/Partners_data/partners
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 
 const InstantLoansCarousel = () => {
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
+
   const responsiveSettings = [
     {
       breakpoint: 3000,
@@ -54,17 +56,21 @@ const InstantLoansCarousel = () => {
   const CustomNextArrow = (props) => {
     const { onClick } = props;
     return (
-      <Box  id={styles.slick_next} onClick={onClick}>
+      <Box id={styles.slick_next} onClick={onClick}>
         <KeyboardArrowRightIcon />
       </Box>
     );
   };
 
-  const navigate = useNavigate()
-  const Redirection = (path)=>{
-    const actual_path = path.split('/')[1]
-    navigate(`/${actual_path}/dedupe`);
-  }
+  const navigate = useNavigate();
+  const Redirection = (path) => {
+    if (isAuth) {
+      const actual_path = path.split("/")[1];
+      navigate(`/${actual_path}/dedupe`);
+    } else {
+      navigate("/authentication");
+    }
+  };
 
   return (
     <>
@@ -86,7 +92,16 @@ const InstantLoansCarousel = () => {
                   className={styles.carousel_img}
                   alt="partners"
                 />
-                <Typography textAlign={"center"} mb={2} fontWeight={600} fontSize={"large"} color={"primary"} textTransform={"capitalize"}>{partner.name}</Typography>
+                <Typography
+                  textAlign={"center"}
+                  mb={2}
+                  fontWeight={600}
+                  fontSize={"large"}
+                  color={"primary"}
+                  textTransform={"capitalize"}
+                >
+                  {partner.name}
+                </Typography>
                 <Box display={"flex"} justifyContent={"space-evenly"}>
                   <Typography color={"gray"} fontSize={"small"} variant="body2">
                     Loan upto
@@ -103,7 +118,14 @@ const InstantLoansCarousel = () => {
                   <Typography variant="body2">{partner.roi}</Typography>
                   <Typography variant="body2">{partner.description}</Typography>
                 </Box>
-                <Button onClick={() => {Redirection(partner.path)}} id={styles.carousel_apply_btn} >Apply Now</Button>
+                <Button
+                  onClick={() => {
+                    Redirection(partner.path);
+                  }}
+                  id={styles.carousel_apply_btn}
+                >
+                  Apply Now
+                </Button>
               </Box>
             );
           })}

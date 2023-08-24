@@ -23,12 +23,19 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedinIcon from "@mui/icons-material/LinkedIn";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [productsVisible, setProductsVisible] = useState(false);
   const [resourceVisible, setResourceVisible] = useState(false);
+
+  const user = useSelector(
+    (state) => state.authReducer.loggedInUser.name
+  );
+
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
 
   const showProductsMenu = () => {
     setProductsVisible(true);
@@ -54,8 +61,6 @@ const Navbar = () => {
     setDrawerOpen((prev) => !prev);
   };
 
-
-
   return (
     <>
       <Box className={styles.navbar}>
@@ -73,8 +78,14 @@ const Navbar = () => {
               onMouseEnter={showProductsMenu}
               id={styles.products_btn}
             >
-              <Typography mr={2} variant="body2">Products</Typography>
-              {!productsVisible ? <ExpandMoreIcon fontSize="small"  /> : <ExpandLessIcon fontSize="small"  />}
+              <Typography mr={2} variant="body2">
+                Products
+              </Typography>
+              {!productsVisible ? (
+                <ExpandMoreIcon fontSize="small" />
+              ) : (
+                <ExpandLessIcon fontSize="small" />
+              )}
             </Button>
 
             <Box
@@ -127,9 +138,14 @@ const Navbar = () => {
               onMouseEnter={showResourceMenu}
               id={styles.resource_btn}
             >
-              <Typography variant="body2" mr={2}>Resources </Typography>
-              {!resourceVisible ? <ExpandMoreIcon fontSize="small"  /> : <ExpandLessIcon fontSize="small"  />}
-
+              <Typography variant="body2" mr={2}>
+                Resources{" "}
+              </Typography>
+              {!resourceVisible ? (
+                <ExpandMoreIcon fontSize="small" />
+              ) : (
+                <ExpandLessIcon fontSize="small" />
+              )}
             </Button>
 
             <Box
@@ -169,21 +185,28 @@ const Navbar = () => {
             </Button>
           </Box>
           <Box className={styles.user_section}>
-            <Button onClick={handleUserMenu}>
-              <AccountCircleIcon fontSize="large" />
-            </Button>
-            <Menu open={menuOpen}>
-              <MenuItem>Profile</MenuItem>
-              <MenuItem>Theme : Dark</MenuItem>
-              <MenuItem>Logout</MenuItem>
-            </Menu>
-            <Link to={"/authentication"}>
-              <Button >
-                <LoginIcon />
-                SignUp
-              </Button>
-            </Link>
-            
+            {isAuth ? (
+              <>
+                <Button onClick={handleUserMenu} sx={{display: "flex", "gap": "10px"}}>
+                  <AccountCircleIcon fontSize="large" />
+                  <Typography textTransform={"capitalize"} variant="body1">{user}</Typography>
+                </Button>
+                {/* <Menu  open={menuOpen}>
+                  <MenuItem>Profile</MenuItem>
+                  <MenuItem>Theme : Dark</MenuItem>
+                  <MenuItem>Logout</MenuItem>
+                </Menu> */}
+              </>
+            ) : (
+              <>
+                <Link to={"/authentication"}>
+                  <Button>
+                    <LoginIcon />
+                    SignUp
+                  </Button>
+                </Link>
+              </>
+            )}
           </Box>
         </Box>
         {/*<--------------- hamburger-menu -------------------> */}

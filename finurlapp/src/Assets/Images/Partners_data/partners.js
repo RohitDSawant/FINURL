@@ -19,6 +19,15 @@ export const instantLoan_carousel = [
   },
   {
     id: 3,
+    name: "Stashfin",
+    loans: "5Lakhs",
+    roi: "12%",
+    description: "60M",
+    path: "/stashfin",
+    imageurl: require("./../partners_logo/stashfin.png"),
+  },
+  {
+    id: 8,
     name: "NIRA",
     loans: "1Lakh",
     roi: "14%",
@@ -61,15 +70,6 @@ export const instantLoan_carousel = [
     description: "48M",
     path: "/Registration",
     imageurl: require("./../partners_logo/l&t.jpg"),
-  },
-  {
-    id: 8,
-    name: "Stashfin",
-    loans: "5Lakhs",
-    roi: "12%",
-    description: "60M",
-    path: "/stashfin",
-    imageurl: require("./../partners_logo/stashfin.png"),
   },
 ];
 

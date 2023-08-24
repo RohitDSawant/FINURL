@@ -1,47 +1,46 @@
 import axios from "axios";
 
 export const handleStashfinEligibility = (formData) => async (dispatch) => {
-  dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST" });
+  // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST" });
   try {
     return await axios
-      .post("https://devapi.stashfin.com/v3/login-client", {
-        id: "a203ed58-1452-439a-a85d-03bdcf3cd9fb",
-        client_secret:
-          "9b9ea66ad868315ee41cf0b8c5bc960ee73c60f031e3021d1706a999ba0a6d9",
+      .post("https://api.finurl.in/api/v1/stashfin/login-client", {
+        id: "20395df108eb4c7fb8d94b40f2fb6f8a",
+        client_secret: "BD2y7zO9D9Bq",
       })
       .then((res) => {
         console.log(res.data);
-        dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_SUCCESS" });
+        console.log(res.data.results);
+        localStorage.setItem("client_token", res.data.results);
+        // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_SUCCESS" });
         if (res.data.status) {
-          dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_REQUEST" });
-          return axios
+          console.log("first");
+          axios
             .post(
-              "/api/v1/stashfin/dedupe",
+              "https://api.finurl.in/api/v1/stashfin/dedupe",
               {
-                userId: 1235456789,
-                mobileNo: formData.mobile_no,
+                email: formData.email,
+                phone: formData.phone,
                 token: res.data.results,
               }
-              //   { withCredentials: true }
+              // { withCredentials: true }
             )
             .then((response) => {
-              dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_SUCESS" });
-
               console.log(response.data);
-              // navigate("/application");
+              if (response.data.status) window.location.href = "/application";
+              else alert("Something went wrong");
             })
             .catch((err) => {
-              dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
+              // dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
               console.log(err);
             });
         } else {
-          dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE" });
-
+          // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE" });
           alert("You are not eligible!!");
         }
       })
       .catch((err) => {
-        dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE" });
+        // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE" });
         console.log(err);
       });
   } catch (error) {

@@ -1,21 +1,46 @@
 import React, { useState } from "react";
 import finurl from "../../Assets/Images/finurl1.png";
 import "../../CSS/register.css";
+import { useDispatch } from "react-redux";
+import {
+  LoginFunc,
+  SignUpFunc,
+} from "../../Redux/Func/Authentication/Authenticate";
+import axios from "axios";
+import { Alert, Button, Snackbar } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [activeInput, setActiveInput] = useState(null);
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [activeSlide, setActiveSlide] = useState(1);
+  const [showOptSec, setShowOptSec] = useState(false);
+  const [showLoginError, setShowLoginError] = useState(false);
+  const [loginSucessSnack, setLoginSucessSnack] = useState(false);
+  // const [showSignupError, setShowSignupError] = useState(false);
+  const [signupSucessSnack, setSignupSucessSnack] = useState(false);
+
+  const [getOTPInputs, setOTPInputs] = useState("");
 
   const [formData, setFormData] = useState({
-    username: "",
-    fullname: "",
+    name: "",
+    email: "",
+    phoneNumber: "",
+    panNumber: "",
+  });
+
+  const [loginformData, LoginSetFormData] = useState({
     email: "",
     password: "",
-    mobile_no: "",
-    pan_number: "",
-    pincode: "",
   });
+
+  const handleSigninChange = (e) => {
+    const { name, value } = e.target;
+    LoginSetFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,9 +50,47 @@ const LoginPage = () => {
     }));
   };
 
-  const handleSubmitSignup = (e) => {
+  const dispatch = useDispatch();
+
+  const handleSubmitSignup = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    await axios
+      .post("https://api.finurl.in/api/v1/auth/signup", formData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.status === 200) {
+          alert("SignUp Sucessful");
+        } else {
+          alert("Please check the credentials and try again");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Please check the credentials and try again");
+      });
+  };
+
+
+  const handleOtp = (e) => {
+    setOTPInputs(Number(e.target.value));
+  };
+
+  const handleSubmitSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await axios
+        .post("https://api.finurl.in/api/v1/auth/login", loginformData)
+        .then((res) => {
+          if ((res.data.msg = "OTP sent to the user")) {
+            setShowOptSec(true);
+          } else {
+            setShowLoginError(true);
+          }
+        });
+    } catch (error) {
+      console.log(error);
+      setShowLoginError(true);
+    }
   };
 
   const handleInputBlur = (index) => {
@@ -36,6 +99,33 @@ const LoginPage = () => {
   };
   const handleBulletClick = (index) => {
     setActiveSlide(index);
+  };
+
+  const navigate = useNavigate();
+
+  const verifyOtp = async () => {
+    console.log(getOTPInputs);
+    try {
+      await axios
+        .post("https://api.finurl.in/api/v1/auth/verifyOtp", {
+          email: loginformData.email,
+          otp: getOTPInputs,
+        })
+        .then((res) => {
+          console.log(res.data);
+          if ((res.data.msg = "User Logged In Successfully!")) {
+            setLoginSucessSnack(true);
+            dispatch(LoginFunc({ user: res.data.user, token: res.data.token }));
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+          } else {
+            setShowLoginError(true);
+          }
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -48,7 +138,7 @@ const LoginPage = () => {
                 action="index.html"
                 autoComplete="off"
                 className="sign-up-form"
-                onSubmit={handleSubmitSignup}
+                onSubmit={handleSubmitSignIn}
               >
                 <div className="logo">
                   <img src={finurl} alt="easyclass" />
@@ -67,12 +157,42 @@ const LoginPage = () => {
                   </a>
                 </div>
 
+                {/* <Snackbar
+                  anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                  open={showSignupError}
+                  autoHideDuration={3000}
+                  onClose={() => setShowSignupError(false)}
+                >
+                  <Alert
+                    onClose={() => setShowSignupError(false)}
+                    severity="error"
+                    sx={{ width: "100%" }}
+                  >
+                    Sign Up failed ! Please try again...
+                  </Alert>
+                </Snackbar> */}
+                <Snackbar
+                  anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                  open={signupSucessSnack}
+                  autoHideDuration={3000}
+                  onClose={() => setSignupSucessSnack(false)}
+                >
+                  <Alert
+                    onClose={() => setSignupSucessSnack(false)}
+                    severity="success"
+                    sx={{ width: "100%" }}
+                  >
+                    Sign Up Sucessful
+                  </Alert>
+                </Snackbar>
+
                 <div className="actual-form">
                   <div className="input-wrap">
                     <input
-                      onChange={handleChange}
-                      type="text"
-                      minLength="4"
+                      placeholder="Email"
+                      onChange={handleSigninChange}
+                      type="email"
+                      name="email"
                       className={`input-field ${
                         activeInput === 0 ? "active" : ""
                       }`}
@@ -81,14 +201,15 @@ const LoginPage = () => {
                       // onFocus={() => handleInputFocus(0)}
                       // onBlur={() => handleInputBlur(0)}
                     />
-                    <label>Name</label>
+                    {/* <label>Name</label> */}
                   </div>
-                  
+
                   <div className="input-wrap">
                     <input
-                      onChange={handleChange}
+                      placeholder="Password"
+                      onChange={handleSigninChange}
                       type="password"
-                      minLength="4"
+                      name="password"
                       className={`input-field ${
                         activeInput === 1 ? "active" : ""
                       }`}
@@ -97,11 +218,88 @@ const LoginPage = () => {
                       // onFocus={() => handleInputFocus(1)}
                       // onBlur={() => handleInputBlur(1)}
                     />
-                    <label>Password</label>
+                    {/* <label>Password</label> */}
                   </div>
 
-                  <input type="submit" value="Sign In" className="sign-btn" />
+                  {showOptSec ? (
+                    <>
+                      <div className="input-wrap">
+                        <input
+                          placeholder="OTP"
+                          onChange={handleOtp}
+                          type="number"
+                          minLength="6"
+                          name="otp"
+                          className={`input-field ${
+                            activeInput === 1 ? "active" : ""
+                          }`}
+                          autoComplete="off"
+                          required
+                          // onFocus={() => handleInputFocus(1)}
+                          // onBlur={() => handleInputBlur(1)}
+                        />
+                        {/* <label>Password</label> */}
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
 
+                  <input
+                    placeholder=""
+                    type="submit"
+                    value="Sign In"
+                    className="sign-btn"
+                  />
+
+                  {showOptSec ? (
+                    <>
+                      <Button
+                        onClick={verifyOtp}
+                        sx={{
+                          background: "pink",
+                          color: "#000",
+                          display: "block",
+                          margin: "auto",
+                          marginBottom: "10px",
+                          textTransform: "capitalize",
+                        }}
+                      >
+                        Verify OTP
+                      </Button>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  <Snackbar
+                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                    open={showLoginError}
+                    autoHideDuration={3000}
+                    onClose={() => setShowLoginError(false)}
+                  >
+                    <Alert
+                      onClose={() => setShowLoginError(false)}
+                      severity="error"
+                      sx={{ width: "100%" }}
+                    >
+                      Invalid Credentials! Please try again...
+                    </Alert>
+                  </Snackbar>
+                  {/* login error snack  */}
+                  <Snackbar
+                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                    open={loginSucessSnack}
+                    autoHideDuration={3000}
+                    onClose={() => setLoginSucessSnack(false)}
+                  >
+                    <Alert
+                      onClose={() => setLoginSucessSnack(false)}
+                      severity="success"
+                      sx={{ width: "100%" }}
+                    >
+                      Login Successful !
+                    </Alert>
+                  </Snackbar>
                   <p className="text">
                     Forgot your password or you login details?
                     <a href="#">Get help</a> signing in
@@ -113,6 +311,7 @@ const LoginPage = () => {
                 action="index.html"
                 autoComplete="off"
                 className="sign-in-form"
+                onSubmit={handleSubmitSignup}
               >
                 <div className="logo">
                   <img src={finurl} alt="easyclass" />
@@ -133,57 +332,58 @@ const LoginPage = () => {
                 <div className="actual-form">
                   <div className="input-wrap">
                     <input
+                      placeholder="Full Name"
                       onChange={handleChange}
                       type="text"
+                      name="name"
                       minLength="4"
                       className="input-field"
                       autoComplete="off"
                       required
                     />
-                    <label>Name</label>
+                    {/* <label>Name</label> */}
                   </div>
 
                   <div className="input-wrap">
                     <input
+                      placeholder="Email"
                       onChange={handleChange}
                       type="email"
                       className="input-field"
                       autoComplete="off"
                       required
+                      name="email"
                     />
-                    <label>Email</label>
+                    {/* <label>Email</label> */}
                   </div>
-
                   <div className="input-wrap">
                     <input
+                      placeholder="PAN No"
                       onChange={handleChange}
                       type="text"
-                      minLength="4"
                       className="input-field"
                       autoComplete="off"
                       required
+                      name="panNumber"
                     />
-                    <label>PAN No</label>
+                    {/* <label>PAN No</label> */}
                   </div>
 
                   <div className="input-wrap">
                     <input
+                      placeholder="Mobile No"
                       onChange={handleChange}
                       type="number"
+                      name="phoneNumber"
                       minLength="10"
                       className="input-field"
                       autoComplete="off"
                       required
                     />
-                    <label>Mobile No</label>
+                    {/* <label>Mobile No</label> */}
                   </div>
 
-                  <input
-                    onChange={handleChange}
-                    type="submit"
-                    value="Sign Up"
-                    className="sign-btn"
-                  />
+                  <input type="submit" value="Sign Up" className="sign-btn" />
 
                   <p className="text">
                     By signing up, I agree to the
@@ -219,17 +419,17 @@ const LoginPage = () => {
                 <div style={{ color: "black" }} className="text-group">
                   {activeSlide === 1 && (
                     <>
-                      <h2>Find Doctors suitable for you</h2>
+                      <h2>Find best loan suitable for you</h2>
                     </>
                   )}
                   {activeSlide === 2 && (
                     <>
-                      <h2>Get Expert Medical Care</h2>
+                      <h2>Get Personalized loans </h2>
                     </>
                   )}
                   {activeSlide === 3 && (
                     <>
-                      <h2>Consulting Doctors Conveniently</h2>
+                      <h2>Best rate possible</h2>
                     </>
                   )}
                 </div>

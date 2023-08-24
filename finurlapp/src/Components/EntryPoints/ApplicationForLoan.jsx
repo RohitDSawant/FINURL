@@ -13,19 +13,24 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import application_pencil from "./../../Assets/Images/application-pencil.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { handleStashfinInitiateApp } from "../../Redux/Func/Stashfin/Initiate_Application";
 
 const ApplicationForLoan = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
+  const client_token = localStorage.getItem("client_token");
+const user = useSelector((state)=>state.authReducer.loggedInUser._id)
   const [formData, setFormData] = useState({
-    fullName: "",
+    first_name: "",
+    middle_name: "",
+    last_name: "",
     email: "",
-    mobileNo: "",
-    panNumber: "",
+    phone: "",
+    pan_number: "",
+    gender: "",
     dob: "",
-    income: "",
+    mode_of_income: "",
     pincode: "",
+    loggedInUserId: user,
   });
 
   const handleChange = (e) => {
@@ -33,10 +38,27 @@ const ApplicationForLoan = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    navigate("/application");
+
+    dispatch(
+      handleStashfinInitiateApp({
+        first_name: formData.first_name,
+        middle_name: formData.middle_name,
+        last_name: formData.last_name,
+        email: formData.email,
+        phone: formData.phone,
+        pan_number: formData.pan_number,
+        gender: formData.gender,
+        dob: formData.dob,
+        income: Number(formData.income),
+        pincode: Number(formData.pincode),
+        token: client_token,
+        mode_of_income: 1,
+        employment_type: 1
+      })
+    );
   };
   return (
     <>
@@ -61,7 +83,7 @@ const ApplicationForLoan = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "10px", marginRight: "10px" }}
-                    name="firstName"
+                    name="first_name"
                     label="First Name"
                     variant="standard"
                     required
@@ -70,8 +92,8 @@ const ApplicationForLoan = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "10px", marginRight: "10px" }}
-                    name="lastName"
-                    label="Last Name"
+                    name="middle_name"
+                    label="Middle Name"
                     variant="standard"
                     required
                     onChange={handleChange}
@@ -79,17 +101,26 @@ const ApplicationForLoan = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "10px", marginRight: "10px" }}
-                    name="dob"
-                    label="D.O.B"
-                    type="date"
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
+                    name="last_name"
+                    label="Last Name"
                     variant="standard"
                     required
                     onChange={handleChange}
                   />
                 </Box>
+                <TextField
+                  size="small"
+                  sx={{ marginBottom: "10px", marginRight: "10px" }}
+                  name="dob"
+                  label="D.O.B"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="standard"
+                  required
+                  onChange={handleChange}
+                />
                 <Box>
                   <TextField
                     size="small"
@@ -104,7 +135,7 @@ const ApplicationForLoan = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "10px", marginRight: "10px" }}
-                    name="mobileNo"
+                    name="phone"
                     label="Mobile No."
                     variant="standard"
                     required
@@ -113,7 +144,7 @@ const ApplicationForLoan = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "10px", marginRight: "10px" }}
-                    name="panNumber"
+                    name="pan_number"
                     label="PAN Number"
                     variant="standard"
                     required
@@ -129,8 +160,8 @@ const ApplicationForLoan = () => {
                     onChange={handleChange}
                     label="Gender"
                   >
-                    <MenuItem value={"Male"}>Male</MenuItem>
-                    <MenuItem value={"Female"}>Female</MenuItem>
+                    <MenuItem value={"M"}>Male</MenuItem>
+                    <MenuItem value={"F"}>Female</MenuItem>
                     <MenuItem value={"Other"}>Other</MenuItem>
                   </Select>
                 </FormControl>
@@ -139,14 +170,14 @@ const ApplicationForLoan = () => {
                   <Select
                     sx={{ marginBottom: "10px", marginRight: "10px" }}
                     variant="standard"
-                    name="employmentType"
+                    name="employment_type"
                     value={formData.employmentType}
                     onChange={handleChange}
                     label="Employment Type"
                   >
-                    <MenuItem value={"Salaried"}>Salaried</MenuItem>
-                    <MenuItem value={"Self-Employed"}>Self-Employed</MenuItem>
-                    <MenuItem value={"Self_employed/C.A/Dr."}>
+                    <MenuItem value={1}>Salaried</MenuItem>
+                    <MenuItem value={2}>Self-Employed</MenuItem>
+                    <MenuItem value={3}>
                       Self_employed/C.A/Dr.
                     </MenuItem>
                   </Select>
@@ -182,7 +213,12 @@ const ApplicationForLoan = () => {
                   />
                 </Box>
 
-                <Button sx={{"marginTop":"20px"}} type="submit" variant="contained" color="primary">
+                <Button
+                  sx={{ marginTop: "20px" }}
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                >
                   Submit
                 </Button>
               </FormControl>

@@ -1,13 +1,28 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export const signUp = (formdata) => async (dispatch) => {
-  dispatch({ type: "SIGNUP_REQUEST" });
+
+
+export const LoginFunc = (data) => async (dispatch) => {
+  console.log(data)
+  dispatch({ type: "LOGIN_REQUEST" });
   try {
-    return await axios.post("/api/v1/auth/signup", formdata).then((res) => {
-      console.log(res.data);
-      // dispatch({ type: "SIGNUP_SUCCESS", payload: res.data });
-    });
+    dispatch({ type: "LOGIN_SUCCESS", payload: data });
   } catch (error) {
-    dispatch({ type: "SIGNUP_FAILURE" });
+    dispatch({ type: "LOGIN_FAILURE" });
+  }
+};
+
+export const verifyOtp = (otp) => async (dispatch) => {
+  dispatch({ type: "OTP_VERIFY_REQUEST" });
+  try {
+    return await axios
+      .post("http://localhost:4000/api/v1/auth/verifyOtp", otp)
+      .then((res) => {
+        console.log(res.data);
+        dispatch({ type: "OTP_VERIFY_SUCCESS" });
+      });
+  } catch (error) {
+    dispatch({ type: "OTP_VERIFY_FAILURE" });
   }
 };
