@@ -177,10 +177,13 @@ const Navbar = () => {
               <MenuItem>Theme : Dark</MenuItem>
               <MenuItem>Logout</MenuItem>
             </Menu>
-            <Button>
-              <LoginIcon />
-              SignUp
-            </Button>
+            <Link to={"/authentication"}>
+              <Button >
+                <LoginIcon />
+                SignUp
+              </Button>
+            </Link>
+            
           </Box>
         </Box>
         {/*<--------------- hamburger-menu -------------------> */}

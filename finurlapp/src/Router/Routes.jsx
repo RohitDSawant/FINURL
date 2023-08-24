@@ -4,8 +4,7 @@ import Homepage from "../Pages/Homepage";
 import InstantLoan from "../Pages/InstantLoan";
 import EligiblityEntrypoints from "../Components/EntryPoints/EligiblityEntrypoints";
 import ApplicationForLoan from "../Components/EntryPoints/ApplicationForLoan";
-import Authentication from "../Pages/Authentication";
-
+import Authentication_Carousel from "../Components/Common/Authentication_Carousel"
 const Router = () => {
   return (
     <>
@@ -14,7 +13,7 @@ const Router = () => {
         <Route path="/instant-loan" element={<InstantLoan />} />
         <Route path="/:bank/dedupe" element={<EligiblityEntrypoints />} />
         <Route path="/application" element={<ApplicationForLoan />} />
-        <Route path="/authentication" element={<Authentication />} />
+        <Route path="/authentication" element={<Authentication_Carousel />} />
         {/*       <Route path='/' element={""} /> */}
       </Routes>
     </>
