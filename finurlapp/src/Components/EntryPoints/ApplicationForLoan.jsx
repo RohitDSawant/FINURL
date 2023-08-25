@@ -18,7 +18,7 @@ import { handleStashfinInitiateApp } from "../../Redux/Func/Stashfin/Initiate_Ap
 
 const ApplicationForLoan = () => {
   const client_token = localStorage.getItem("client_token");
-const user = useSelector((state)=>state.authReducer.loggedInUser._id)
+  const user = useSelector((state) => state.authReducer.loggedInUser._id);
   const [formData, setFormData] = useState({
     first_name: "",
     middle_name: "",
@@ -56,7 +56,7 @@ const user = useSelector((state)=>state.authReducer.loggedInUser._id)
         pincode: Number(formData.pincode),
         token: client_token,
         mode_of_income: 1,
-        employment_type: 1
+        employment_type: 1,
       })
     );
   };
@@ -95,6 +95,7 @@ const user = useSelector((state)=>state.authReducer.loggedInUser._id)
                     name="middle_name"
                     label="Middle Name"
                     variant="standard"
+                  
                     onChange={handleChange}
                   />
                   <TextField
@@ -176,9 +177,7 @@ const user = useSelector((state)=>state.authReducer.loggedInUser._id)
                   >
                     <MenuItem value={1}>Salaried</MenuItem>
                     <MenuItem value={2}>Self-Employed</MenuItem>
-                    <MenuItem value={3}>
-                      Self_employed/C.A/Dr.
-                    </MenuItem>
+                    <MenuItem value={3}>Self_employed/C.A/Dr.</MenuItem>
                   </Select>
                 </FormControl>
                 <Box></Box>
