@@ -181,3 +181,19 @@ export const partners_img = [
     url: require("./../partners_logo/tata2.png"),
   },
 ];
+
+
+export const authentication_carousel = [
+  {
+      link: require("./../auth_1.svg"),
+      desc: "Find the best Loan for you"
+  },
+  {
+      link: require("./../auth_2.svg"),
+      desc: "Loans at best rates possible"
+  },
+  {
+      link: require("./../auth_3.svg"),
+      desc: "Track your progress in no time"
+  }
+]

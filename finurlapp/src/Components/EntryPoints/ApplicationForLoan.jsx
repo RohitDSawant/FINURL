@@ -95,7 +95,6 @@ const user = useSelector((state)=>state.authReducer.loggedInUser._id)
                     name="middle_name"
                     label="Middle Name"
                     variant="standard"
-                    required
                     onChange={handleChange}
                   />
                   <TextField

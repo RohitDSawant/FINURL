@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -24,16 +24,28 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedinIcon from "@mui/icons-material/LinkedIn";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { persistor } from "./../../Redux/store";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const [productsVisible, setProductsVisible] = useState(false);
   const [resourceVisible, setResourceVisible] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
 
-  const user = useSelector(
-    (state) => state.authReducer.loggedInUser.name
-  );
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    persistor.purge();
+    localStorage.removeItem("persist:root");
+    navigate("/authentication");
+    window.location.reload();
+    setAnchorEl(null)
+  };
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const isAuth = useSelector((state) => state.authReducer.isAuth);
 
@@ -51,10 +63,6 @@ const Navbar = () => {
 
   const showResourceMenu = () => {
     setResourceVisible(true);
-  };
-
-  const handleUserMenu = () => {
-    setMenuOpen((prev) => !prev);
   };
 
   const handleDrawer = () => {
@@ -187,15 +195,17 @@ const Navbar = () => {
           <Box className={styles.user_section}>
             {isAuth ? (
               <>
-                <Button onClick={handleUserMenu} sx={{display: "flex", "gap": "10px"}}>
+                <Button
+                  onClick={handleClick}
+                  sx={{ display: "flex", gap: "10px" }}
+                >
                   <AccountCircleIcon fontSize="large" />
-                  <Typography textTransform={"capitalize"} variant="body1">{user}</Typography>
                 </Button>
-                {/* <Menu  open={menuOpen}>
-                  <MenuItem>Profile</MenuItem>
-                  <MenuItem>Theme : Dark</MenuItem>
-                  <MenuItem>Logout</MenuItem>
-                </Menu> */}
+                <Menu open={openMenu} anchorEl={anchorEl}>
+                  {/* <MenuItem>Profile</MenuItem>
+                  <MenuItem>Theme : Dark</MenuItem> */}
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                </Menu>
               </>
             ) : (
               <>

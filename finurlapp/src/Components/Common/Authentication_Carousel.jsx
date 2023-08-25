@@ -7,8 +7,11 @@ import {
   SignUpFunc,
 } from "../../Redux/Func/Authentication/Authenticate";
 import axios from "axios";
-import { Alert, Button, Snackbar } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import auth1 from "./../../Assets/Images/auth_1.svg";
+import auth2 from "./../../Assets/Images/auth_2.svg";
+import auth3 from "./../../Assets/Images/auth_3.svg";
 
 const LoginPage = () => {
   const [activeInput, setActiveInput] = useState(null);
@@ -16,11 +19,12 @@ const LoginPage = () => {
   const [activeSlide, setActiveSlide] = useState(1);
   const [showOptSec, setShowOptSec] = useState(false);
   const [showLoginError, setShowLoginError] = useState(false);
-  const [loginSucessSnack, setLoginSucessSnack] = useState(false);
-  // const [showSignupError, setShowSignupError] = useState(false);
-  const [signupSucessSnack, setSignupSucessSnack] = useState(false);
+  const [showSigupError, setShowSigupError] = useState(false);
+  const [openSignInSnack, setOpenSignInSnack] = useState(false);
+  const [openSignupSnack, setOpenSignupSnack] = useState(false);
 
   const [getOTPInputs, setOTPInputs] = useState("");
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -55,21 +59,24 @@ const LoginPage = () => {
   const handleSubmitSignup = async (e) => {
     e.preventDefault();
     await axios
-      .post("https://api.finurl.in/api/v1/auth/signup", formData)
+      .post("http://localhost:4000/api/v1/auth/signup", formData)
       .then((res) => {
         console.log(res.data);
         if (res.status === 200) {
-          alert("SignUp Sucessful");
+          setOpenSignupSnack(true);
+          console.log(res.data.message);
+          setTimeout(()=>{
+            document.querySelector(".toggle").click()
+          }, 2000)
         } else {
-          alert("Please check the credentials and try again");
+          setShowSigupError(true);
         }
       })
       .catch((error) => {
         console.log(error);
-        alert("Please check the credentials and try again");
+        setShowSigupError(true);
       });
   };
-
 
   const handleOtp = (e) => {
     setOTPInputs(Number(e.target.value));
@@ -79,7 +86,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await axios
-        .post("https://api.finurl.in/api/v1/auth/login", loginformData)
+        .post("http://localhost:4000/api/v1/auth/login", loginformData)
         .then((res) => {
           if ((res.data.msg = "OTP sent to the user")) {
             setShowOptSec(true);
@@ -107,14 +114,14 @@ const LoginPage = () => {
     console.log(getOTPInputs);
     try {
       await axios
-        .post("https://api.finurl.in/api/v1/auth/verifyOtp", {
+        .post("http://localhost:4000/api/v1/auth/verifyOtp", {
           email: loginformData.email,
           otp: getOTPInputs,
         })
         .then((res) => {
           console.log(res.data);
           if ((res.data.msg = "User Logged In Successfully!")) {
-            setLoginSucessSnack(true);
+            setOpenSignInSnack(true);
             dispatch(LoginFunc({ user: res.data.user, token: res.data.token }));
             setTimeout(() => {
               navigate("/");
@@ -127,6 +134,11 @@ const LoginPage = () => {
       console.log(error.message);
     }
   };
+
+  console.log("sigupSucess", openSignupSnack);
+  console.log("signuperr", showSigupError);
+  console.log("siginSucess", openSignInSnack);
+  console.log("signInerr", showLoginError);
 
   return (
     <main className={isSignUpMode ? "sign-up-mode" : ""}>
@@ -156,36 +168,6 @@ const LoginPage = () => {
                     Sign Up
                   </a>
                 </div>
-
-                {/* <Snackbar
-                  anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                  open={showSignupError}
-                  autoHideDuration={3000}
-                  onClose={() => setShowSignupError(false)}
-                >
-                  <Alert
-                    onClose={() => setShowSignupError(false)}
-                    severity="error"
-                    sx={{ width: "100%" }}
-                  >
-                    Sign Up failed ! Please try again...
-                  </Alert>
-                </Snackbar> */}
-                <Snackbar
-                  anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                  open={signupSucessSnack}
-                  autoHideDuration={3000}
-                  onClose={() => setSignupSucessSnack(false)}
-                >
-                  <Alert
-                    onClose={() => setSignupSucessSnack(false)}
-                    severity="success"
-                    sx={{ width: "100%" }}
-                  >
-                    Sign Up Sucessful
-                  </Alert>
-                </Snackbar>
-
                 <div className="actual-form">
                   <div className="input-wrap">
                     <input
@@ -235,8 +217,6 @@ const LoginPage = () => {
                           }`}
                           autoComplete="off"
                           required
-                          // onFocus={() => handleInputFocus(1)}
-                          // onBlur={() => handleInputBlur(1)}
                         />
                         {/* <label>Password</label> */}
                       </div>
@@ -245,12 +225,16 @@ const LoginPage = () => {
                     <></>
                   )}
 
-                  <input
-                    placeholder=""
-                    type="submit"
-                    value="Sign In"
-                    className="sign-btn"
-                  />
+                  {!showOptSec ? (
+                    <input
+                      placeholder=""
+                      type="submit"
+                      value="Sign In"
+                      className="sign-btn"
+                    />
+                  ) : (
+                    ""
+                  )}
 
                   {showOptSec ? (
                     <>
@@ -271,35 +255,6 @@ const LoginPage = () => {
                   ) : (
                     <></>
                   )}
-                  <Snackbar
-                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                    open={showLoginError}
-                    autoHideDuration={3000}
-                    onClose={() => setShowLoginError(false)}
-                  >
-                    <Alert
-                      onClose={() => setShowLoginError(false)}
-                      severity="error"
-                      sx={{ width: "100%" }}
-                    >
-                      Invalid Credentials! Please try again...
-                    </Alert>
-                  </Snackbar>
-                  {/* login error snack  */}
-                  <Snackbar
-                    anchorOrigin={{ vertical: "top", horizontal: "center" }}
-                    open={loginSucessSnack}
-                    autoHideDuration={3000}
-                    onClose={() => setLoginSucessSnack(false)}
-                  >
-                    <Alert
-                      onClose={() => setLoginSucessSnack(false)}
-                      severity="success"
-                      sx={{ width: "100%" }}
-                    >
-                      Login Successful !
-                    </Alert>
-                  </Snackbar>
                   <p className="text">
                     Forgot your password or you login details?
                     <a href="#">Get help</a> signing in
@@ -382,9 +337,19 @@ const LoginPage = () => {
                     />
                     {/* <label>Mobile No</label> */}
                   </div>
+                  {!openSignupSnack && !showSigupError ? (
+                    <input type="submit" value="Sign Up" className="sign-btn" />
+                  ) : openSignupSnack ? (
+                    <Typography variant="body1" mb={3} fontWeight={600} color={"green"} display={"flex"} alignItems={"center"} justifyContent={"center"}>Signup Successful</Typography>
+                  ) : (
+                    <Typography variant="body1" mb={3} fontWeight={600} color={"crimson"} display={"flex"} alignItems={"center"} justifyContent={"center"}>Signup Failed</Typography>
+                  )}
 
+                  {/* {!showSigupError && ?(<>
                   <input type="submit" value="Sign Up" className="sign-btn" />
-
+                   </>) : (
+                     <Typography variant="body1">Signup Failed</Typography>
+                   )} */}
                   <p className="text">
                     By signing up, I agree to the
                     <a href="#">Terms of Services</a> and
@@ -398,17 +363,17 @@ const LoginPage = () => {
           <div className="carousel">
             <div className="images-wrapper">
               <img
-                src="src\assets\undraw_doctors_p6aq.svg"
+                // src={auth1}
                 className={`image img-1 ${activeSlide === 1 ? "show" : ""}`}
                 alt=""
               />
               <img
-                src="src\assets\undraw_medical_care_movn.svg"
+                // src={auth2}
                 className={`image img-2 ${activeSlide === 2 ? "show" : ""}`}
                 alt=""
               />
               <img
-                src="src\assets\undraw_medicine_b-1-ol.svg"
+                // src={auth3}
                 className={`image img-3 ${activeSlide === 3 ? "show" : ""}`}
                 alt=""
               />
@@ -419,17 +384,17 @@ const LoginPage = () => {
                 <div style={{ color: "black" }} className="text-group">
                   {activeSlide === 1 && (
                     <>
-                      <h2>Find best loan suitable for you</h2>
+                      <h2>Find the best loan for you</h2>
                     </>
                   )}
                   {activeSlide === 2 && (
                     <>
-                      <h2>Get Personalized loans </h2>
+                      <h2>Loans at best rates possible </h2>
                     </>
                   )}
                   {activeSlide === 3 && (
                     <>
-                      <h2>Best rate possible</h2>
+                      <h2>Track your progress in no time</h2>
                     </>
                   )}
                 </div>
