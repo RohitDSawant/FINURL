@@ -44,6 +44,7 @@ const ApplicationForLoan = () => {
 
     dispatch(
       handleStashfinInitiateApp({
+        loggedInUserId: user,
         first_name: formData.first_name,
         middle_name: formData.middle_name,
         last_name: formData.last_name,
