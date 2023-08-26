@@ -40,7 +40,11 @@ const Navbar = () => {
     localStorage.removeItem("persist:root");
     navigate("/authentication");
     window.location.reload();
-    setAnchorEl(null)
+    setAnchorEl(null);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   const handleClick = (event) => {
@@ -201,7 +205,7 @@ const Navbar = () => {
                 >
                   <AccountCircleIcon fontSize="large" />
                 </Button>
-                <Menu open={openMenu} anchorEl={anchorEl}>
+                <Menu onClose={handleClose} open={openMenu} anchorEl={anchorEl}>
                   {/* <MenuItem>Profile</MenuItem>
                   <MenuItem>Theme : Dark</MenuItem> */}
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>

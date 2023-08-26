@@ -39,21 +39,20 @@ const EligiblityEntrypoints = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData)
+    console.log(formData);
 
     if (current_path === "stashfin") {
       dispatch(
         handleStashfinEligibility({
-          // user_Id: userId + formData.pan_number,
           phone: formData.mobile_no,
           token: {
             id: "20395df108eb4c7fb8d94b40f2fb6f8a",
             client_secret: "BD2y7zO9D9Bq",
           },
-          email: formData.email
+          email: formData.email,
         })
       );
-      document.querySelector("form").reset()
+      document.querySelector("form").reset();
     } else {
       console.log("coming from other way");
     }
@@ -100,14 +99,16 @@ const EligiblityEntrypoints = () => {
               />
               <Box>
                 <TextField
-                  size={"small"}
+                  size="small"
                   sx={{ margin: "5px" }}
                   name="mobile_no"
                   label="Mobile No."
                   variant="outlined"
                   required
+                  inputProps={{ maxLength: 10 }}
                   onChange={handleChange}
                 />
+
                 <TextField
                   size={"small"}
                   sx={{ margin: "5px" }}

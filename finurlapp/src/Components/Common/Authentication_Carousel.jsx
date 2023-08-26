@@ -7,7 +7,7 @@ import {
   SignUpFunc,
 } from "../../Redux/Func/Authentication/Authenticate";
 import axios from "axios";
-import { Button, Typography } from "@mui/material";
+import { Alert, Button, Snackbar, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import auth1 from "./../../Assets/Images/auth_1.svg";
 import auth2 from "./../../Assets/Images/auth_2.svg";
@@ -18,13 +18,11 @@ const LoginPage = () => {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [activeSlide, setActiveSlide] = useState(1);
   const [showOptSec, setShowOptSec] = useState(false);
-  const [showLoginError, setShowLoginError] = useState(false);
-  const [showSigupError, setShowSigupError] = useState(false);
-  const [openSignInSnack, setOpenSignInSnack] = useState(false);
-  const [openSignupSnack, setOpenSignupSnack] = useState(false);
+  const [showErrorSnack, setShowErrorSnack] = useState(false);
+  const [showSuccessSnack, setShowSuccessSnack] = useState(false);
+  const [snackMsg, setSnackMsg] = useState("");
 
   const [getOTPInputs, setOTPInputs] = useState("");
-
 
   const [formData, setFormData] = useState({
     name: "",
@@ -37,6 +35,15 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSuccessSnack(false);
+    setShowErrorSnack(false);
+  };
 
   const handleSigninChange = (e) => {
     const { name, value } = e.target;
@@ -61,25 +68,26 @@ const LoginPage = () => {
     await axios
       .post("https://api.finurl.in/api/v1/auth/signup", formData)
       .then((res) => {
+        document.querySelector("form").reset();
         console.log(res.data);
-        if (res.status === 200) {
-          setOpenSignupSnack(true);
+        if (res.data.message === "User created") {
+          setShowSuccessSnack(true);
+          setSnackMsg("Signup successful");
           console.log(res.data.message);
-          setTimeout(()=>{
-            document.querySelector(".toggle").click()
-          }, 2000)
+
+          setTimeout(() => {
+            document.querySelector(".toggle").click();
+          }, 2000);
         } else {
-          setShowSigupError(true);
+          setShowErrorSnack(true);
+          setSnackMsg(res.data);
         }
       })
       .catch((error) => {
         console.log(error);
-        setShowSigupError(true);
+        setShowErrorSnack(true);
+        setSnackMsg("Sign up failed, please try again...");
       });
-  };
-
-  const handleOtp = (e) => {
-    setOTPInputs(Number(e.target.value));
   };
 
   const handleSubmitSignIn = async (e) => {
@@ -90,20 +98,25 @@ const LoginPage = () => {
         .then((res) => {
           if ((res.data.msg = "OTP sent to the user")) {
             setShowOptSec(true);
+            setShowSuccessSnack(true);
+            setSnackMsg("OTP mailed successfully");
           } else {
-            setShowLoginError(true);
+            showErrorSnack(true);
+            setSnackMsg("Invalid Credentials, please try again...");
           }
         });
     } catch (error) {
       console.log(error);
-      setShowLoginError(true);
+      setShowErrorSnack(true);
+      setSnackMsg("Invalid Credentials, please try again...");
     }
   };
 
-  const handleInputBlur = (index) => {
-    if (index !== activeInput) return;
-    setActiveInput(null);
+  // OTP func
+  const handleOtp = (e) => {
+    setOTPInputs(Number(e.target.value));
   };
+
   const handleBulletClick = (index) => {
     setActiveSlide(index);
   };
@@ -121,13 +134,15 @@ const LoginPage = () => {
         .then((res) => {
           console.log(res.data);
           if ((res.data.msg = "User Logged In Successfully!")) {
-            setOpenSignInSnack(true);
+            setShowSuccessSnack(true);
+            setSnackMsg("Login Successfull!");
             dispatch(LoginFunc({ user: res.data.user, token: res.data.token }));
             setTimeout(() => {
               navigate("/");
-            }, 2000);
+            }, 3000);
           } else {
-            setShowLoginError(true);
+            setShowErrorSnack(true);
+            setSnackMsg("Login Failed!");
           }
         });
     } catch (error) {
@@ -135,10 +150,9 @@ const LoginPage = () => {
     }
   };
 
-  console.log("sigupSucess", openSignupSnack);
-  console.log("signuperr", showSigupError);
-  console.log("siginSucess", openSignInSnack);
-  console.log("signInerr", showLoginError);
+  console.log(showSuccessSnack);
+  console.log(showErrorSnack);
+  console.log(snackMsg);
 
   return (
     <main className={isSignUpMode ? "sign-up-mode" : ""}>
@@ -168,6 +182,7 @@ const LoginPage = () => {
                     Sign Up
                   </a>
                 </div>
+
                 <div className="actual-form">
                   <div className="input-wrap">
                     <input
@@ -180,8 +195,6 @@ const LoginPage = () => {
                       }`}
                       autoComplete="off"
                       required
-                      // onFocus={() => handleInputFocus(0)}
-                      // onBlur={() => handleInputBlur(0)}
                     />
                     {/* <label>Name</label> */}
                   </div>
@@ -197,8 +210,6 @@ const LoginPage = () => {
                       }`}
                       autoComplete="off"
                       required
-                      // onFocus={() => handleInputFocus(1)}
-                      // onBlur={() => handleInputBlur(1)}
                     />
                     {/* <label>Password</label> */}
                   </div>
@@ -337,12 +348,32 @@ const LoginPage = () => {
                     />
                     {/* <label>Mobile No</label> */}
                   </div>
-                  {!openSignupSnack && !showSigupError ? (
+                  {!showSuccessSnack && !showErrorSnack ? (
                     <input type="submit" value="Sign Up" className="sign-btn" />
-                  ) : openSignupSnack ? (
-                    <Typography variant="body1" mb={3} fontWeight={600} color={"green"} display={"flex"} alignItems={"center"} justifyContent={"center"}>Signup Successful</Typography>
+                  ) : showSuccessSnack ? (
+                    <Typography
+                      variant="body1"
+                      mb={3}
+                      fontWeight={600}
+                      color={"green"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                    >
+                      Signup Successful
+                    </Typography>
                   ) : (
-                    <Typography variant="body1" mb={3} fontWeight={600} color={"crimson"} display={"flex"} alignItems={"center"} justifyContent={"center"}>Signup Failed</Typography>
+                    <Typography
+                      variant="body1"
+                      mb={3}
+                      fontWeight={600}
+                      color={"crimson"}
+                      display={"flex"}
+                      alignItems={"center"}
+                      justifyContent={"center"}
+                    >
+                      Signup Failed
+                    </Typography>
                   )}
 
                   {/* {!showSigupError && ?(<>
@@ -359,6 +390,20 @@ const LoginPage = () => {
               </form>
             )}
           </div>
+          <Snackbar
+            open={showSuccessSnack || showErrorSnack}
+            autoHideDuration={3100}
+            onClose={() => handleClose()}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              onClose={() => handleClose()}
+              severity={"info"}
+              sx={{ width: "100%" }}
+            >
+              {snackMsg}
+            </Alert>
+          </Snackbar>
 
           <div className="carousel">
             <div className="images-wrapper">
