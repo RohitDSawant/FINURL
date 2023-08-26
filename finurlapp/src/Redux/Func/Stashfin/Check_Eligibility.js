@@ -4,7 +4,7 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
   // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST" });
   try {
     return await axios
-      .post("https://api.finurl.in/api/v1/stashfin/login-client", {
+      .post("http://localhost:4000/api/v1/stashfin/login-client", {
         id: "20395df108eb4c7fb8d94b40f2fb6f8a",
         client_secret: "BD2y7zO9D9Bq",
       })
@@ -15,9 +15,9 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
         // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_SUCCESS" });
         if (res.data.status) {
           console.log("first");
-          axios
+          return axios
             .post(
-              "https://api.finurl.in/api/v1/stashfin/dedupe",
+              "http://localhost:4000/api/v1/stashfin/dedupe",
               {
                 email: formData.email,
                 phone: formData.phone,
@@ -26,9 +26,7 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
               // { withCredentials: true }
             )
             .then((response) => {
-              console.log(response.data);
-              if (response.data.status) window.location.href = "/application";
-              else alert("Something went wrong");
+              return response.data;
             })
             .catch((err) => {
               // dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });

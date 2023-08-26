@@ -8,6 +8,7 @@ import {
   MenuItem,
   InputLabel,
   Select,
+  LinearProgress,
 } from "@mui/material";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
@@ -32,6 +33,10 @@ const ApplicationForLoan = () => {
     pincode: "",
     loggedInUserId: user,
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [showErrorSnack, setShowErrorSnack] = useState(false);
+  const [showSuccessSnack, setShowSuccessSnack] = useState(false);
+  const [snackMsg, setSnackMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +46,7 @@ const ApplicationForLoan = () => {
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     dispatch(
       handleStashfinInitiateApp({
@@ -59,7 +65,29 @@ const ApplicationForLoan = () => {
         mode_of_income: 1,
         employment_type: 1,
       })
-    );
+    ).then((response) => {
+      setTimeout(() => {
+        setIsLoading(false);
+        if (response.status) {
+          setShowSuccessSnack(true);
+          setSnackMsg("Please wait while we redirect you...");
+          document.querySelector("form").reset();
+          setTimeout(() => {
+            window.location.href = "/application";
+          }, 3000);
+        } else if (response.errors.message === "customer already exists") {
+          setShowErrorSnack(true);
+          setSnackMsg("Sorry! you are already a part of Stashfin.");
+          document.querySelector("form").reset();
+        } else {
+          setShowErrorSnack(true);
+          setSnackMsg(
+            "Something went wrong please check the deatils provided."
+          );
+          document.querySelector("form").reset();
+        }
+      }, 3000);
+    });
   };
   return (
     <>
@@ -96,7 +124,6 @@ const ApplicationForLoan = () => {
                     name="middle_name"
                     label="Middle Name"
                     variant="standard"
-                  
                     onChange={handleChange}
                   />
                   <TextField
@@ -222,6 +249,11 @@ const ApplicationForLoan = () => {
                 </Button>
               </FormControl>
             </Box>
+            {isLoading ? (
+              <LinearProgress sx={{ width: "100%", marginTop: "20px" }} />
+            ) : (
+              ""
+            )}
           </Grid>
           <Grid item lg={4}>
             <img

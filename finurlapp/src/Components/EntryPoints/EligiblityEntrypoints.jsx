@@ -5,6 +5,9 @@ import {
   TextField,
   Button,
   Grid,
+  LinearProgress,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
@@ -17,7 +20,10 @@ const EligiblityEntrypoints = () => {
   const location = useLocation();
   const current_path = location.pathname.split("/")[1];
   const dispatch = useDispatch();
-  console.log(current_path);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showErrorSnack, setShowErrorSnack] = useState(false);
+  const [showSuccessSnack, setShowSuccessSnack] = useState(false);
+  const [snackMsg, setSnackMsg] = useState("");
 
   const userId = useSelector((state) => state.authReducer.loggedInUser._id);
 
@@ -38,7 +44,7 @@ const EligiblityEntrypoints = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     console.log(formData);
 
     if (current_path === "stashfin") {
@@ -51,11 +57,37 @@ const EligiblityEntrypoints = () => {
           },
           email: formData.email,
         })
-      );
-      document.querySelector("form").reset();
+      ).then((response) => {
+        console.log(response);
+        setTimeout(() => {
+          setIsLoading(false);
+          if (!response.results) {
+            setShowSuccessSnack(true);
+            setSnackMsg("Congrats! You are eligible.");
+            document.querySelector("form").reset();
+
+            setTimeout(() => {
+              window.location.href = "/application";
+            }, 3000);
+          } else {
+            setShowErrorSnack(true);
+            setSnackMsg("Sorry! Currently you are not eligible.");
+            document.querySelector("form").reset();
+          }
+        }, 3000);
+      });
     } else {
       console.log("coming from other way");
     }
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSuccessSnack(false);
+    setShowErrorSnack(false);
   };
 
   return (
@@ -167,6 +199,25 @@ const EligiblityEntrypoints = () => {
                 Submit
               </Button>
             </FormControl>
+            {isLoading ? (
+              <LinearProgress sx={{ width: "75%", marginTop: "10px" }} />
+            ) : (
+              ""
+            )}
+            <Snackbar
+              open={showSuccessSnack || showErrorSnack}
+              autoHideDuration={3000}
+              onClose={() => handleClose()}
+              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            >
+              <Alert
+                onClose={() => handleClose()}
+                severity={showErrorSnack ? "error" : "info"}
+                sx={{ width: "100%" }}
+              >
+                {snackMsg}
+              </Alert>
+            </Snackbar>
           </Grid>
           <Grid item lg={4}>
             <img
