@@ -8,7 +8,7 @@ import {
   MenuItem,
   InputLabel,
   Select,
-  LinearProgress,
+  CircularProgress,
 } from "@mui/material";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
@@ -259,7 +259,7 @@ const ApplicationForLoan = () => {
               </FormControl>
             </Box>
             {isLoading ? (
-              <LinearProgress sx={{ width: "100%", marginTop: "20px" }} />
+              <CircularProgress sx={{ width: "100%", marginTop: "20px" }} />
             ) : (
               ""
             )}

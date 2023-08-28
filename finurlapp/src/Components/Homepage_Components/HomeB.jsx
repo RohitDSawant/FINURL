@@ -10,7 +10,7 @@ const HomeB = () => {
     <>
       <section id={styles.home_b_sec}>
         <Grid margin={"auto"} container justifyContent={"space-around"} spacing={1}>
-          <Grid alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={4} xs={6} >
+          <Grid alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
             <Box>
               <img className={styles.home_b_img} src={happy_customer} alt="happy_customer" />
               <Box  mt={2}>
@@ -19,7 +19,7 @@ const HomeB = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid  alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={4} xs={6} >
+          <Grid  alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
            <Box>
            <img className={styles.home_b_img}  src={active_partners} alt="active_partners" />
             <Box mt={2}>
@@ -28,7 +28,7 @@ const HomeB = () => {
             </Box>
            </Box>
           </Grid>
-          <Grid  alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={4} xs={6} >
+          <Grid  alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
            <Box>
            <img className={styles.home_b_img} src={year} alt="2022_year" />
             <Box  mt={2}>

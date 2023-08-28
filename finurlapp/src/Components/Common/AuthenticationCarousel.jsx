@@ -10,6 +10,7 @@ import axios from "axios";
 import {
   Alert,
   Button,
+  CircularProgress,
   LinearProgress,
   Snackbar,
   Typography,
@@ -314,7 +315,7 @@ const LoginPage = () => {
                       )}
                     </div>
                     {!isLoading ? (
-                      <LinearProgress
+                      <CircularProgress
                         sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
                       />
                     ) : (
@@ -455,8 +456,7 @@ const LoginPage = () => {
                     </div>
                   </form>
                   {isLoading ? (
-                    <LinearProgress
-                      color={"primary"}
+                    <CircularProgress
                       sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
                     />
                   ) : (

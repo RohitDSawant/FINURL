@@ -45,13 +45,13 @@ const Footer = () => {
                 Products
               </Typography>
               <Box>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Cards
                 </Typography>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Invenstments
                 </Typography>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Loans
                 </Typography>
               </Box>
@@ -61,16 +61,16 @@ const Footer = () => {
                 Resources
               </Typography>
               <Box>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Calculator
                 </Typography>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Credit Score
                 </Typography>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Financial Library
                 </Typography>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Credit Management
                 </Typography>
               </Box>
@@ -80,10 +80,10 @@ const Footer = () => {
                 Partner
               </Typography>
               <Box>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Our Partner's
                 </Typography>
-                <Typography variant="body2" fontSize={"small"} mb={1}>
+                <Typography variant="body2" fontSize={"x-small"} mb={1}>
                   Become a Partner
                 </Typography>
               </Box>

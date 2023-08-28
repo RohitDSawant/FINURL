@@ -24,6 +24,7 @@
 #home_b_sec {
   height: max-content;
   margin: auto;
+  margin-bottom: 7%;
 }
 
 #home_b_sec > div {
@@ -54,8 +55,8 @@
 #home_c_sec {
   /* border: 1px solid; */
   padding: 2% 5%;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  margin-top: 10%;
+  margin-bottom: 7%;
 }
 
 .loans_sec {
@@ -68,9 +69,11 @@
 
 #home_d_sec {
   padding-top: 10%;
+  margin-top: 10%;
   display: flex;
   flex-direction: column;
   gap: 50px;
+  height: max-content;
 }
 
 #home_d_sec > div {
@@ -223,7 +226,7 @@
 }
 
 .carousel_img {
-  height: 7vh;
+  height: 5vh;
   width: auto;
   display: block;
   margin: auto;
@@ -306,6 +309,10 @@
     max-height: 30vh;
     display: block;
     margin: auto;
+  }
+
+  #home_c_sec {
+    margin-top: 15%;
   }
 
   .home_b_img {

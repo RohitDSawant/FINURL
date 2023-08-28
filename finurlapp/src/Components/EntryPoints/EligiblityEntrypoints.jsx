@@ -5,7 +5,7 @@ import {
   TextField,
   Button,
   Grid,
-  LinearProgress,
+  CircularProgress,
   Snackbar,
   Alert,
 } from "@mui/material";
@@ -219,7 +219,7 @@ const EligiblityEntrypoints = () => {
               </FormControl>
             </Box>
             {isLoading ? (
-              <LinearProgress sx={{ width: "75%", marginTop: "10px" }} />
+              <CircularProgress sx={{ width: "75%", marginTop: "10px" }} />
             ) : (
               ""
             )}
