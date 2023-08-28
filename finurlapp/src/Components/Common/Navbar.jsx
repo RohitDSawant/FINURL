@@ -331,7 +331,7 @@ const Navbar = () => {
               </List>
             </Box>
 
-            <Box textAlign={"center"} mt={15} width={"95%"}>
+            <Box textAlign={"center"} mt={10} width={"95%"}>
               <Box>
                 <Typography>Follow us on:</Typography>
                 <Box
