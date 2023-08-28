@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import styles from "./../../CSS/navbar.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import logo from "./../../Assets/Images/finurl1.png";
+import logo from "./../../Assets/Images/circle_log.png";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -26,6 +26,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { persistor } from "./../../Redux/store";
+import theme from "../../Theme/theme";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -73,13 +74,23 @@ const Navbar = () => {
     setDrawerOpen((prev) => !prev);
   };
 
+  const HomeCall = () => {
+    navigate("/");
+  };
+
   return (
     <>
-      <Box className={styles.navbar}>
-        <Box>
-          <Link to={"/"}>
-            <img className={styles.nav_logo} src={logo} alt="logo" />
-          </Link>
+      <Box bgcolor={theme.palette.primary.main} className={styles.navbar}>
+        <Box
+          onClick={HomeCall}
+          display={"flex"}
+          gap={"15px"}
+          alignItems={"center"}
+        >
+          <img className={styles.nav_logo} src={logo} alt="logo" />
+          <Typography mt={0.5} variant="h6" color={theme.palette.primary.dark}>
+            FinURL
+          </Typography>
         </Box>
         {/* web menu */}
         <Box className={styles.navbar_menu}>
@@ -90,13 +101,23 @@ const Navbar = () => {
               onMouseEnter={showProductsMenu}
               id={styles.products_btn}
             >
-              <Typography mr={2} variant="body2">
+              <Typography
+                color={theme.palette.primary.dark}
+                mr={2}
+                variant="body2"
+              >
                 Products
               </Typography>
               {!productsVisible ? (
-                <ExpandMoreIcon fontSize="small" />
+                <ExpandMoreIcon
+                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  fontSize="small"
+                />
               ) : (
-                <ExpandLessIcon fontSize="small" />
+                <ExpandLessIcon
+                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  fontSize="small"
+                />
               )}
             </Button>
 
@@ -150,13 +171,23 @@ const Navbar = () => {
               onMouseEnter={showResourceMenu}
               id={styles.resource_btn}
             >
-              <Typography variant="body2" mr={2}>
-                Resources{" "}
+              <Typography
+                color={theme.palette.primary.dark}
+                variant="body2"
+                mr={2}
+              >
+                Resources
               </Typography>
               {!resourceVisible ? (
-                <ExpandMoreIcon fontSize="small" />
+                <ExpandMoreIcon
+                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  fontSize="small"
+                />
               ) : (
-                <ExpandLessIcon fontSize="small" />
+                <ExpandLessIcon
+                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  fontSize="small"
+                />
               )}
             </Button>
 
@@ -193,7 +224,9 @@ const Navbar = () => {
             </Box>
 
             <Button id={styles.about_btn}>
-              <Typography variant="body2"> About Us </Typography>
+              <Typography color={theme.palette.primary.dark} variant="body2">
+                About Us
+              </Typography>
             </Button>
           </Box>
           <Box className={styles.user_section}>
@@ -203,7 +236,10 @@ const Navbar = () => {
                   onClick={handleClick}
                   sx={{ display: "flex", gap: "10px" }}
                 >
-                  <AccountCircleIcon fontSize="large" />
+                  <AccountCircleIcon
+                    sx={{ color: `${theme.palette.primary.dark}` }}
+                    fontSize="large"
+                  />
                 </Button>
                 <Menu onClose={handleClose} open={openMenu} anchorEl={anchorEl}>
                   {/* <MenuItem>Profile</MenuItem>
@@ -215,8 +251,18 @@ const Navbar = () => {
               <>
                 <Link to={"/authentication"}>
                   <Button>
-                    <LoginIcon />
-                    SignUp
+                    <LoginIcon
+                      sx={{ color: `${theme.palette.primary.dark}` }}
+                    />
+                    <Typography
+                      sx={{ color: `${theme.palette.primary.dark}` }}
+                      ml={2}
+                      textTransform={"capitalize"}
+                      variant="body2"
+                    >
+                      {" "}
+                      Login
+                    </Typography>
                   </Button>
                 </Link>
               </>
@@ -224,9 +270,9 @@ const Navbar = () => {
           </Box>
         </Box>
         {/*<--------------- hamburger-menu -------------------> */}
-        <Button onClick={handleDrawer} id={styles.hamburger_menu}>
-          <MenuIcon />
-        </Button>
+        <Box onClick={handleDrawer} id={styles.hamburger_menu}>
+          <MenuIcon sx={{ color: `${theme.palette.primary.dark}` }} />
+        </Box>
         <Drawer
           open={drawerOpen}
           anchor="left"
@@ -237,10 +283,14 @@ const Navbar = () => {
               <Box
                 display={"flex"}
                 alignItems={"center"}
-                justifyContent={"space-around"}
+                marginLeft={"10%"}
+                gap={"20px"}
+                // justifyContent={"space-evenly"}
               >
                 <img className={styles.drawer_icon} src={logo} alt="logo" />
-                <DarkModeIcon sx={{ marginRight: "10px" }} />
+                <Typography>FinURL</Typography>
+
+                {/* <DarkModeIcon sx={{ marginRight: "10px" }} /> */}
               </Box>
               <Box ml={2} mt={2}>
                 <Typography variant="h6" mb={1}>
@@ -267,14 +317,17 @@ const Navbar = () => {
             </Box>
             <Box mt={3}>
               <List>
-                <ListItem>
-                  <LoginIcon sx={{ marginRight: "10px" }} />
-                  Login
-                </ListItem>
-                <ListItem>
-                  <LogoutIcon sx={{ marginRight: "10px" }} />
-                  Logout
-                </ListItem>
+                {!isAuth ? (
+                  <ListItem>
+                    <LoginIcon sx={{ marginRight: "10px" }} />
+                    Login
+                  </ListItem>
+                ) : (
+                  <ListItem>
+                    <LogoutIcon sx={{ marginRight: "10px" }} />
+                    Logout
+                  </ListItem>
+                )}
               </List>
             </Box>
 

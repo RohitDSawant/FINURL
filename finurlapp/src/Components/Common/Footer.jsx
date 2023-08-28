@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import styles from "./../../CSS/footer.module.css";
-import logo from "./../../Assets/Images/finurl1.png";
+import logo from "./../../Assets/Images/circle_log.png";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -12,81 +12,83 @@ const Footer = () => {
     <>
       <footer id={styles.footer}>
         <Box>
-          <Grid container justifyContent={"space-around"} spacing={1}>
-            <Grid lg={4}>
-              <img className={styles.footer_logo} src={logo} alt="logo" />
-              <Box display={"flex"} mt={5} ml={5} gap={"10px"}>
-                <Box>
-                  <FacebookIcon />
+          <Grid container justifyContent={"space-around"} spacing={3}>
+            <Grid item xs={12} sm={10} lg={4}>
+              <Box className={styles.footer_logo_box}>
+                <Box display={"flex"} gap={"15px"} alignItems={"center"}>
+                  <img className={styles.footer_logo} src={logo} alt="logo" />
+                  <Typography variant="h5">FinURL</Typography>
                 </Box>
-                <Box>
-                  <InstagramIcon />
-                </Box>
-                <Box>
-                  <TwitterIcon />
-                </Box>
-                <Box>
-                  <LinkedinIcon />
+                <Box display={"flex"} mt={5} ml={5} gap={"10px"}>
+                  <Box>
+                    <FacebookIcon />
+                  </Box>
+                  <Box>
+                    <InstagramIcon />
+                  </Box>
+                  <Box>
+                    <TwitterIcon />
+                  </Box>
+                  <Box>
+                    <LinkedinIcon />
+                  </Box>
                 </Box>
               </Box>
               <Box>
-                <Typography
-                  fontSize={"x-small"}
-                  variant="body2"
-                >
+                <Typography fontSize={"x-small"} variant="body2">
                   Copyright Ⓒ 2023 FinURL. All Rights Reserved.
                 </Typography>
               </Box>
             </Grid>
-            <Grid item lg={2}>
+            <Grid item xs={3} sm={4} lg={2}>
               <Typography variant="h6" mb={2}>
                 Products
               </Typography>
               <Box>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Cards
                 </Typography>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Invenstments
                 </Typography>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Loans
                 </Typography>
               </Box>
             </Grid>
-            <Grid item lg={2}>
+            <Grid item xs={3} sm={4} lg={2}>
               <Typography variant="h6" mb={2}>
                 Resources
               </Typography>
               <Box>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Calculator
                 </Typography>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Credit Score
                 </Typography>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Financial Library
                 </Typography>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Credit Management
                 </Typography>
               </Box>
             </Grid>
-            <Grid item lg={2}>
+            <Grid item xs={3} sm={4} lg={2}>
               <Typography variant="h6" mb={2}>
                 Partner
               </Typography>
               <Box>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Our Partner's
                 </Typography>
-                <Typography variant="body2" mb={1}>
+                <Typography variant="body2" fontSize={"small"} mb={1}>
                   Become a Partner
                 </Typography>
               </Box>
             </Grid>
-            <Grid item lg={1}></Grid>
+            <Grid item xs={4} sm={4} lg={1}></Grid>
           </Grid>
         </Box>
       </footer>

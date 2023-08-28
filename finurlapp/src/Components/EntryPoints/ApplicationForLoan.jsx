@@ -16,6 +16,8 @@ import React, { useState } from "react";
 import application_pencil from "./../../Assets/Images/application-pencil.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { handleStashfinInitiateApp } from "../../Redux/Func/Stashfin/Initiate_Application";
+import Navbar from "../Common/Navbar";
+import theme from "../../Theme/theme";
 
 const ApplicationForLoan = () => {
   const client_token = localStorage.getItem("client_token");
@@ -91,6 +93,7 @@ const ApplicationForLoan = () => {
   };
   return (
     <>
+      <Navbar />
       <section id={styles.eligibility_sec}>
         <Grid
           container
@@ -98,20 +101,23 @@ const ApplicationForLoan = () => {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Grid lg={5}>
+          <Grid className={styles.application_left_sec} item xs={11} sm={11} md={7} lg={6}>
             <Typography mb={2} variant="h6">
               Let's complete your Application :
             </Typography>
-
-            <Box>
-              <Typography mb={2} variant="h6">
-                Application Form:
-              </Typography>
+{/* 
+            <Typography mb={2} variant="h6">
+              Application Form:
+            </Typography> */}
+            <Box
+              bgcolor={theme.palette.primary.main}
+              className={styles.application_form}
+            >
               <FormControl component="form" onSubmit={handleSubmit}>
                 <Box>
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="first_name"
                     label="First Name"
                     variant="standard"
@@ -120,7 +126,7 @@ const ApplicationForLoan = () => {
                   />
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="middle_name"
                     label="Middle Name"
                     variant="standard"
@@ -128,7 +134,7 @@ const ApplicationForLoan = () => {
                   />
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="last_name"
                     label="Last Name"
                     variant="standard"
@@ -138,7 +144,7 @@ const ApplicationForLoan = () => {
                 </Box>
                 <TextField
                   size="small"
-                  sx={{ marginBottom: "10px", marginRight: "10px" }}
+                  sx={{ marginBottom: "15px", marginRight: "15px" }}
                   name="dob"
                   label="D.O.B"
                   type="date"
@@ -152,7 +158,7 @@ const ApplicationForLoan = () => {
                 <Box>
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="email"
                     label="Email"
                     type="email"
@@ -162,7 +168,7 @@ const ApplicationForLoan = () => {
                   />
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="phone"
                     label="Mobile No."
                     variant="standard"
@@ -171,7 +177,7 @@ const ApplicationForLoan = () => {
                   />
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="pan_number"
                     label="PAN Number"
                     variant="standard"
@@ -196,7 +202,7 @@ const ApplicationForLoan = () => {
                 <FormControl variant="standard" required>
                   <InputLabel>Employment Type</InputLabel>
                   <Select
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     variant="standard"
                     name="employment_type"
                     value={formData.employmentType}
@@ -212,7 +218,7 @@ const ApplicationForLoan = () => {
                 <Box>
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="loanAmount"
                     label="Loan Amount"
                     variant="standard"
@@ -221,7 +227,7 @@ const ApplicationForLoan = () => {
                   />
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="income"
                     label="Income"
                     variant="standard"
@@ -230,7 +236,7 @@ const ApplicationForLoan = () => {
                   />
                   <TextField
                     size="small"
-                    sx={{ marginBottom: "10px", marginRight: "10px" }}
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
                     name="pincode"
                     label="Pincode"
                     variant="standard"
@@ -240,10 +246,13 @@ const ApplicationForLoan = () => {
                 </Box>
 
                 <Button
-                  sx={{ marginTop: "20px" }}
+                  sx={{
+                    marginTop: "20px",
+                    background: `${theme.palette.primary.dark}`,
+                    color: "black",
+                  }}
                   type="submit"
                   variant="contained"
-                  color="primary"
                 >
                   Submit
                 </Button>
@@ -255,7 +264,7 @@ const ApplicationForLoan = () => {
               ""
             )}
           </Grid>
-          <Grid item lg={4}>
+          <Grid className={styles.application_right_sec} item  md={4} lg={4}>
             <img
               id={styles.application_pencil}
               src={application_pencil}

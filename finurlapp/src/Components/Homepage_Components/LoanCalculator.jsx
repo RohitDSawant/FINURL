@@ -32,8 +32,8 @@ const LoanCalculator = () => {
         container
         spacing={1}
       >
-        <Grid item lg={7}>
-          <Box m={3}>
+        <Grid item xs={10} sm={7} md={7} lg={7} >
+          <Box m={2}>
             <Typography variant="body1" fontWeight={600}> Loan Amount</Typography>
             <Slider
               value={Amount}
@@ -44,7 +44,7 @@ const LoanCalculator = () => {
               max={maxValue}
             />
           </Box>
-          <Box m={3}>
+          <Box m={2}>
             <Typography variant="body1" fontWeight={600}> Interest Rate</Typography>
             <Slider
               value={interest}
@@ -55,7 +55,7 @@ const LoanCalculator = () => {
               max={intMax}
             />
           </Box>
-          <Box m={3}>
+          <Box m={2}>
             <Typography variant="body1" fontWeight={600}> Tenure (Months)</Typography>
             <Slider
               value={duration}
@@ -67,7 +67,7 @@ const LoanCalculator = () => {
             />
           </Box>
         </Grid>
-        <Grid lg={3.5} item>
+        <Grid item xs={10} sm={4} md={4} lg={3.5} >
           <TableDetails
             Amount={Amount}
             totalAmt={totalAmt}

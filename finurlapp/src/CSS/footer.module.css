@@ -2,14 +2,30 @@
   /* border: 1px solid #ccc; */
   background: lavender;
   height: max-content;
-
 }
 
 #footer > div:first-child {
-  padding:  3% 5%;
+  padding: 3% 5%;
   justify-content: space-between;
 }
 
 .footer_logo {
-  height: 60px;
+  height: 7vh;
 }
+
+@media all and (min-width: 100px) and (max-width: 426px) {
+  .footer_logo_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media all and (min-width: 427px) and (max-width: 769px) {
+  .footer_logo_box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+

@@ -15,6 +15,8 @@ import React, { useState } from "react";
 import checking_img from "./../../Assets/Images/eligibility-check.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
+import Navbar from "../Common/Navbar";
+import theme from "../../Theme/theme";
 
 const EligiblityEntrypoints = () => {
   const location = useLocation();
@@ -92,6 +94,7 @@ const EligiblityEntrypoints = () => {
 
   return (
     <>
+      <Navbar />
       <section id={styles.eligibility_sec}>
         <Grid
           container
@@ -99,106 +102,122 @@ const EligiblityEntrypoints = () => {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Grid className={styles.eligibility_check_form} item lg={5}>
+          <Grid
+            md={7}
+            xs={11}
+            sm={10}
+            className={styles.eligibility_left_sec}
+            item
+            lg={5}
+          >
             <Typography mb={1} variant="h6">
               Check Loan Eligibility :
             </Typography>
-            <Typography variant="body2">
-              Because of Finurl and their tie-ups with multiple banks and NBCs
+            <Typography fontSize={"small"} variant="body2">
+              Because of Finurl and their tie-ups with multiple banks and NBCs.
             </Typography>
-            <Typography mb={2} variant="body2">
+            <Typography mb={2} fontSize={"small"} variant="body2">
               I was able to get a loan within 48 hours.
             </Typography>
-            <FormControl component="form" onSubmit={handleSubmit}>
-              <TextField
-                size={"small"}
-                sx={{ margin: "5px" }}
-                name="fullName"
-                label="Full Name"
-                variant="outlined"
-                required
-                onChange={handleChange}
-              />
-              <TextField
-                size={"small"}
-                sx={{ margin: "5px" }}
-                name="email"
-                label="Email"
-                type="email"
-                variant="outlined"
-                required
-                onChange={handleChange}
-              />
-              <Box>
-                <TextField
-                  size="small"
-                  sx={{ margin: "5px" }}
-                  name="mobile_no"
-                  label="Mobile No."
-                  variant="outlined"
-                  required
-                  inputProps={{ maxLength: 10 }}
-                  onChange={handleChange}
-                />
-
-                <TextField
-                  size={"small"}
-                  sx={{ margin: "5px" }}
-                  name="pan_number"
-                  label="PAN Number"
-                  variant="outlined"
-                  required
-                  onChange={handleChange}
-                />
-              </Box>
-              <TextField
-                size={"small"}
-                sx={{ margin: "5px" }}
-                name="dob"
-                label="D.O.B"
-                type="date"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                variant="outlined"
-                required
-                onChange={handleChange}
-              />
-              <Box>
-                <TextField
-                  size={"small"}
-                  sx={{ margin: "5px" }}
-                  name="income"
-                  label="Income"
-                  variant="outlined"
-                  required
-                  onChange={handleChange}
-                />
-                <TextField
-                  size={"small"}
-                  sx={{ margin: "5px" }}
-                  name="pincode"
-                  label="Pincode"
-                  variant="outlined"
-                  required
-                  onChange={handleChange}
-                />
-              </Box>
-              <Button
-                sx={{
-                  width: "max-content",
-                  display: "block",
-                  margin: "auto",
-                  marginTop: "10px",
-                  padding: "5px 50px",
-                }}
-                type="submit"
-                variant="contained"
-                color="primary"
+            <Box
+              sx={{
+                backgroundColor: `${theme.palette.primary.main}`,
+                padding: "20px",
+                borderRadius: "10px",
+              }}
+            >
+              <FormControl
+                fullWidth={true}
+                component="form"
+                onSubmit={handleSubmit}
               >
-                Submit
-              </Button>
-            </FormControl>
+                <TextField
+                  size={"small"}
+                  sx={{ margin: "5px" }}
+                  name="fullName"
+                  label="Full Name"
+                  variant="outlined"
+                  required
+                  onChange={handleChange}
+                />
+                <TextField
+                  size={"small"}
+                  sx={{ margin: "5px" }}
+                  name="email"
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                  required
+                  onChange={handleChange}
+                />
+                <Box>
+                  <TextField
+                    size="small"
+                    sx={{ margin: "5px" }}
+                    name="mobile_no"
+                    label="Mobile No."
+                    variant="outlined"
+                    required
+                    inputProps={{ maxLength: 10 }}
+                    onChange={handleChange}
+                  />
+
+                  <TextField
+                    size={"small"}
+                    sx={{ margin: "5px" }}
+                    name="pan_number"
+                    label="PAN Number"
+                    variant="outlined"
+                    required
+                    onChange={handleChange}
+                  />
+                </Box>
+                <TextField
+                  size={"small"}
+                  sx={{ margin: "5px" }}
+                  name="dob"
+                  label="D.O.B"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="outlined"
+                  required
+                  onChange={handleChange}
+                />
+                <Box>
+                  <TextField
+                    size={"small"}
+                    sx={{ margin: "5px" }}
+                    name="income"
+                    label="Income"
+                    variant="outlined"
+                    required
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    size={"small"}
+                    sx={{ margin: "5px" }}
+                    name="pincode"
+                    label="Pincode"
+                    variant="outlined"
+                    required
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Button
+                  sx={{
+                    marginTop: "10px",
+                    backgroundColor: `${theme.palette.primary.dark}`,
+                    color: theme.palette.primary.main,
+                  }}
+                  type="submit"
+                  variant="contained"
+                >
+                  Submit
+                </Button>
+              </FormControl>
+            </Box>
             {isLoading ? (
               <LinearProgress sx={{ width: "75%", marginTop: "10px" }} />
             ) : (
@@ -219,7 +238,7 @@ const EligiblityEntrypoints = () => {
               </Alert>
             </Snackbar>
           </Grid>
-          <Grid item lg={4}>
+          <Grid md={4} className={styles.eligibility_right_sec} item lg={4}>
             <img
               id={styles.eligibility_check}
               src={checking_img}

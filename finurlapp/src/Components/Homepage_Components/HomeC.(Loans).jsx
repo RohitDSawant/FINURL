@@ -30,7 +30,7 @@ const HomeCLoans = () => {
         <Box mt={10} className={styles.loans_sec}>
           <TabContext value={tab}>
             <Box mb={2} sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList
+              <TabList textColor="black"
                 variant={"scrollable"}
                 scrollButtons={"auto"}
                 onChange={handleChange}

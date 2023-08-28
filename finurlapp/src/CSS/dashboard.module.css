@@ -1,0 +1,11 @@
+#sidebar {
+  border: 1px solid;
+  height: 100vh;
+  position:relative
+}
+
+#toggle_sidebar{
+    position: absolute;
+    right: 0%;
+    top: 3%;
+}

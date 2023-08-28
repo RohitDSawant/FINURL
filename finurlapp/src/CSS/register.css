@@ -33,7 +33,7 @@ main {
 
 .box {
   position: relative;
-  width: 75%;
+  width: 80%;
   height: 80vh;
   margin-top: 5%;
   background-color: #fff;
@@ -54,7 +54,7 @@ main {
   position: absolute;
   height: 100%;
   width: 45%;
-  top: 0;
+  top: 10%;
   left: 0;
   display: grid;
   grid-template-columns: 1fr;
@@ -64,13 +64,13 @@ main {
 
 .sign-up-form,
 .sign-in-form {
-  max-width: 260px;
-  width: 100%;
+  max-width: 40vw;
+  width: 80%;
   margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  /* justify-content: space-between; */
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   transition: opacity 0.02s 0.4s;
@@ -82,36 +82,21 @@ form.sign-up-form {
 }
 
 .logo {
-  padding: 10px 0;
   display: flex;
   align-items: center;
-  margin-bottom: -20px;
+  margin-bottom: 7%;
 }
 
 .logo img {
-  width: 120px;
+  width: 2vw;
   height: 5vh;
-  margin-bottom: 20px;
-  margin-right: 0.3rem;
+  margin-right: 1rem;
 }
 
-.logo h4 {
-  font-size: 1.1rem;
-  margin-top: -9px;
-  letter-spacing: -0.5px;
-  color: #151111;
-}
-
-.heading h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #151111;
-}
-
-.heading h6 {
+.heading {
   color: rgb(150, 150, 150);
   font-weight: 400;
-  font-size: 0.80rem;
+  font-size: 0.8rem;
   display: inline;
   margin-right: 10px;
 }
@@ -119,14 +104,14 @@ form.sign-up-form {
 .toggle {
   color: navy;
   text-decoration: none;
-  font-size: 0.80rem;
+  font-size: 0.8rem;
   font-weight: 500;
   transition: 0.3s;
 }
 
 .toggle:hover {
   color: navy;
-  font-size: 0.90rem;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
@@ -171,32 +156,32 @@ label {
 }
 
 .sign-btn {
-  display: inline-block;
-  width: 100%;
-  height: 43px;
   background-color: #151111;
   color: #fff;
   border: none;
   cursor: pointer;
+  width: 50%;
   border-radius: 0.8rem;
-  font-size: 0.8rem;
-  margin-bottom: 2rem;
+  text-transform: capitalize;
+  padding: 2% 10%;
+  display: block;
+  margin: auto;
   transition: 0.3s;
+  margin-bottom: 20px;
 }
 
 .sign-btn:hover {
   background-color: #2db6d1;
   color: #000;
-  
 }
 
 .text {
-  color: rgb(150, 150, 150);
+  color: #000;
   font-size: 0.7rem;
 }
 
 .text a {
-  color: rgb(150, 150, 150);
+  color: rgb(32, 32, 32);
   transition: 0.3s;
 }
 
@@ -229,7 +214,6 @@ main.sign-up-mode .carousel {
   width: 55%;
   left: 45%;
   top: 0;
-  background-color: rgb(124, 232, 206);
   border-radius: 2rem;
   display: grid;
   /* border: 1px solid #d12d6c; */
@@ -243,16 +227,19 @@ main.sign-up-mode .carousel {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  border-radius: 10px;
 }
-
 
 .image {
   padding: 10px 20px;
-  width: 100%;
+  width: 80%;
   height: 50vh;
   grid-column: 1/2;
   grid-row: 1/2;
   opacity: 0;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
   transition: opacity 0.3s, transform 0.5s;
 }
 
@@ -325,9 +312,17 @@ main.sign-up-mode .carousel {
 
 @media (max-width: 850px) {
   .box {
-    height: auto;
+    height: 80vh;
     max-width: 550px;
     overflow: hidden;
+  }
+
+  .logo img {
+    width: 10%;
+  }
+
+  .logo {
+    margin-bottom: 1%;
   }
 
   .inner-box {
@@ -335,7 +330,7 @@ main.sign-up-mode .carousel {
     transform: none;
     width: revert;
     height: revert;
-    padding: 2rem;
+    /* padding: 2rem; */
   }
 
   .forms-wrap {
@@ -351,7 +346,8 @@ main.sign-up-mode .carousel {
   }
 
   .heading {
-    margin: 2rem 0;
+    margin-top: 20px ;
+    width: 100%;
   }
 
   form.sign-up-form {
@@ -371,7 +367,7 @@ main.sign-up-mode .carousel {
     height: auto;
     width: 100%;
     padding: 3rem 2rem;
-    display: flex;
+    display: none;
   }
 
   .images-wrapper {
@@ -381,6 +377,11 @@ main.sign-up-mode .carousel {
   .text-slider {
     width: 100%;
   }
+
+  .sign-up-form,
+  .sign-in-form {
+    max-width: 80vw;
+  }
 }
 
 @media (max-width: 530px) {
@@ -388,8 +389,17 @@ main.sign-up-mode .carousel {
     padding: 1rem;
   }
 
+  .logo img {
+    width: 20%;
+  }
+
+  .logo {
+    margin-bottom: 1%;
+  }
+
   .box {
     border-radius: 2rem;
+    width: 100%;
   }
 
   .inner-box {
@@ -411,5 +421,10 @@ main.sign-up-mode .carousel {
 
   form {
     padding: 1rem 2rem 1.5rem;
+  }
+
+  .sign-up-form,
+  .sign-in-form {
+    max-width: 100vw;
   }
 }

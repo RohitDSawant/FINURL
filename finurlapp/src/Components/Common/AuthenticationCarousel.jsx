@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import finurl from "../../Assets/Images/finurl1.png";
+import finurl from "../../Assets/Images/circle_log.png";
 import "../../CSS/register.css";
 import { useDispatch } from "react-redux";
 import {
@@ -15,9 +15,11 @@ import {
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import auth1 from "./../../Assets/Images/auth_1.svg";
-import auth2 from "./../../Assets/Images/auth_2.svg";
-import auth3 from "./../../Assets/Images/auth_3.svg";
+import auth1 from "./../../Assets/Images/auth_1.jpg";
+import auth2 from "./../../Assets/Images/auth_2.jpg";
+import auth3 from "./../../Assets/Images/auth_3.jpg";
+import Navbar from "./Navbar";
+import theme from "../../Theme/theme";
 
 const LoginPage = () => {
   const [activeInput, setActiveInput] = useState(null);
@@ -176,332 +178,372 @@ const LoginPage = () => {
   console.log(snackMsg);
 
   return (
-    <main className={isSignUpMode ? "sign-up-mode" : ""}>
-      <div className="box">
-        <div className="inner-box">
-          <div className="forms-wrap">
-            {isSignUpMode ? (
-              <>
-                <form
-                  action="index.html"
-                  autoComplete="off"
-                  className="sign-up-form"
-                  onSubmit={handleSubmitSignIn}
-                >
-                  <div className="logo">
-                    <img src={finurl} alt="easyclass" />
-                    {/* <h4>FINURL</h4> */}
-                  </div>
-
-                  <div className="heading">
-                    <h2>Welcome</h2>
-                    <h6>Not registered yet?</h6>
-                    <a
-                      href="#"
-                      className="toggle"
-                      onClick={() => setIsSignUpMode(!isSignUpMode)}
-                    >
-                      Sign Up
-                    </a>
-                  </div>
-
-                  <div className="actual-form">
-                    <div className="input-wrap">
-                      <input
-                        placeholder="Email"
-                        onChange={handleSigninChange}
-                        type="email"
-                        name="email"
-                        className={`input-field ${
-                          activeInput === 0 ? "active" : ""
-                        }`}
-                        autoComplete="off"
-                        required
-                      />
-                      {/* <label>Name</label> */}
+    <>
+      <Navbar />
+      <main className={isSignUpMode ? "sign-up-mode" : ""}>
+        <div className="box">
+          <div className="inner-box">
+            <div className="forms-wrap">
+              {isSignUpMode ? (
+                <>
+                  <form
+                    action="index.html"
+                    autoComplete="off"
+                    className="sign-up-form"
+                    onSubmit={handleSubmitSignIn}
+                  >
+                    <div className="logo">
+                      <img src={finurl} alt="easyclass" />
+                      <Typography variant="h6">FinURL</Typography>
                     </div>
 
-                    <div className="input-wrap">
-                      <input
-                        placeholder="Password"
-                        onChange={handleSigninChange}
-                        type="password"
-                        name="password"
-                        className={`input-field ${
-                          activeInput === 1 ? "active" : ""
-                        }`}
-                        autoComplete="off"
-                        required
-                      />
-                      {/* <label>Password</label> */}
+                    <div className="heading">
+                      <Typography
+                        color={theme.palette.primary.main}
+                        variant="h6"
+                      >
+                        Welcome
+                      </Typography>
+                      <Typography mb={5} fontSize={"small"} variant="body2">
+                        Not registered yet?{" "}
+                        <a
+                          href="#"
+                          className="toggle"
+                          onClick={() => setIsSignUpMode(!isSignUpMode)}
+                        >
+                          Sign Up
+                        </a>
+                      </Typography>
                     </div>
 
-                    {showOptSec ? (
-                      <>
-                        <div className="input-wrap">
-                          <input
-                            placeholder="OTP"
-                            onChange={handleOtp}
-                            type="number"
-                            minLength="6"
-                            name="otp"
-                            className={`input-field ${
-                              activeInput === 1 ? "active" : ""
-                            }`}
-                            autoComplete="off"
-                            required
-                          />
-                          {/* <label>Password</label> */}
-                        </div>
-                      </>
-                    ) : (
-                      <></>
-                    )}
+                    <div className="actual-form">
+                      <div className="input-wrap">
+                        <input
+                          placeholder="Email"
+                          onChange={handleSigninChange}
+                          type="email"
+                          name="email"
+                          className={`input-field ${
+                            activeInput === 0 ? "active" : ""
+                          }`}
+                          autoComplete="off"
+                          required
+                        />
+                        {/* <label>Name</label> */}
+                      </div>
 
-                    {!showOptSec ? (
-                      <input
-                        placeholder=""
-                        type="submit"
-                        value="Sign In"
-                        className="sign-btn"
+                      <div className="input-wrap">
+                        <input
+                          placeholder="Password"
+                          onChange={handleSigninChange}
+                          type="password"
+                          name="password"
+                          className={`input-field ${
+                            activeInput === 1 ? "active" : ""
+                          }`}
+                          autoComplete="off"
+                          required
+                        />
+                        {/* <label>Password</label> */}
+                      </div>
+
+                      {showOptSec ? (
+                        <>
+                          <div className="input-wrap">
+                            <input
+                              placeholder="OTP"
+                              onChange={handleOtp}
+                              type="number"
+                              minLength="6"
+                              name="otp"
+                              className={`input-field ${
+                                activeInput === 1 ? "active" : ""
+                              }`}
+                              autoComplete="off"
+                              required
+                            />
+                            {/* <label>Password</label> */}
+                          </div>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+
+                      {!showOptSec ? (
+                        <Button
+                          type="submit"
+                          className="sign-btn"
+                          sx={{
+                            backgroundColor: `${theme.palette.primary.main}`,
+                            color: "#fff",
+                            marginBottom: "10px",
+                          }}
+                        >
+                          Sign In
+                        </Button>
+                      ) : (
+                        ""
+                      )}
+
+                      {showOptSec ? (
+                        <>
+                          <Button
+                            onClick={verifyOtp}
+                            sx={{
+                              background: "pink",
+                              color: "#000",
+                              display: "block",
+                              margin: "auto",
+                              marginBottom: "10px",
+                              textTransform: "capitalize",
+                            }}
+                          >
+                            Verify OTP
+                          </Button>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                      {!showOptSec ? (
+                        <p className="text">
+                          Forgot your password or you login details?
+                          <a href="#"> Get help</a> signing in
+                        </p>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                    {!isLoading ? (
+                      <LinearProgress
+                        sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
                       />
                     ) : (
                       ""
                     )}
+                  </form>
+                </>
+              ) : (
+                <>
+                  <form
+                    action="index.html"
+                    autoComplete="off"
+                    className="sign-in-form"
+                    onSubmit={handleSubmitSignup}
+                  >
+                    <div className="logo">
+                      <img src={finurl} alt="easyclass" />
+                      <Typography variant="h6">FinURL</Typography>
+                    </div>
 
-                    {showOptSec ? (
-                      <>
+                    <div className="heading">
+                      <Typography variant="body2" fontSize={"small"}>
+                        Get Started
+                      </Typography>
+                      <Typography mb={2} variant="body2" fontSize={"small"}>
+                        Already have an account?{" "}
+                        <a
+                          onClick={() => setIsSignUpMode(!isSignUpMode)}
+                          className="toggle"
+                        >
+                          Sign in
+                        </a>
+                      </Typography>
+                    </div>
+
+                    <div className="actual-form">
+                      <div className="input-wrap">
+                        <input
+                          placeholder="Full Name"
+                          onChange={handleChange}
+                          type="text"
+                          name="name"
+                          minLength="4"
+                          className="input-field"
+                          autoComplete="off"
+                          required
+                        />
+                        {/* <label>Name</label> */}
+                      </div>
+
+                      <div className="input-wrap">
+                        <input
+                          placeholder="Email"
+                          onChange={handleChange}
+                          type="email"
+                          className="input-field"
+                          autoComplete="off"
+                          required
+                          name="email"
+                        />
+                        {/* <label>Email</label> */}
+                      </div>
+                      <div className="input-wrap">
+                        <input
+                          placeholder="PAN No"
+                          onChange={handleChange}
+                          type="text"
+                          className="input-field"
+                          autoComplete="off"
+                          required
+                          name="panNumber"
+                        />
+                        {/* <label>PAN No</label> */}
+                      </div>
+
+                      <div className="input-wrap">
+                        <input
+                          placeholder="Mobile No"
+                          onChange={handleChange}
+                          type="number"
+                          name="phoneNumber"
+                          minLength="10"
+                          className="input-field"
+                          autoComplete="off"
+                          required
+                        />
+                        {/* <label>Mobile No</label> */}
+                      </div>
+                      {!showSuccessSnack && !showErrorSnack ? (
                         <Button
-                          onClick={verifyOtp}
+                          type="submit"
+                          value="Sign Up"
+                          className="sign-btn"
                           sx={{
-                            background: "pink",
-                            color: "#000",
-                            display: "block",
-                            margin: "auto",
+                            background: `${theme.palette.primary.main}`,
+                            color: "#fff",
                             marginBottom: "10px",
-                            textTransform: "capitalize",
                           }}
                         >
-                          Verify OTP
+                          Sign Up
                         </Button>
-                      </>
-                    ) : (
-                      <></>
-                    )}
-                    <p className="text">
-                      Forgot your password or you login details?
-                      <a href="#">Get help</a> signing in
-                    </p>
-                  </div>
-                </form>
-                {isLoading ? (
-                  <LinearProgress
-                    sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
-                  />
-                ) : (
-                  ""
-                )}
-              </>
-            ) : (
-              <>
-                <form
-                  action="index.html"
-                  autoComplete="off"
-                  className="sign-in-form"
-                  onSubmit={handleSubmitSignup}
-                >
-                  <div className="logo">
-                    <img src={finurl} alt="easyclass" />
-                    {/* <h4>FINURL</h4> */}
-                  </div>
+                      ) : showSuccessSnack ? (
+                        <Typography
+                          variant="body1"
+                          mb={3}
+                          fontWeight={600}
+                          color={"green"}
+                          display={"flex"}
+                          alignItems={"center"}
+                          justifyContent={"center"}
+                        >
+                          Signup Successful
+                        </Typography>
+                      ) : (
+                        <Typography
+                          variant="body1"
+                          mb={3}
+                          fontWeight={600}
+                          color={"crimson"}
+                          display={"flex"}
+                          alignItems={"center"}
+                          justifyContent={"center"}
+                        >
+                          Signup Failed
+                        </Typography>
+                      )}
 
-                  <div className="heading">
-                    <h2>Get Started</h2>
-                    <h6>Already have an account?</h6>
-                    <a
-                      onClick={() => setIsSignUpMode(!isSignUpMode)}
-                      className="toggle"
-                    >
-                      Sign in
-                    </a>
-                  </div>
-
-                  <div className="actual-form">
-                    <div className="input-wrap">
-                      <input
-                        placeholder="Full Name"
-                        onChange={handleChange}
-                        type="text"
-                        name="name"
-                        minLength="4"
-                        className="input-field"
-                        autoComplete="off"
-                        required
-                      />
-                      {/* <label>Name</label> */}
-                    </div>
-
-                    <div className="input-wrap">
-                      <input
-                        placeholder="Email"
-                        onChange={handleChange}
-                        type="email"
-                        className="input-field"
-                        autoComplete="off"
-                        required
-                        name="email"
-                      />
-                      {/* <label>Email</label> */}
-                    </div>
-                    <div className="input-wrap">
-                      <input
-                        placeholder="PAN No"
-                        onChange={handleChange}
-                        type="text"
-                        className="input-field"
-                        autoComplete="off"
-                        required
-                        name="panNumber"
-                      />
-                      {/* <label>PAN No</label> */}
-                    </div>
-
-                    <div className="input-wrap">
-                      <input
-                        placeholder="Mobile No"
-                        onChange={handleChange}
-                        type="number"
-                        name="phoneNumber"
-                        minLength="10"
-                        className="input-field"
-                        autoComplete="off"
-                        required
-                      />
-                      {/* <label>Mobile No</label> */}
-                    </div>
-                    {!showSuccessSnack && !showErrorSnack ? (
-                      <input
-                        type="submit"
-                        value="Sign Up"
-                        className="sign-btn"
-                      />
-                    ) : showSuccessSnack ? (
-                      <Typography
-                        variant="body1"
-                        mb={3}
-                        fontWeight={600}
-                        color={"green"}
-                        display={"flex"}
-                        alignItems={"center"}
-                        justifyContent={"center"}
-                      >
-                        Signup Successful
-                      </Typography>
-                    ) : (
-                      <Typography
-                        variant="body1"
-                        mb={3}
-                        fontWeight={600}
-                        color={"crimson"}
-                        display={"flex"}
-                        alignItems={"center"}
-                        justifyContent={"center"}
-                      >
-                        Signup Failed
-                      </Typography>
-                    )}
-
-                    {/* {!showSigupError && ?(<>
+                      {/* {!showSigupError && ?(<>
                   <input type="submit" value="Sign Up" className="sign-btn" />
                    </>) : (
                      <Typography variant="body1">Signup Failed</Typography>
                    )} */}
-                    <p className="text">
-                      By signing up, I agree to the
-                      <a href="#">Terms of Services</a> and
-                      <a href="#">Privacy Policy</a>
-                    </p>
-                  </div>
-                </form>
-                {isLoading ? (
-                  <LinearProgress
-                    sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
-                  />
-                ) : (
-                  ""
-                )}
-              </>
-            )}
-          </div>
-          <Snackbar
-            open={showSuccessSnack || showErrorSnack}
-            autoHideDuration={3100}
-            onClose={() => handleClose()}
-            anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          >
-            <Alert
-              onClose={() => handleClose()}
-              severity={"info"}
-              sx={{ width: "100%" }}
-            >
-              {snackMsg}
-            </Alert>
-          </Snackbar>
-
-          <div className="carousel">
-            <div className="images-wrapper">
-              <img
-                // src={auth1}
-                className={`image img-1 ${activeSlide === 1 ? "show" : ""}`}
-                alt=""
-              />
-              <img
-                // src={auth2}
-                className={`image img-2 ${activeSlide === 2 ? "show" : ""}`}
-                alt=""
-              />
-              <img
-                // src={auth3}
-                className={`image img-3 ${activeSlide === 3 ? "show" : ""}`}
-                alt=""
-              />
+                      <p className="text">
+                        By signing up, I agree to the
+                        <a href="#"> Terms of Services</a> and
+                        <a href="#"> Privacy Policy</a>
+                      </p>
+                    </div>
+                  </form>
+                  {isLoading ? (
+                    <LinearProgress
+                      color={"primary"}
+                      sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </>
+              )}
             </div>
+            <Snackbar
+              open={showSuccessSnack || showErrorSnack}
+              autoHideDuration={3100}
+              onClose={() => handleClose()}
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            >
+              <Alert
+                onClose={() => handleClose()}
+                severity={"info"}
+                sx={{ width: "100%" }}
+              >
+                {snackMsg}
+              </Alert>
+            </Snackbar>
 
-            <div className="text-slider">
-              <div className="text-wrap">
-                <div style={{ color: "black" }} className="text-group">
-                  {activeSlide === 1 && (
-                    <>
-                      <h2>Find the best loan for you</h2>
-                    </>
-                  )}
-                  {activeSlide === 2 && (
-                    <>
-                      <h2>Loans at best rates possible </h2>
-                    </>
-                  )}
-                  {activeSlide === 3 && (
-                    <>
-                      <h2>Track your progress in no time</h2>
-                    </>
-                  )}
-                </div>
+            <div
+              style={{ background: theme.palette.primary.main }}
+              className="carousel"
+            >
+              <div className="images-wrapper">
+                <img
+                  src={auth1}
+                  className={`image img-1 ${activeSlide === 1 ? "show" : ""}`}
+                  alt=""
+                />
+                <img
+                  src={auth2}
+                  className={`image img-2 ${activeSlide === 2 ? "show" : ""}`}
+                  alt=""
+                />
+                <img
+                  src={auth3}
+                  className={`image img-3 ${activeSlide === 3 ? "show" : ""}`}
+                  alt=""
+                />
               </div>
 
-              <div className="bullets">
-                {Array.from({ length: 3 }).map((_, index) => (
-                  <span
-                    key={index + 1}
-                    className={activeSlide === index + 1 ? "active" : ""}
-                    onClick={() => handleBulletClick(index + 1)}
-                  ></span>
-                ))}
+              <div className="text-slider">
+                <div className="text-wrap">
+                  <div style={{ color: "black" }} className="text-group">
+                    {activeSlide === 1 && (
+                      <>
+                        <Typography color={"#fff"} variant="h6">
+                          Find the best loan for you
+                        </Typography>
+                      </>
+                    )}
+                    {activeSlide === 2 && (
+                      <>
+                        <Typography color={"#fff"} variant="h6">
+                          Loans at best rates possible{" "}
+                        </Typography>
+                      </>
+                    )}
+                    {activeSlide === 3 && (
+                      <>
+                        <Typography color={"#fff"} variant="h6">
+                          Track your progress in no time
+                        </Typography>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div className="bullets">
+                  {Array.from({ length: 3 }).map((_, index) => (
+                    <span
+                      key={index + 1}
+                      className={activeSlide === index + 1 ? "active" : ""}
+                      onClick={() => handleBulletClick(index + 1)}
+                    ></span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 };
 

@@ -103,13 +103,13 @@ const InstantLoansCarousel = () => {
                   {partner.name}
                 </Typography>
                 <Box display={"flex"} justifyContent={"space-evenly"}>
-                  <Typography color={"gray"} fontSize={"small"} variant="body2">
+                  <Typography color={"gray"} fontSize={"x-small"} variant="body2">
                     Loan upto
                   </Typography>
-                  <Typography color={"gray"} fontSize={"small"} variant="body2">
+                  <Typography color={"gray"} fontSize={"x-small"} variant="body2">
                     Min ROi
                   </Typography>
-                  <Typography color={"gray"} fontSize={"small"} variant="body2">
+                  <Typography color={"gray"} fontSize={"x-small"} variant="body2">
                     Max Tenure
                   </Typography>
                 </Box>
@@ -122,7 +122,7 @@ const InstantLoansCarousel = () => {
                   onClick={() => {
                     Redirection(partner.path);
                   }}
-                  id={styles.carousel_apply_btn}
+                  // id={styles.carousel_apply_btn}
                 >
                   Apply Now
                 </Button>

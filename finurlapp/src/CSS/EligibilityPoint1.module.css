@@ -11,7 +11,7 @@
   /* width: 500px; */
 }
 
-.eligibility_check_form{
+.eligibility_check_form {
   /* border: 1px solid #ccc; */
   /* border-radius: 10px;
   padding: 5%; */
@@ -20,4 +20,30 @@
 #application_pencil {
   height: 60vh;
   width: 40vw;
+}
+
+.application_form {
+  border-radius: 10px;
+  padding: 2% 5%;
+}
+
+@media all and (max-width: 768px) {
+  .application_right_sec,
+  .eligibility_right_sec {
+    display: none;
+  }
+  #eligibility_sec {
+    padding-top: 15%;
+  }
+}
+
+@media all and (min-width: 100px) and (max-width: 426px) {
+  .application_right_sec,
+  .eligibility_right_sec {
+    display: none;
+  }
+
+  #eligibility_sec {
+    padding-top: 20%;
+  }
 }

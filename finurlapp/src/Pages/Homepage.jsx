@@ -8,10 +8,12 @@ import HomeFReviews from "../Components/Homepage_Components/HomeFReviews";
 import HomeGPartners from "../Components/Homepage_Components/HomeGPartners";
 import LoanCalculator from "../Components/Homepage_Components/LoanCalculator";
 import Footer from "../Components/Common/Footer";
+import Navbar from "../Components/Common/Navbar";
 
 const Homepage = () => {
   return (
     <>
+      <Navbar />
       <HomeA />
       <HomeB />
       <HomeDSlabs />
@@ -21,7 +23,6 @@ const Homepage = () => {
       <HomeFReviews />
       <HomeGPartners />
       <Footer />
-
     </>
   );
 };
