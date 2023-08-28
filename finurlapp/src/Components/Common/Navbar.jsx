@@ -318,14 +318,23 @@ const Navbar = () => {
             <Box mt={3}>
               <List>
                 {!isAuth ? (
-                  <ListItem>
-                    <LoginIcon sx={{ marginRight: "10px" }} />
-                    Login
-                  </ListItem>
+                  <>
+                    <Link
+                      style={{ textDecoration: "none", color: "#fff" }}
+                      to={"/authentication"}
+                    >
+                      <ListItem>
+                        <LoginIcon sx={{ marginRight: "10px" }} />
+                        Login
+                      </ListItem>
+                    </Link>
+                  </>
                 ) : (
                   <ListItem>
-                    <LogoutIcon sx={{ marginRight: "10px" }} />
-                    Logout
+                    <Button onClick={handleLogout}>
+                      <LogoutIcon sx={{ marginRight: "10px" }} />
+                      Logout
+                    </Button>
                   </ListItem>
                 )}
               </List>
