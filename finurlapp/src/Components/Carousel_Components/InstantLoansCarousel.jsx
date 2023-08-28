@@ -9,6 +9,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import theme from "../../Theme/theme";
 
 const InstantLoansCarousel = () => {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
@@ -103,13 +104,25 @@ const InstantLoansCarousel = () => {
                   {partner.name}
                 </Typography>
                 <Box display={"flex"} justifyContent={"space-evenly"}>
-                  <Typography color={"gray"} fontSize={"x-small"} variant="body2">
+                  <Typography
+                    color={"gray"}
+                    fontSize={"x-small"}
+                    variant="body2"
+                  >
                     Loan upto
                   </Typography>
-                  <Typography color={"gray"} fontSize={"x-small"} variant="body2">
+                  <Typography
+                    color={"gray"}
+                    fontSize={"x-small"}
+                    variant="body2"
+                  >
                     Min ROi
                   </Typography>
-                  <Typography color={"gray"} fontSize={"x-small"} variant="body2">
+                  <Typography
+                    color={"gray"}
+                    fontSize={"x-small"}
+                    variant="body2"
+                  >
                     Max Tenure
                   </Typography>
                 </Box>
@@ -119,6 +132,12 @@ const InstantLoansCarousel = () => {
                   <Typography variant="body2">{partner.description}</Typography>
                 </Box>
                 <Button
+                  sx={{
+                    backgroundColor: theme.palette.primary.main,
+                    color: "#fff",
+                    display: "block",
+                    margin: "auto",
+                  }}
                   onClick={() => {
                     Redirection(partner.path);
                   }}

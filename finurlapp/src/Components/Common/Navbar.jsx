@@ -331,8 +331,8 @@ const Navbar = () => {
                   </>
                 ) : (
                   <ListItem>
-                    <Button onClick={handleLogout}>
-                      <LogoutIcon sx={{ marginRight: "10px" }} />
+                    <Button sx={{"color": "#fff"}} onClick={handleLogout}>
+                      <LogoutIcon sx={{ marginRight: "10px", color: "#fff" }} />
                       Logout
                     </Button>
                   </ListItem>

@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import {
   Alert,
+  Box,
   Button,
   CircularProgress,
   LinearProgress,
@@ -181,11 +182,11 @@ const LoginPage = () => {
   return (
     <>
       <Navbar />
-      <main className={isSignUpMode ? "sign-up-mode" : ""}>
+      <main className={!isSignUpMode ? "sign-up-mode" : ""}>
         <div className="box">
           <div className="inner-box">
             <div className="forms-wrap">
-              {isSignUpMode ? (
+              {!isSignUpMode ? (
                 <>
                   <form
                     action="index.html"
@@ -271,36 +272,54 @@ const LoginPage = () => {
                       )}
 
                       {!showOptSec ? (
-                        <Button
-                          type="submit"
-                          className="sign-btn"
-                          sx={{
-                            backgroundColor: `${theme.palette.primary.main}`,
-                            color: "#fff",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          Sign In
-                        </Button>
+                        <>
+                          <Box display={"flex"} gap={"30px"}>
+                            <Button
+                              type="submit"
+                              className="sign-btn"
+                              sx={{
+                                backgroundColor: `${theme.palette.primary.main}`,
+                                color: "#fff",
+                                marginBottom: "10px",
+                              }}
+                            >
+                              Sign In
+                            </Button>
+                            {isLoading ? <CircularProgress size={30} /> : ""}
+                          </Box>
+                        </>
                       ) : (
                         ""
                       )}
 
                       {showOptSec ? (
                         <>
-                          <Button
-                            onClick={verifyOtp}
-                            sx={{
-                              background: "pink",
-                              color: "#000",
-                              display: "block",
-                              margin: "auto",
-                              marginBottom: "10px",
-                              textTransform: "capitalize",
-                            }}
-                          >
-                            Verify OTP
-                          </Button>
+                          <Box display={"flex"} gap={"30px"}>
+                            <Button
+                              onClick={verifyOtp}
+                              sx={{
+                                background: "pink",
+                                color: "#000",
+                                display: "block",
+                                margin: "auto",
+                                marginBottom: "10px",
+                                textTransform: "capitalize",
+                              }}
+                            >
+                              Verify OTP
+                            </Button>
+                            {isLoading ? (
+                              <CircularProgress
+                                sx={{
+                                  width: "60%",
+                                  margin: "auto",
+                                  marginTop: "10px",
+                                }}
+                              />
+                            ) : (
+                              ""
+                            )}
+                          </Box>
                         </>
                       ) : (
                         <></>
@@ -314,13 +333,6 @@ const LoginPage = () => {
                         ""
                       )}
                     </div>
-                    {!isLoading ? (
-                      <CircularProgress
-                        sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
-                      />
-                    ) : (
-                      ""
-                    )}
                   </form>
                 </>
               ) : (
@@ -405,18 +417,33 @@ const LoginPage = () => {
                         {/* <label>Mobile No</label> */}
                       </div>
                       {!showSuccessSnack && !showErrorSnack ? (
-                        <Button
-                          type="submit"
-                          value="Sign Up"
-                          className="sign-btn"
-                          sx={{
-                            background: `${theme.palette.primary.main}`,
-                            color: "#fff",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          Sign Up
-                        </Button>
+                        <>
+                          <Box display={"flex"} gap={"30px"}>
+                            <Button
+                              type="submit"
+                              value="Sign Up"
+                              className="sign-btn"
+                              sx={{
+                                background: `${theme.palette.primary.main}`,
+                                color: "#fff",
+                                marginBottom: "10px",
+                              }}
+                            >
+                              Sign Up
+                            </Button>
+                            {isLoading ? (
+                              <CircularProgress
+                                sx={{
+                                  width: "60%",
+                                  margin: "auto",
+                                  marginTop: "10px",
+                                }}
+                              />
+                            ) : (
+                              ""
+                            )}
+                          </Box>
+                        </>
                       ) : showSuccessSnack ? (
                         <Typography
                           variant="body1"
@@ -455,13 +482,6 @@ const LoginPage = () => {
                       </p>
                     </div>
                   </form>
-                  {isLoading ? (
-                    <CircularProgress
-                      sx={{ width: "60%", margin: "auto", marginTop: "10px" }}
-                    />
-                  ) : (
-                    ""
-                  )}
                 </>
               )}
             </div>
