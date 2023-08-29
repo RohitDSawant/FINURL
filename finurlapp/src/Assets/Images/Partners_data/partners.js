@@ -182,18 +182,147 @@ export const partners_img = [
   },
 ];
 
-
 export const authentication_carousel = [
   {
-      link: require("./../auth_1.svg"),
-      desc: "Find the best Loan for you"
+    link: require("./../auth_1.svg"),
+    desc: "Find the best Loan for you",
   },
   {
-      link: require("./../auth_2.svg"),
-      desc: "Loans at best rates possible"
+    link: require("./../auth_2.svg"),
+    desc: "Loans at best rates possible",
   },
   {
-      link: require("./../auth_3.svg"),
-      desc: "Track your progress in no time"
-  }
-]
+    link: require("./../auth_3.svg"),
+    desc: "Track your progress in no time",
+  },
+];
+
+export const bankoffers = [
+  {
+    id: 1,
+    name: "KreditBee",
+    loans: "4 Lakhs",
+    roi: "15%",
+    description: "24M",
+    path: "/Registration",
+    imageurl: require("./../partners_logo/kred.jpeg"),
+  },
+  {
+    id: 2,
+    name: "CASHe",
+    loans: "3 Lakhs",
+    roi: "15%",
+    description: "24M",
+    path: "/Registration",
+    imageurl: require("./../partners_logo/cashe.png"),
+  },
+  {
+    id: 3,
+    name: "Stashfin",
+    loans: "5 Lakhs",
+    roi: "12%",
+    description: "60M",
+    path: "/stashfin",
+    imageurl: require("./../partners_logo/stashfin.png"),
+  },
+  {
+    id: 4,
+    name: "Prefr",
+    loans: "3 Lakhs",
+    roi: "14%",
+    description: "48M",
+    path: "/prefer",
+    imageurl: require("./../partners_logo/prefr.png"),
+  },
+  {
+    id: 5,
+    name: "TATA Capital",
+    loans: "2 Lakhs",
+    roi: "12%",
+    description: "24M",
+    path: "/Registration",
+    imageurl: require("./../partners_logo/tata2.png"),
+  },
+  {
+    id: 6,
+    name: "Privo",
+    loans: "10 Lakhs",
+    roi: "15%",
+    description: "60M",
+    path: "/Registration",
+    imageurl: require("./../partners_logo/privo.png"),
+  },
+  {
+    id: 7,
+    name: "L&T service",
+    loans: "7 Lakhs",
+    roi: "17%",
+    description: "48M",
+    path: "/Registration",
+    imageurl: require("./../partners_logo/l&t.jpg"),
+  },
+  {
+    id: 8,
+    name: "NIRA",
+    loans: "1 Lakh",
+    roi: "14%",
+    description: "18M",
+    path: "/Registration",
+    imageurl: require("./../partners_logo/nira2.png"),
+  },
+  {
+    id: 9,
+    name: "IIFL BL",
+    loans: "30 Lakhs",
+    roi: "12%",
+    description: "72M",
+    path: "/Registration",
+    imageurl: require("./../partners_logo/iifl1.png"),
+  },
+  {
+    id: 10,
+    imageurl: require("./../partners_logo/faircent2.png"),
+    name: "Faircent",
+    loans: "10 Lakhs",
+    roi: "15%",
+    description: "60M",
+    path: "/Registration",
+  },
+  {
+    id: 11,
+    imageurl: require("./../partners_logo/moneywide2.png"),
+    name: "MoneyWide",
+    loans: "3 Lakhs",
+    roi: "14%",
+    description: "36M",
+    path: "/Registration",
+  },
+  {
+    id: 12,
+    imageurl: require("./../partners_logo/iifl1.png"),
+    name: "IIFL BL",
+    loans: "30 Lakhs",
+    roi: "12%",
+    description: "72M",
+    path: "/Registration",
+  },
+  {
+    id: 13,
+    imageurl: require("./../partners_logo/faircent2.png"),
+    name: "Faircent",
+    loans: "10 Lakhs",
+    roi: "15%",
+    description: "60M",
+    path: "/Registration",
+  },
+
+  {
+    id: 14,
+    imageurl: require("./../partners_logo/lending2.png"),
+    name: " Lendingkart",
+    loans: "50 Lakhs",
+    roi: "14%",
+    description: "36M",
+    path: "/Registration",
+  },
+];

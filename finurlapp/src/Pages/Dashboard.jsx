@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import LeftDashboard from "../Components/Dashboard_Components/LeftDashboard";
 import RightDashboard from "../Components/Dashboard_Components/RightDashboard";
 import { useLocation } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -11,14 +11,12 @@ const Dashboard = () => {
 
   return (
     <>
-      <Grid container>
-        <Grid item>
-          <LeftDashboard />
-        </Grid>
-        <Grid item>
+      <Box display={"flex"} gap={"2px"}>
+        <LeftDashboard />
+        <Box width={"100%"}>
           <RightDashboard />
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </>
   );
 };

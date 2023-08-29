@@ -1,11 +1,54 @@
+/* <<<<<<<<<<<<<<<< LEFT DASHBOARD CSS >>>>>>>>>>>>>>>>>> */
+
 #sidebar {
-  border: 1px solid;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   height: 100vh;
-  position:relative
+  position: relative;
 }
 
-#toggle_sidebar{
-    position: absolute;
-    right: 0%;
-    top: 3%;
+#toggle_sidebar {
+  position: absolute;
+  right: 10%;
+  top: 2%;
+  color: #fff;
 }
+
+#menu_item {
+  color: #fff;
+  margin-left: 5%;
+  width: 85%;
+  border-radius: 10px;
+}
+
+#menu_item:hover {
+  color: #121b28;
+}
+
+/* <<<<<<<<<<<<<<<<  DASHBOARD NAVBAR CSS >>>>>>>>>>>>>>>>>> */
+
+.dashboard_navbar {
+  /* border: 1px solid; */
+  height: max-content;
+  display: flex;
+  padding: 2%;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+/* <<<<<<<<<<<<<<<<<<<<<<<< DASHBOARD MAIN SECTION >>>>>>>>>>>>>>>>> */
+
+#dashboard_main{
+  border: 1px solid;
+  height: 86vh;
+}
+
+
+/* <<<<<<<<<<<<<<<<<<<<<<<<< DASHBOARD BANK DATA_GRID >>>>>>>>>>>>>>>>>>>>>>> */
+
+.bank_data_grid{
+  border: none;
+  outline: none;
+  /* transition: fade out 5s linear; */
+}
+

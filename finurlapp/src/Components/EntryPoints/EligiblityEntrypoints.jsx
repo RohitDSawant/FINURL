@@ -136,7 +136,7 @@ const EligiblityEntrypoints = () => {
                   sx={{ margin: "5px" }}
                   name="fullName"
                   label="Full Name"
-                  variant="outlined"
+                  variant="standard"
                   required
                   onChange={handleChange}
                 />
@@ -146,7 +146,7 @@ const EligiblityEntrypoints = () => {
                   name="email"
                   label="Email"
                   type="email"
-                  variant="outlined"
+                  variant="standard"
                   required
                   onChange={handleChange}
                 />
@@ -156,7 +156,7 @@ const EligiblityEntrypoints = () => {
                     sx={{ margin: "5px" }}
                     name="mobile_no"
                     label="Mobile No."
-                    variant="outlined"
+                    variant="standard"
                     required
                     inputProps={{ maxLength: 10 }}
                     onChange={handleChange}
@@ -167,7 +167,7 @@ const EligiblityEntrypoints = () => {
                     sx={{ margin: "5px" }}
                     name="pan_number"
                     label="PAN Number"
-                    variant="outlined"
+                    variant="standard"
                     required
                     onChange={handleChange}
                   />
@@ -181,7 +181,7 @@ const EligiblityEntrypoints = () => {
                   InputLabelProps={{
                     shrink: true,
                   }}
-                  variant="outlined"
+                  variant="standard"
                   required
                   onChange={handleChange}
                 />
@@ -191,7 +191,7 @@ const EligiblityEntrypoints = () => {
                     sx={{ margin: "5px" }}
                     name="income"
                     label="Income"
-                    variant="outlined"
+                    variant="standard"
                     required
                     onChange={handleChange}
                   />
@@ -200,7 +200,7 @@ const EligiblityEntrypoints = () => {
                     sx={{ margin: "5px" }}
                     name="pincode"
                     label="Pincode"
-                    variant="outlined"
+                    variant="standard"
                     required
                     onChange={handleChange}
                   />
