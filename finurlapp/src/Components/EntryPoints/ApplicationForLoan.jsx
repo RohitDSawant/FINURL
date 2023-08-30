@@ -83,9 +83,7 @@ const ApplicationForLoan = () => {
           document.querySelector("form").reset();
         } else {
           setShowErrorSnack(true);
-          setSnackMsg(
-            "Invalid Details, please check and try again"
-          );
+          setSnackMsg("Invalid Details, please check and try again");
           document.querySelector("form").reset();
         }
       }, 3000);
