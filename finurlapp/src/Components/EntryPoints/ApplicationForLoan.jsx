@@ -84,7 +84,7 @@ const ApplicationForLoan = () => {
         } else {
           setShowErrorSnack(true);
           setSnackMsg(
-            "Something went wrong please check the deatils provided."
+            "Invalid Details, please check and try again"
           );
           document.querySelector("form").reset();
         }
@@ -195,7 +195,7 @@ const ApplicationForLoan = () => {
                 <FormControl variant="standard" required>
                   <InputLabel>Gender</InputLabel>
                   <Select
-                    sx={{ marginBottom: "5px" }}
+                    sx={{ marginBottom: "5px", color: "#121b28" }}
                     variant="standard"
                     name="gender"
                     value={formData.gender}
@@ -210,7 +210,11 @@ const ApplicationForLoan = () => {
                 <FormControl variant="standard" required>
                   <InputLabel>Employment Type</InputLabel>
                   <Select
-                    sx={{ marginBottom: "15px", marginTop: "15px" }}
+                    sx={{
+                      marginBottom: "15px",
+                      marginTop: "15px",
+                      color: "#121b28",
+                    }}
                     variant="standard"
                     name="employment_type"
                     value={formData.employmentType}
@@ -252,28 +256,33 @@ const ApplicationForLoan = () => {
                   />
                 </Box>
 
-                <Button
-                  sx={{
-                    background: `${theme.palette.primary.main}`,
-                    color: "#fff",
-                    width: "max-content",
-                    padding: "5px 50px",
-                    display: "block",
-                    margin: "auto",
-                    marginTop: "20px",
-                  }}
-                  type="submit"
-                  variant="contained"
-                >
-                  Submit
-                </Button>
+                <Box display={"flex"} alignItems={"center"} gap={"25px"}>
+                  <Button
+                    sx={{
+                      background: `${theme.palette.primary.main}`,
+                      color: "#fff",
+                      width: "max-content",
+                      padding: "5px 50px",
+                      // display: "block",
+                      // margin: "auto",
+                      marginTop: "20px",
+                    }}
+                    type="submit"
+                    variant="contained"
+                  >
+                    Submit
+                  </Button>
+                  {isLoading ? (
+                    <CircularProgress
+                      size={25}
+                      sx={{ width: "100%", marginTop: "20px" }}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </Box>
               </FormControl>
             </Box>
-            {isLoading ? (
-              <CircularProgress sx={{ width: "100%", marginTop: "20px" }} />
-            ) : (
-              ""
-            )}
           </Grid>
           <Grid className={styles.application_right_sec} item md={4} lg={4}>
             <img

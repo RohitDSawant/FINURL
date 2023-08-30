@@ -205,28 +205,33 @@ const EligiblityEntrypoints = () => {
                     onChange={handleChange}
                   />
                 </Box>
-                <Button
-                  sx={{
-                    background: `${theme.palette.primary.main}`,
-                    color: "#fff",
-                    width: "max-content",
-                    padding: "5px 50px",
-                    display: "block",
-                    margin: "auto",
-                    marginTop: "20px",
-                  }}
-                  type="submit"
-                  variant="contained"
-                >
-                  Submit
-                </Button>
+                <Box display={"flex"} alignItems={"center"} gap={"30px"}>
+                  <Button
+                    sx={{
+                      background: `${theme.palette.primary.main}`,
+                      color: "#fff",
+                      width: "max-content",
+                      padding: "5px 50px",
+                      // display: "block",
+                      // margin: "auto",
+                      marginTop: "20px",
+                    }}
+                    type="submit"
+                    variant="contained"
+                  >
+                    Submit
+                  </Button>
+                  {isLoading ? (
+                    <CircularProgress size={25}
+                      sx={{ width: "75%", marginTop: "20px" }}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </Box>
               </FormControl>
             </Box>
-            {isLoading ? (
-              <CircularProgress sx={{ width: "75%", marginTop: "10px" }} />
-            ) : (
-              ""
-            )}
+
             <Snackbar
               open={showSuccessSnack || showErrorSnack}
               autoHideDuration={3000}

@@ -52,10 +52,10 @@ let theme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            borderColor: "#121b28", // Customize the label color
+            border: "1px solid #121b28", // Customize the label color
           },
           "&:after": {
-            borderColor: "#121b28", // Customize the label color when selected
+            border: "1px solid #121b28", // Customize the label color
           },
           "& .MuiInputLabel-root": {
             color: "#121b28", // Customize the label color
@@ -64,13 +64,15 @@ let theme = createTheme({
             color: "#121b28", // Customize the label color when it's shrunk
           },
           "& .MuiInputBase-input": {
-            color: "#121b28", // Customize the input text color
+            color: "#121b28",
+            borderBottom: "2px solid #121b28", // Customize the label color
+            // Customize the input text color
           },
           "& .MuiInputBase-input::placeholder": {
             color: "#ccc", // Customize the placeholder color
           },
           "& .MuiInputBase-select": {
-            color: "#121b28", // Customize the input text color
+            color: "#ccc", // Customize the input text color
           },
         },
       },
@@ -87,9 +89,13 @@ let theme = createTheme({
         root: {
           "&:before": {
             borderColor: "#121b28", // Customize the label color
+            color: "#121b28", // Customize the option text color
+
           },
           "&:after": {
-            borderColor: "#121b28", // Customize the label color when selected
+            borderColor: "#121b28", 
+            color: "#121b28", // Customize the option text color
+            // Customize the label color when selected
           },
           "& .MuiSvgIcon-root": {
             color: "#121b28", // Customize the arrow icon color
@@ -98,10 +104,11 @@ let theme = createTheme({
             color: "#121b28", // Customize the option text color
           },
           "& .MuiSelect-select:focus": {
-            backgroundColor: "121b28", // Remove the focus background color
+            backgroundColor: "#ccc",
+            color: "#121b28", // Remove the focus background color
           },
           "& .MuiSelect-select::placeholder": {
-            color: "#121b28", // Customize the placeholder color
+            color: "#ccc", // Customize the placeholder color
           },
         },
       },
@@ -114,12 +121,12 @@ let theme = createTheme({
         columnHeader: {
           color: "#fff",
           backgroundColor: "#121b28",
-          fontSize: "medium"
+          fontSize: "medium",
         },
         cell: {
           color: "#121b28",
           backgroundColor: "#fff",
-          fontSize: "medium"
+          fontSize: "medium",
         },
       },
     },
@@ -129,7 +136,7 @@ let theme = createTheme({
           backgroundColor: "#fff", // Background color for pagination section
           color: "#121b28",
           fontWeight: 600,
-          fontSize: "large" // Text color for pagination controls
+          fontSize: "large", // Text color for pagination controls
         },
       },
     },
