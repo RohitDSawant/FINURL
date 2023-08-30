@@ -132,12 +132,8 @@ const InstantLoansCarousel = () => {
                   <Typography variant="body2">{partner.description}</Typography>
                 </Box>
                 <Button
-                  sx={{
-                    backgroundColor: theme.palette.primary.main,
-                    color: "#fff",
-                    display: "block",
-                    margin: "auto",
-                  }}
+                  id={styles.carousel_apply_btn}
+                  
                   onClick={() => {
                     Redirection(partner.path);
                   }}

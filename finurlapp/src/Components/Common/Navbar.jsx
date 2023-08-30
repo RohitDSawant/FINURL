@@ -23,6 +23,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedinIcon from "@mui/icons-material/LinkedIn";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import DashboardCustomizeRoundedIcon from '@mui/icons-material/DashboardCustomizeRounded';
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { persistor } from "./../../Redux/store";
@@ -76,6 +77,10 @@ const Navbar = () => {
 
   const HomeCall = () => {
     navigate("/");
+  };
+
+  const NavToDash = () => {
+    navigate("/dashboard");
   };
 
   return (
@@ -244,7 +249,8 @@ const Navbar = () => {
                 <Menu onClose={handleClose} open={openMenu} anchorEl={anchorEl}>
                   {/* <MenuItem>Profile</MenuItem>
                   <MenuItem>Theme : Dark</MenuItem> */}
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem onClick={NavToDash}><DashboardCustomizeRoundedIcon sx={{"marginRight":"10px "}}/>   Dashboard</MenuItem>
+                  <MenuItem onClick={handleLogout}> <LogoutIcon sx={{"marginRight": "10px"}}/>  Logout</MenuItem>
                 </Menu>
               </>
             ) : (

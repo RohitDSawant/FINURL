@@ -16,7 +16,6 @@ const GraphSection = () => {
               src={bar_chart}
               alt=""
             />
-            dummy
           </Box>
         </Grid>
         <Grid item lg={4.5} height={"40vh"}>
@@ -28,7 +27,6 @@ const GraphSection = () => {
             }}
           >
             <Typography color={theme.palette.primary.dark} variant="subtitle2">
-              {" "}
               Recent Loan Processed
             </Typography>
           </Box>

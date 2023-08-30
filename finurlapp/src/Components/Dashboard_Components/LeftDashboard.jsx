@@ -15,6 +15,8 @@ import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftR
 import circle_logo from "./../../Assets/Images/circle_log.png";
 import theme from "./../../Theme/theme";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { persistor } from "../../Redux/store";
+import { useNavigate } from "react-router-dom";
 
 const LeftDashboard = () => {
   const { setActiveTab } = useContext(DasboardContext);
@@ -36,7 +38,17 @@ const LeftDashboard = () => {
     setToggle((prev) => !prev);
   };
 
-  return (
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    persistor.purge();
+    localStorage.removeItem("persist:root");
+    navigate("/authentication");
+    window.location.reload();
+  };
+
+
+  return ( 
     <>
       <Sidebar
         backgroundColor={theme.palette.primary.main}
@@ -125,7 +137,7 @@ const LeftDashboard = () => {
           <MenuItem id={styles.menu_item} icon={<SettingsRoundedIcon />}>
             Settings
           </MenuItem>
-          <MenuItem style={{"marginTop":"70%"}} id={styles.menu_item} icon={<LogoutIcon />}>
+          <MenuItem onClick={handleLogout} style={{"marginTop":"70%"}} id={styles.menu_item} icon={<LogoutIcon />}>
             Logout
           </MenuItem>
         </Menu>

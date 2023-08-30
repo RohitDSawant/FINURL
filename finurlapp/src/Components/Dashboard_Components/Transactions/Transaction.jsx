@@ -11,7 +11,7 @@ const Transaction = () => {
     {
       field: "id",
       headerName: "Sr.No",
-      width: 70,
+      width: 150,
       renderCell: (params) => {
         return <Typography ml={2} variant="body2">{params.value}</Typography>;
       },
@@ -19,7 +19,7 @@ const Transaction = () => {
     {
       field: "name",
       headerName: "Name",
-      width: 200,
+      width: 270,
       renderCell: (params) => {
         return <Typography variant="body2">{params.value}</Typography>;
       },
@@ -27,7 +27,7 @@ const Transaction = () => {
     {
       field: "application_id",
       headerName: "Application ID",
-      width: 150,
+      width: 270,
       renderCell: (params) => {
         return <Typography variant="body2">{params.value}</Typography>;
       },
@@ -35,11 +35,11 @@ const Transaction = () => {
     {
       field: "loan_status",
       headerName: "Loan Status",
-      width: 150,
+      width: 270,
       renderCell: (params) => {
         return (
           <>
-            {params.value === "In Process" ? (
+            {params.value === "In process" ? (
               <Typography color={"blue"} variant="body2">
                 {params.value}
               </Typography>

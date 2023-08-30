@@ -242,15 +242,15 @@
 #carousel_apply_btn {
   display: block;
   margin: auto;
-  background: rgb(0, 98, 255);
   color: #fff;
+  background-color: #121b28;
   padding: 5px 25px;
 }
 
 #carousel_apply_btn:hover {
   background: white;
-  color: rgb(0, 98, 255);
-  border: 3px solid rgb(0, 98, 255);
+  color: #121b28;
+  border: 3px solid #121b28;
 }
 
 /* Add this CSS to your stylesheet */
@@ -275,9 +275,9 @@
 
 #slick_next:hover,
 #slick_prev:hover {
-  border: 2px solid rgb(0, 98, 255);
+  border: 2px solid #121b28;
   color: #fff;
-  background: rgb(0, 98, 255);
+  background: #121b28;
 }
 
 #slick_prev {
