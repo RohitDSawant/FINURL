@@ -11,7 +11,7 @@ const ActualBankWise = () => {
     {
       field: "id",
       headerName: "Sr.No",
-      width: 150,
+      width: 170,
       renderCell:(params)=>{
         return <Typography ml={2}>{params.value}</Typography>
       }
@@ -19,7 +19,7 @@ const ActualBankWise = () => {
     {
       field: "name",
       headerName: "Bank Name",
-      width: 250,
+      width: 260,
       renderCell:(params)=>{
         return <Typography ml={1}>{params.value}</Typography>
       }
@@ -27,7 +27,7 @@ const ActualBankWise = () => {
     {
       field: "loans",
       headerName: "Loan upto",
-      width: 250,
+      width: 260,
       renderCell:(params)=>{
         return <Typography ml={1} >{params.value}</Typography>
       }
@@ -35,7 +35,7 @@ const ActualBankWise = () => {
     {
       field: "roi",
       headerName: "Min. ROI",
-      width: 250,
+      width: 260,
       renderCell:(params)=>{
         return <Typography ml={2}>{params.value}</Typography>
       }
@@ -43,7 +43,7 @@ const ActualBankWise = () => {
     {
       field: "description",
       headerName: "Max. Tenure",
-      width: 250,
+      width: 260,
       renderCell:(params)=>{
         return <Typography ml={2}>{params.value}</Typography>
       }
@@ -57,10 +57,9 @@ const ActualBankWise = () => {
         className={styles.back_data_grid}
         sx={{
           color: "#fff",
-          bgcolor: theme.palette.primary.main,
           width: "95%",
           margin: "auto",
-          height: "68vh",
+          height: "67vh",
         }}
         rows={bankoffers}
         columns={columns}
@@ -71,8 +70,7 @@ const ActualBankWise = () => {
             },
           },
         }}
-        pageSizeOptions={7}
-        disableRowSelectionOnClick
+        pageSizeOptions={[7,14]}
       />
     </>
   );

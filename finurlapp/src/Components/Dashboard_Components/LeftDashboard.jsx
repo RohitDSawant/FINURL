@@ -10,6 +10,8 @@ import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import styles from "./../../CSS/dashboard.module.css";
 import { DasboardContext } from "../../Context/DashboardContext";
 import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
+import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
+
 import circle_logo from "./../../Assets/Images/circle_log.png";
 import theme from "./../../Theme/theme";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -21,7 +23,6 @@ const LeftDashboard = () => {
   const handleDashboardSec = () => {
     setActiveTab("dashboard");
   };
-
 
   const handleTransactionSec = () => {
     setActiveTab("transaction");
@@ -43,19 +44,11 @@ const LeftDashboard = () => {
         collapsedWidth="80px"
         collapsed={toggle}
       >
-        <Typography
-          onClick={handleToggle}
-          variant="h5"
-          mt={1}
-          id={styles.toggle_sidebar}
-        >
-          <KeyboardArrowRightRoundedIcon fontSize="medium" />
-        </Typography>
         <Box
           // border={"1px solid #ccc" }
           width={"80%"}
           m={"auto"}
-          mt={7}
+          mt={2}
           mb={5}
           display={"flex"}
           gap={"10px"}
@@ -64,24 +57,49 @@ const LeftDashboard = () => {
         >
           {toggle ? (
             <>
-              <img
-                style={{ display: "block", margin: "auto" }}
-                height={"30vh"}
-                src={circle_logo}
-                alt=""
-              />
+              <Box>
+                <Typography
+                  onClick={handleToggle}
+                  variant="h5"
+                  id={styles.toggle_sidebar}
+                  color={"#fff"}
+                  mb={2}
+                >
+                  <KeyboardArrowRightRoundedIcon fontSize="medium" />
+                </Typography>
+                <img
+                  style={{ display: "block", margin: "auto" }}
+                  height={"30vh"}
+                  src={circle_logo}
+                  alt=""
+                />
+              </Box>
             </>
           ) : (
             <>
-              <img height={"30vh"} src={circle_logo} alt="logo" />
-              <Typography mt={0.2} color={"#fff"} variant="h6">
-                FinURL
-              </Typography>
+              <Box mt={7} display={"flex"} alignItems={"center"} gap={"15px"}>
+                <img height={"30vh"} src={circle_logo} alt="logo" />
+                <Typography color={"#fff"} variant="h6">
+                  FinURL
+                </Typography>
+                <Typography
+                  onClick={handleToggle}
+                  variant="h5"
+                  id={styles.toggle_sidebar}
+                  color={"#fff"}
+                >
+                  <KeyboardArrowLeftRoundedIcon fontSize="medium" />
+                </Typography>
+              </Box>
             </>
           )}
         </Box>
         <Menu>
-          <MenuItem id={styles.menu_item} icon={<HomeRoundedIcon />} onClick={handleDashboardSec}>
+          <MenuItem
+            id={styles.menu_item}
+            icon={<HomeRoundedIcon />}
+            onClick={handleDashboardSec}
+          >
             <Typography variant="body1"> Dashboard</Typography>
           </MenuItem>
           <MenuItem
@@ -107,7 +125,7 @@ const LeftDashboard = () => {
           <MenuItem id={styles.menu_item} icon={<SettingsRoundedIcon />}>
             Settings
           </MenuItem>
-          <MenuItem id={styles.menu_item} icon={<LogoutIcon />}>
+          <MenuItem style={{"marginTop":"70%"}} id={styles.menu_item} icon={<LogoutIcon />}>
             Logout
           </MenuItem>
         </Menu>

@@ -96,7 +96,7 @@ const Navbar = () => {
         <Box className={styles.navbar_menu}>
           <Box>
             {/* Products */}
-            <Button
+            <Box
               onMouseLeave={collapseProductsMenu}
               onMouseEnter={showProductsMenu}
               id={styles.products_btn}
@@ -119,7 +119,7 @@ const Navbar = () => {
                   fontSize="small"
                 />
               )}
-            </Button>
+            </Box>
 
             <Box
               onMouseLeave={collapseProductsMenu}
@@ -166,7 +166,7 @@ const Navbar = () => {
             </Box>
 
             {/* <---- Resources ----> */}
-            <Button
+            <Box
               onMouseLeave={collapseResourceMenu}
               onMouseEnter={showResourceMenu}
               id={styles.resource_btn}
@@ -189,7 +189,7 @@ const Navbar = () => {
                   fontSize="small"
                 />
               )}
-            </Button>
+            </Box>
 
             <Box
               style={{ display: resourceVisible ? "flex" : "none" }}
@@ -331,7 +331,7 @@ const Navbar = () => {
                   </>
                 ) : (
                   <ListItem>
-                    <Button sx={{"color": "#fff"}} onClick={handleLogout}>
+                    <Button sx={{ color: "#fff" }} onClick={handleLogout}>
                       <LogoutIcon sx={{ marginRight: "10px", color: "#fff" }} />
                       Logout
                     </Button>

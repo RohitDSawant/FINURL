@@ -1,0 +1,47 @@
+.contact_us_frame {
+  height: 91vh;
+  /* border: 1px solid; */
+  background-image: url("./../Assets/Images/contact-us.jpg");
+  width: 100vw;
+  margin: auto;
+  margin-top: 4%;
+  position: relative;
+}
+
+.contact_us_frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("./../Assets/Images/contact-us.jpg");
+  filter: blur(2px);
+  z-index: 1;
+}
+
+.contact_us_left_sec {
+  height: 55vh;
+  /* border: 1px solid; */
+  position: absolute;
+  border-radius: 5px;
+  width: 25%;
+  top: 20%;
+  left: 20%;
+  z-index: 3;
+  padding: 2%;
+}
+
+.contact_us_right_sec {
+  height: 70vh;
+  position: absolute;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 5px;
+  width: 40%;
+  top: 12%;
+  z-index: 2;
+  right: 20%;
+  padding: 2%;
+}

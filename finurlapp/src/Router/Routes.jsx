@@ -6,6 +6,7 @@ import EligiblityEntrypoints from "../Components/EntryPoints/EligiblityEntrypoin
 import ApplicationForLoan from "../Components/EntryPoints/ApplicationForLoan";
 import AuthenticationCarousel from "../Components/Common/AuthenticationCarousel";
 import Dashboard from "../Pages/Dashboard";
+import ContactUs from "../Pages/ContactUs";
 const Router = () => {
   return (
     <>
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/application" element={<ApplicationForLoan />} />
         <Route path="/authentication" element={<AuthenticationCarousel />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/contactus" element={<ContactUs />} />
       </Routes>
     </>
   );

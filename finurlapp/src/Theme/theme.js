@@ -47,8 +47,92 @@ let theme = createTheme({
       fontSize: "0.85rem",
     },
   },
-  textField: {
-    backgroundColor: "#ccc",
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "&:before": {
+            borderColor: "#121b28", // Customize the label color
+          },
+          "&:after": {
+            borderColor: "#121b28", // Customize the label color when selected
+          },
+          "& .MuiInputLabel-root": {
+            color: "#121b28", // Customize the label color
+          },
+          "& .MuiInputLabel-shrink": {
+            color: "#121b28", // Customize the label color when it's shrunk
+          },
+          "& .MuiInputBase-input": {
+            color: "#121b28", // Customize the input text color
+          },
+          "& .MuiInputBase-input::placeholder": {
+            color: "#ccc", // Customize the placeholder color
+          },
+          "& .MuiInputBase-select": {
+            color: "#121b28", // Customize the input text color
+          },
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: "#121b28", // Customize the label color
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          "&:before": {
+            borderColor: "#121b28", // Customize the label color
+          },
+          "&:after": {
+            borderColor: "#121b28", // Customize the label color when selected
+          },
+          "& .MuiSvgIcon-root": {
+            color: "#121b28", // Customize the arrow icon color
+          },
+          "& option": {
+            color: "#121b28", // Customize the option text color
+          },
+          "& .MuiSelect-select:focus": {
+            backgroundColor: "121b28", // Remove the focus background color
+          },
+          "& .MuiSelect-select::placeholder": {
+            color: "#121b28", // Customize the placeholder color
+          },
+        },
+      },
+    },
+    MuiDataGrid: {
+      styleOverrides: {
+        root: {
+          color: "#121b28",
+        },
+        columnHeader: {
+          color: "#fff",
+          backgroundColor: "#121b28",
+          fontSize: "medium"
+        },
+        cell: {
+          color: "#121b28",
+          backgroundColor: "#fff",
+          fontSize: "medium"
+        },
+      },
+    },
+    MuiTablePagination: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#fff", // Background color for pagination section
+          color: "#121b28",
+          fontWeight: 600,
+          fontSize: "large" // Text color for pagination controls
+        },
+      },
+    },
   },
 });
 

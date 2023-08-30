@@ -101,16 +101,23 @@ const ApplicationForLoan = () => {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Grid className={styles.application_left_sec} item xs={11} sm={11} md={7} lg={6}>
+          <Grid
+            className={styles.application_left_sec}
+            item
+            xs={11}
+            sm={11}
+            md={7}
+            lg={6}
+          >
             <Typography mb={2} variant="h6">
               Let's complete your Application :
             </Typography>
-{/* 
+            {/* 
             <Typography mb={2} variant="h6">
               Application Form:
             </Typography> */}
             <Box
-              bgcolor={theme.palette.primary.main}
+              // bgcolor={theme.palette.primary.main}
               className={styles.application_form}
             >
               <FormControl component="form" onSubmit={handleSubmit}>
@@ -188,6 +195,7 @@ const ApplicationForLoan = () => {
                 <FormControl variant="standard" required>
                   <InputLabel>Gender</InputLabel>
                   <Select
+                    sx={{ marginBottom: "5px" }}
                     variant="standard"
                     name="gender"
                     value={formData.gender}
@@ -202,7 +210,7 @@ const ApplicationForLoan = () => {
                 <FormControl variant="standard" required>
                   <InputLabel>Employment Type</InputLabel>
                   <Select
-                    sx={{ marginBottom: "15px", marginRight: "15px" }}
+                    sx={{ marginBottom: "15px", marginTop: "15px" }}
                     variant="standard"
                     name="employment_type"
                     value={formData.employmentType}
@@ -214,7 +222,6 @@ const ApplicationForLoan = () => {
                     <MenuItem value={3}>Self_employed/C.A/Dr.</MenuItem>
                   </Select>
                 </FormControl>
-                <Box></Box>
                 <Box>
                   <TextField
                     size="small"
@@ -247,9 +254,13 @@ const ApplicationForLoan = () => {
 
                 <Button
                   sx={{
+                    background: `${theme.palette.primary.main}`,
+                    color: "#fff",
+                    width: "max-content",
+                    padding: "5px 50px",
+                    display: "block",
+                    margin: "auto",
                     marginTop: "20px",
-                    background: `${theme.palette.primary.dark}`,
-                    color: "black",
                   }}
                   type="submit"
                   variant="contained"
@@ -264,7 +275,7 @@ const ApplicationForLoan = () => {
               ""
             )}
           </Grid>
-          <Grid className={styles.application_right_sec} item  md={4} lg={4}>
+          <Grid className={styles.application_right_sec} item md={4} lg={4}>
             <img
               id={styles.application_pencil}
               src={application_pencil}

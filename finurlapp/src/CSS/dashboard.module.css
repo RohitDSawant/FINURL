@@ -6,12 +6,7 @@
   position: relative;
 }
 
-#toggle_sidebar {
-  position: absolute;
-  right: 10%;
-  top: 2%;
-  color: #fff;
-}
+
 
 #menu_item {
   color: #fff;
@@ -35,20 +30,27 @@
   width: 100%;
 }
 
+.dashboard_sub_menu {
+  display: flex;
+  gap: 30px;
+  margin-right: 2%;
+}
+
+.dashboard_sub_menu p:hover {
+  cursor: pointer;
+}
 
 /* <<<<<<<<<<<<<<<<<<<<<<<< DASHBOARD MAIN SECTION >>>>>>>>>>>>>>>>> */
 
-#dashboard_main{
-  border: 1px solid;
+#dashboard_main {
+  /* border: 1px solid; */
   height: 86vh;
 }
 
-
 /* <<<<<<<<<<<<<<<<<<<<<<<<< DASHBOARD BANK DATA_GRID >>>>>>>>>>>>>>>>>>>>>>> */
 
-.bank_data_grid{
+.bank_data_grid {
   border: none;
   outline: none;
   /* transition: fade out 5s linear; */
 }
-

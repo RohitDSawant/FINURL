@@ -121,7 +121,7 @@ const EligiblityEntrypoints = () => {
             </Typography>
             <Box
               sx={{
-                backgroundColor: `${theme.palette.primary.main}`,
+                // backgroundColor: `${theme.palette.primary.main}`,
                 padding: "20px",
                 borderRadius: "10px",
               }}
@@ -207,9 +207,13 @@ const EligiblityEntrypoints = () => {
                 </Box>
                 <Button
                   sx={{
-                    marginTop: "10px",
-                    backgroundColor: `${theme.palette.primary.dark}`,
-                    color: theme.palette.primary.main,
+                    background: `${theme.palette.primary.main}`,
+                    color: "#fff",
+                    width: "max-content",
+                    padding: "5px 50px",
+                    display: "block",
+                    margin: "auto",
+                    marginTop: "20px",
                   }}
                   type="submit"
                   variant="contained"
