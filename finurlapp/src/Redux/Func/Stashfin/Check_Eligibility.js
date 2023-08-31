@@ -34,7 +34,6 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
             });
         } else {
           // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE" });
-          alert("You are not eligible!!");
         }
       })
       .catch((err) => {

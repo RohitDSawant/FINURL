@@ -9,6 +9,8 @@ import {
   InputLabel,
   Select,
   CircularProgress,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
@@ -45,6 +47,15 @@ const ApplicationForLoan = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSuccessSnack(false);
+    setShowErrorSnack(false);
+  };
+
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,23 +79,23 @@ const ApplicationForLoan = () => {
         employment_type: 1,
       })
     ).then((response) => {
+      console.log("first", response.response.data);
       setTimeout(() => {
         setIsLoading(false);
-        if (response.status) {
+        if (response.response.data.status) {
           setShowSuccessSnack(true);
           setSnackMsg("Please wait while we redirect you...");
           document.querySelector("form").reset();
-          setTimeout(() => {
-            window.location.href = "/application";
-          }, 3000);
-        } else if (response.errors.message === "customer already exists") {
+        } else if (
+          response.response.data.message === "customer already exists"
+        ) {
           setShowErrorSnack(true);
           setSnackMsg("Sorry! you are already a part of Stashfin.");
-          document.querySelector("form").reset();
-        } else {
+        } else if (
+          response.response.data.message !== "customer already exists"
+        ) {
           setShowErrorSnack(true);
           setSnackMsg("Invalid Details, please check and try again");
-          document.querySelector("form").reset();
         }
       }, 3000);
     });
@@ -256,15 +267,7 @@ const ApplicationForLoan = () => {
 
                 <Box display={"flex"} alignItems={"center"} gap={"25px"}>
                   <Button
-                    sx={{
-                      background: `${theme.palette.primary.main}`,
-                      color: "#fff",
-                      width: "max-content",
-                      padding: "5px 50px",
-                      // display: "block",
-                      // margin: "auto",
-                      marginTop: "20px",
-                    }}
+                    id={styles.submit_btn}              
                     type="submit"
                     variant="contained"
                   >
@@ -290,6 +293,20 @@ const ApplicationForLoan = () => {
             />
           </Grid>
         </Grid>
+        <Snackbar
+          open={showSuccessSnack || showErrorSnack}
+          autoHideDuration={3100}
+          onClose={() => handleClose()}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={() => handleClose()}
+            severity={"info"}
+            sx={{ width: "100%" }}
+          >
+            {snackMsg}
+          </Alert>
+        </Snackbar>
       </section>
     </>
   );

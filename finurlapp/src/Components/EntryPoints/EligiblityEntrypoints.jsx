@@ -207,15 +207,7 @@ const EligiblityEntrypoints = () => {
                 </Box>
                 <Box display={"flex"} alignItems={"center"} gap={"30px"}>
                   <Button
-                    sx={{
-                      background: `${theme.palette.primary.main}`,
-                      color: "#fff",
-                      width: "max-content",
-                      padding: "5px 50px",
-                      // display: "block",
-                      // margin: "auto",
-                      marginTop: "20px",
-                    }}
+                   id={styles.submit_btn}
                     type="submit"
                     variant="contained"
                   >

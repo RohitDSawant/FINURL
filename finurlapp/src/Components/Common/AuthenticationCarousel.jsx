@@ -298,10 +298,8 @@ const LoginPage = () => {
                             <Button
                               onClick={verifyOtp}
                               sx={{
-                                background: "pink",
-                                color: "#000",
-                                display: "block",
-                                margin: "auto",
+                                background: theme.palette.primary.main,
+                                color: "#fff",
                                 marginBottom: "10px",
                                 textTransform: "capitalize",
                               }}
@@ -309,11 +307,10 @@ const LoginPage = () => {
                               Verify OTP
                             </Button>
                             {isLoading ? (
-                              <CircularProgress
+                              <CircularProgress size={25}
                                 sx={{
                                   width: "60%",
                                   margin: "auto",
-                                  marginTop: "10px",
                                 }}
                               />
                             ) : (

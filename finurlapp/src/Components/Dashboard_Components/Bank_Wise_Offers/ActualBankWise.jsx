@@ -13,7 +13,7 @@ const ActualBankWise = () => {
       headerName: "Sr.No",
       width: 170,
       renderCell:(params)=>{
-        return <Typography ml={2}>{params.value}</Typography>
+        return <Typography fontSize={"small"} ml={2}>{params.value}</Typography>
       }
     },
     {
@@ -21,7 +21,7 @@ const ActualBankWise = () => {
       headerName: "Bank Name",
       width: 260,
       renderCell:(params)=>{
-        return <Typography ml={1}>{params.value}</Typography>
+        return <Typography fontSize={"small"} ml={1}>{params.value}</Typography>
       }
     },
     {
@@ -29,7 +29,7 @@ const ActualBankWise = () => {
       headerName: "Loan upto",
       width: 260,
       renderCell:(params)=>{
-        return <Typography ml={1} >{params.value}</Typography>
+        return <Typography fontSize={"small"} ml={1} >{params.value}</Typography>
       }
     },
     {
@@ -37,7 +37,7 @@ const ActualBankWise = () => {
       headerName: "Min. ROI",
       width: 260,
       renderCell:(params)=>{
-        return <Typography ml={2}>{params.value}</Typography>
+        return <Typography fontSize={"small"} ml={2}>{params.value}</Typography>
       }
     },
     {
@@ -45,7 +45,7 @@ const ActualBankWise = () => {
       headerName: "Max. Tenure",
       width: 260,
       renderCell:(params)=>{
-        return <Typography ml={2}>{params.value}</Typography>
+        return <Typography fontSize={"small"} ml={2}>{params.value}</Typography>
       }
     },
   ];
@@ -59,18 +59,18 @@ const ActualBankWise = () => {
           color: "#fff",
           width: "95%",
           margin: "auto",
-          height: "67vh",
+          height: "85vh",
         }}
         rows={bankoffers}
         columns={columns}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 7,
+              pageSize: 14,
             },
           },
         }}
-        pageSizeOptions={[7,14]}
+        // pageSizeOptions={[9,14]}
       />
     </>
   );

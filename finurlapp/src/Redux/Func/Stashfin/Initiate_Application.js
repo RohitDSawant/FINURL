@@ -8,17 +8,14 @@ export const handleStashfinInitiateApp = (formData) => async (dispatch) => {
         formData
       )
       .then((res) => {
-        if (res.status) {
-          window.location.href = res.data.results.redirect_url;
-        } else {
-          alert("Something went wrong");
-        }
+          return res
       })
       .catch((err) => {
-        alert("Something went wrong");
         console.log(err);
+        return err
       });
   } catch (error) {
     console.error("Registration error:", error.message);
+    return error
   }
 };

@@ -20,7 +20,8 @@ import { useNavigate } from "react-router-dom";
 
 const LeftDashboard = () => {
   const { setActiveTab } = useContext(DasboardContext);
-  const [toggle, setToggle] = useState(false);
+  const { toggle } = useContext(DasboardContext);
+
 
   const handleDashboardSec = () => {
     setActiveTab("dashboard");
@@ -34,11 +35,7 @@ const LeftDashboard = () => {
     setActiveTab("bank offers");
   };
 
-  const handleToggle = () => {
-    setToggle((prev) => !prev);
-  };
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     persistor.purge();
@@ -47,8 +44,7 @@ const LeftDashboard = () => {
     window.location.reload();
   };
 
-
-  return ( 
+  return (
     <>
       <Sidebar
         backgroundColor={theme.palette.primary.main}
@@ -69,16 +65,7 @@ const LeftDashboard = () => {
         >
           {toggle ? (
             <>
-              <Box>
-                <Typography
-                  onClick={handleToggle}
-                  variant="h5"
-                  id={styles.toggle_sidebar}
-                  color={"#fff"}
-                  mb={2}
-                >
-                  <KeyboardArrowRightRoundedIcon fontSize="medium" />
-                </Typography>
+              <Box mt={2}>
                 <img
                   style={{ display: "block", margin: "auto" }}
                   height={"30vh"}
@@ -89,18 +76,10 @@ const LeftDashboard = () => {
             </>
           ) : (
             <>
-              <Box mt={7} display={"flex"} alignItems={"center"} gap={"15px"}>
+              <Box mt={2} display={"flex"} alignItems={"center"} gap={"15px"}>
                 <img height={"30vh"} src={circle_logo} alt="logo" />
                 <Typography color={"#fff"} variant="h6">
                   FinURL
-                </Typography>
-                <Typography
-                  onClick={handleToggle}
-                  variant="h5"
-                  id={styles.toggle_sidebar}
-                  color={"#fff"}
-                >
-                  <KeyboardArrowLeftRoundedIcon fontSize="medium" />
                 </Typography>
               </Box>
             </>
@@ -137,7 +116,12 @@ const LeftDashboard = () => {
           <MenuItem id={styles.menu_item} icon={<SettingsRoundedIcon />}>
             Settings
           </MenuItem>
-          <MenuItem onClick={handleLogout} style={{"marginTop":"70%"}} id={styles.menu_item} icon={<LogoutIcon />}>
+          <MenuItem
+            onClick={handleLogout}
+            style={{ marginTop: "70%" }}
+            id={styles.menu_item}
+            icon={<LogoutIcon />}
+          >
             Logout
           </MenuItem>
         </Menu>

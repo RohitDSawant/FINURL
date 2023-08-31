@@ -9,9 +9,11 @@ import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { persistor } from "../../Redux/store";
 import { useNavigate } from "react-router-dom";
+import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
+import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
 
 const DashboardNavbar = () => {
-  const { activeTab } = useContext(DasboardContext);
+  const { activeTab, toggle, setToggle } = useContext(DasboardContext);
   const [userAnchorEl, setAnchorEl] = useState(null);
 
   const handleUserMenu = (e) => {
@@ -28,7 +30,7 @@ const DashboardNavbar = () => {
 
   const openUserMenu = Boolean(userAnchorEl);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     persistor.purge();
@@ -38,10 +40,18 @@ const DashboardNavbar = () => {
     setAnchorEl(null);
   };
 
+  // toggle sidebar
+
+  const handleToggle = () => {
+    setToggle((prev) => !prev);
+  };
 
   return (
     <Box className={styles.dashboard_navbar}>
-      <Box>
+      <Box display={"flex"} gap={"15px"}>
+        <Button onClick={handleToggle}>
+          {!toggle ? <FormatAlignLeftIcon /> : <FormatAlignRightIcon />}
+        </Button>
         <Typography textTransform={"uppercase"} fontWeight={600} variant="h6">
           {activeTab}
         </Typography>

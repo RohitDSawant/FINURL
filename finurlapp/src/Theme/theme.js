@@ -4,32 +4,32 @@ let theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#121b28",
-      light: "#121b284e",
+      main: "#0C356A",
+      light: "#0004e",
       dark: "#fff",
     },
     secondary: {
       main: "#6a1b9a",
-      dark: "#ffff00",
+      dark: "#000f00",
       light: "#4a148c",
     },
   },
   typography: {
     fontFamily: "Poppins, sans-serif",
     h1: {
-      fontSize: "5rem",
+      fontSize: "6rem",
     },
     h2: {
-      fontSize: "4rem",
+      fontSize: "5rem",
     },
     h3: {
-      fontSize: "3rem",
+      fontSize: "4rem",
     },
     h4: {
-      fontSize: "2.5rem",
+      fontSize: "3rem",
     },
     h5: {
-      fontSize: "1.75rem",
+      fontSize: "2rem",
     },
     h6: {
       fontSize: "1.5rem",
@@ -38,13 +38,13 @@ let theme = createTheme({
       fontSize: "1rem",
     },
     body2: {
-      fontSize: "0.75rem",
+      fontSize: "0.8rem",
     },
     subtitle1: {
       fontSize: "1.25rem",
     },
     subtitle2: {
-      fontSize: "0.85rem",
+      fontSize: "0.75rem",
     },
   },
   components: {
@@ -52,20 +52,20 @@ let theme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            border: "1px solid #121b28", // Customize the label color
+            border: "1px solid #000", // Customize the label color
           },
           "&:after": {
-            border: "1px solid #121b28", // Customize the label color
+            border: "1px solid #000", // Customize the label color
           },
           "& .MuiInputLabel-root": {
-            color: "#121b28", // Customize the label color
+            color: "#000", // Customize the label color
           },
           "& .MuiInputLabel-shrink": {
-            color: "#121b28", // Customize the label color when it's shrunk
+            color: "#000", // Customize the label color when it's shrunk
           },
           "& .MuiInputBase-input": {
-            color: "#121b28",
-            borderBottom: "2px solid #121b28", // Customize the label color
+            color: "#000",
+            borderBottom: "2px solid #000", // Customize the label color
             // Customize the input text color
           },
           "& .MuiInputBase-input::placeholder": {
@@ -80,7 +80,7 @@ let theme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: "#121b28", // Customize the label color
+          color: "#000", // Customize the label color
         },
       },
     },
@@ -88,24 +88,24 @@ let theme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            borderColor: "#121b28", // Customize the label color
-            color: "#121b28", // Customize the option text color
+            borderColor: "#000", // Customize the label color
+            color: "#000", // Customize the option text color
 
           },
           "&:after": {
-            borderColor: "#121b28", 
-            color: "#121b28", // Customize the option text color
+            borderColor: "#000", 
+            color: "#000", // Customize the option text color
             // Customize the label color when selected
           },
           "& .MuiSvgIcon-root": {
-            color: "#121b28", // Customize the arrow icon color
+            color: "#000", // Customize the arrow icon color
           },
           "& option": {
-            color: "#121b28", // Customize the option text color
+            color: "#000", // Customize the option text color
           },
           "& .MuiSelect-select:focus": {
             backgroundColor: "#ccc",
-            color: "#121b28", // Remove the focus background color
+            color: "#000", // Remove the focus background color
           },
           "& .MuiSelect-select::placeholder": {
             color: "#ccc", // Customize the placeholder color
@@ -116,15 +116,15 @@ let theme = createTheme({
     MuiDataGrid: {
       styleOverrides: {
         root: {
-          color: "#121b28",
+          color: "#000",
         },
         columnHeader: {
           color: "#fff",
-          backgroundColor: "#121b28",
-          fontSize: "medium",
+          backgroundColor: "#0C356A",
+          fontSize: "small",
         },
         cell: {
-          color: "#121b28",
+          color: "#0C356A",
           backgroundColor: "#fff",
           fontSize: "medium",
         },
@@ -133,10 +133,10 @@ let theme = createTheme({
     MuiTablePagination: {
       styleOverrides: {
         root: {
-          backgroundColor: "#fff", // Background color for pagination section
-          color: "#121b28",
+          backgroundColor: "#0C356A", // Background color for pagination section
+          color: "#fff",
           fontWeight: 600,
-          fontSize: "large", // Text color for pagination controls
+          fontSize: "small",
         },
       },
     },

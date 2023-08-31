@@ -88,7 +88,6 @@ const Footer = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={4} sm={4} lg={1}></Grid>
           </Grid>
         </Box>
       </footer>
