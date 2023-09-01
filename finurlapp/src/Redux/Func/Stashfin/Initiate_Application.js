@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export const handleStashfinInitiateApp = (formData) => async (dispatch) => {
+
+dispatch({type:"SETTING_APPLICATION_ID_REQUEST"})
+
   try {
     return await axios
       .post(
@@ -8,14 +11,15 @@ export const handleStashfinInitiateApp = (formData) => async (dispatch) => {
         formData
       )
       .then((res) => {
+        if(res.data.status){
+          console.log("FROM ACTUAL FUNC", res.data.results)
+          dispatch({type:"SETTING_APPLICATION_ID_SUCCESS", payload: res.data.results.application_id})
+        }
           return res
       })
-      .catch((err) => {
-        console.log(err);
-        return err
-      });
   } catch (error) {
     console.error("Registration error:", error.message);
+    dispatch({type:"SETTING_APPLICATION_ID_FAILURE"})
     return error
   }
 };

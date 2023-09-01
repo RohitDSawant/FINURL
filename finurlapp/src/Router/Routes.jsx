@@ -9,6 +9,7 @@ import Dashboard from "../Pages/Dashboard";
 import ContactUs from "../Pages/ContactUs";
 import PersonalLoan from "../Pages/PersonalLoan";
 import BusinessLoan from "../Pages/BusinessLoan";
+import ComingSoon from "../Pages/ComingSoon";
 const Router = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/authentication" element={<AuthenticationCarousel />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/comingsoon" element={<ComingSoon />} />
       </Routes>
     </>
   );

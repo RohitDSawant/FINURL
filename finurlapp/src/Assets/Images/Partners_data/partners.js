@@ -5,7 +5,7 @@ export const instantLoan_carousel = [
     loans: "4Lakhs",
     roi: "15%",
     description: "24M",
-    path: "/Registration",
+    path: "/comingsoon",
     imageurl: require("./../partners_logo/kred.jpeg"),
   },
   {
@@ -14,7 +14,7 @@ export const instantLoan_carousel = [
     loans: "3Lakhs",
     roi: "15%",
     description: "24M",
-    path: "/Registration",
+    path: "/comingsoon",
     imageurl: require("./../partners_logo/cashe.png"),
   },
   {
@@ -32,7 +32,7 @@ export const instantLoan_carousel = [
     loans: "1Lakh",
     roi: "14%",
     description: "18M",
-    path: "/Registration",
+    path: "https://play.google.com/store/apps/details?id=com.nirafinance.customer&referrer=af_tranid%3Di-Xh9LP8ol0RCsD6BZqGtw%26c%3Ddsa_FinURL_cpa_standard%26pid%3Ddsa_FinURL_cpa_standard",
     imageurl: require("./../partners_logo/nira2.png"),
   },
   {
@@ -41,7 +41,7 @@ export const instantLoan_carousel = [
     loans: "3Lakhs",
     roi: "14%",
     description: "48M",
-    path: "/prefer",
+    path: "/comingsoon",
     imageurl: require("./../partners_logo/prefr.png"),
   },
   {
@@ -50,7 +50,7 @@ export const instantLoan_carousel = [
     loans: "2Lakhs",
     roi: "12%",
     description: "24M",
-    path: "/Registration",
+    path: "https://bit.ly/3oms1qA",
     imageurl: require("./../partners_logo/tata2.png"),
   },
   {
@@ -59,7 +59,7 @@ export const instantLoan_carousel = [
     loans: "10Lakhs",
     roi: "15%",
     description: "60M",
-    path: "/Registration",
+    path: "/comingsoon",
     imageurl: require("./../partners_logo/privo.png"),
   },
   {
@@ -68,7 +68,7 @@ export const instantLoan_carousel = [
     loans: "7Lakhs",
     roi: "17%",
     description: "48M",
-    path: "/Registration",
+    path: "/comingsoon",
     imageurl: require("./../partners_logo/l&t.jpg"),
   },
 ];
@@ -80,7 +80,7 @@ export const personal_Loans = [
     loans: "30Lakhs",
     roi: "12%",
     description: "72M",
-    path: "/Registration",
+    path: "https://iifl-loans.finbox.in/?partnerCode=FI_TBBGLY",
     imageurl: require("./../partners_logo/iifl1.png"),
   },
   {
@@ -90,7 +90,7 @@ export const personal_Loans = [
     loans: "10Lakhs",
     roi: "15%",
     description: "60M",
-    path: "/Registration",
+    path: "https://www.faircent.com/borrower/registration/landing_page?utm_source=wl&utm_medium=Mailer&utm_campaign=Borrower_Partner&agf=WLA103353",
   },
   {
     id: 3,
@@ -99,7 +99,7 @@ export const personal_Loans = [
     loans: "3Lakhs",
     roi: "14%",
     description: "36M",
-    path: "/Registration",
+    path: "https://www.moneywide.com/personal-loan/?utm_source=finwurl_enterprises&utm_medium=connector&utm_campaign=personal_loan",
   },
 ];
 
@@ -111,7 +111,7 @@ export const business_Loans = [
     loans: "30Lakhs",
     roi: "12%",
     description: "72M",
-    path: "/Registration",
+    path: "https://iifl-loans.finbox.in/?partnerCode=FI_TBBGLY",
   },
   {
     id: 2,
@@ -120,7 +120,7 @@ export const business_Loans = [
     loans: "10Lakhs",
     roi: "15%",
     description: "60M",
-    path: "/Registration",
+    path: "https://www.faircent.com/borrower/registration/landing_page?utm_source=wl&utm_medium=Mailer&utm_campaign=Borrower_Partner&agf=WLA103353",
   },
 
   {
@@ -130,7 +130,7 @@ export const business_Loans = [
     loans: "50Lakhs",
     roi: "14%",
     description: "36M",
-    path: "/Registration",
+    path: "/comingsoon",
   },
 ];
 

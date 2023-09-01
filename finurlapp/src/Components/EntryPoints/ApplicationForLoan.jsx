@@ -20,10 +20,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleStashfinInitiateApp } from "../../Redux/Func/Stashfin/Initiate_Application";
 import Navbar from "../Common/Navbar";
 import theme from "../../Theme/theme";
+import { check_status } from "../../Redux/Func/Stashfin/Check_Status";
 
 const ApplicationForLoan = () => {
-  const client_token = localStorage.getItem("client_token");
   const user = useSelector((state) => state.authReducer.loggedInUser._id);
+  const processedApplication = useSelector(
+    (state) => state.appReducer.currentProcessDetails
+  );
+
   const [formData, setFormData] = useState({
     first_name: "",
     middle_name: "",
@@ -57,11 +61,11 @@ const ApplicationForLoan = () => {
   };
 
   const dispatch = useDispatch();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    dispatch(
+    await dispatch(
       handleStashfinInitiateApp({
         loggedInUserId: user,
         first_name: formData.first_name,
@@ -74,32 +78,44 @@ const ApplicationForLoan = () => {
         dob: formData.dob,
         income: Number(formData.income),
         pincode: Number(formData.pincode),
-        token: client_token,
+        token: processedApplication.client_token,
         mode_of_income: 1,
         employment_type: 1,
       })
-    ).then((response) => {
-      console.log("first", response.response.data);
-      setTimeout(() => {
-        setIsLoading(false);
-        if (response.response.data.status) {
-          setShowSuccessSnack(true);
-          setSnackMsg("Please wait while we redirect you...");
-          document.querySelector("form").reset();
-        } else if (
-          response.response.data.message === "customer already exists"
-        ) {
-          setShowErrorSnack(true);
-          setSnackMsg("Sorry! you are already a part of Stashfin.");
-        } else if (
-          response.response.data.message !== "customer already exists"
-        ) {
-          setShowErrorSnack(true);
-          setSnackMsg("Invalid Details, please check and try again");
-        }
-      }, 3000);
-    });
+    )
+      .then((response) => {
+        console.log(response.message);
+        setTimeout(() => {
+          setIsLoading(false);
+          if (response.message === "Initiated Successfully") {
+            dispatch(
+              check_status({
+                client_token: processedApplication.client_token,
+                application_id: response.data.results.application_id,
+              })
+            );
+            setShowSuccessSnack(true);
+            setSnackMsg("Please wait while we redirect you...");
+            setTimeout(() => {
+              window.location.href = response.data.results.redirect_url;
+            }, 2000);
+            document.querySelector("form").reset();
+          } else if (response.message === "User already exists") {
+            console.log("sec");
+            setShowErrorSnack(true);
+            setSnackMsg("Sorry! you are already a part of Stashfin.");
+          } else if (response.message === "Invalid details provided") {
+            console.log("three");
+            setShowErrorSnack(true);
+            setSnackMsg("Invalid Details, please check and try again");
+          }
+        }, 3000);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
   return (
     <>
       <Navbar />
@@ -267,7 +283,7 @@ const ApplicationForLoan = () => {
 
                 <Box display={"flex"} alignItems={"center"} gap={"25px"}>
                   <Button
-                    id={styles.submit_btn}              
+                    id={styles.submit_btn}
                     type="submit"
                     variant="contained"
                   >

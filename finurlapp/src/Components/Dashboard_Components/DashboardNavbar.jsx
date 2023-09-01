@@ -48,11 +48,15 @@ const DashboardNavbar = () => {
 
   return (
     <Box className={styles.dashboard_navbar}>
-      <Box display={"flex"} gap={"15px"}>
+      <Box display={"flex"} alignItems={"center"} gap={"15px"}>
         <Button onClick={handleToggle}>
           {!toggle ? <FormatAlignLeftIcon /> : <FormatAlignRightIcon />}
         </Button>
-        <Typography textTransform={"uppercase"} fontWeight={600} variant="h6">
+        <Typography
+          textTransform={"uppercase"}
+          fontWeight={600}
+          variant="body1 "
+        >
           {activeTab}
         </Typography>
       </Box>

@@ -67,7 +67,11 @@ const InstantLoansCarousel = () => {
   const Redirection = (path) => {
     if (isAuth) {
       const actual_path = path.split("/")[1];
-      navigate(`/${actual_path}/dedupe`);
+      if (actual_path === "stashfin") {
+        navigate(`/${actual_path}/dedupe`);
+      } else {
+        window.location.href = path;
+      }
     } else {
       navigate("/authentication");
     }
@@ -133,7 +137,6 @@ const InstantLoansCarousel = () => {
                 </Box>
                 <Button
                   id={styles.carousel_apply_btn}
-                  
                   onClick={() => {
                     Redirection(partner.path);
                   }}

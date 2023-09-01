@@ -9,26 +9,22 @@ import LeaderboardRoundedIcon from "@mui/icons-material/LeaderboardRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import styles from "./../../CSS/dashboard.module.css";
 import { DasboardContext } from "../../Context/DashboardContext";
-import KeyboardArrowRightRoundedIcon from "@mui/icons-material/KeyboardArrowRightRounded";
-import KeyboardArrowLeftRoundedIcon from "@mui/icons-material/KeyboardArrowLeftRounded";
-
 import circle_logo from "./../../Assets/Images/circle_log.png";
 import theme from "./../../Theme/theme";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { persistor } from "../../Redux/store";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LeftDashboard = () => {
   const { setActiveTab } = useContext(DasboardContext);
   const { toggle } = useContext(DasboardContext);
 
-
   const handleDashboardSec = () => {
     setActiveTab("dashboard");
   };
 
-  const handleTransactionSec = () => {
-    setActiveTab("transaction");
+  const handleRecordsSec = () => {
+    setActiveTab("records");
   };
 
   const handleBankWiseSec = () => {
@@ -65,23 +61,27 @@ const LeftDashboard = () => {
         >
           {toggle ? (
             <>
-              <Box mt={2}>
-                <img
-                  style={{ display: "block", margin: "auto" }}
-                  height={"30vh"}
-                  src={circle_logo}
-                  alt=""
-                />
-              </Box>
+              <Link to={"/"}>
+                <Box mt={2}>
+                  <img
+                    style={{ display: "block", margin: "auto" }}
+                    height={"30vh"}
+                    src={circle_logo}
+                    alt=""
+                  />
+                </Box>
+              </Link>
             </>
           ) : (
             <>
-              <Box mt={2} display={"flex"} alignItems={"center"} gap={"15px"}>
-                <img height={"30vh"} src={circle_logo} alt="logo" />
-                <Typography color={"#fff"} variant="h6">
-                  FinURL
-                </Typography>
-              </Box>
+              <Link style={{"textDecoration": "none"}} to={"/"}>
+                <Box mt={2} display={"flex"} alignItems={"center"} gap={"15px"}>
+                  <img height={"30vh"} src={circle_logo} alt="logo" />
+                  <Typography mt={0.5}  color={"#fff"} variant="h6">
+                    FinURL
+                  </Typography>
+                </Box>
+              </Link>
             </>
           )}
         </Box>
@@ -96,9 +96,9 @@ const LeftDashboard = () => {
           <MenuItem
             id={styles.menu_item}
             icon={<CompareArrowsRoundedIcon />}
-            onClick={handleTransactionSec}
+            onClick={handleRecordsSec}
           >
-            Transaction
+            Loans Records
           </MenuItem>
           <MenuItem
             id={styles.menu_item}

@@ -9,15 +9,15 @@ const InstantLoanHeader = () => {
       <section id={styles.inst_loan_a}>
         <Box width={"85%"} margin={"auto"}>
           <Grid container spacing={1} alignItems={"center"}>
-            <Grid item lg={8}>
+            <Grid item xs={4} sm={7} md={6} lg={8}>
               <img
                 className={styles.instant_loan_pic}
                 src={instant_loan_pic}
                 alt=""
               />
             </Grid>
-            <Grid item lg={4}>
-              <Typography mb={5} variant="h3">
+            <Grid item xs={7} sm={5} md={5} lg={4}>
+              <Typography mb={3} variant="h4">
                 Instant Loan
               </Typography>
               <Typography className="para" variant="body2">

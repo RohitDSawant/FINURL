@@ -23,7 +23,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedinIcon from "@mui/icons-material/LinkedIn";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
-import DashboardCustomizeRoundedIcon from '@mui/icons-material/DashboardCustomizeRounded';
+import DashboardCustomizeRoundedIcon from "@mui/icons-material/DashboardCustomizeRounded";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { persistor } from "./../../Redux/store";
@@ -136,21 +136,36 @@ const Navbar = () => {
                 <Typography variant="body1" mb={2}>
                   Loans:
                 </Typography>
-                <Typography variant="body2" m={1}>
-                  🔹 Personal Loan
-                </Typography>
-                <Typography variant="body2" m={1}>
-                  🔹 Instant Loan
-                </Typography>
-                <Typography variant="body2" m={1}>
-                  🔹 Home Loan
-                </Typography>
-                <Typography variant="body2" m={1}>
-                  🔹 Business Loan
-                </Typography>
-                <Typography variant="body2" m={1}>
-                  🔹 Professional Loan
-                </Typography>
+                <Link to={"/personal-loan"}>
+                  <Typography variant="body2" m={1}>
+                    🔹 Personal Loan
+                  </Typography>
+                </Link>
+                <Link to={"/instant-loan"}>
+                  <Typography variant="body2" m={1}>
+                    🔹 Instant Loan
+                  </Typography>
+                </Link>
+                <Link to={"/comingsoon"}>
+                  <Typography variant="body2" m={1}>
+                    🔹 Home Loan
+                  </Typography>
+                </Link>
+                <Link to={"/business-loan"}>
+                  <Typography variant="body2" m={1}>
+                    🔹 Business Loan
+                  </Typography>
+                </Link>
+                <Link to={"/comingsoon"}>
+                  <Typography variant="body2" m={1}>
+                    🔹 Professional Loan
+                  </Typography>
+                </Link>
+                <Link to={"/comingsoon"}>
+                  <Typography variant="body2" m={1}>
+                    🔹 Loan against property
+                  </Typography>
+                </Link>
               </Box>
               <Box>
                 <Typography variant="body1" mb={2}>
@@ -249,8 +264,16 @@ const Navbar = () => {
                 <Menu onClose={handleClose} open={openMenu} anchorEl={anchorEl}>
                   {/* <MenuItem>Profile</MenuItem>
                   <MenuItem>Theme : Dark</MenuItem> */}
-                  <MenuItem onClick={NavToDash}><DashboardCustomizeRoundedIcon sx={{"marginRight":"10px "}}/>   Dashboard</MenuItem>
-                  <MenuItem onClick={handleLogout}> <LogoutIcon sx={{"marginRight": "10px"}}/>  Logout</MenuItem>
+                  <MenuItem onClick={NavToDash}>
+                    <DashboardCustomizeRoundedIcon
+                      sx={{ marginRight: "10px " }}
+                    />{" "}
+                    Dashboard
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>
+                    {" "}
+                    <LogoutIcon sx={{ marginRight: "10px" }} /> Logout
+                  </MenuItem>
                 </Menu>
               </>
             ) : (
@@ -298,15 +321,28 @@ const Navbar = () => {
 
                 {/* <DarkModeIcon sx={{ marginRight: "10px" }} /> */}
               </Box>
-              <Box ml={2} mt={2}>
+              <Box className={styles.products_menu_mob} ml={2} mt={2}>
                 <Typography variant="h6" mb={1}>
                   Loans :
                 </Typography>
-                <Typography> 🔹 Business Loan</Typography>
-                <Typography> 🔹 Home Loan</Typography>
-                <Typography> 🔹 Instant Loan</Typography>
-                <Typography> 🔹 Loan against property</Typography>
-                <Typography> 🔹 Personal Loan</Typography>
+                <Link to={"/instant-loan"}>
+                  <Typography> 🔹 Instant Loan</Typography>
+                </Link>
+                <Link to={"/business-loan"}>
+                  <Typography> 🔹 Business Loan</Typography>
+                </Link>
+                <Link to={"/personal-loan"}>
+                  <Typography> 🔹 Personal Loan</Typography>
+                </Link>
+                <Link to={"/comingsoon"}>
+                  <Typography> 🔹 Home Loan</Typography>
+                </Link>
+                <Link to={"/comingsoon"}>
+                  <Typography> 🔹 Professional Loan</Typography>
+                </Link>
+                <Link to={"/comingsoon"}>
+                  <Typography> 🔹 Loan against property</Typography>
+                </Link>
               </Box>
               <Box ml={2} mt={3}>
                 <Typography variant="h6" mb={1}>

@@ -4,7 +4,7 @@ let theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#0C356A",
+      main: "#445069",
       light: "#0004e",
       dark: "#fff",
     },
@@ -90,10 +90,9 @@ let theme = createTheme({
           "&:before": {
             borderColor: "#000", // Customize the label color
             color: "#000", // Customize the option text color
-
           },
           "&:after": {
-            borderColor: "#000", 
+            borderColor: "#000",
             color: "#000", // Customize the option text color
             // Customize the label color when selected
           },
@@ -120,11 +119,11 @@ let theme = createTheme({
         },
         columnHeader: {
           color: "#fff",
-          backgroundColor: "#0C356A",
+          backgroundColor: "#445069",
           fontSize: "small",
         },
         cell: {
-          color: "#0C356A",
+          color: "#000",
           backgroundColor: "#fff",
           fontSize: "medium",
         },
@@ -133,7 +132,7 @@ let theme = createTheme({
     MuiTablePagination: {
       styleOverrides: {
         root: {
-          backgroundColor: "#0C356A", // Background color for pagination section
+          backgroundColor: "#445069", // Background color for pagination section
           color: "#fff",
           fontWeight: 600,
           fontSize: "small",

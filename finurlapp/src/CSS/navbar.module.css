@@ -51,6 +51,11 @@
   gap: 10px;
 }
 
+.products_menu a {
+  text-decoration: none;
+  color: #000;
+}
+
 #hamburger_menu {
   display: none;
 }
@@ -101,6 +106,11 @@
 @media all and (min-width: 100px) and (max-width: 768px) {
   .navbar_menu {
     display: none;
+  }
+
+  .products_menu_mob a {
+    text-decoration: none;
+    color: #fff;
   }
 
   #hamburger_menu {

@@ -54,7 +54,10 @@ const init_state = {
     income: "",
     pincode: "",
   },
-  client_token: "",
+  currentProcessDetails:{
+    client_token: "",
+    application_id : "",
+  }
 };
 
 export const appReducer = (state = init_state, action) => {
@@ -63,14 +66,38 @@ export const appReducer = (state = init_state, action) => {
 
   switch (type) {
     case types.CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST: {
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true };   
     }
 
     case types.CHECK_ELIGIBILITY_FOR_STASHFIN_SUCESS: {
-      return { ...state, isLoading: false, client_token: payload };
+      return { ...state, isLoading: false, currentProcessDetails: {...state.currentProcessDetails, client_token: payload }};
     }
 
     case types.CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.SETTING_APPLICATION_ID_REQUEST: {
+      return { ...state, isLoading: true };   
+    }
+
+    case types.SETTING_APPLICATION_ID_SUCCESS: {
+      return { ...state, isLoading: false, currentProcessDetails: {...state.currentProcessDetails, application_id: payload }};
+    }
+
+    case types.SETTING_APPLICATION_ID_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.CHECK_STATUS_REQUEST: {
+      return { ...state, isLoading: true };   
+    }
+
+    case types.CHECK_STATUS_SUCCESS: {
+      return { ...state, isLoading: false};
+    }
+
+    case types.CHECK_STATUS_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
 

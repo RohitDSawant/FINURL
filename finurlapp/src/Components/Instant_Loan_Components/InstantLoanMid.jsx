@@ -18,7 +18,7 @@ const InstantLoanMid = () => {
           className={styles.inst_loans_details}
           p={2}
         >
-          <Grid lg={5} item>
+          <Grid lg={5} xs={4} item>
             <Typography m={3}>Interest Rate</Typography>
             <Typography m={3}>Processing Fee</Typography>
             <Typography m={3}>Loan Amount Range</Typography>
@@ -26,8 +26,8 @@ const InstantLoanMid = () => {
             <Typography m={3}>Prepayment Charges</Typography>
             <Typography m={3}>Late Payment Charges</Typography>
           </Grid>
-          <Grid item lg={2}></Grid>
-          <Grid lg={5} item>
+          <Grid item xs={5} lg={2}></Grid>
+          <Grid lg={5}xs={5} item>
             <Typography textAlign={"right"} m={3}>
               10.49% p.a. onwards
             </Typography>
@@ -72,7 +72,7 @@ const InstantLoanMid = () => {
           lenders right away. Their borrowing rates are as follows:
         </Typography>
         <Grid container width={"70%"} m={"auto"} mt={5}>
-          <Grid item lg={6}>
+          <Grid item lg={6} xs={5}>
             <Typography textAlign={"center"} m={2} variant="body2">
               MONEYWIDE
             </Typography>
@@ -113,8 +113,7 @@ const InstantLoanMid = () => {
               TATA CAPITAL
             </Typography>
           </Grid>
-          <Grid item lg={2}></Grid>
-          <Grid item lg={3}>
+          <Grid item xs={5} lg={3}>
             <Typography m={2} textAlign={"center"} variant="body2">
               ROI 14%
             </Typography>
@@ -150,7 +149,7 @@ const InstantLoanMid = () => {
         <Typography m={5} mt={10} textAlign={"center"} variant={"h4"}>
           How to Apply Instant Loan online ?
         </Typography>
-        <Box width={"max-content"} margin={"auto"}>
+        <Box width={"90vw"} display={"flex"} flexDirection={"column"} alignItems={""} margin={"auto"}>
           <Box p={3} display={"flex"} alignItems={"center"} gap={"20px"}>
             <Typography variant="body1" fontWeight={600}>
               Step 1 :
@@ -198,7 +197,7 @@ const InstantLoanMid = () => {
           width={"70%"}
           margin={"auto"}
         >
-          <Grid lg={4} item>
+          <Grid lg={4} xs={2} item>
             <Typography textAlign={"center"} p={2} variant="body2">
               Identity Proof
             </Typography>
@@ -212,7 +211,7 @@ const InstantLoanMid = () => {
               Photographs
             </Typography>
           </Grid>
-          <Grid lg={6} item>
+          <Grid lg={6} xs={8} item>
             <Typography textAlign={"center"} p={2} variant="body2">
               PAN / Aadhaar Card, Voter ID, Passport, Driving licence
             </Typography>

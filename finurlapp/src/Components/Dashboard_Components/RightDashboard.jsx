@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DasboardContext } from "../../Context/DashboardContext";
-import Transaction from "./Transactions/Transaction";
+import Transaction from "./Transactions/LoanRecords";
 import ActualDashboardSection from "./Dashboard/ActualDashboardSection";
 import ActualBankWise from "./Bank_Wise_Offers/ActualBankWise";
 
@@ -9,7 +9,7 @@ const RightDashboard = () => {
   const [renderTab, setRenderedTab] = useState(<ActualDashboardSection />);
 
   useEffect(() => {
-    if (activeTab === "transaction") {
+    if (activeTab === "records") {
       setRenderedTab(<Transaction />);
     } else if (activeTab === "bank offers") {
       setRenderedTab(<ActualBankWise />);

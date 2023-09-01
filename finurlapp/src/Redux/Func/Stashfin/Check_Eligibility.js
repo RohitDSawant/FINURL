@@ -9,35 +9,30 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
         client_secret: "BD2y7zO9D9Bq",
       })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data.results);
-        localStorage.setItem("client_token", res.data.results);
-        // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_SUCCESS" });
         if (res.data.status) {
-          console.log("first");
+          dispatch({
+            type: "CHECK_ELIGIBILITY_FOR_STASHFIN_SUCCESS",
+            payload: res.data.results,
+          });
           return axios
-            .post(
-              "https://api.finurl.in/api/v1/stashfin/dedupe",
-              {
-                email: formData.email,
-                phone: formData.phone,
-                token: res.data.results,
-              }
-              // { withCredentials: true }
-            )
+            .post("https://api.finurl.in/api/v1/stashfin/dedupe", {
+              email: formData.email,
+              phone: formData.phone,
+              token: res.data.results,
+            })
             .then((response) => {
               return response.data;
             })
             .catch((err) => {
-              // dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
+              dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
               console.log(err);
             });
         } else {
-          // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE" });
+          dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
         }
       })
       .catch((err) => {
-        // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE" });
+        dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
         console.log(err);
       });
   } catch (error) {

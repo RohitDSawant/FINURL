@@ -99,8 +99,15 @@ const LoginPage = () => {
       })
       .catch((error) => {
         console.log(error);
-        setShowErrorSnack(true);
-        setSnackMsg("Sign up failed, please try again...");
+        if (error.message === "Request failed with status code 409") {
+          setSnackMsg(`Sorry ! User with same credentials already exists.`);
+          setShowErrorSnack(true);
+          setIsLoading(false);
+        } else {
+          setSnackMsg(`Invalid credentials`);
+          setShowErrorSnack(true);
+          setIsLoading(false);
+        }
       });
   };
 
@@ -273,7 +280,11 @@ const LoginPage = () => {
 
                       {!showOptSec ? (
                         <>
-                          <Box display={"flex"} gap={"30px"}>
+                          <Box
+                            display={"flex"}
+                            alignItems={"center"}
+                            gap={"30px"}
+                          >
                             <Button
                               type="submit"
                               className="sign-btn"
@@ -285,7 +296,7 @@ const LoginPage = () => {
                             >
                               Sign In
                             </Button>
-                            {isLoading ? <CircularProgress size={30} /> : ""}
+                            {isLoading ? <CircularProgress size={15} /> : ""}
                           </Box>
                         </>
                       ) : (
@@ -307,7 +318,8 @@ const LoginPage = () => {
                               Verify OTP
                             </Button>
                             {isLoading ? (
-                              <CircularProgress size={25}
+                              <CircularProgress
+                                size={25}
                                 sx={{
                                   width: "60%",
                                   margin: "auto",
@@ -415,7 +427,7 @@ const LoginPage = () => {
                       </div>
                       {!showSuccessSnack && !showErrorSnack ? (
                         <>
-                          <Box display={"flex"} gap={"30px"}>
+                          <Box display={"flex"} gap={"10px"}>
                             <Button
                               type="submit"
                               value="Sign Up"
@@ -430,8 +442,8 @@ const LoginPage = () => {
                             </Button>
                             {isLoading ? (
                               <CircularProgress
+                                size={15}
                                 sx={{
-                                  width: "60%",
                                   margin: "auto",
                                   marginTop: "10px",
                                 }}
