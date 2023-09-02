@@ -248,6 +248,13 @@ const Navbar = () => {
                 About Us
               </Typography>
             </Button>
+            <Link to={"/contactus"}>
+              <Button id={styles.about_btn}>
+                <Typography textTransform={"capitalize"} mt={0.2} color={theme.palette.primary.dark} variant="body2">
+                  Contact Us
+                </Typography>
+              </Button>
+            </Link>
           </Box>
           <Box className={styles.user_section}>
             {isAuth ? (

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Grid,
   TextField,
   TextareaAutosize,
   Typography,
@@ -12,25 +13,32 @@ import theme from "../Theme/theme";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CallRoundedIcon from "@mui/icons-material/CallRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
+import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   return (
     <>
       <section id="contact_us">
         <Navbar />
-        <Box className={styles.contact_us_frame}>
-          <Box
-            sx={{ backgroundColor: theme.palette.primary.main }}
-            className={styles.contact_us_left_sec}
+        <Box
+          sx={{ backgroundColor: theme.palette.primary.main }}
+          className={styles.contact_us_left_sec}
+        >
+          <Typography
+            sx={{ color: theme.palette.primary.dark }}
+            textAlign={"center"}
+            variant="h6"
           >
-            <Typography
-              sx={{ color: theme.palette.primary.dark }}
-              textAlign={"center"}
-              variant="h6"
-            >
-              Contact Us:
-            </Typography>
-            <Box ml={3} mt={5}>
+            Contact Us:
+          </Typography>
+          <Grid
+            alignItems={"center"}
+            justifyContent={"center"}
+            container
+            ml={3}
+            mt={5}
+          >
+            <Grid lg={11} md={11} sm={11} xs={11} item>
               <Box mb={5} display={"flex"} gap={"15px"}>
                 <Typography
                   color={"#fff"}
@@ -62,113 +70,65 @@ const ContactUs = () => {
                   </Typography>
                 </Box>
               </Box>
-              <Box mb={5} display={"flex"} gap={"15px"}>
-                <Typography color={"#fff"} variant="h6">
-                  <CallRoundedIcon />
-                </Typography>
-                <Box>
-                  <Typography
-                    sx={{ color: theme.palette.primary.dark }}
-                    variant="subtitle2 "
-                  >
-                    Phone:{" "}
+            </Grid>
+            <Grid item lg={11} md={11} sm={11} xs={11}>
+              <Link to={"tel: +919153555550"}>
+                {" "}
+                <Box mb={5} display={"flex"} gap={"15px"}>
+                  <Typography color={"#fff"} variant="h6">
+                    <CallRoundedIcon />
                   </Typography>
-                  <Typography
-                    mt={1}
-                    sx={{
-                      lineBreak: "anywhere",
-                      color: theme.palette.primary.dark,
-                    }}
-                    variant="body2"
-                  >
-                    +91 91535 55550
-                  </Typography>
+                  <Box>
+                    <Typography
+                      sx={{ color: theme.palette.primary.dark }}
+                      variant="subtitle2 "
+                      fontSize={"small"}
+                    >
+                      Phone:{" "}
+                    </Typography>
+                    <Typography
+                      mt={1}
+                      sx={{
+                        lineBreak: "anywhere",
+                        color: theme.palette.primary.dark,
+                      }}
+                      variant="body2"
+                    >
+                      +91 91535 55550
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-              <Box mb={5} display={"flex"} gap={"15px"}>
-                <Typography varian color={"#fff"} t="h6">
-                  <MailOutlineRoundedIcon />
-                </Typography>
-                <Box>
-                  <Typography
-                    sx={{ color: theme.palette.primary.dark }}
-                    variant="subtitle2"
-                  >
-                    Email:
+              </Link>
+            </Grid>
+            <Grid lg={11} md={11} sm={11} xs={11} mb={5} gap={"15px"}>
+              <Link to={"mailto: infor@finurl.in"}>
+                <Box mb={5} display={"flex"} gap={"15px"}>
+                  <Typography variant color={"#fff"} t="h6">
+                    <MailOutlineRoundedIcon />
                   </Typography>
-                  <Typography
-                    mt={1}
-                    sx={{
-                      lineBreak: "anywhere",
-                      color: theme.palette.primary.dark,
-                    }}
-                    variant="body2"
-                  >
-                    infor@finurl.in
-                  </Typography>
+                  <Box>
+                    <Typography
+                      sx={{ color: theme.palette.primary.dark }}
+                      variant="subtitle2"
+                    >
+                      Email:
+                    </Typography>
+                    <Typography
+                      mt={1}
+                      sx={{
+                        lineBreak: "anywhere",
+                        color: theme.palette.primary.dark,
+                      }}
+                      variant="body2"
+                    >
+                      infor@finurl.in
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
-            </Box>
-          </Box>
-
-          {/* <<<<<<<<<<<<<<<<< Right Section >>>>>>>>>>>>>>>>>>>> */}
-
-          <Box bgcolor={"lavender"} className={styles.contact_us_right_sec}>
-            <Typography color={"#000"} ml={10} variant="h6">
-              Or Write Us
-            </Typography>
-            <Box mt={5} ml={12}>
-              <Box display={"flex"} alignItems={"center"}>
-                <Typography variant="body2" color={"#000"}>
-                  <MailOutlineRoundedIcon />
-                </Typography>
-                <TextField
-                  type="email"
-                  size="small"
-                  sx={{ margin: "15px" }}
-                  label={"Email"}
-                  variant="outlined"
-                />
-              </Box>
-              <Box display={"flex"} alignItems={"center"}>
-                <Typography variant="body2" color={"#000"}>
-                  <CallRoundedIcon />
-                </Typography>{" "}
-                <TextField
-                  type="text"
-                  size="small"
-                  sx={{ margin: "15px", color: "black" }}
-                  label={"Phone"}
-                  variant="outlined"
-                />
-              </Box>
-              <br />
-              <TextareaAutosize
-                maxRows={5}
-                style={{
-                  height: "15vh",
-                  width: "75%",
-                  borderRadius: "7px",
-                  padding: "10px",
-                  marginLeft: "15px",
-                  marginTop: "5px",
-                  fontSize: "large",
-                }}
-                placeholder="Enter Your Message..."
-              ></TextareaAutosize>
-              <Button
-                sx={{
-                  backgroundColor: theme.palette.primary.main,
-                  color: "#fff",
-                  padding: "10px 25px",
-                  marginLeft: "15px",
-                  marginTop: "10px",
-                }}
-              >
-                Send Message
-              </Button>
-            </Box>
-          </Box>
+              </Link>
+            </Grid>
+          </Grid>
+          <Typography variant="body2">Just click to mail or make a call</Typography>
         </Box>
       </section>
     </>
