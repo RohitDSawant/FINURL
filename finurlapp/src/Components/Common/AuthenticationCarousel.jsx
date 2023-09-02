@@ -78,7 +78,7 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
     await axios
-      .post("http://localhost:4000/api/v1/auth/signup", formData)
+      .post("https://api.finurl.in/api/v1/auth/signup", formData)
       .then((res) => {
         document.querySelector("form").reset();
         console.log(res.data);
@@ -116,7 +116,7 @@ const LoginPage = () => {
     setIsLoading(true);
     try {
       await axios
-        .post("http://localhost:4000/api/v1/auth/login", loginformData)
+        .post("https://api.finurl.in/api/v1/auth/login", loginformData)
         .then((res) => {
           if ((res.data.msg = "OTP sent to the user")) {
             setIsLoading(false);
@@ -153,7 +153,7 @@ const LoginPage = () => {
     setIsLoading(true);
     try {
       await axios
-        .post("http://localhost:4000/api/v1/auth/verifyOtp", {
+        .post("https://api.finurl.in/api/v1/auth/verifyOtp", {
           email: loginformData.email,
           otp: getOTPInputs,
         })
