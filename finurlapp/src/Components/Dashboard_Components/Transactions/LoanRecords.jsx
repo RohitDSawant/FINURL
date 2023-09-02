@@ -5,13 +5,16 @@ import { DataGrid } from "@mui/x-data-grid";
 import theme from "../../../Theme/theme";
 import styles from "./../../../CSS/dashboard.module.css";
 import data from "../../../Assets/fake-data/loansdata";
+import { useSelector } from "react-redux";
 
 const LoanRecords = () => {
+  const loans = useSelector((state) => state.authReducer.loans);
+
   const columns = [
     {
       field: "id",
       headerName: "Sr.No",
-      width:70,
+      width: 70,
       renderCell: (params) => {
         return (
           <Typography ml={2} variant="body2">
@@ -23,23 +26,23 @@ const LoanRecords = () => {
     {
       field: "name",
       headerName: "Name",
-      width: 200,
+      width: 290,
       renderCell: (params) => {
-        return <Typography variant="body2">{params.value}</Typography>;
+        return <Typography variant="body2">{params.row.first_name + " " +  params.row.last_name}</Typography>;
       },
     },
     {
       field: "application_id",
       headerName: "Application ID",
-      width: 150,
+      width: 200,
       renderCell: (params) => {
-        return <Typography variant="body2">{params.value}</Typography>;
+        return <Typography variant="body2">{params.row.results.application_id}</Typography>;
       },
     },
     {
-      field: "pan number",
+      field: "pan_number",
       headerName: "Pan Number",
-      width: 150,
+      width: 200,
       renderCell: (params) => {
         return <Typography variant="body2">{params.value}</Typography>;
       },
@@ -47,45 +50,45 @@ const LoanRecords = () => {
     {
       field: "loan_status",
       headerName: "Loan Status",
-      width: 140,
+      width: 200,
       renderCell: (params) => {
         return (
           <>
-            {params.value === "In process" ? (
+            {params.row.results.application_status === "In process" ? (
               <Typography
-              textAlign={"center"}
+                textAlign={"center"}
                 sx={{
                   color: "navy",
                   fontSize: "small",
-                  fontWeight: 600
+                  fontWeight: 600,
                 }}
                 variant="body2"
               >
-                {params.value}
+                {params.row.results.application_status}
               </Typography>
-            ) : params.value === "Passed" ? (
+            ) : params.row.results.application_status === "Eligible" ? (
               <Typography
-              textAlign={"center"}
+                textAlign={"center"}
                 sx={{
                   color: "green",
                   fontSize: "small",
-                  fontWeight: 600
+                  fontWeight: 600,
                 }}
                 variant="body2"
               >
-                {params.value}
+                {params.row.results.application_status}
               </Typography>
             ) : (
               <Typography
-              textAlign={"center"}
+                textAlign={"center"}
                 sx={{
                   color: "crimson",
                   fontSize: "small",
-                  fontWeight: 600
+                  fontWeight: 600,
                 }}
                 variant="body2"
               >
-                {params.value}
+                {params.row.results.application_status}
               </Typography>
             )}
           </>
@@ -93,19 +96,21 @@ const LoanRecords = () => {
       },
     },
     {
-      field: "date_of_application",
-      headerName: "Application Date",
-      width: 250,
-      renderCell: (params) => {
-        return <Typography variant="body2">{params.value}</Typography>;
-      },
-    },
-    {
       field: "loan_info",
       headerName: "Loan Info",
       width: 250,
       renderCell: (params) => {
-        return <Typography variant="body2">{params.value}</Typography>;
+        return (
+          <Button
+            sx={{
+              backgroundColor: "#12162b",
+              color: "#fff",
+              fontSize: "x-small",
+            }}
+          >
+            Info
+          </Button>
+        );
       },
     },
   ];
@@ -119,7 +124,7 @@ const LoanRecords = () => {
           margin: "auto",
           height: "74.5vh",
         }}
-        rows={data}
+        rows={loans}
         columns={columns}
         initialState={{
           pagination: {

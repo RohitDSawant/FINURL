@@ -26,14 +26,15 @@
   }
 }
 
-@media all and (min-width: 426px) and (max-width: 768px) {
+@media all and (min-width: 426px) and (max-width: 769px) {
   .contact_us_left_sec {
     margin-top: 25%;
     width: 70vw;
+    height: max-content;
   }
 }
 
-@media all and (min-width: 100px) and (max-width: 425px) {
+@media all and (min-width: 100px) and (max-width: 426px) {
   .contact_us_left_sec {
     margin-top: 30%;
     width: 80vw;

@@ -364,6 +364,13 @@ const Navbar = () => {
                 <Typography> 🔹 My Card</Typography>
               </Box>
             </Box>
+            <Box ml={2} mt={3}>
+            <Link to={"/contactus"}>
+                <Typography>
+                  Contact Us
+                </Typography>
+            </Link>
+            </Box>
             <Box mt={3}>
               <List>
                 {!isAuth ? (

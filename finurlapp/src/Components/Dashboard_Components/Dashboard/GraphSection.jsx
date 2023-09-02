@@ -1,18 +1,28 @@
 import { Box, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import theme from "../../../Theme/theme";
 import { loans } from "../../../Assets/fake-data/loansdata";
 import bar_chart from "./../../../Assets/Images/1197869.png";
+import { getLoansData } from "../../../Redux/Func/Dashboard/dashboardFunc";
+import { useSelector, useDispatch } from "react-redux";
 
 const GraphSection = () => {
+  const user = useSelector((state) => state.authReducer.loggedInUser._id);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLoansData(user));
+  }, [dispatch, user]);
+
   return (
     <>
       <Grid mt={5} container justifyContent={"space-around"}>
-        <Grid  height={"40vh"} item lg={7}>
+        <Grid height={"40vh"} item lg={7}>
           <Box>
             <img
               height={"250px"}
-              style={{ display: "block", margin: "auto" , "width": "400px"}}
+              style={{ display: "block", margin: "auto", width: "400px" }}
               src={bar_chart}
               alt=""
             />
@@ -54,7 +64,7 @@ const GraphSection = () => {
                   >
                     <Box>
                       <Typography
-                        color={theme.palette.secondary.dark}
+                        color={theme.palette.primary.dark}
                         fontSize={"x-small"}
                         letterSpacing={1}
                         mb={1}
@@ -77,7 +87,7 @@ const GraphSection = () => {
                       {people.date}
                     </Typography>
                     <Typography
-                      color={theme.palette.secondary.dark}
+                      color={theme.palette.primary.dark}
                       alignSelf={"center"}
                       variant="body1"
                     >

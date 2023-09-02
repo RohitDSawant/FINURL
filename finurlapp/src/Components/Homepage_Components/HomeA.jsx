@@ -9,17 +9,17 @@ const HomeA = () => {
       <section id={styles.home_a_sec}>
         <Grid container spacing={5}>
           <Grid item lg={5} md={5} sm={6} xs={12} >
-            <Typography mb={-1} variant="h4">
+            <Typography mb={-1} variant="h5">
               The Next
             </Typography>
-            <Typography mb={-1} variant="h2">
+            <Typography mb={-1} variant="h4">
               Generation
             </Typography>
-            <Typography mb={-1} variant="h4">
-              loan method
+            <Typography mb={-1} variant="h5">
+              Loan method
             </Typography>
             <br />
-            <Typography variant="body2">
+            <Typography lineHeight={"1.2rem"} variant="body2">
               Our team of experts uses a methodology to identify the credit
               cards most likely to fit your needs. We examine annual percentage
               rates, annual fees.

@@ -10,6 +10,7 @@ import ContactUs from "../Pages/ContactUs";
 import PersonalLoan from "../Pages/PersonalLoan";
 import BusinessLoan from "../Pages/BusinessLoan";
 import ComingSoon from "../Pages/ComingSoon";
+import ApplicationProtectedRoute from "../Components/Common/ApplicationRouteProtection";
 const Router = () => {
   return (
     <>
@@ -19,7 +20,14 @@ const Router = () => {
         <Route path="/personal-loan" element={<PersonalLoan />} />
         <Route path="/business-loan" element={<BusinessLoan />} />
         <Route path="/:bank/dedupe" element={<EligiblityEntrypoints />} />
-        <Route path="/application" element={<ApplicationForLoan />} />
+        <Route
+          path="/application"
+          element={
+            <ApplicationProtectedRoute>
+              <ApplicationForLoan />
+            </ApplicationProtectedRoute>
+          }
+        />
         <Route path="/authentication" element={<AuthenticationCarousel />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contactus" element={<ContactUs />} />

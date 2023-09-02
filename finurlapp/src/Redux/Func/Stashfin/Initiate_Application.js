@@ -7,12 +7,11 @@ dispatch({type:"SETTING_APPLICATION_ID_REQUEST"})
   try {
     return await axios
       .post(
-        "https://api.finurl.in/api/v1/stashfin/initiate-application",
+        "http://localhost:4000/api/v1/stashfin/initiate-application",
         formData
       )
       .then((res) => {
-        if(res.data.status){
-          console.log("FROM ACTUAL FUNC", res.data.results)
+        if(res.data){
           dispatch({type:"SETTING_APPLICATION_ID_SUCCESS", payload: res.data.results.application_id})
         }
           return res

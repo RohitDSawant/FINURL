@@ -61,11 +61,11 @@ const ApplicationForLoan = () => {
   };
 
   const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-    await dispatch(
+     dispatch(
       handleStashfinInitiateApp({
         loggedInUserId: user,
         first_name: formData.first_name,
@@ -84,10 +84,27 @@ const ApplicationForLoan = () => {
       })
     )
       .then((response) => {
-        console.log(response.message);
+        // console.log(response);
+        
         setTimeout(() => {
           setIsLoading(false);
-          if (response.message === "Initiated Successfully") {
+          // console.log(response);
+          if (response && response.response && response.response.status && response.response.status === 409) {
+            console.log(response.response.data.message);
+
+            setShowErrorSnack(true);
+            setSnackMsg("Sorry ! You are already a part of Stashfin.");
+          }
+          
+          if (response && response.response && response.response.status && response.response.status === 401) {
+            console.log(response.response.data.message);
+
+            setShowErrorSnack(true);
+            setSnackMsg("Invalid Details, please check and try again");
+          } 
+          
+          if (response.status === 200) {
+            console.log(response);
             dispatch(
               check_status({
                 client_token: processedApplication.client_token,
@@ -100,14 +117,6 @@ const ApplicationForLoan = () => {
               window.location.href = response.data.results.redirect_url;
             }, 2000);
             document.querySelector("form").reset();
-          } else if (response.message === "User already exists") {
-            console.log("sec");
-            setShowErrorSnack(true);
-            setSnackMsg("Sorry! you are already a part of Stashfin.");
-          } else if (response.message === "Invalid details provided") {
-            console.log("three");
-            setShowErrorSnack(true);
-            setSnackMsg("Invalid Details, please check and try again");
           }
         }, 3000);
       })
