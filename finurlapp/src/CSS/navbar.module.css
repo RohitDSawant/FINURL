@@ -61,7 +61,7 @@
 }
 
 .drawer_icon {
-  height: 7vh;
+  height: 5vh;
   /* border: 1px solid #ccc; */
   margin-top: 20px;
   margin-bottom: 20px;
@@ -104,6 +104,11 @@
 }
 
 @media all and (min-width: 100px) and (max-width: 768px) {
+
+  .navbar{
+    justify-content: space-between;
+  }
+
   .navbar_menu {
     display: none;
   }

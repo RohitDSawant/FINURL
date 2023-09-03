@@ -114,7 +114,7 @@ const ApplicationForLoan = () => {
             setShowSuccessSnack(true);
             setSnackMsg("Please wait while we redirect you...");
             setTimeout(() => {
-              window.location.href = response.data.results.redirect_url;
+              window.open(response.data.results.redirect_url, "_blank")
             }, 2000);
             document.querySelector("form").reset();
           }
@@ -322,11 +322,12 @@ const ApplicationForLoan = () => {
           open={showSuccessSnack || showErrorSnack}
           autoHideDuration={3100}
           onClose={() => handleClose()}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         >
           <Alert
             onClose={() => handleClose()}
             severity={"info"}
+            color="secondary"
             sx={{ width: "100%" }}
           >
             {snackMsg}

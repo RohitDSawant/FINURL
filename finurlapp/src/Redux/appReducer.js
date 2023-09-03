@@ -93,6 +93,7 @@ export const appReducer = (state = init_state, action) => {
       return {
         ...state,
         isLoading: false,
+        eligible: false,
         currentProcessDetails: {
           ...state.currentProcessDetails,
           application_id: payload,
@@ -109,7 +110,7 @@ export const appReducer = (state = init_state, action) => {
     }
 
     case types.CHECK_STATUS_SUCCESS: {
-      return { ...state, isLoading: false, eligible: false };
+      return { ...state, isLoading: false };
     }
 
     case types.CHECK_STATUS_FAILURE: {

@@ -60,7 +60,7 @@
 }
 
 .loans_sec {
-  width: 68%; /* border: 1px solid; */
+  width: 78%; /* border: 1px solid; */
   margin: auto;
   justify-content: space-between;
 }
@@ -68,8 +68,6 @@
 /*  Home D Slabs ---------------->  */
 
 #home_d_sec {
-  padding-top: 10%;
-  margin-top: 10%;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -77,31 +75,29 @@
 }
 
 #home_d_sec > div {
-  display: flex;
   width: 75%;
   align-items: center;
   margin: auto;
 }
 
 .slab_box {
-  width: 50%;
+  width: 75%;
   display: flex;
   flex-direction: column;
   gap: 20px;
   justify-content: center;
-  height: 20vh;
 }
 
 .slab_circle {
   border-radius: 2%;
-  width: 40%;
   overflow: hidden;
+  border-radius: 2%;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
 
 .slabs_img {
   max-height: max-content;
-  height: 40vh;
+  /* height: 30vh; */
   width: 100%;
   display: block;
   margin: auto;
@@ -110,13 +106,14 @@
 #home_d_sec > div:nth-child(2),
 #home_d_sec > div:nth-child(4) {
   flex-direction: row-reverse;
+
 }
 
-#home_d_sec > div:nth-child(2) > div,
-#home_d_sec > div:nth-child(4) > div {
+#right_slab {
   text-align: right;
   align-items: flex-end;
   justify-content: center;
+  float: right;
 }
 
 .slab_box > p,
@@ -139,8 +136,8 @@
 }
 
 .credit_score_img {
-  height: 45vh;
-  /* width: 50%; */
+  height: 40vh;
+  width: 35vw;
 }
 
 #home_e_sec > div button {
@@ -320,20 +317,31 @@
   }
 
   .slabs_img {
-    height: 20vh;
+    height: 10vh;
   }
 
-  .credit_score_img {
-    height: 30vh;
-  }
 
   .partner_grid {
     grid-template-columns: repeat(1, 1fr);
+  }
+
+  .credit_score_img {
+    height: 15vh;
+    width: 45vw;
   }
 }
 
 @media all and (min-width: 426px) and (max-width: 769px) {
   .partner_grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .credit_score_img {
+    height: 25vh;
+    width: 45vw;
+  }
+
+  .slabs_img {
+    height: 15vh;
   }
 }

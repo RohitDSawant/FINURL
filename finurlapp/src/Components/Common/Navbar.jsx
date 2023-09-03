@@ -250,7 +250,12 @@ const Navbar = () => {
             </Button>
             <Link to={"/contactus"}>
               <Button id={styles.about_btn}>
-                <Typography textTransform={"capitalize"} mt={0.2} color={theme.palette.primary.dark} variant="body2">
+                <Typography
+                  textTransform={"capitalize"}
+                  mt={0.2}
+                  color={theme.palette.primary.dark}
+                  variant="body2"
+                >
                   Contact Us
                 </Typography>
               </Button>
@@ -321,84 +326,105 @@ const Navbar = () => {
                 alignItems={"center"}
                 marginLeft={"10%"}
                 gap={"20px"}
+                // border={"1px solid "}
                 // justifyContent={"space-evenly"}
               >
                 <img className={styles.drawer_icon} src={logo} alt="logo" />
-                <Typography>FinURL</Typography>
+                <Typography mt={0.5} variant="h6">
+                  FinURL
+                </Typography>
 
                 {/* <DarkModeIcon sx={{ marginRight: "10px" }} /> */}
               </Box>
               <Box className={styles.products_menu_mob} ml={2} mt={2}>
-                <Typography variant="h6" mb={1}>
+                <Typography variant="body2" mb={1}>
                   Loans :
                 </Typography>
                 <Link to={"/instant-loan"}>
-                  <Typography> 🔹 Instant Loan</Typography>
+                  <Typography variant={"subtitle2"}>
+                    {" "}
+                    🔹 Instant Loan
+                  </Typography>
                 </Link>
                 <Link to={"/business-loan"}>
-                  <Typography> 🔹 Business Loan</Typography>
+                  <Typography variant={"subtitle2"}>
+                    {" "}
+                    🔹 Business Loan
+                  </Typography>
                 </Link>
                 <Link to={"/personal-loan"}>
-                  <Typography> 🔹 Personal Loan</Typography>
+                  <Typography variant={"subtitle2"}>
+                    {" "}
+                    🔹 Personal Loan
+                  </Typography>
                 </Link>
                 <Link to={"/comingsoon"}>
-                  <Typography> 🔹 Home Loan</Typography>
+                  <Typography variant={"subtitle2"}> 🔹 Home Loan</Typography>
                 </Link>
                 <Link to={"/comingsoon"}>
-                  <Typography> 🔹 Professional Loan</Typography>
+                  <Typography variant={"subtitle2"}>
+                    {" "}
+                    🔹 Professional Loan
+                  </Typography>
                 </Link>
                 <Link to={"/comingsoon"}>
-                  <Typography> 🔹 Loan against property</Typography>
+                  <Typography variant={"subtitle2"}>
+                    {" "}
+                    🔹 Loan against property
+                  </Typography>
                 </Link>
               </Box>
               <Box ml={2} mt={3}>
-                <Typography variant="h6" mb={1}>
+                <Typography variant="body2" mb={1}>
                   Investments
                 </Typography>
-                <Typography> 🔹 My Investments</Typography>
+                <Typography variant={"subtitle2"}>
+                  {" "}
+                  🔹 My Investments
+                </Typography>
               </Box>
               <Box ml={2} mt={3}>
-                <Typography mb={1} variant="h6">
+                <Typography mb={1} variant="body2">
                   Cards
                 </Typography>
-                <Typography> 🔹 My Card</Typography>
+                <Typography variant={"subtitle2"}> 🔹 My Card</Typography>
               </Box>
             </Box>
-            <Box ml={2} mt={3}>
-            <Link to={"/contactus"}>
-                <Typography>
-                  Contact Us
-                </Typography>
-            </Link>
+            <Box ml={1} mt={2}>
+              <Link to={"/contactus"}>
+                <Typography variant={"subtitle2"}> 🔹 Contact Us</Typography>
+              </Link>
             </Box>
-            <Box mt={3}>
-              <List>
-                {!isAuth ? (
-                  <>
-                    <Link
-                      style={{ textDecoration: "none", color: "#fff" }}
-                      to={"/authentication"}
-                    >
-                      <ListItem>
-                        <LoginIcon sx={{ marginRight: "10px" }} />
-                        Login
-                      </ListItem>
-                    </Link>
-                  </>
-                ) : (
-                  <ListItem>
-                    <Button sx={{ color: "#fff" }} onClick={handleLogout}>
-                      <LogoutIcon sx={{ marginRight: "10px", color: "#fff" }} />
-                      Logout
-                    </Button>
-                  </ListItem>
-                )}
-              </List>
+            <Box ml={1} mt={1}>
+              <Link to={"/contactus"}>
+                <Typography variant={"subtitle2"}> 🔹 Dashboard</Typography>
+              </Link>
+            </Box>
+            <Box ml={1} mt={2}>
+              {!isAuth ? (
+                <>
+                  <Link
+                    style={{ textDecoration: "none", color: "#fff" }}
+                    to={"/authentication"}
+                  >
+                    <LoginIcon sx={{ marginRight: "10px" }} />
+                    Login
+                  </Link>
+                </>
+              ) : (
+                <Button sx={{ color: "#fff" }} onClick={handleLogout}>
+                  <LogoutIcon
+                    fontSize="small"
+                    sx={{ marginRight: "10px", color: "#fff" }}
+                  />
+                  Logout
+                </Button>
+              )}
             </Box>
 
-            <Box textAlign={"center"} mt={10} width={"95%"}>
+            <Box textAlign={"center"} mt={5} width={"95%"}>
               <Box>
-                <Typography>Follow us on:</Typography>
+                <Typography variant={"subtitle2"}>Follow us on:</Typography>
                 <Box
                   display={"flex"}
                   margin={"auto"}

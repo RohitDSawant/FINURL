@@ -234,6 +234,8 @@ const EligiblityEntrypoints = () => {
                 onClose={() => handleClose()}
                 severity={showErrorSnack ? "error" : "info"}
                 sx={{ width: "100%" }}
+                color="secondary"
+
               >
                 {snackMsg}
               </Alert>
