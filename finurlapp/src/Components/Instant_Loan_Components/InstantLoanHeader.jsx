@@ -7,17 +7,18 @@ const InstantLoanHeader = () => {
   return (
     <>
       <section id={styles.inst_loan_a}>
-        <Box width={"85%"} margin={"auto"}>
-          <Grid container spacing={1} alignItems={"center"}>
-            <Grid item xs={4} sm={7} md={6} lg={8}>
+        <Box width={"90vw"} margin={"auto"} mt={5}>
+          <Grid container justifyContent={"space-around"} alignItems={"center"}>
+            <Grid item xs={12} sm={10} md={6} lg={5}>
               <img
                 className={styles.instant_loan_pic}
                 src={instant_loan_pic}
                 alt=""
+                style={{"display":"block", "margin":"auto"}}
               />
             </Grid>
-            <Grid item xs={7} sm={5} md={5} lg={4}>
-              <Typography mb={3} variant="h4">
+            <Grid item xs={12} sm={11} md={5} lg={5}>
+              <Typography mt={2} mb={3} variant="h4">
                 Instant Loan
               </Typography>
               <Typography className="para" variant="body2">

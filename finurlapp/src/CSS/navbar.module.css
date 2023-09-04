@@ -71,15 +71,6 @@
 #resource_btn {
   position: relative;
   display: flex;
-}
-
-#products_btn:hover,
-#resource_btn:hover,
-#about_btn:hover {
-  font-weight: 600;
-  border-bottom: 2px solid darkcyan;
-  border-radius: 5px;
-  background: none;
   cursor: pointer;
 }
 
@@ -92,7 +83,7 @@
 .products_menu {
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   position: absolute;
-  background-color: lightyellow;
+  background-color: #fff;
   cursor: pointer;
   top: 100%;
   width: 40%;
@@ -103,9 +94,11 @@
   border-radius: 5px;
 }
 
-@media all and (min-width: 100px) and (max-width: 768px) {
 
-  .navbar{
+
+
+@media all and (min-width: 100px) and (max-width: 768px) {
+  .navbar {
     justify-content: space-between;
   }
 
@@ -113,7 +106,7 @@
     display: none;
   }
 
-   a {
+  a {
     text-decoration: none;
     color: #fff;
   }

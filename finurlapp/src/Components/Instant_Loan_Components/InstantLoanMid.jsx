@@ -6,11 +6,11 @@ const InstantLoanMid = () => {
   return (
     <>
       <section id={styles.inst_loan_b}>
-        <Typography m={5} textAlign={"center"} variant={"h4"}>
+        <Typography m={5} textAlign={"center"} variant={"h5"}>
           Details
         </Typography>
         <Grid
-          width={"70%"}
+          width={"90vw"}
           alignItems={"center"}
           justifyContent={"space-around"}
           container
@@ -18,32 +18,31 @@ const InstantLoanMid = () => {
           className={styles.inst_loans_details}
           p={2}
         >
-          <Grid lg={5} xs={4} item>
-            <Typography m={3}>Interest Rate</Typography>
-            <Typography m={3}>Processing Fee</Typography>
-            <Typography m={3}>Loan Amount Range</Typography>
-            <Typography m={3}>Loan tenure</Typography>
-            <Typography m={3}>Prepayment Charges</Typography>
-            <Typography m={3}>Late Payment Charges</Typography>
+          <Grid lg={5} xs={5} item>
+            <Typography variant="body2" m={3}>Interest Rate</Typography>
+            <Typography variant="body2" m={3}>Processing Fee</Typography>
+            <Typography variant="body2" m={3}>Loan Amount Range</Typography>
+            <Typography variant="body2" m={3}>Loan tenure</Typography>
+            <Typography variant="body2" m={3}>Prepayment Charges</Typography>
+            <Typography variant="body2" m={3}>Late Payment Charges</Typography>
           </Grid>
-          <Grid item xs={5} lg={2}></Grid>
-          <Grid lg={5}xs={5} item>
-            <Typography textAlign={"right"} m={3}>
+          <Grid lg={5}xs={7} item>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               10.49% p.a. onwards
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               Between 0.5% and 2.50% of the loan amount
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               Up to ₹50 Lakhs
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               1 to 6 years
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               2-3% of the outstanding loan amount
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               2% of the due amount
             </Typography>
           </Grid>
@@ -52,7 +51,7 @@ const InstantLoanMid = () => {
         <Box p={4}>
           <Typography
             variant="body2"
-            width={"65%"}
+            width={"7 5vw"}
             textAlign={"center"}
             m={"auto"}
           >
@@ -64,15 +63,15 @@ const InstantLoanMid = () => {
             an instant loan on terms that you deem to be favorable.
           </Typography>
         </Box>
-        <Typography textAlign={"center"} m={"auto"} p={2} mt={4} variant="h4">
+        <Typography width={"90%"} textAlign={"center"} m={"auto"} p={2} mt={4} variant="h5">
           Compare Instant Loans & Apply Online
         </Typography>
-        <Typography mb={2} textAlign={"center"} m={"auto"} variant="body2">
+        <Typography width={"85%"} mb={2} textAlign={"center"} m={"auto"} variant="body2">
           Compare Instant loan interest rates of some of the leading Indian
           lenders right away. Their borrowing rates are as follows:
         </Typography>
         <Grid container width={"70%"} m={"auto"} mt={5}>
-          <Grid item lg={6} xs={5}>
+          <Grid item lg={6} xs={5.5}>
             <Typography textAlign={"center"} m={2} variant="body2">
               MONEYWIDE
             </Typography>
@@ -113,7 +112,7 @@ const InstantLoanMid = () => {
               TATA CAPITAL
             </Typography>
           </Grid>
-          <Grid item xs={5} lg={3}>
+          <Grid item xs={5.5} lg={3}>
             <Typography m={2} textAlign={"center"} variant="body2">
               ROI 14%
             </Typography>
@@ -146,10 +145,10 @@ const InstantLoanMid = () => {
             </Typography>
           </Grid>
         </Grid>
-        <Typography m={5} mt={10} textAlign={"center"} variant={"h4"}>
+        <Typography m={5} mt={10} textAlign={"center"} variant={"h5"}>
           How to Apply Instant Loan online ?
         </Typography>
-        <Box width={"90vw"} display={"flex"} flexDirection={"column"} alignItems={""} margin={"auto"}>
+        <Box width={"75vw"} display={"block"} margin={"auto"}>
           <Box p={3} display={"flex"} alignItems={"center"} gap={"20px"}>
             <Typography variant="body1" fontWeight={600}>
               Step 1 :
@@ -188,13 +187,13 @@ const InstantLoanMid = () => {
           </Box>
         </Box>
 
-        <Typography m={5} mt={10} textAlign={"center"} variant={"h4"}>
+        <Typography m={5} mt={10} textAlign={"center"} variant={"h5"}>
           Documents Required
         </Typography>
         <Grid
           justifyContent={"space-between"}
           container
-          width={"70%"}
+          width={"85vw"}
           margin={"auto"}
         >
           <Grid lg={4} xs={2} item>
@@ -228,7 +227,7 @@ const InstantLoanMid = () => {
           </Grid>
         </Grid>
         <br />
-        <Typography m={5} mt={7} textAlign={"center"} variant={"h4"}>
+        <Typography m={5} mt={7} textAlign={"center"} variant={"h5"}>
           Where can be a Instant be used ?
         </Typography>
         <br />

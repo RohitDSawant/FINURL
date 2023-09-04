@@ -78,14 +78,14 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
     await axios
-      .post("https://api.finurl.in/api/v1/auth/signup", formData)
+      .post("http://localhost:4000/api/v1/auth/signup", formData)
       .then((res) => {
         document.querySelector("form").reset();
         console.log(res.data);
         if (res.data.message === "User created") {
           setIsLoading(false);
           setShowSuccessSnack(true);
-          setSnackMsg("Signup successful");
+          setSnackMsg("Signup successfull, Password has been mailed.");
           console.log(res.data.message);
 
           setTimeout(() => {
@@ -94,7 +94,7 @@ const LoginPage = () => {
         } else {
           setIsLoading(false);
           setShowErrorSnack(true);
-          setSnackMsg(res.data);
+          setSnackMsg("Signup Failed, Please try again.");
         }
       })
       .catch((error) => {
@@ -116,7 +116,7 @@ const LoginPage = () => {
     setIsLoading(true);
     try {
       await axios
-        .post("https://api.finurl.in/api/v1/auth/login", loginformData)
+        .post("http://localhost:4000/api/v1/auth/login", loginformData)
         .then((res) => {
           if ((res.data.msg = "OTP sent to the user")) {
             setIsLoading(false);
@@ -153,14 +153,14 @@ const LoginPage = () => {
     setIsLoading(true);
     try {
       await axios
-        .post("https://api.finurl.in/api/v1/auth/verifyOtp", {
+        .post("http://localhost:4000/api/v1/auth/verifyOtp", {
           email: loginformData.email,
           otp: getOTPInputs,
         })
         .then((res) => {
           console.log(res.data);
           setTimeout(() => {
-            if ((res.data.msg = "User Logged In Successfully!")) {
+            if (res.data.msg === "User Logged In Successfully!") {
               setIsLoading(false);
               setShowSuccessSnack(true);
               setSnackMsg("Login Successfull!");
@@ -170,21 +170,20 @@ const LoginPage = () => {
               setTimeout(() => {
                 navigate("/");
               }, 3000);
-            } else {
-              setIsLoading(false);
-              setShowErrorSnack(true);
-              setSnackMsg("Login Failed!");
-            }
+            } 
           }, 3000);
         });
     } catch (error) {
       console.log(error.message);
+      setIsLoading(false);
+      setShowErrorSnack(true);
+      setSnackMsg("Incorrect OTP, Please try again");
     }
   };
 
-  console.log(showSuccessSnack);
-  console.log(showErrorSnack);
-  console.log(snackMsg);
+  // console.log(showSuccessSnack);
+  // console.log(showErrorSnack);
+  // console.log(snackMsg);
 
   return (
     <>
@@ -307,6 +306,7 @@ const LoginPage = () => {
                         <>
                           <Box display={"flex"} gap={"30px"}>
                             <Button
+                            className={"sign-btn"}
                               onClick={verifyOtp}
                               sx={{
                                 background: theme.palette.primary.main,

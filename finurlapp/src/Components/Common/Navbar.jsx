@@ -33,6 +33,8 @@ const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [productsVisible, setProductsVisible] = useState(false);
   const [resourceVisible, setResourceVisible] = useState(false);
+  const [resourceOpen, setResourceOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
 
@@ -55,22 +57,6 @@ const Navbar = () => {
 
   const isAuth = useSelector((state) => state.authReducer.isAuth);
 
-  const showProductsMenu = () => {
-    setProductsVisible(true);
-  };
-
-  const collapseProductsMenu = () => {
-    setProductsVisible(false);
-  };
-
-  const collapseResourceMenu = () => {
-    setResourceVisible(false);
-  };
-
-  const showResourceMenu = () => {
-    setResourceVisible(true);
-  };
-
   const handleDrawer = () => {
     setDrawerOpen((prev) => !prev);
   };
@@ -82,6 +68,31 @@ const Navbar = () => {
   const NavToDash = () => {
     navigate("/dashboard");
   };
+
+  const handleShowProducts = () => {
+    if (productsOpen) {
+      setProductsOpen(false);
+    } else if (resourceOpen) {
+      setResourceOpen(false);
+      setProductsOpen(true);
+    } else {
+      setProductsOpen(true);
+    }
+  };
+
+  const handleShowResources = () => {
+    if (resourceOpen) {
+      setResourceOpen(false);
+    } else if (productsOpen) {
+      setProductsOpen(false);
+      setResourceOpen(true)
+    } else {
+      setResourceOpen(true);
+    }
+  };
+
+  console.log("resourceOpen", resourceOpen);
+  console.log("productsOpen", productsOpen);
 
   return (
     <>
@@ -101,11 +112,7 @@ const Navbar = () => {
         <Box className={styles.navbar_menu}>
           <Box>
             {/* Products */}
-            <Box
-              onMouseLeave={collapseProductsMenu}
-              onMouseEnter={showProductsMenu}
-              id={styles.products_btn}
-            >
+            <Box onClick={handleShowProducts} id={styles.products_btn}>
               <Typography
                 color={theme.palette.primary.dark}
                 mr={2}
@@ -113,7 +120,7 @@ const Navbar = () => {
               >
                 Products
               </Typography>
-              {!productsVisible ? (
+              {!productsOpen ? (
                 <ExpandMoreIcon
                   sx={{ color: `${theme.palette.primary.dark}` }}
                   fontSize="small"
@@ -126,71 +133,66 @@ const Navbar = () => {
               )}
             </Box>
 
-            <Box
-              onMouseLeave={collapseProductsMenu}
-              onMouseEnter={showProductsMenu}
-              style={{ display: productsVisible ? "flex" : "none" }}
-              className={styles.products_menu}
-            >
-              <Box>
-                <Typography variant="body1" mb={2}>
-                  Loans:
-                </Typography>
-                <Link to={"/personal-loan"}>
-                  <Typography variant="body2" m={1}>
-                    🔹 Personal Loan
+            {productsOpen ? (
+              <Box className={styles.products_menu}>
+                <Box>
+                  <Typography variant="body1" mb={2}>
+                    Loans:
                   </Typography>
-                </Link>
-                <Link to={"/instant-loan"}>
-                  <Typography variant="body2" m={1}>
-                    🔹 Instant Loan
+                  <Link to={"/personal-loan"}>
+                    <Typography variant="body2" m={1}>
+                      🔹 Personal Loan
+                    </Typography>
+                  </Link>
+                  <Link to={"/instant-loan"}>
+                    <Typography variant="body2" m={1}>
+                      🔹 Instant Loan
+                    </Typography>
+                  </Link>
+                  <Link to={"/comingsoon"}>
+                    <Typography variant="body2" m={1}>
+                      🔹 Home Loan
+                    </Typography>
+                  </Link>
+                  <Link to={"/business-loan"}>
+                    <Typography variant="body2" m={1}>
+                      🔹 Business Loan
+                    </Typography>
+                  </Link>
+                  <Link to={"/comingsoon"}>
+                    <Typography variant="body2" m={1}>
+                      🔹 Professional Loan
+                    </Typography>
+                  </Link>
+                  <Link to={"/comingsoon"}>
+                    <Typography variant="body2" m={1}>
+                      🔹 Loan against property
+                    </Typography>
+                  </Link>
+                </Box>
+                <Box>
+                  <Typography variant="body1" mb={2}>
+                    Card:
                   </Typography>
-                </Link>
-                <Link to={"/comingsoon"}>
                   <Typography variant="body2" m={1}>
-                    🔹 Home Loan
+                    🔹 My Card
                   </Typography>
-                </Link>
-                <Link to={"/business-loan"}>
+                </Box>
+                <Box>
+                  <Typography variant="body1" mb={2}>
+                    Investment:
+                  </Typography>
                   <Typography variant="body2" m={1}>
-                    🔹 Business Loan
+                    🔹 My Investment
                   </Typography>
-                </Link>
-                <Link to={"/comingsoon"}>
-                  <Typography variant="body2" m={1}>
-                    🔹 Professional Loan
-                  </Typography>
-                </Link>
-                <Link to={"/comingsoon"}>
-                  <Typography variant="body2" m={1}>
-                    🔹 Loan against property
-                  </Typography>
-                </Link>
+                </Box>
               </Box>
-              <Box>
-                <Typography variant="body1" mb={2}>
-                  Card:
-                </Typography>
-                <Typography variant="body2" m={1}>
-                  🔹 My Card
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="body1" mb={2}>
-                  Investment:
-                </Typography>
-                <Typography variant="body2" m={1}>
-                  🔹 My Investment
-                </Typography>
-              </Box>
-            </Box>
+            ) : (
+              ""
+            )}
 
             {/* <---- Resources ----> */}
-            <Box
-              onMouseLeave={collapseResourceMenu}
-              onMouseEnter={showResourceMenu}
-              id={styles.resource_btn}
-            >
+            <Box onClick={handleShowResources} id={styles.resource_btn}>
               <Typography
                 color={theme.palette.primary.dark}
                 variant="body2"
@@ -198,7 +200,7 @@ const Navbar = () => {
               >
                 Resources
               </Typography>
-              {!resourceVisible ? (
+              {!resourceOpen ? (
                 <ExpandMoreIcon
                   sx={{ color: `${theme.palette.primary.dark}` }}
                   fontSize="small"
@@ -212,9 +214,7 @@ const Navbar = () => {
             </Box>
 
             <Box
-              style={{ display: resourceVisible ? "flex" : "none" }}
-              onMouseLeave={collapseResourceMenu}
-              onMouseEnter={showResourceMenu}
+              style={{ display: resourceOpen ? "flex" : "none" }}
               className={styles.resource_menu}
             >
               <Box>
