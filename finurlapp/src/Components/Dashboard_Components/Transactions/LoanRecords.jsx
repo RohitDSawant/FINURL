@@ -142,7 +142,7 @@ const LoanRecords = () => {
                 </DialogTitle>
                 <DialogContent>
               
-                  <Typography m={1} variant="body2">
+                  <Typography sx={{"userSelect": "text"}} m={1} variant="body2">
                     Bank Statement URL :{" "}
                     {loans[rowIndex]?.results?.bank_statement_url ||
                       "URL Not available"}
