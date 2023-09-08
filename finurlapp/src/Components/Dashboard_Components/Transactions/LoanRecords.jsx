@@ -141,9 +141,7 @@ const LoanRecords = () => {
                   </Typography>
                 </DialogTitle>
                 <DialogContent>
-                  <Typography m={1}variant="body2">
-                    Application ID: {params.row.results.application_id}
-                  </Typography>
+              
                   <Typography m={1} variant="body2">
                     Bank Statement URL :{" "}
                     {loans[rowIndex]?.results?.bank_statement_url ||
