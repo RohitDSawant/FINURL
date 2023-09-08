@@ -12,7 +12,7 @@ const HomeB = () => {
         <Grid margin={"auto"} container justifyContent={"space-around"} spacing={1}>
           <Grid alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
             <Box>
-              <img className={styles.home_b_img} src={happy_customer} alt="happy_customer" />
+              <img className={styles.home_b_img} src={year} alt="happy_customer" />
               <Box  mt={2}>
                  <Typography fontSize={"small"} variant="h6">₹940M+</Typography>
                  <Typography fontSize={"small"} variant="body2">Disbursed (FY 2022-23)</Typography>
@@ -30,7 +30,7 @@ const HomeB = () => {
           </Grid>
           <Grid  alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
            <Box>
-           <img className={styles.home_b_img} src={year} alt="2022_year" />
+           <img className={styles.home_b_img} src={happy_customer} alt="2022_year" />
             <Box  mt={2}>
               <Typography fontSize={"small"} variant="h6">10000+</Typography>
               <Typography fontSize={"small"} variant="body2">Happy Customers</Typography>

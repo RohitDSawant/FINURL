@@ -12,8 +12,11 @@ import {
   Box,
   Button,
   CircularProgress,
+  FormControl,
+  FormControlLabel,
   LinearProgress,
   Snackbar,
+  Switch,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -32,14 +35,14 @@ const LoginPage = () => {
   const [showSuccessSnack, setShowSuccessSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const navigate = useNavigate();
   const [getOTPInputs, setOTPInputs] = useState("");
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phoneNumber: "",
     panNumber: "",
+    // partner: true,
   });
 
   const [loginformData, LoginSetFormData] = useState({
@@ -56,26 +59,27 @@ const LoginPage = () => {
     setShowErrorSnack(false);
   };
 
-  const handleSigninChange = (e) => {
-    const { name, value } = e.target;
-    LoginSetFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
+  // const handlePartnerToggle = () => {
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     partner: !prevData.partner,
+  //   }));
+  // };
+
   const dispatch = useDispatch();
 
   const handleSubmitSignup = async (e) => {
     e.preventDefault();
+    console.log(formData);
     setIsLoading(true);
     await axios
       .post("https://api.finurl.in/api/v1/auth/signup", formData)
@@ -85,7 +89,7 @@ const LoginPage = () => {
         if (res.data.message === "User created") {
           setIsLoading(false);
           setShowSuccessSnack(true);
-          setSnackMsg("Signup successfull, Password has been mailed.");
+          setSnackMsg("Signup success, Password has been mailed.");
           console.log(res.data.message);
 
           setTimeout(() => {
@@ -109,6 +113,16 @@ const LoginPage = () => {
           setIsLoading(false);
         }
       });
+  };
+
+  // <<<<<<<<<<<<<<<<<<<<<<<<<< Signin >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+  const handleSigninChange = (e) => {
+    const { name, value } = e.target;
+    LoginSetFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleSubmitSignIn = async (e) => {
@@ -146,8 +160,6 @@ const LoginPage = () => {
     setActiveSlide(index);
   };
 
-  const navigate = useNavigate();
-
   const verifyOtp = async () => {
     console.log(getOTPInputs);
     setIsLoading(true);
@@ -170,7 +182,7 @@ const LoginPage = () => {
               setTimeout(() => {
                 navigate("/");
               }, 3000);
-            } 
+            }
           }, 3000);
         });
     } catch (error) {
@@ -180,10 +192,6 @@ const LoginPage = () => {
       setSnackMsg("Incorrect OTP, Please try again");
     }
   };
-
-  // console.log(showSuccessSnack);
-  // console.log(showErrorSnack);
-  // console.log(snackMsg);
 
   return (
     <>
@@ -306,7 +314,7 @@ const LoginPage = () => {
                         <>
                           <Box display={"flex"} gap={"30px"}>
                             <Button
-                            className={"sign-btn"}
+                              className={"sign-btn"}
                               onClick={verifyOtp}
                               sx={{
                                 background: theme.palette.primary.main,
@@ -358,11 +366,8 @@ const LoginPage = () => {
                     </div>
 
                     <div className="heading">
-                      <Typography variant="body2" fontSize={"small"}>
-                        Get Started
-                      </Typography>
-                      <Typography mb={2} variant="body2" fontSize={"small"}>
-                        Already have an account?{" "}
+                      <Typography variant="body2" mb={1} fontSize={"small"}>
+                        Get Started, Already have an account.? {"  "}
                         <a
                           onClick={() => setIsSignUpMode(!isSignUpMode)}
                           className="toggle"
@@ -425,6 +430,22 @@ const LoginPage = () => {
                         />
                         {/* <label>Mobile No</label> */}
                       </div>
+                      {/* <Box
+                        display={"flex"}
+                        alignItems={"center"}
+                        gap={"10px"}
+                        className="input-wrap"
+                      >
+                        <Switch
+                          onChange={handlePartnerToggle}
+                          size="small"
+                          checked={formData.partner}
+                          name="partner"
+                        />
+                        <Typography variant="body2">
+                          Sign up as Partner
+                        </Typography>
+                      </Box> */}
                       {!showSuccessSnack && !showErrorSnack ? (
                         <>
                           <Box display={"flex"} gap={"10px"}>
@@ -479,11 +500,6 @@ const LoginPage = () => {
                         </Typography>
                       )}
 
-                      {/* {!showSigupError && ?(<>
-                  <input type="submit" value="Sign Up" className="sign-btn" />
-                   </>) : (
-                     <Typography variant="body1">Signup Failed</Typography>
-                   )} */}
                       <p className="text">
                         By signing up, I agree to the
                         <a href="#"> Terms of Services</a> and
@@ -494,20 +510,6 @@ const LoginPage = () => {
                 </>
               )}
             </div>
-            <Snackbar
-              open={showSuccessSnack || showErrorSnack}
-              autoHideDuration={3100}
-              onClose={() => handleClose()}
-              anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-              <Alert
-                onClose={() => handleClose()}
-                severity={"info"}
-                sx={{ width: "100%" }}
-              >
-                {snackMsg}
-              </Alert>
-            </Snackbar>
 
             <div
               style={{ background: theme.palette.primary.main }}
@@ -571,6 +573,25 @@ const LoginPage = () => {
             </div>
           </div>
         </div>
+        <Snackbar
+          color="primary"
+          open={showSuccessSnack || showErrorSnack}
+          autoHideDuration={3100}
+          onClose={() => handleClose()}
+          anchorOrigin={
+            !isSignUpMode
+              ? { vertical: "bottom", horizontal: "right" }
+              : { vertical: "bottom", horizontal: "left" }
+          }
+        >
+          <Alert
+            onClose={() => handleClose()}
+            severity={"info"}
+            sx={{ width: "100%" }}
+          >
+            {snackMsg}
+          </Alert>
+        </Snackbar>
       </main>
     </>
   );

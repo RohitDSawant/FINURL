@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashboardNavbar from "../DashboardNavbar";
-import { Button, Typography } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Modal,
+  Typography,
+} from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import theme from "../../../Theme/theme";
 import styles from "./../../../CSS/dashboard.module.css";
@@ -9,6 +16,7 @@ import { useSelector } from "react-redux";
 
 const LoanRecords = () => {
   const loans = useSelector((state) => state.authReducer.loans);
+  const [ModalStates, setModalStates] = useState(new Map());
 
   const columns = [
     {
@@ -28,7 +36,11 @@ const LoanRecords = () => {
       headerName: "Name",
       width: 290,
       renderCell: (params) => {
-        return <Typography variant="body2">{params.row.first_name + " " +  params.row.last_name}</Typography>;
+        return (
+          <Typography variant="body2">
+            {params.row.first_name + " " + params.row.last_name}
+          </Typography>
+        );
       },
     },
     {
@@ -36,7 +48,11 @@ const LoanRecords = () => {
       headerName: "Application ID",
       width: 200,
       renderCell: (params) => {
-        return <Typography variant="body2">{params.row.results.application_id}</Typography>;
+        return (
+          <Typography variant="body2">
+            {params.row.results.application_id}
+          </Typography>
+        );
       },
     },
     {
@@ -101,19 +117,72 @@ const LoanRecords = () => {
       width: 250,
       renderCell: (params) => {
         return (
-          <Button
-            sx={{
-              backgroundColor: "#12162b",
-              color: "#fff",
-              fontSize: "x-small",
-            }}
-          >
-            Info
-          </Button>
+          <>
+            <Button
+              onClick={() => openModal(params.id-1)}
+              sx={{
+                backgroundColor: "#12162b",
+                color: "#fff",
+                fontSize: "x-small",
+              }}
+            >
+              Info
+            </Button>
+            {Array.from(ModalStates.entries()).map(([rowIndex, isOpen]) => (
+              <Dialog
+                hideBackdrop={true}
+                key={rowIndex}
+                open={isOpen}
+                onClose={() => closeModal(rowIndex)}
+              >
+                <DialogTitle>
+                  <Typography mb={2} variant="body2">
+                    Info:
+                  </Typography>
+                </DialogTitle>
+                <DialogContent>
+                  <Typography m={1}variant="body2">
+                    Application ID: {params.row.results.application_id}
+                  </Typography>
+                  <Typography m={1} variant="body2">
+                    Bank Statement URL :{" "}
+                    {loans[rowIndex]?.results?.bank_statement_url ||
+                      "URL Not available"}
+                  </Typography>
+                </DialogContent>
+              </Dialog>
+            ))}
+          </>
         );
       },
     },
   ];
+
+  useEffect(() => {
+    // Initialize modal states for each row to false
+    const initialStates = new Map();
+    loans.forEach((loan, index) => {
+      initialStates.set(index, false);
+    });
+    setModalStates(initialStates);
+  }, [loans]);
+
+  const openModal = (rowIndex) => {
+    setModalStates((prevStates) => {
+      const newState = new Map(prevStates);
+      newState.set(rowIndex, true);
+      return newState;
+    });
+  };
+
+  const closeModal = (rowIndex) => {
+    setModalStates((prevStates) => {
+      const newState = new Map(prevStates);
+      newState.set(rowIndex, false);
+      return newState;
+    });
+  };
+
   return (
     <>
       <DashboardNavbar />

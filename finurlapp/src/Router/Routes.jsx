@@ -11,6 +11,7 @@ import PersonalLoan from "../Pages/PersonalLoan";
 import BusinessLoan from "../Pages/BusinessLoan";
 import ComingSoon from "../Pages/ComingSoon";
 import ApplicationProtectedRoute from "../Components/Common/ApplicationRouteProtection";
+import HomeLoan from "../Pages/HomeLoan";
 const Router = () => {
   return (
     <>
@@ -19,6 +20,8 @@ const Router = () => {
         <Route path="/instant-loan" element={<InstantLoan />} />
         <Route path="/personal-loan" element={<PersonalLoan />} />
         <Route path="/business-loan" element={<BusinessLoan />} />
+        <Route path="/home-loan" element={<HomeLoan />} />
+
         <Route path="/:bank/dedupe" element={<EligiblityEntrypoints />} />
         <Route
           path="/application"

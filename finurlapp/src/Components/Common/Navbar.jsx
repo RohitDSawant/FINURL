@@ -91,8 +91,7 @@ const Navbar = () => {
     }
   };
 
-  console.log("resourceOpen", resourceOpen);
-  console.log("productsOpen", productsOpen);
+
 
   return (
     <>
@@ -149,7 +148,7 @@ const Navbar = () => {
                       🔹 Instant Loan
                     </Typography>
                   </Link>
-                  <Link to={"/comingsoon"}>
+                  <Link to={"/home-loan"}>
                     <Typography variant="body2" m={1}>
                       🔹 Home Loan
                     </Typography>
