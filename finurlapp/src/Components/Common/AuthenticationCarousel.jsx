@@ -89,7 +89,7 @@ const LoginPage = () => {
         if (res.data.message === "User created") {
           setIsLoading(false);
           setShowSuccessSnack(true);
-          setSnackMsg("Signup success, Password has been mailed.");
+          setSnackMsg("Signup success, Password sent on email.");
           console.log(res.data.message);
 
           setTimeout(() => {
@@ -132,7 +132,7 @@ const LoginPage = () => {
       await axios
         .post("https://api.finurl.in/api/v1/auth/login", loginformData)
         .then((res) => {
-          if ((res.data.msg = "OTP sent to the user")) {
+          if ((res.data.msg = "Login Success ! OTP sent on email")) {
             setIsLoading(false);
             setShowOptSec(true);
             setShowSuccessSnack(true);

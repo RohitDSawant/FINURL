@@ -9,7 +9,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import checking_img from "./../../Assets/Images/eligibility-check.jpg";
@@ -17,6 +17,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
 import Navbar from "../Common/Navbar";
 import theme from "../../Theme/theme";
+import {
+  prefrDedupe,
+  prefrDedupeService,
+} from "../../Redux/Func/Prefr/Dedupe_Service";
+import { registerStart, settingApplicationID } from "../../Redux/Func/Prefr/Register_Start";
+import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 
 const EligiblityEntrypoints = () => {
   const location = useLocation();
@@ -37,12 +43,15 @@ const EligiblityEntrypoints = () => {
     dob: "",
     income: "",
     pincode: "",
+    accountNumber: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
+
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -78,8 +87,66 @@ const EligiblityEntrypoints = () => {
           }
         }, 3000);
       });
-    } else {
-      console.log("coming from other way");
+    }
+    
+    else if (current_path === "prefr") {
+      dispatch(
+        prefrDedupeService({
+          productName: "pl",
+          requestId: (formData.pan_number + userId).toUpperCase(),
+          hashEnabled: false,
+          panNumber: formData.pan_number,
+          accountNumber: formData.accountNumber,
+          personalEmailId: formData.email,
+        })
+      ).then((res) => {
+        setIsLoading(false)
+        if (res.data === "success") {
+          dispatch(
+            registerStart({
+              userId: (formData.pan_number + userId).toUpperCase(),
+              mobileNo: formData.mobile_no,
+            })
+          ).then((res) => {
+            if (res.loanId && res.skipApplicationDetails) {
+              dispatch(gettingWebViewUrl({
+                loanId: res.loanId,
+              }))
+              .then((res)=>{
+                if (res.data === "success") {
+                  window.open(res.data.webviewUrl, "_blank");
+                  navigate("/")
+                }
+                else {
+                  setShowErrorSnack(true)
+                  setSnackMsg("Oops! Loan ID is missing")
+                }
+              })
+              setShowSuccessSnack(true)
+              setSnackMsg("Please wait, Generating redirection link...")
+            }
+            else if (res.loanId && !res.skipApplicationDetails){
+              dispatch(settingApplicationID(res.loanId))
+              setShowSuccessSnack(true)
+              setSnackMsg("Redirecting you fill out the additional information further...")
+              setTimeout(() => {
+                  navigate("/prefr/application")
+              }, 2000);
+            }
+            else {
+              setShowErrorSnack(true)
+              setSnackMsg("Something went wrong, please try again")
+            }
+            // console.log(res)
+          });
+        } else {
+          setShowErrorSnack(true);
+          setSnackMsg("Something went wrong, please check the details provided")
+        }
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
     }
   };
 
@@ -87,7 +154,6 @@ const EligiblityEntrypoints = () => {
     if (reason === "clickaway") {
       return;
     }
-
     setShowSuccessSnack(false);
     setShowErrorSnack(false);
   };
@@ -185,6 +251,20 @@ const EligiblityEntrypoints = () => {
                   required
                   onChange={handleChange}
                 />
+                {current_path === "prefr" ? (
+                  <TextField
+                    size={"small"}
+                    sx={{ margin: "5px" }}
+                    name="accountNumber"
+                    label="Account Number"
+                    variant="standard"
+                    required
+                    onChange={handleChange}
+                  />
+                ) : (
+                  ""
+                )}
+
                 <Box>
                   <TextField
                     size={"small"}
@@ -195,6 +275,7 @@ const EligiblityEntrypoints = () => {
                     required
                     onChange={handleChange}
                   />
+
                   <TextField
                     size={"small"}
                     sx={{ margin: "5px" }}
@@ -207,14 +288,15 @@ const EligiblityEntrypoints = () => {
                 </Box>
                 <Box display={"flex"} alignItems={"center"} gap={"30px"}>
                   <Button
-                   id={styles.submit_btn}
+                    id={styles.submit_btn}
                     type="submit"
                     variant="contained"
                   >
                     Submit
                   </Button>
                   {isLoading ? (
-                    <CircularProgress size={25}
+                    <CircularProgress
+                      size={25}
                       sx={{ width: "75%", marginTop: "20px" }}
                     />
                   ) : (
@@ -235,7 +317,6 @@ const EligiblityEntrypoints = () => {
                 severity={showErrorSnack ? "error" : "info"}
                 sx={{ width: "100%" }}
                 color="secondary"
-
               >
                 {snackMsg}
               </Alert>

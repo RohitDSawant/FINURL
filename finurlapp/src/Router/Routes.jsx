@@ -12,6 +12,7 @@ import BusinessLoan from "../Pages/BusinessLoan";
 import ComingSoon from "../Pages/ComingSoon";
 import ApplicationProtectedRoute from "../Components/Common/ApplicationRouteProtection";
 import HomeLoan from "../Pages/HomeLoan";
+import PrefrApplication from "../Components/EntryPoints/PrefrApplication";
 const Router = () => {
   return (
     <>
@@ -28,6 +29,14 @@ const Router = () => {
           element={
             <ApplicationProtectedRoute>
               <ApplicationForLoan />
+            </ApplicationProtectedRoute>
+          }
+        />
+         <Route
+          path="/prefr/application"
+          element={
+            <ApplicationProtectedRoute>
+              <PrefrApplication />
             </ApplicationProtectedRoute>
           }
         />

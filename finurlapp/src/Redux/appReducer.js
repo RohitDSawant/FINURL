@@ -65,6 +65,8 @@ export const appReducer = (state = init_state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    //                <------------------------------ STASHFIN  ------------------------------------------>
+
     case types.CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST: {
       return { ...state, isLoading: true };
     }
@@ -85,11 +87,13 @@ export const appReducer = (state = init_state, action) => {
       return { ...state, isLoading: false, isError: true };
     }
 
-    case types.SETTING_APPLICATION_ID_REQUEST: {
+    // <<<<<<<<<<<< iniitate application >>>>>>>>>>>>>>>>>>>
+
+    case types.INITIATE_APPLICATION_REQUEST: {
       return { ...state, isLoading: true };
     }
 
-    case types.SETTING_APPLICATION_ID_SUCCESS: {
+    case types.INITIATE_APPLICATION_SUCCESS: {
       return {
         ...state,
         isLoading: false,
@@ -100,19 +104,91 @@ export const appReducer = (state = init_state, action) => {
       };
     }
 
-    case types.SETTING_APPLICATION_ID_FAILURE: {
+    case types.INITIATE_APPLICATION_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
+
+    //  <<<<<<<<<<<<<<<<<< flag <<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    case types.TURN_ELIGIBLE_FLAG_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.TURN_ELIGIBLE_FLAG_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        eligible: false,
+        currentProcessDetails: {
+          ...state.currentProcessDetails,
+          application_id: "",
+          client_token: "",
+        },
+      };
+    }
+
+    case types.TURN_ELIGIBLE_FLAG_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    //  <<<<<<<<<<<<<<<<<< check status >>>>>>>>>>>>>>>>>>>>>>>
 
     case types.CHECK_STATUS_REQUEST: {
       return { ...state, isLoading: true };
     }
 
     case types.CHECK_STATUS_SUCCESS: {
-      return { ...state, isLoading: false, eligible: false };
+      return { ...state, isLoading: false };
     }
 
     case types.CHECK_STATUS_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    //                <------------------------------ PREFR  ------------------------------------------>
+
+    case types.PREFR_DEDUPE_SERVICE_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.PREFR_DEDUPE_SERVICE_SUCCESS: {
+      return { ...state, isLoading: false };
+    }
+
+    case types.PREFR_DEDUPE_SERVICE_FAILURE: {
+      return { ...state, isError: true };
+    }
+
+    case types.REGISTER_START_PREFR_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.REGISTER_START_PREFR_SUCCESS: {
+      return { ...state, isLoading: false };
+    }
+
+    case types.REGISTER_START_PREFR_FAILURE: {
+      return { ...state, isError: true };
+    }
+
+
+    case types.SET_APPLICATION_ID_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.SET_APPLICATION_ID_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        eligible: true,
+        currentProcessDetails: {
+          ...state.currentProcessDetails,
+          application_id: payload,
+        },
+      };
+    }
+
+    case types.SET_APPLICATION_ID_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
 

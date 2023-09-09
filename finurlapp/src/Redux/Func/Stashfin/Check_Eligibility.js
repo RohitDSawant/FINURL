@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const handleStashfinEligibility = (formData) => async (dispatch) => {
-  // dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST" });
+  
+  dispatch({ type: "CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST" });
   try {
     return await axios
       .post("https://api.finurl.in/api/v1/stashfin/login-client", {
@@ -24,15 +25,15 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
               return response.data;
             })
             .catch((err) => {
-              dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
+              dispatch({ type: "CHECK_ELIGIBILTY_FOR_STASHFIN_FAILURE" });
               console.log(err);
             });
         } else {
-          dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
+          dispatch({ type: "CHECK_ELIGIBILTY_FOR_STASHFIN_FAILURE" });
         }
       })
       .catch((err) => {
-        dispatch({ type: "INIT_APPLICATION_FOR_STASHFIN_FAILURE" });
+        dispatch({ type: "CHECK_ELIGIBILTY_FOR_STASHFIN_FAILURE" });
         console.log(err);
       });
   } catch (error) {

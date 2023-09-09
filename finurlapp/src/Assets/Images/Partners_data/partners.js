@@ -14,7 +14,7 @@ export const instantLoan_carousel = [
     loans: "3Lakhs",
     roi: "14%",
     description: "48M",
-    path: "/comingsoon",
+    path: "/prefr",
     imageurl: require("./../partners_logo/prefr.png"),
   },
   {

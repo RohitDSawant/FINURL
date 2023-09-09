@@ -67,7 +67,7 @@ const InstantLoansCarousel = () => {
   const Redirection = (path) => {
     if (isAuth) {
       const actual_path = path.split("/")[1];
-      if (actual_path === "stashfin") {
+      if (actual_path === "stashfin" || actual_path === "prefr") {
         navigate(`/${actual_path}/dedupe`);
       } else {
         window.location.href = path;

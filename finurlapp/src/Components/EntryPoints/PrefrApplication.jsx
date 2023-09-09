@@ -17,34 +17,43 @@ import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import application_pencil from "./../../Assets/Images/application-pencil.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { handleStashfinInitiateApp, turnEligble } from "../../Redux/Func/Stashfin/Initiate_Application";
 import Navbar from "../Common/Navbar";
-import theme from "../../Theme/theme";
-import { check_status } from "../../Redux/Func/Stashfin/Check_Status";
 
-const ApplicationForLoan = () => {
-  const user = useSelector((state) => state.authReducer.loggedInUser._id);
-  const processedApplication = useSelector(
-    (state) => state.appReducer.currentProcessDetails
+const PrefrApplication = () => {
+  const loanId = useSelector(
+    (state) => state.appReducer.currentProcessDetails.application_id
   );
+  const userID = useSelector((state) => state.authReducer.loggedInUser._id);
 
   const [formData, setFormData] = useState({
-    first_name: "",
-    middle_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    pan_number: "",
+    loanId: loanId,
+    ﬁrstName: "",
+    lastName: "",
+    personalEmailId: "",
     gender: "",
     dob: "",
-    mode_of_income: "",
-    pincode: "",
-    loggedInUserId: user,
+    panNumber: "",
+    currentAddress: "",
+    currentAddressPincode: "",
+    monthsInCurrentResidence: "",
+    netMonthlyIncome: "",
+    desiredLoanAmount: "",
+    monthlySalaryMode: "",
+    employmentType: "",
+    partnerSpeciﬁcInfo: {
+      partnerUserId: userID,
+      preQual: true,
+      preQualAmount: 100000,
+      preQualDataSource: "Experian",
+      leadSource: "SMS",
+    },
   });
   const [isLoading, setIsLoading] = useState(false);
   const [showErrorSnack, setShowErrorSnack] = useState(false);
   const [showSuccessSnack, setShowSuccessSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState("");
+
+  const handleSubmit = (e) => {};
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,77 +67,6 @@ const ApplicationForLoan = () => {
 
     setShowSuccessSnack(false);
     setShowErrorSnack(false);
-  };
-
-  const navigate = useNavigate()
-
-  const dispatch = useDispatch();
-  const handleSubmit =  (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-     dispatch(
-      handleStashfinInitiateApp({
-        loggedInUserId: user,
-        first_name: formData.first_name,
-        middle_name: formData.middle_name,
-        last_name: formData.last_name,
-        email: formData.email,
-        phone: formData.phone,
-        pan_number: formData.pan_number,
-        gender: formData.gender,
-        dob: formData.dob,
-        income: Number(formData.income),
-        pincode: Number(formData.pincode),
-        token: processedApplication.client_token,
-        mode_of_income: 1,
-        employment_type: 1,
-      })
-    )
-      .then((response) => {
-        // console.log(response);
-        
-        setTimeout(() => {
-          setIsLoading(false);
-          // console.log(response);
-          if (response && response.response && response.response.status && response.response.status === 409) {
-            console.log(response.response.data.message);
-
-            setShowErrorSnack(true);
-            setSnackMsg("Sorry ! You are already a part of Stashfin.");
-          }
-          
-          if (response && response.response && response.response.status && response.response.status === 401) {
-            console.log(response.response.data.message);
-
-            setShowErrorSnack(true);
-            setSnackMsg("Invalid Details, please check and try again");
-          } 
-          
-          if (response.status === 200) {
-            console.log(response);
-            dispatch(
-              check_status({
-                client_token: processedApplication.client_token,
-                application_id: response.data.results.application_id,
-              })
-            );
-            setShowSuccessSnack(true);
-            setSnackMsg("Please wait while we redirect you...");
-            setTimeout(() => {
-              window.open(response.data.results.redirect_url, "_blank")
-            }, 2000);
-            setTimeout(()=>{
-              dispatch(turnEligble())
-              navigate("/stashfin/dedupe")
-            }, 2000)
-            document.querySelector("form").reset();
-          }
-        }, 3000);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (
@@ -344,4 +282,4 @@ const ApplicationForLoan = () => {
   );
 };
 
-export default ApplicationForLoan;
+export default PrefrApplication;
