@@ -18,6 +18,7 @@ import React, { useState } from "react";
 import application_pencil from "./../../Assets/Images/application-pencil.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Common/Navbar";
+import { sendApplicationDetails } from "../../Redux/Func/Prefr/SendApplicationDetails";
 
 const PrefrApplication = () => {
   const loanId = useSelector(
@@ -27,7 +28,7 @@ const PrefrApplication = () => {
 
   const [formData, setFormData] = useState({
     loanId: loanId,
-    ﬁrstName: "",
+    firstName: "",
     lastName: "",
     personalEmailId: "",
     gender: "",
@@ -35,12 +36,10 @@ const PrefrApplication = () => {
     panNumber: "",
     currentAddress: "",
     currentAddressPincode: "",
-    monthsInCurrentResidence: "",
     netMonthlyIncome: "",
     desiredLoanAmount: "",
-    monthlySalaryMode: "",
     employmentType: "",
-    partnerSpeciﬁcInfo: {
+    partnerSpecificInfo: {
       partnerUserId: userID,
       preQual: true,
       preQualAmount: 100000,
@@ -53,7 +52,16 @@ const PrefrApplication = () => {
   const [showSuccessSnack, setShowSuccessSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState("");
 
-  const handleSubmit = (e) => {};
+  const dispatch = useDispatch()
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(sendApplicationDetails(formData))
+    .then((res)=>[
+      console.log(res)
+    ])
+    console.log(formData)
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -103,7 +111,7 @@ const PrefrApplication = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="first_name"
+                    name="firstName"
                     label="First Name"
                     variant="standard"
                     required
@@ -112,30 +120,87 @@ const PrefrApplication = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="middle_name"
-                    label="Middle Name"
-                    variant="standard"
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    size="small"
-                    sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="last_name"
+                    name="lastName"
                     label="Last Name"
                     variant="standard"
                     required
                     onChange={handleChange}
                   />
+                  <TextField
+                    size="small"
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
+                    name="personalEmailId"
+                    label="Email"
+                    type="email"
+                    variant="standard"
+                    required
+                    onChange={handleChange}
+                  />
+                </Box>
+
+                <Box>
+                  <TextField
+                    size="small"
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
+                    name="dob"
+                    label="D.O.B"
+                    type="date"
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="standard"
+                    required
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    size="small"
+                    sx={{ marginBottom: "15px", marginRight: "15px" }}
+                    name="panNumber"
+                    label="PAN Number"
+                    variant="standard"
+                    required
+                    onChange={handleChange}
+                  />
+                </Box>
+                <Box>
+                  <FormControl fullWidth={true} variant="standard" required>
+                    <InputLabel>Gender</InputLabel>
+                    <Select
+                      sx={{ marginBottom: "5px", marginRight:"10px", color: "#121b28" }}
+                      variant="standard"
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleChange}
+                      label="Gender"
+                    >
+                      <MenuItem value={"male"}>Male</MenuItem>
+                      <MenuItem value={"female"}>Female</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <FormControl fullWidth={true} variant="standard" required>
+                    <InputLabel>Employment Type</InputLabel>
+                    <Select
+                      sx={{
+                        marginBottom: "15px",
+                        marginTop: "15px",
+                        color: "#121b28",
+                      }}
+                      variant="standard"
+                      name="employmentType"
+                      value={formData.employmentType}
+                      onChange={handleChange}
+                      label="Employment Type"
+                    >
+                      <MenuItem value={"salaried"}>Salaried</MenuItem>
+                      <MenuItem value={"selfEmployed"}>Self-Employed</MenuItem>
+                    </Select>
+                  </FormControl>
                 </Box>
                 <TextField
                   size="small"
                   sx={{ marginBottom: "15px", marginRight: "15px" }}
-                  name="dob"
-                  label="D.O.B"
-                  type="date"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
+                  name="currentAddress"
+                  label="Current Address"
                   variant="standard"
                   required
                   onChange={handleChange}
@@ -144,72 +209,9 @@ const PrefrApplication = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="email"
-                    label="Email"
-                    type="email"
-                    variant="standard"
-                    required
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    size="small"
-                    sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="phone"
-                    label="Mobile No."
-                    variant="standard"
-                    required
-                    onChange={handleChange}
-                  />
-                  <TextField
-                    size="small"
-                    sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="pan_number"
-                    label="PAN Number"
-                    variant="standard"
-                    required
-                    onChange={handleChange}
-                  />
-                </Box>
-                <FormControl variant="standard" required>
-                  <InputLabel>Gender</InputLabel>
-                  <Select
-                    sx={{ marginBottom: "5px", color: "#121b28" }}
-                    variant="standard"
-                    name="gender"
-                    value={formData.gender}
-                    onChange={handleChange}
-                    label="Gender"
-                  >
-                    <MenuItem value={"M"}>Male</MenuItem>
-                    <MenuItem value={"F"}>Female</MenuItem>
-                    <MenuItem value={"Other"}>Other</MenuItem>
-                  </Select>
-                </FormControl>
-                <FormControl variant="standard" required>
-                  <InputLabel>Employment Type</InputLabel>
-                  <Select
-                    sx={{
-                      marginBottom: "15px",
-                      marginTop: "15px",
-                      color: "#121b28",
-                    }}
-                    variant="standard"
-                    name="employment_type"
-                    value={formData.employmentType}
-                    onChange={handleChange}
-                    label="Employment Type"
-                  >
-                    <MenuItem value={1}>Salaried</MenuItem>
-                    <MenuItem value={2}>Self-Employed</MenuItem>
-                    <MenuItem value={3}>Self_employed/C.A/Dr.</MenuItem>
-                  </Select>
-                </FormControl>
-                <Box>
-                  <TextField
-                    size="small"
-                    sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="loanAmount"
+                    name="desiredLoanAmount"
                     label="Loan Amount"
+                    type="number"
                     variant="standard"
                     required
                     onChange={handleChange}
@@ -217,8 +219,9 @@ const PrefrApplication = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="income"
+                    name="netMonthlyIncome"
                     label="Income"
+                    type="number"
                     variant="standard"
                     required
                     onChange={handleChange}
@@ -226,7 +229,7 @@ const PrefrApplication = () => {
                   <TextField
                     size="small"
                     sx={{ marginBottom: "15px", marginRight: "15px" }}
-                    name="pincode"
+                    name="currentAddressPincode"
                     label="Pincode"
                     variant="standard"
                     required
@@ -236,6 +239,7 @@ const PrefrApplication = () => {
 
                 <Box display={"flex"} alignItems={"center"} gap={"25px"}>
                   <Button
+                    disabled={isLoading}
                     id={styles.submit_btn}
                     type="submit"
                     variant="contained"

@@ -171,7 +171,6 @@ export const appReducer = (state = init_state, action) => {
       return { ...state, isError: true };
     }
 
-
     case types.SET_APPLICATION_ID_REQUEST: {
       return { ...state, isLoading: true };
     }
@@ -189,6 +188,21 @@ export const appReducer = (state = init_state, action) => {
     }
 
     case types.SET_APPLICATION_ID_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.SEND_APPLICATION_DETAILS_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.SEND_APPLICATION_DETAILS_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+
+    case types.SEND_APPLICATION_DETAILS_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
 

@@ -18,10 +18,10 @@ export const registerStart = (data) => async (dispatch) => {
 };
 
 export const settingApplicationID = (id) => async (dispatch) => {
-  dispatch({ type: "SET_APLLICATION_ID_REQUEST" });
+  dispatch({ type: "SET_APPLICATION_ID_REQUEST" });
   try {
-    dispatch({ type: "SET_APLLICATION_ID_SUCCESS", payload: id });
+    dispatch({ type: "SET_APPLICATION_ID_SUCCESS", payload: id });
   } catch (error) {
-    dispatch({ type: "SET_APLLICATION_ID_FAILURE" });
+    dispatch({ type: "SET_APPLICATION_ID_FAILURE" });
   }
 };

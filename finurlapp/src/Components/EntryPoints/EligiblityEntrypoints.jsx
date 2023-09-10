@@ -100,7 +100,6 @@ const EligiblityEntrypoints = () => {
           personalEmailId: formData.email,
         })
       ).then((res) => {
-        setIsLoading(false)
         if (res.data === "success") {
           dispatch(
             registerStart({
@@ -108,7 +107,8 @@ const EligiblityEntrypoints = () => {
               mobileNo: formData.mobile_no,
             })
           ).then((res) => {
-            if (res.loanId && res.skipApplicationDetails) {
+            setIsLoading(false)
+            if (res.data.loanId && res.data.skipApplicationDetails) {
               dispatch(gettingWebViewUrl({
                 loanId: res.loanId,
               }))
@@ -125,13 +125,14 @@ const EligiblityEntrypoints = () => {
               setShowSuccessSnack(true)
               setSnackMsg("Please wait, Generating redirection link...")
             }
-            else if (res.loanId && !res.skipApplicationDetails){
-              dispatch(settingApplicationID(res.loanId))
+            else if (res.data.loanId && !res.data.skipApplicationDetails ){
+              dispatch(settingApplicationID(res.data.loanId))
+              setIsLoading(false)
               setShowSuccessSnack(true)
               setSnackMsg("Redirecting you fill out the additional information further...")
               setTimeout(() => {
                   navigate("/prefr/application")
-              }, 2000);
+              }, 4000);
             }
             else {
               setShowErrorSnack(true)

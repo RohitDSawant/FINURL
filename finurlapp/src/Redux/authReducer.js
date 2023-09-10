@@ -18,7 +18,6 @@ export const authReducer = (state = init_state, action) => {
     }
 
     case types.LOGIN_SUCCESS: {
-      console.log("payload", payload);
 
       let arr;
 

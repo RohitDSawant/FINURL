@@ -132,11 +132,11 @@ const LoginPage = () => {
       await axios
         .post("https://api.finurl.in/api/v1/auth/login", loginformData)
         .then((res) => {
-          if ((res.data.msg = "Login Success ! OTP sent on email")) {
+          if ((res.data.msg = "Login Success")) {
             setIsLoading(false);
             setShowOptSec(true);
             setShowSuccessSnack(true);
-            setSnackMsg("OTP mailed successfully");
+            setSnackMsg("OTP sent on email");
           } else {
             showErrorSnack(true);
             setIsLoading(false);
