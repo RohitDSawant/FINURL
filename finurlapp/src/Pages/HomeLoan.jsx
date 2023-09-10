@@ -13,6 +13,7 @@ import React from "react";
 import home_loan_img from "./../Assets/Images/personal_loan.jpg";
 import Navbar from "../Components/Common/Navbar";
 import styles from "./../CSS/instantLoan.module.css";
+import Footer from "../Components/Common/Footer";
 
 const HomeLoan = () => {
   return (
@@ -22,19 +23,20 @@ const HomeLoan = () => {
         width={"90%"}
         margin={"auto"}
         mt={10}
+        mb={10}
         alignItems={"center"}
         justifyContent={"center"}
         container
         height={"80vh"}
       >
-        <Grid item lg={7}>
+        <Grid item lg={7} md={6} sm={11} xs={10}>
           <img
             className={styles.instant_loan_pic}
             src={home_loan_img}
             alt="home_loan"
           />
         </Grid>
-        <Grid item lg={4}>
+        <Grid item lg={4} md={6} sm={10} xs={12}>
           <Box>
             <Typography mb={5} variant="h4">
               Home Loan
@@ -57,56 +59,70 @@ const HomeLoan = () => {
         width={"75%"}
         margin={"auto"}
         variant="body2"
+        mb={5}
       >
         On FinURL, you may locate some of the greatest housing loan companies in
         India. To choose which offer best suits you, examine the home loan
         interest rates and offers from lending partners.
       </Typography>
-      <Grid mt={7} container justifyContent={"center"} alignItems={"center"}>
-        <Grid item lg={5}>
-          <Box>
-            <Typography m={2} textAlign={"center"} variant="body1">
-              Interest rate
-            </Typography>
-            <Typography m={2} textAlign={"center"} variant="body1">
-              Loan Amount
-            </Typography>
-            <Typography m={2} textAlign={"center"} variant="body1">
-              Repayment tenure
-            </Typography>
-            <Typography m={2} textAlign={"center"} variant="body1">
-              Processing Fee
-            </Typography>
-            <Typography m={2} textAlign={"center"} variant="body1">
-              Part-payments
-            </Typography>
-            <Typography m={2} textAlign={"center"} variant="body1">
-              Foreclosure
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid item lg={5}>
-          <Typography m={2} textAlign={"center"} variant="body1">
+      <Box
+        mt={7}
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"center"}
+        margin={"auto"}
+        width={"85%"}
+      >
+        <Box display={"flex"} justifyContent={"space-between"} gap={"20px"}>
+          <Typography m={2} textAlign={"left"} variant="body2">
+            Interest rate
+          </Typography>
+          <Typography m={2} textAlign={"right"} variant="body2">
             8.50% p.a onwards
           </Typography>
-          <Typography m={2} textAlign={"center"} variant="body1">
+        </Box>
+        <Box display={"flex"} justifyContent={"space-between"} gap={"20px"}>
+          <Typography m={2} textAlign={"left"} variant="body2">
+            Loan Amount
+          </Typography>
+          <Typography m={2} textAlign={"right"} variant="body2">
             Up to 15 Crores
           </Typography>
-          <Typography m={2} textAlign={"center"} variant="body1">
+        </Box>
+        <Box display={"flex"} justifyContent={"space-between"} gap={"20px"}>
+          <Typography m={2} textAlign={"left"} variant="body2">
+            Repayment tenure
+          </Typography>{" "}
+          <Typography m={2} textAlign={"right"} variant="body2">
             Up to 30 years
           </Typography>
-          <Typography m={2} textAlign={"center"} variant="body1">
+        </Box>
+        <Box display={"flex"} justifyContent={"space-between"} gap={"20px"}>
+          <Typography m={2} textAlign={"left"} variant="body2">
+            Processing Fee
+          </Typography>
+          <Typography m={2} textAlign={"right"} variant="body2">
             Between 0.5% and 6% of the loan amount
           </Typography>
-          <Typography m={2} textAlign={"center"} variant="body1">
+        </Box>
+        <Box display={"flex"} justifyContent={"space-between"} gap={"20px"}>
+          <Typography m={2} textAlign={"left"} variant="body2">
+            Part-payments
+          </Typography>
+          <Typography m={2} textAlign={"right"} variant="body2">
             Must be at least 2 months’ EMI or more
           </Typography>
-          <Typography m={2} textAlign={"center"} variant="body1">
+        </Box>
+        <Box display={"flex"} justifyContent={"space-between"} gap={"20px"}>
+          <Typography m={2} textAlign={"left"} variant="body2">
+            Foreclosure
+          </Typography>
+          <Typography m={2} textAlign={"right"} variant="body2">
             Possible after 6 -12 EMIs, as per lender’s terms
           </Typography>
-        </Grid>
-      </Grid>
-      <Typography textAlign={"center"} mt={10} variant="h5">
+        </Box>
+      </Box>
+      <Typography textAlign={"center"} p={1} mt={10} variant="h5">
         Compare and Apply for Home Loan Online
       </Typography>
       <Typography
@@ -122,7 +138,7 @@ const HomeLoan = () => {
         maximum loan amount, term, and fees to make comparisons.
       </Typography>
       <TableContainer>
-        <Table sx={{ width: "60%", margin: "auto" }}>
+        <Table sx={{ width: "80%", margin: "auto" }}>
           <TableHead>
             <TableRow>
               <TableCell>Home Loan Providers</TableCell>
@@ -246,7 +262,7 @@ const HomeLoan = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Typography textAlign={"center"} mt={10} mb={7} variant={"h5"}>
+      <Typography textAlign={"center"} mt={10} mb={5} variant={"h5"}>
         How to Apply for Home Loan
       </Typography>
       <Typography
@@ -260,10 +276,10 @@ const HomeLoan = () => {
         is now easier than ever. Just enter a few basic details to fill out the
         online application form and upload the required documents.
       </Typography>
-      <Typography ml={10} mb={2} variant="body2">
+      <Typography textAlign={"center"} mb={5} variant="body2">
         Here are the steps to apply for a home loan on FinURL.
       </Typography>
-      <Box mt={3} width={"75%"} ml={11}>
+      <Box mt={3} width={"75%"} display={"block"} margin={"auto"}>
         <Typography mb={2} variant="body1">
           1 . Through the website:
         </Typography>
@@ -274,7 +290,10 @@ const HomeLoan = () => {
           🔹 Choose your preferred lending partner.
         </Typography>
         <Typography variant="subtitle2" m={1}>
-          🔹 Estimate your borrowing power. Property Details.
+          🔹 Estimate your borrowing power.
+        </Typography>
+        <Typography variant="subtitle2" m={1}>
+          🔹 Property Details.
         </Typography>
         <Typography variant="subtitle2" m={1}>
           🔹 Get Loan Approval.
@@ -295,7 +314,7 @@ const HomeLoan = () => {
           amount in your bank account.
         </Typography>
       </Box>
-      <Box mt={3} width={"75%"} ml={11}>
+      <Box width={"75%"} display={"block"} margin={"auto"} mt={5}>
         <Typography mb={2} variant="body1">
           2 . Through the FinURL App:
         </Typography>
@@ -314,11 +333,14 @@ const HomeLoan = () => {
         </Typography>
         <Typography variant="subtitle2" m={1}>
           🔹 After submitting the application, the lender will conduct a
-          background check. After verification, a representative from your
-          chosen lender will contact you.
+          background check.
+        </Typography>
+        <Typography variant="subtitle2" m={1}>
+          🔹 After verification, a representative from your chosen lender will
+          contact you.
         </Typography>
       </Box>
-      <Typography textAlign={"center"} mt={10} mb={7} variant={"h5"}>
+      <Typography textAlign={"center"} mt={10} p={1} mb={3} variant={"h5"}>
         Documents Required for Home Loan
       </Typography>
       <Typography
@@ -326,31 +348,94 @@ const HomeLoan = () => {
         textAlign={"center"}
         width={"75%"}
         margin={"auto"}
-        mb={2}
+        mb={7}
       >
         Here is the list of important documents required while applying:
       </Typography>
-      <Grid container>
-        <Grid>
-          <Typography variant="body1" mb={1} fontWeight={600}>
-            1. Indentity proof:{" "}
+      <Box width={"75%"} display={"block"} pb={5} margin={"auto"}>
+        <Box
+          display={"flex"}
+          alignItems={"baseline"}
+          margin={"auto"}
+          gap={"10px"} 
+          width={"90vw"}
+        >
+          <Typography variant="body2" mb={1} fontWeight={600}>
+            1. Indentity proof :
           </Typography>
-          <Typography variant="body2">PAN Card</Typography>
-          <Typography variant="body2">Aadhaar Card </Typography>
-          <Typography variant="body2">Driving License</Typography>
-          <Typography variant="body2">Voter ID</Typography>
-        </Grid>
-        <Grid>
-          <Typography variant="body1" mb={1} mt={2} fontWeight={600}>
-            2. Address proof:
+
+          <Typography variant="subtitle2">
+            PAN Card, Aadhaar Card, Driving License, Voter ID.
           </Typography>
-          <Typography variant="body2">Electricity bill</Typography>
-          <Typography variant="body2">Valid Passport </Typography>
-          <Typography variant="body2">Aadhaar Card </Typography>
-          <Typography variant="body2">Driving License</Typography>
-          <Typography variant="body2">Voter ID</Typography>
-        </Grid>
-      </Grid>
+        </Box>
+        <Box display={"flex"} alignItems={"baseline"} gap={"10px"} 
+        width={"90vw"}>
+          <Typography variant="body2" mb={1} mt={2} fontWeight={600}>
+            2. Address proof :
+          </Typography>
+          <Typography variant="subtitle2">
+            Electricity bill, Valid Passport, Aadhaar Card, Driving License,
+            Voter ID.
+          </Typography>
+        </Box>
+        <Box mb={2}>
+          <Typography variant="body2" mb={1} mt={2} fontWeight={600}>
+            3. Income proof :
+          </Typography>
+        </Box>
+        <Box mb={2}>
+          <Typography
+            mb={1}
+            ml={2}
+            sx={{ textDecoration: "underline" }}
+            fontWeight={500}
+            variant="body2"
+            color={"gray"}
+          >
+            For Salaried Applicant / Co-Applicant
+          </Typography>
+          <Box ml={3}>
+            <Typography variant="subtitle2">
+              🔹Last 3 months Salary Slips.
+            </Typography>
+            <Typography variant="subtitle2">
+              🔹 A Copy of Form 16 or Income Tax Return (ITR) of last two years.
+            </Typography>
+          </Box>
+        </Box>
+        <Box mb={2}>
+          <Typography
+            mb={1}
+            ml={2}
+            sx={{ textDecoration: "underline" }}
+            fontWeight={500}
+            variant="body2"
+            color={"gray"}
+          >
+            For Self- Employed Applicant / Co-Applicant
+          </Typography>
+          <Box ml={3}>
+            <Typography variant="subtitle2">
+              🔹Income Tax Returns of last 3 years.
+            </Typography>
+            <Typography variant="subtitle2">
+              🔹 Qualification Certificate for Doctors, CA and other
+              Professionals.
+            </Typography>
+            <Typography variant="subtitle2">
+              🔹 Audited Balance Sheet from Certified CA.
+            </Typography>
+            <Typography variant="subtitle2">
+              🔹 Profit and Loss Statement of Previous 3 Years.
+            </Typography>
+            <Typography variant="subtitle2">
+              🔹 Business Licence Details with Address Proof and TDS Certificate
+              .
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+      <Footer />
     </>
   );
 };

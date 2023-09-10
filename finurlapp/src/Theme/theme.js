@@ -84,6 +84,14 @@ let theme = createTheme({
         },
       },
     },
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          color: "#000", // Customize the label color
+        },
+      },
+    },
+    
     MuiSelect: {
       styleOverrides: {
         root: {
