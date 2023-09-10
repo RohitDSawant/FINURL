@@ -17,7 +17,10 @@ import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import application_pencil from "./../../Assets/Images/application-pencil.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import { handleStashfinInitiateApp, turnEligble } from "../../Redux/Func/Stashfin/Initiate_Application";
+import {
+  handleStashfinInitiateApp,
+  turnEligble,
+} from "../../Redux/Func/Stashfin/Initiate_Application";
 import Navbar from "../Common/Navbar";
 import theme from "../../Theme/theme";
 import { check_status } from "../../Redux/Func/Stashfin/Check_Status";
@@ -60,14 +63,14 @@ const ApplicationForLoan = () => {
     setShowErrorSnack(false);
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
 
-     dispatch(
+    dispatch(
       handleStashfinInitiateApp({
         loggedInUserId: user,
         first_name: formData.first_name,
@@ -87,24 +90,34 @@ const ApplicationForLoan = () => {
     )
       .then((response) => {
         // console.log(response);
-        
+
         setTimeout(() => {
           setIsLoading(false);
           // console.log(response);
-          if (response && response.response && response.response.status && response.response.status === 409) {
+          if (
+            response &&
+            response.response &&
+            response.response.status &&
+            response.response.status === 409
+          ) {
             console.log(response.response.data.message);
 
             setShowErrorSnack(true);
             setSnackMsg("Sorry ! You are already a part of Stashfin.");
           }
-          
-          if (response && response.response && response.response.status && response.response.status === 401) {
+
+          if (
+            response &&
+            response.response &&
+            response.response.status &&
+            response.response.status === 401
+          ) {
             console.log(response.response.data.message);
 
             setShowErrorSnack(true);
             setSnackMsg("Invalid Details, please check and try again");
-          } 
-          
+          }
+
           if (response.status === 200) {
             console.log(response);
             dispatch(
@@ -116,12 +129,12 @@ const ApplicationForLoan = () => {
             setShowSuccessSnack(true);
             setSnackMsg("Please wait while we redirect you...");
             setTimeout(() => {
-              window.open(response.data.results.redirect_url, "_blank")
+              window.open(response.data.results.redirect_url, "_blank");
             }, 2000);
-            setTimeout(()=>{
-              dispatch(turnEligble())
-              navigate("/stashfin/dedupe")
-            }, 2000)
+            setTimeout(() => {
+              dispatch(turnEligble());
+              navigate("/stashfin/dedupe");
+            }, 2000);
             document.querySelector("form").reset();
           }
         }, 3000);
@@ -298,6 +311,7 @@ const ApplicationForLoan = () => {
 
                 <Box display={"flex"} alignItems={"center"} gap={"25px"}>
                   <Button
+                    disabled={isLoading}
                     id={styles.submit_btn}
                     type="submit"
                     variant="contained"

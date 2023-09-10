@@ -85,13 +85,11 @@ const Navbar = () => {
       setResourceOpen(false);
     } else if (productsOpen) {
       setProductsOpen(false);
-      setResourceOpen(true)
+      setResourceOpen(true);
     } else {
       setResourceOpen(true);
     }
   };
-
-
 
   return (
     <>
@@ -282,7 +280,6 @@ const Navbar = () => {
                     Dashboard
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>
-                    {" "}
                     <LogoutIcon sx={{ marginRight: "10px" }} /> Logout
                   </MenuItem>
                 </Menu>
@@ -300,7 +297,6 @@ const Navbar = () => {
                       textTransform={"capitalize"}
                       variant="body2"
                     >
-                      {" "}
                       Login
                     </Typography>
                   </Button>
@@ -340,20 +336,15 @@ const Navbar = () => {
                   Loans :
                 </Typography>
                 <Link to={"/instant-loan"}>
-                  <Typography variant={"subtitle2"}>
-                    {" "}
-                    🔹 Instant Loan
-                  </Typography>
+                  <Typography variant={"subtitle2"}>🔹 Instant Loan</Typography>
                 </Link>
                 <Link to={"/business-loan"}>
                   <Typography variant={"subtitle2"}>
-                    {" "}
                     🔹 Business Loan
                   </Typography>
                 </Link>
                 <Link to={"/personal-loan"}>
                   <Typography variant={"subtitle2"}>
-                    {" "}
                     🔹 Personal Loan
                   </Typography>
                 </Link>
@@ -362,13 +353,11 @@ const Navbar = () => {
                 </Link>
                 <Link to={"/comingsoon"}>
                   <Typography variant={"subtitle2"}>
-                    {" "}
                     🔹 Professional Loan
                   </Typography>
                 </Link>
                 <Link to={"/comingsoon"}>
                   <Typography variant={"subtitle2"}>
-                    {" "}
                     🔹 Loan against property
                   </Typography>
                 </Link>
@@ -377,10 +366,7 @@ const Navbar = () => {
                 <Typography variant="body2" mb={1}>
                   Investments
                 </Typography>
-                <Typography variant={"subtitle2"}>
-                  {" "}
-                  🔹 My Investments
-                </Typography>
+                <Typography variant={"subtitle2"}>🔹 My Investments</Typography>
               </Box>
               <Box ml={2} mt={3}>
                 <Typography mb={1} variant="body2">
@@ -395,7 +381,7 @@ const Navbar = () => {
               </Link>
             </Box>
             <Box ml={1} mt={1}>
-              <Link to={"/contactus"}>
+              <Link to={"/dashboard"}>
                 <Typography variant={"subtitle2"}> 🔹 Dashboard</Typography>
               </Link>
             </Box>

@@ -121,7 +121,7 @@ const ContactUs = () => {
                       }}
                       variant="body2"
                     >
-                      infor@finurl.in
+                      info@finurl.in
                     </Typography>
                   </Box>
                 </Box>

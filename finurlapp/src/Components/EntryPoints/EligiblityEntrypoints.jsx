@@ -287,7 +287,7 @@ const EligiblityEntrypoints = () => {
                   />
                 </Box>
                 <Box display={"flex"} alignItems={"center"} gap={"30px"}>
-                  <Button
+                  <Button disabled={isLoading}
                     id={styles.submit_btn}
                     type="submit"
                     variant="contained"

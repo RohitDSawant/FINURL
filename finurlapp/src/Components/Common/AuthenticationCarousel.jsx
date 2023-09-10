@@ -293,6 +293,7 @@ const LoginPage = () => {
                             gap={"30px"}
                           >
                             <Button
+                              disabled={isLoading}
                               type="submit"
                               className="sign-btn"
                               sx={{
@@ -314,6 +315,7 @@ const LoginPage = () => {
                         <>
                           <Box display={"flex"} gap={"30px"}>
                             <Button
+                              disabled={isLoading}
                               className={"sign-btn"}
                               onClick={verifyOtp}
                               sx={{
@@ -450,6 +452,7 @@ const LoginPage = () => {
                         <>
                           <Box display={"flex"} gap={"10px"}>
                             <Button
+                              disabled={isLoading}
                               type="submit"
                               value="Sign Up"
                               className="sign-btn"
