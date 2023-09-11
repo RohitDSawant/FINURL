@@ -357,7 +357,7 @@ const HomeLoan = () => {
           display={"flex"}
           alignItems={"baseline"}
           margin={"auto"}
-          gap={"10px"} 
+          gap={"10px"}
           width={"90vw"}
         >
           <Typography variant="body2" mb={1} fontWeight={600}>
@@ -368,8 +368,12 @@ const HomeLoan = () => {
             PAN Card, Aadhaar Card, Driving License, Voter ID.
           </Typography>
         </Box>
-        <Box display={"flex"} alignItems={"baseline"} gap={"10px"} 
-        width={"90vw"}>
+        <Box
+          display={"flex"}
+          alignItems={"baseline"}
+          gap={"10px"}
+          width={"90vw"}
+        >
           <Typography variant="body2" mb={1} mt={2} fontWeight={600}>
             2. Address proof :
           </Typography>

@@ -12,13 +12,13 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
-import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import application_pencil from "./../../Assets/Images/application-pencil.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Common/Navbar";
 import { sendApplicationDetails } from "../../Redux/Func/Prefr/SendApplicationDetails";
+import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 
 const PrefrApplication = () => {
   const loanId = useSelector(
@@ -52,15 +52,32 @@ const PrefrApplication = () => {
   const [showSuccessSnack, setShowSuccessSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState("");
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(sendApplicationDetails(formData))
-    .then((res)=>[
-      console.log(res)
-    ])
-    console.log(formData)
+    setIsLoading(true);
+    e.preventDefault();
+    dispatch(sendApplicationDetails(formData)).then((res) => {
+      if (res.data.status === "success") {
+        dispatch(gettingWebViewUrl(loanId)).then((res) => {
+          setIsLoading(false);
+          console.log(res);
+          if (res.data.status === "success") {
+            setShowSuccessSnack(true);
+            setSnackMsg("Redirecting, Please wait...");
+            setTimeout(() => {
+              window.open(res.data.data.webviewUrl, "_blank");
+            }, 3000);
+          } else {
+            setShowErrorSnack(true);
+            setSnackMsg(
+              "Something went wrong, please check the details provided"
+            );
+          }
+        });
+      }
+    });
+    // console.log(formData);
   };
 
   const handleChange = (e) => {
@@ -166,7 +183,11 @@ const PrefrApplication = () => {
                   <FormControl fullWidth={true} variant="standard" required>
                     <InputLabel>Gender</InputLabel>
                     <Select
-                      sx={{ marginBottom: "5px", marginRight:"10px", color: "#121b28" }}
+                      sx={{
+                        marginBottom: "5px",
+                        marginRight: "10px",
+                        color: "#121b28",
+                      }}
                       variant="standard"
                       name="gender"
                       value={formData.gender}

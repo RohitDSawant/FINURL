@@ -7,10 +7,12 @@ export const sendApplicationDetails = (data) => async (dispatch) => {
     return await axios
       .post("https://api.finurl.in/api/v1/prefr/send-app-details", data)
       .then((res) => {
+        console.log(res)
         dispatch({ type: "SEND_APPLICATION_DETAILS_SUCCESS" });
         return res;
       });
   } catch (error) {
+    console.log(error)
     dispatch({ type: "SEND_APPLICATION_DETAILS_FAILURE" });
     return error;
   }
