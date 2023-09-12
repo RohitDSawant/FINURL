@@ -11,18 +11,21 @@ const HomeDSlabs = () => {
       <section id={styles.home_d_sec}>
         <Box>
           <Grid
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-sine"
             justifyContent={"space-between"}
             container
             flexDirection={"row-reverse"}
             mt={10}
             alignItems={"center"}
           >
-            <Grid item lg={8.5} md={8.5} sm={8.5} xs={8.5} >
+            <Grid item lg={8.5} md={8.5} sm={8.5} xs={8.5}>
               <Box id={styles.right_slab} className={styles.slab_box}>
                 <Typography variant="h6" fontSize={"medium"}>
                   Easily control your billing & invoicing
                 </Typography>
-                <Typography variant="body2"  fontSize={"small"}>
+                <Typography variant="body2" fontSize={"small"}>
                   Simplify your financial processes and gain full control over
                   billing and invoicing with our user-friendly solution.
                 </Typography>
@@ -39,8 +42,14 @@ const HomeDSlabs = () => {
               </Box>
             </Grid>
           </Grid>
-
-          <Grid container mt={10} alignItems={"center"}>
+          <Grid
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-sine"
+            container
+            mt={10}
+            alignItems={"center"}
+          >
             <Grid item lg={8.5} md={8.5} sm={8.5} xs={8.5}>
               <Box className={styles.slab_box}>
                 <Typography
@@ -72,8 +81,10 @@ const HomeDSlabs = () => {
               </Box>
             </Grid>
           </Grid>
-
           <Grid
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-easing="ease-in-sine"
             container
             mt={10}
             flexDirection={"row-reverse"}

@@ -10,7 +10,7 @@ const InstantLoanMid = () => {
           Details
         </Typography>
         <Grid
-          width={"90vw"}
+          width={"85vw"}
           alignItems={"center"}
           justifyContent={"space-around"}
           container
@@ -19,30 +19,30 @@ const InstantLoanMid = () => {
           p={2}
         >
           <Grid lg={5} xs={5} item>
-            <Typography variant="body2" m={3}>Interest Rate</Typography>
-            <Typography variant="body2" m={3}>Processing Fee</Typography>
-            <Typography variant="body2" m={3}>Loan Amount Range</Typography>
-            <Typography variant="body2" m={3}>Loan tenure</Typography>
-            <Typography variant="body2" m={3}>Prepayment Charges</Typography>
-            <Typography variant="body2" m={3}>Late Payment Charges</Typography>
+            <Typography variant="body1" m={3}>Interest Rate</Typography>
+            <Typography variant="body1" m={3}>Processing Fee</Typography>
+            <Typography variant="body1" m={3}>Loan Amount Range</Typography>
+            <Typography variant="body1" m={3}>Loan tenure</Typography>
+            <Typography variant="body1" m={3}>Prepayment Charges</Typography>
+            <Typography variant="body1" m={3}>Late Payment Charges</Typography>
           </Grid>
           <Grid lg={5}xs={7} item>
-            <Typography variant="body2" textAlign={"right"} m={3}>
+            <Typography variant="body1" textAlign={"right"} m={3}>
               10.49% p.a. onwards
             </Typography>
-            <Typography variant="body2" textAlign={"right"} m={3}>
+            <Typography variant="body1" textAlign={"right"} m={3}>
               Between 0.5% and 2.50% of the loan amount
             </Typography>
-            <Typography variant="body2" textAlign={"right"} m={3}>
+            <Typography variant="body1" textAlign={"right"} m={3}>
               Up to ₹50 Lakhs
             </Typography>
-            <Typography variant="body2" textAlign={"right"} m={3}>
+            <Typography variant="body1" textAlign={"right"} m={3}>
               1 to 6 years
             </Typography>
-            <Typography variant="body2" textAlign={"right"} m={3}>
+            <Typography variant="body1" textAlign={"right"} m={3}>
               2-3% of the outstanding loan amount
             </Typography>
-            <Typography variant="body2" textAlign={"right"} m={3}>
+            <Typography variant="body1" textAlign={"right"} m={3}>
               2% of the due amount
             </Typography>
           </Grid>
@@ -51,7 +51,7 @@ const InstantLoanMid = () => {
         <Box p={4}>
           <Typography
             variant="body2"
-            width={"7 5vw"}
+            width={"75vw"}
             textAlign={"center"}
             m={"auto"}
           >
@@ -66,81 +66,81 @@ const InstantLoanMid = () => {
         <Typography width={"90%"} textAlign={"center"} m={"auto"} p={2} mt={4} variant="h5">
           Compare Instant Loans & Apply Online
         </Typography>
-        <Typography width={"85%"} mb={2} textAlign={"center"} m={"auto"} variant="body2">
+        <Typography width={"85vw"} mb={2} textAlign={"center"} m={"auto"} variant="body2">
           Compare Instant loan interest rates of some of the leading Indian
           lenders right away. Their borrowing rates are as follows:
         </Typography>
-        <Grid container width={"70%"} m={"auto"} mt={5}>
-          <Grid item lg={6} xs={5.5}>
-            <Typography textAlign={"center"} m={2} variant="body2">
+        <Grid container width={"80vw"} justifyContent={"center"} margin={"auto"} mt={5}>
+          <Grid item lg={4} xs={5.5}>
+            <Typography textAlign={"center"} m={2} variant="body1">
               MONEYWIDE
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               FAIRCENT
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               PAYSENSE
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               IIFL BL
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               IIFL PL
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               PRIVO
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               FLEXI LOAN
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               NIRA
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               KREDITBEE
             </Typography>
 
-            <Typography textAlign={"center"} m={2} variant="body2">
+            <Typography textAlign={"center"} m={2} variant="body1">
               TATA CAPITAL
             </Typography>
           </Grid>
-          <Grid item xs={5.5} lg={3}>
-            <Typography m={2} textAlign={"center"} variant="body2">
+          <Grid item xs={4} lg={3}>
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 14%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 15%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 14%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 12%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 12%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 15%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 12%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 14%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 15%
             </Typography>
-            <Typography m={2} textAlign={"center"} variant="body2">
+            <Typography m={2} textAlign={"center"} variant="body1">
               ROI 12%
             </Typography>
           </Grid>
@@ -190,43 +190,26 @@ const InstantLoanMid = () => {
         <Typography m={5} mt={10} textAlign={"center"} variant={"h5"}>
           Documents Required
         </Typography>
-        <Grid
-          justifyContent={"space-between"}
-          container
-          width={"85vw"}
-          margin={"auto"}
-        >
-          <Grid lg={4} xs={2} item>
-            <Typography textAlign={"center"} p={2} variant="body2">
-              Identity Proof
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body2">
-              Proof of Residence
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body2">
-              Income Proof
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body2">
-              Photographs
-            </Typography>
-          </Grid>
-          <Grid lg={6} xs={8} item>
-            <Typography textAlign={"center"} p={2} variant="body2">
+        <Box width={"75vw"} display={"block"} margin={"auto"}>
+            <Typography fontWeight={500} variant="body1">Identity Proof</Typography>
+            <Typography variant="body2" ml={2} mt={1} mb={3} >
               PAN / Aadhaar Card, Voter ID, Passport, Driving licence
             </Typography>
-            <Typography textAlign={"center"} p={2} variant="body2">
+
+            <Typography fontWeight={500} variant="body1">Proof of Residence</Typography>
+            <Typography variant="body2" ml={2} mt={1} mb={3} >
               Voter ID, Aadhaar card, Passport, Driving licence, Electricity
               bill, Telephone bill
             </Typography>
-            <Typography textAlign={"center"} p={2} variant="body2">
+            <Typography fontWeight={500} variant="body1">Income Proof</Typography>
+            <Typography variant="body2" ml={2} mt={1} mb={3} >
               Bank statement or salary slips for the last three months
             </Typography>
-            <Typography textAlign={"center"} p={2} variant="body2">
+            <Typography fontWeight={500} variant="body1">Photographs</Typography>
+            <Typography variant="body2" ml={2} mt={1} mb={3} >
               2 Passport-size photographs
             </Typography>
-          </Grid>
-        </Grid>
-        <br />
+        </Box>
         <Typography m={5} mt={7} textAlign={"center"} variant={"h5"}>
           Where can be a Instant be used ?
         </Typography>

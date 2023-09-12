@@ -7,8 +7,7 @@ const InstantLoanHeader = () => {
   return (
     <>
       <section id={styles.inst_loan_a}>
-        <Box width={"90vw"} margin={"auto"} mt={5}>
-          <Grid container justifyContent={"space-around"} alignItems={"center"}>
+          <Grid height={"90vh"} width={"90vw"} margin={"auto"} container justifyContent={"space-around"} alignItems={"center"}>
             <Grid item xs={12} sm={10} md={6} lg={5}>
               <img
                 className={styles.instant_loan_pic}
@@ -32,7 +31,6 @@ const InstantLoanHeader = () => {
               </Typography>
             </Grid>
           </Grid>
-        </Box>
       </section>
     </>
   );

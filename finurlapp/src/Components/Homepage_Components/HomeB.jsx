@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./../../CSS/homepage.module.css";
 import { Box, Grid, Typography } from "@mui/material";
 import year from "./../../Assets/Images/2022_year.jpg"
 import happy_customer from "./../../Assets/Images/happy_customer.svg"
 import active_partners from "./../../Assets/Images/active_partners.svg"
+import AOS from "aos"
+import 'aos/dist/aos.css'; 
+
 
 const HomeB = () => {
+
+  useEffect(()=>{
+    AOS.init()
+  },[])
+
+
   return (
     <>
       <section id={styles.home_b_sec}>
         <Grid margin={"auto"} container justifyContent={"space-around"} spacing={1}>
-          <Grid alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
+          <Grid  data-aos="fade-right" data-aos-duration="1500" alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
             <Box>
               <img className={styles.home_b_img} src={year} alt="happy_customer" />
               <Box  mt={2}>
@@ -19,7 +28,7 @@ const HomeB = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid  alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
+          <Grid  data-aos="fade-down" data-aos-duration="1500"   alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
            <Box>
            <img className={styles.home_b_img}  src={active_partners} alt="active_partners" />
             <Box mt={2}>
@@ -28,7 +37,7 @@ const HomeB = () => {
             </Box>
            </Box>
           </Grid>
-          <Grid  alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
+          <Grid  data-aos="fade-left" data-aos-duration="1500" alignItems={"center"} justifyContent={"center"} item lg={3} md={3} sm={5} xs={10} >
            <Box>
            <img className={styles.home_b_img} src={happy_customer} alt="2022_year" />
             <Box  mt={2}>

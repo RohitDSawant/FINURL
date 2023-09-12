@@ -5,13 +5,12 @@ import styles from "./../../CSS/instantLoan.module.css";
 const PersonalLoanBody = () => {
   return (
     <>
-    
       <section id={styles.inst_loan_b}>
         <Typography m={5} textAlign={"center"} variant={"h5"}>
           Details
         </Typography>
         <Grid
-          width={"70%"}
+          width={"90vw"}
           alignItems={"center"}
           justifyContent={"space-around"}
           container
@@ -19,32 +18,63 @@ const PersonalLoanBody = () => {
           className={styles.inst_loans_details}
           p={2}
         >
-          <Grid lg={5} item>
-            <Typography m={3}>Interest Rate</Typography>
-            <Typography m={3}>Processing Fee</Typography>
-            <Typography m={3}>Loan Amount Range</Typography>
-            <Typography m={3}>Loan tenure</Typography>
-            <Typography m={3}>Prepayment Charges</Typography>
-            <Typography m={3}>Late Payment Charges</Typography>
+          <Grid
+            data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            lg={5}
+            md={5}
+            sm={4}
+            xs={4}
+            item
+          >
+            <Typography variant="body2" m={3}>
+              Interest Rate
+            </Typography>
+            <Typography variant="body2" m={3}>
+              Processing Fee
+            </Typography>
+            <Typography variant="body2" m={3}>
+              Loan Amount Range
+            </Typography>
+            <Typography variant="body2" m={3}>
+              Loan tenure
+            </Typography>
+            <Typography variant="body2" m={3}>
+              Prepayment Charges
+            </Typography>
+            <Typography variant="body2" m={3}>
+              Late Payment Charges
+            </Typography>
           </Grid>
-          <Grid item lg={2}></Grid>
-          <Grid lg={5} item>
-            <Typography textAlign={"right"} m={3}>
+          <Grid
+            data-aos="fade-left"
+            data-aos-offset="300"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            lg={5}
+            md={5}
+            sm={6}
+            xs={6}
+            item
+          >
+            <Typography variant="body2" textAlign={"right"} m={3}>
               10.49% p.a. onwards
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               Between 0.5% and 2.50% of the loan amount
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               Up to ₹50 Lakhs
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               1 to 6 years
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               2-3% of the outstanding loan amount
             </Typography>
-            <Typography textAlign={"right"} m={3}>
+            <Typography variant="body2" textAlign={"right"} m={3}>
               2% of the due amount
             </Typography>
           </Grid>
@@ -53,9 +83,12 @@ const PersonalLoanBody = () => {
         <Box p={4}>
           <Typography
             variant="body2"
-            width={"65%"}
+            width={"85vw"}
             textAlign={"center"}
             m={"auto"}
+            data-aos="fade-up"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
           >
             *The interest rates and associated charges can vary from one lending
             partner to the other and are subject to policy changes of the
@@ -69,12 +102,25 @@ const PersonalLoanBody = () => {
         <Typography textAlign={"center"} m={"auto"} p={2} mt={4} variant="h5">
           Compare Instant Loans & Apply Online
         </Typography>
-        <Typography mb={2} textAlign={"center"} m={"auto"} variant="body2">
+        <Typography
+          mb={2}
+          textAlign={"center"}
+          p={2}
+          m={"auto"}
+          variant="body2"
+        >
           Compare Instant loan interest rates of some of the leading Indian
           lenders right away. Their borrowing rates are as follows:
         </Typography>
         <Grid container width={"70%"} m={"auto"} mt={5}>
-          <Grid item lg={6}>
+          <Grid
+            data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            item
+            lg={6}
+          >
             <Typography textAlign={"center"} m={2} variant="body1">
               MONEYWIDE
             </Typography>
@@ -115,8 +161,14 @@ const PersonalLoanBody = () => {
               TATA CAPITAL
             </Typography>
           </Grid>
-          <Grid item lg={2}></Grid>
-          <Grid item lg={3}>
+          <Grid
+            data-aos="fade-left"
+            data-aos-offset="300"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            item
+            lg={3}
+          >
             <Typography m={2} textAlign={"center"} variant="body1">
               ROI 14%
             </Typography>
@@ -152,8 +204,16 @@ const PersonalLoanBody = () => {
         <Typography m={5} mt={10} textAlign={"center"} variant={"h5"}>
           How to Apply Instant Loan online ?
         </Typography>
-        <Box width={"max-content"} margin={"auto"}>
-          <Box p={3} display={"flex"} alignItems={"center"} gap={"20px"}>
+        <Box width={"80vw"} display={"block"} margin={"auto"}>
+          <Box
+            data-aos="fade-right"
+            data-aos-duration="800"
+            data-aos-easing="ease-in-sine"
+            p={3}
+            display={"flex"}
+            alignItems={"center"}
+            gap={"20px"}
+          >
             <Typography variant="body1" fontWeight={600}>
               Step 1 :
             </Typography>
@@ -162,16 +222,31 @@ const PersonalLoanBody = () => {
               your Instant and professional details.
             </Typography>
           </Box>
-          <Box p={3} display={"flex"} alignItems={"center"} gap={"20px"}>
+          <Box
+            data-aos="fade-right"
+            data-aos-duration="1200"
+            data-aos-easing="ease-in-sine"
+            p={3}
+            display={"flex"}
+            alignItems={"center"}
+            gap={"20px"}
+          >
             <Typography variant="body1" fontWeight={600}>
               Step 2 :
             </Typography>
             <Typography variant="body2">
-              {" "}
               Choose the loan amount you desire from the lending partner
             </Typography>
           </Box>
-          <Box p={3} display={"flex"} alignItems={"center"} gap={"20px"}>
+          <Box
+            data-aos="fade-right"
+            data-aos-duration="1500"
+            data-aos-easing="ease-in-sine"
+            p={3}
+            display={"flex"}
+            alignItems={"center"}
+            gap={"20px"}
+          >
             <Typography variant="body1" fontWeight={600}>
               Step 3 :
             </Typography>
@@ -180,7 +255,15 @@ const PersonalLoanBody = () => {
               verification.
             </Typography>
           </Box>
-          <Box p={3} display={"flex"} alignItems={"center"} gap={"20px"}>
+          <Box
+            p={3}
+            data-aos="fade-right"
+            data-aos-duration="1700"
+            data-aos-easing="ease-in-sine"
+            display={"flex"}
+            alignItems={"center"}
+            gap={"20px"}
+          >
             <Typography variant="body1" fontWeight={600}>
               Step 4 :
             </Typography>
@@ -194,42 +277,58 @@ const PersonalLoanBody = () => {
         <Typography m={5} mt={10} textAlign={"center"} variant={"h5"}>
           Documents Required
         </Typography>
-        <Grid
-          justifyContent={"space-between"}
-          container
-          width={"70%"}
-          margin={"auto"}
-        >
-          <Grid lg={3} item>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              Identity Proof
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              Proof of Residence
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              Income Proof
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              Photographs
-            </Typography>
-          </Grid>
-          <Grid lg={7.5} item>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              PAN / Aadhaar Card, Voter ID, Passport, Driving licence
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              Voter ID, Aadhaar card, Passport, Driving licence, Electricity
-              bill, Telephone bill
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              Bank statement or salary slips for the last three months
-            </Typography>
-            <Typography textAlign={"center"} p={2} variant="body1">
-              2 Passport-size photographs
-            </Typography>
-          </Grid>
-        </Grid>
+        <Box width={"75vw"} display={"block"} margin={"auto"}>
+          <Typography
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            fontWeight={500}
+            variant="body1"
+          >
+            Identity Proof
+          </Typography>
+          <Typography variant="body2" ml={2} mt={1} mb={3}>
+            PAN / Aadhaar Card, Voter ID, Passport, Driving licence
+          </Typography>
+
+          <Typography
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            fontWeight={500}
+            variant="body1"
+          >
+            Proof of Residence
+          </Typography>
+          <Typography variant="body2" ml={2} mt={1} mb={3}>
+            Voter ID, Aadhaar card, Passport, Driving licence, Electricity bill,
+            Telephone bill
+          </Typography>
+          <Typography
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            fontWeight={500}
+            variant="body1"
+          >
+            Income Proof
+          </Typography>
+          <Typography variant="body2" ml={2} mt={1} mb={3}>
+            Bank statement or salary slips for the last three months
+          </Typography>
+          <Typography
+            data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine"
+            fontWeight={500}
+            variant="body1"
+          >
+            Photographs
+          </Typography>
+          <Typography variant="body2" ml={2} mt={1} mb={3}>
+            2 Passport-size photographs
+          </Typography>
+        </Box>
         <br />
         <Typography m={5} mt={7} textAlign={"center"} variant={"h5"}>
           Where can be a Instant be used ?
@@ -239,7 +338,7 @@ const PersonalLoanBody = () => {
           <Typography variant="body2" m={3}>
             <Typography variant="body1" m={1} fontWeight={600}>
               Wedding:
-            </Typography>{" "}
+            </Typography>
             With the help of a marriage loan, you can take care of the seemingly
             endless list of expenses that one has to incur during weddings. Or
             you can also go about planning post-marriage trips with ease,

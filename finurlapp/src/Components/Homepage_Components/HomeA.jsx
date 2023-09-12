@@ -8,7 +8,9 @@ const HomeA = () => {
     <>
       <section id={styles.home_a_sec}>
         <Grid container spacing={5}>
-          <Grid item lg={5} md={5} sm={6} xs={12} >
+          <Grid  data-aos="fade-left"
+              data-aos-duration="1500"
+              data-aos-easing="ease-in-sine" item lg={5} md={5} sm={6} xs={12} >
             <Typography mb={-1} variant="h5">
               The Next
             </Typography>
@@ -26,7 +28,7 @@ const HomeA = () => {
             </Typography>
           </Grid>
           <Grid item lg={5} md={5} sm={5} xs={12}>
-            <img className={styles.home_1_img} src={maintheme} alt="home1" />
+            <img  className={styles.home_1_img} src={maintheme} alt="home1" />
           </Grid>
         </Grid>
       </section>
