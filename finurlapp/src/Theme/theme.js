@@ -7,7 +7,7 @@ let lightTheme = createTheme({
     mode: "light",
     primary: {
       main: "#FEFFAC",
-      light: "#FFFD8C",
+      light: "#FFFAD7",
       dark: "#FBF0B2",
     },
     secondary: {
@@ -176,7 +176,7 @@ let darkTheme = createTheme({
     },
     secondary: {
       main: "#FEFFAC",
-      light: "#FFFD8C",
+      light: "#FFFAD7",
       dark: "#FBF0B2",
     },
     background:{

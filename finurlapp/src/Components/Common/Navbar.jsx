@@ -341,7 +341,7 @@ const Navbar = () => {
           anchor="left"
           onClose={() => setDrawerOpen(false)}
         >
-          <Box>
+          <Box sx={{ backgroundColor: theme.palette.primary.light }}>
             <Box>
               <Box
                 display={"flex"}
@@ -355,8 +355,16 @@ const Navbar = () => {
                 <Typography mt={0.5} variant="h6">
                   FinURL
                 </Typography>
-
-                {/* <DarkModeIcon sx={{ marginRight: "10px" }} /> */}
+                <Button
+                  onClick={handleTheme}
+                  sx={{ color: theme.palette.secondary.main }}
+                >
+                  {theme.palette.mode !== "dark" ? (
+                    <DarkModeIcon />
+                  ) : (
+                    <LightModeRoundedIcon />
+                  )}
+                </Button>{" "}
               </Box>
               <Box className={styles.products_menu_mob} ml={2} mt={2}>
                 <Typography variant="body2" mb={1}>
