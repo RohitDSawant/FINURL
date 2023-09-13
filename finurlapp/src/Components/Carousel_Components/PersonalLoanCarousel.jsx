@@ -78,7 +78,16 @@ const PersonalLoansCarousel = () => {
                   className={styles.carousel_img}
                   alt="partners"
                 />
-                <Typography textAlign={"center"} mb={2} fontWeight={600} fontSize={"large"} color={"primary"} textTransform={"capitalize"}>{partner.name}</Typography>
+                <Typography
+                  textAlign={"center"}
+                  mb={2}
+                  fontWeight={600}
+                  fontSize={"large"}
+                  variant="body2"
+                  textTransform={"capitalize"}
+                >
+                  {partner.name}
+                </Typography>
                 <Box display={"flex"} justifyContent={"space-evenly"}>
                   <Typography color={"gray"} fontSize={"small"} variant="body2">
                     Loan upto
@@ -95,7 +104,7 @@ const PersonalLoansCarousel = () => {
                   <Typography variant="body2">{partner.roi}</Typography>
                   <Typography variant="body2">{partner.description}</Typography>
                 </Box>
-                <Button id={styles.carousel_apply_btn} >Apply Now</Button>
+                <Button id={styles.carousel_apply_btn}>Apply Now</Button>
               </Box>
             );
           })}

@@ -21,7 +21,10 @@ import {
   prefrDedupe,
   prefrDedupeService,
 } from "../../Redux/Func/Prefr/Dedupe_Service";
-import { registerStart, settingApplicationID } from "../../Redux/Func/Prefr/Register_Start";
+import {
+  registerStart,
+  settingApplicationID,
+} from "../../Redux/Func/Prefr/Register_Start";
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 
 const EligiblityEntrypoints = () => {
@@ -51,7 +54,7 @@ const EligiblityEntrypoints = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -87,9 +90,7 @@ const EligiblityEntrypoints = () => {
           }
         }, 3000);
       });
-    }
-    
-    else if (current_path === "prefr") {
+    } else if (current_path === "prefr") {
       dispatch(
         prefrDedupeService({
           productName: "pl",
@@ -99,55 +100,58 @@ const EligiblityEntrypoints = () => {
           accountNumber: formData.accountNumber,
           personalEmailId: formData.email,
         })
-      ).then((res) => {
-        if (res.data === "success") {
-          dispatch(
-            registerStart({
-              userId: (formData.pan_number + userId).toUpperCase(),
-              mobileNo: formData.mobile_no,
-            })
-          ).then((res) => {
-            setIsLoading(false)
-            if (res.data.loanId && res.data.skipApplicationDetails) {
-              dispatch(gettingWebViewUrl({
-                loanId: res.loanId,
-              }))
-              .then((res)=>{
-                if (res.data === "success") {
-                  window.open(res.data.webviewUrl, "_blank");
-                  navigate("/")
-                }
-                else {
-                  setShowErrorSnack(true)
-                  setSnackMsg("Oops! Loan ID is missing")
-                }
+      )
+        .then((res) => {
+          if (res.data === "success") {
+            dispatch(
+              registerStart({
+                userId: (formData.pan_number + userId).toUpperCase(),
+                mobileNo: formData.mobile_no,
               })
-              setShowSuccessSnack(true)
-              setSnackMsg("Please wait, Generating redirection link...")
-            }
-            else if (res.data.loanId && !res.data.skipApplicationDetails ){
-              dispatch(settingApplicationID(res.data.loanId))
-              setIsLoading(false)
-              setShowSuccessSnack(true)
-              setSnackMsg("Redirecting you fill out the additional information further...")
-              setTimeout(() => {
-                  navigate("/prefr/application")
-              }, 4000);
-            }
-            else {
-              setShowErrorSnack(true)
-              setSnackMsg("Something went wrong, please try again")
-            }
-            // console.log(res)
-          });
-        } else {
-          setShowErrorSnack(true);
-          setSnackMsg("Something went wrong, please check the details provided")
-        }
-      })
-      .catch((err)=>{
-        console.log(err)
-      })
+            ).then((res) => {
+              setIsLoading(false);
+              if (res.data.loanId && res.data.skipApplicationDetails) {
+                dispatch(
+                  gettingWebViewUrl({
+                    loanId: res.loanId,
+                  })
+                ).then((res) => {
+                  if (res.data === "success") {
+                    window.open(res.data.webviewUrl, "_blank");
+                    navigate("/");
+                  } else {
+                    setShowErrorSnack(true);
+                    setSnackMsg("Oops! Loan ID is missing");
+                  }
+                });
+                setShowSuccessSnack(true);
+                setSnackMsg("Please wait, Generating redirection link...");
+              } else if (res.data.loanId && !res.data.skipApplicationDetails) {
+                dispatch(settingApplicationID(res.data.loanId));
+                setIsLoading(false);
+                setShowSuccessSnack(true);
+                setSnackMsg(
+                  "Redirecting you fill out the additional information further..."
+                );
+                setTimeout(() => {
+                  navigate("/prefr/application");
+                }, 4000);
+              } else {
+                setShowErrorSnack(true);
+                setSnackMsg("Something went wrong, please try again");
+              }
+              // console.log(res)
+            });
+          } else {
+            setShowErrorSnack(true);
+            setSnackMsg(
+              "Something went wrong, please check the details provided"
+            );
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -194,6 +198,9 @@ const EligiblityEntrypoints = () => {
               }}
             >
               <FormControl
+                data-aos="fade-right"
+                data-aos-duration="700"
+                data-aos-easing="ease-in-sine"
                 fullWidth={true}
                 component="form"
                 onSubmit={handleSubmit}
@@ -288,7 +295,8 @@ const EligiblityEntrypoints = () => {
                   />
                 </Box>
                 <Box display={"flex"} alignItems={"center"} gap={"30px"}>
-                  <Button disabled={isLoading}
+                  <Button
+                    disabled={isLoading}
                     id={styles.submit_btn}
                     type="submit"
                     variant="contained"

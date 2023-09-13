@@ -89,15 +89,12 @@
 }
 
 .slab_circle {
-  border-radius: 2%;
   overflow: hidden;
   border-radius: 2%;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
 }
 
 .slabs_img {
-  max-height: max-content;
-  /* height: 30vh; */
+  height: 30vh;
   width: 100%;
   display: block;
   margin: auto;
@@ -106,7 +103,6 @@
 #home_d_sec > div:nth-child(2),
 #home_d_sec > div:nth-child(4) {
   flex-direction: row-reverse;
-
 }
 
 #right_slab {
@@ -161,7 +157,6 @@
 }
 
 .circle_quote {
-  background: lightblue;
   padding: 15% 15% 5% 15%;
   height: 100%;
   border-top-left-radius: 35px;
@@ -319,7 +314,6 @@
   .slabs_img {
     height: 10vh;
   }
-
 
   .partner_grid {
     grid-template-columns: repeat(1, 1fr);

@@ -37,7 +37,6 @@
 
 .navbar_menu > div:first-child > button {
   text-transform: capitalize;
-  color: #000;
   font-size: medium;
 }
 
@@ -53,7 +52,6 @@
 
 .products_menu a {
   text-decoration: none;
-  color: #000;
 }
 
 #hamburger_menu {
@@ -83,7 +81,6 @@
 .products_menu {
   box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
   position: absolute;
-  background-color: #fff;
   cursor: pointer;
   top: 100%;
   width: 40%;

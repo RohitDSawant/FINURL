@@ -173,7 +173,9 @@ const ApplicationForLoan = () => {
               // bgcolor={theme.palette.primary.main}
               className={styles.application_form}
             >
-              <FormControl component="form" onSubmit={handleSubmit}>
+              <FormControl data-aos="fade-right"
+            data-aos-duration="500"
+            data-aos-easing="ease-in-sine" component="form" onSubmit={handleSubmit}>
                 <Box>
                   <TextField
                     size="small"

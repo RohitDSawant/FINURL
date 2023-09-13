@@ -12,7 +12,7 @@ const HomeDSlabs = () => {
         <Box>
           <Grid
             data-aos="fade-left"
-            data-aos-duration="1000"
+            data-aos-duration="700"
             data-aos-easing="ease-in-sine"
             justifyContent={"space-between"}
             container
@@ -44,7 +44,7 @@ const HomeDSlabs = () => {
           </Grid>
           <Grid
             data-aos="fade-left"
-            data-aos-duration="1000"
+            data-aos-duration="700"
             data-aos-easing="ease-in-sine"
             container
             mt={10}
@@ -83,7 +83,7 @@ const HomeDSlabs = () => {
           </Grid>
           <Grid
             data-aos="fade-right"
-            data-aos-duration="1000"
+            data-aos-duration="700"
             data-aos-easing="ease-in-sine"
             container
             mt={10}

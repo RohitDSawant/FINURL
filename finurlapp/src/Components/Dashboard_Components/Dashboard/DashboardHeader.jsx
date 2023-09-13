@@ -1,7 +1,9 @@
 import React from "react";
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography, useTheme } from "@mui/material";
 
 const DashboardHeader = () => {
+
+  const theme = useTheme()
   return (
     <>
       <Grid
@@ -31,7 +33,7 @@ const DashboardHeader = () => {
               ₹ 12,361
               </Typography>
             </Box>
-            <CircularProgress value={80} variant="determinate" size={30} />
+            <CircularProgress sx={{"color": theme.palette.secondary.main}} value={80} variant="determinate" size={30} />
           </Box>
         </Grid>
         <Grid
@@ -57,7 +59,7 @@ const DashboardHeader = () => {
               ₹ 432,441
               </Typography>
             </Box>
-            <CircularProgress value={80} variant="determinate" size={30} />
+            <CircularProgress sx={{"color": theme.palette.secondary.main}} value={80} variant="determinate" size={30} />
           </Box>
         </Grid>
         <Grid
@@ -83,7 +85,7 @@ const DashboardHeader = () => {
               ₹ 21,225
               </Typography>
             </Box>
-            <CircularProgress value={80} variant="determinate" size={30} />
+            <CircularProgress sx={{"color": theme.palette.secondary.main}} value={80} variant="determinate" size={30} />
           </Box>
         </Grid>
         <Grid
@@ -109,7 +111,7 @@ const DashboardHeader = () => {
               ₹ 1,325,425
               </Typography>
             </Box>
-            <CircularProgress value={80} variant="determinate" size={30} />
+            <CircularProgress sx={{"color": theme.palette.secondary.main}} value={80} variant="determinate" size={30} />
           </Box>
         </Grid>
       </Grid>

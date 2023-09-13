@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
@@ -8,6 +8,7 @@ import {
   Menu,
   MenuItem,
   Typography,
+  useTheme,
 } from "@mui/material";
 import styles from "./../../CSS/navbar.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -22,12 +23,13 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedinIcon from "@mui/icons-material/LinkedIn";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DashboardCustomizeRoundedIcon from "@mui/icons-material/DashboardCustomizeRounded";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { persistor } from "./../../Redux/store";
-import theme from "../../Theme/theme";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -37,8 +39,10 @@ const Navbar = () => {
   const [productsOpen, setProductsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
-
+  const theme = useTheme();
   const navigate = useNavigate();
+  const { setCurrentTheme, currentTheme } = useContext(ThemeContext);
+
   const handleLogout = () => {
     persistor.purge();
     localStorage.removeItem("persist:root");
@@ -91,6 +95,12 @@ const Navbar = () => {
     }
   };
 
+  const handleTheme = () => {
+    console.log(currentTheme);
+    if (currentTheme === "lightTheme") setCurrentTheme("darkTheme");
+    else setCurrentTheme("lightTheme");
+  };
+
   return (
     <>
       <Box bgcolor={theme.palette.primary.main} className={styles.navbar}>
@@ -101,7 +111,11 @@ const Navbar = () => {
           alignItems={"center"}
         >
           <img className={styles.nav_logo} src={logo} alt="logo" />
-          <Typography mt={0.5} variant="h6" color={theme.palette.primary.dark}>
+          <Typography
+            mt={0.5}
+            variant="h6"
+            color={theme.palette.secondary.main}
+          >
             FinURL
           </Typography>
         </Box>
@@ -111,7 +125,7 @@ const Navbar = () => {
             {/* Products */}
             <Box onClick={handleShowProducts} id={styles.products_btn}>
               <Typography
-                color={theme.palette.primary.dark}
+                color={theme.palette.secondary.main}
                 mr={2}
                 variant="body2"
               >
@@ -119,19 +133,22 @@ const Navbar = () => {
               </Typography>
               {!productsOpen ? (
                 <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  sx={{ color: `${theme.palette.secondary.main}` }}
                   fontSize="small"
                 />
               ) : (
                 <ExpandLessIcon
-                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  sx={{ color: `${theme.palette.secondary.main}` }}
                   fontSize="small"
                 />
               )}
             </Box>
 
             {productsOpen ? (
-              <Box className={styles.products_menu}>
+              <Box
+                className={styles.products_menu}
+                sx={{ background: theme.palette.primary.main }}
+              >
                 <Box>
                   <Typography variant="body1" mb={2}>
                     Loans:
@@ -191,7 +208,7 @@ const Navbar = () => {
             {/* <---- Resources ----> */}
             <Box onClick={handleShowResources} id={styles.resource_btn}>
               <Typography
-                color={theme.palette.primary.dark}
+                color={theme.palette.secondary.main}
                 variant="body2"
                 mr={2}
               >
@@ -199,12 +216,12 @@ const Navbar = () => {
               </Typography>
               {!resourceOpen ? (
                 <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  sx={{ color: `${theme.palette.secondary.main}` }}
                   fontSize="small"
                 />
               ) : (
                 <ExpandLessIcon
-                  sx={{ color: `${theme.palette.primary.dark}` }}
+                  sx={{ color: `${theme.palette.secondary.main}` }}
                   fontSize="small"
                 />
               )}
@@ -213,6 +230,7 @@ const Navbar = () => {
             <Box
               style={{ display: resourceOpen ? "flex" : "none" }}
               className={styles.resource_menu}
+              sx={{ background: theme.palette.primary.main }}
             >
               <Box>
                 <Typography variant="body1" mb={2}>
@@ -241,7 +259,7 @@ const Navbar = () => {
             </Box>
 
             <Button id={styles.about_btn}>
-              <Typography color={theme.palette.primary.dark} variant="body2">
+              <Typography color={theme.palette.secondary.main} variant="body2">
                 About Us
               </Typography>
             </Button>
@@ -250,7 +268,7 @@ const Navbar = () => {
                 <Typography
                   textTransform={"capitalize"}
                   mt={0.2}
-                  color={theme.palette.primary.dark}
+                  color={theme.palette.secondary.main}
                   variant="body2"
                 >
                   Contact Us
@@ -258,6 +276,16 @@ const Navbar = () => {
               </Button>
             </Link>
           </Box>
+          <Button
+            onClick={handleTheme}
+            sx={{ color: theme.palette.secondary.main }}
+          >
+            {theme.palette.mode !== "dark" ? (
+              <DarkModeIcon />
+            ) : (
+              <LightModeRoundedIcon />
+            )}
+          </Button>
           <Box className={styles.user_section}>
             {isAuth ? (
               <>
@@ -266,13 +294,12 @@ const Navbar = () => {
                   sx={{ display: "flex", gap: "10px" }}
                 >
                   <AccountCircleIcon
-                    sx={{ color: `${theme.palette.primary.dark}` }}
+                    sx={{ color: `${theme.palette.secondary.main}` }}
                     fontSize="large"
                   />
                 </Button>
                 <Menu onClose={handleClose} open={openMenu} anchorEl={anchorEl}>
-                  {/* <MenuItem>Profile</MenuItem>
-                  <MenuItem>Theme : Dark</MenuItem> */}
+                  {/* <MenuItem>Profile</MenuItem>*/}
                   <MenuItem onClick={NavToDash}>
                     <DashboardCustomizeRoundedIcon
                       sx={{ marginRight: "10px " }}
@@ -289,10 +316,10 @@ const Navbar = () => {
                 <Link to={"/authentication"}>
                   <Button>
                     <LoginIcon
-                      sx={{ color: `${theme.palette.primary.dark}` }}
+                      sx={{ color: `${theme.palette.secondary.main}` }}
                     />
                     <Typography
-                      sx={{ color: `${theme.palette.primary.dark}` }}
+                      sx={{ color: `${theme.palette.secondary.main}` }}
                       ml={2}
                       textTransform={"capitalize"}
                       variant="body2"
@@ -307,7 +334,7 @@ const Navbar = () => {
         </Box>
         {/*<--------------- hamburger-menu -------------------> */}
         <Box onClick={handleDrawer} id={styles.hamburger_menu}>
-          <MenuIcon sx={{ color: `${theme.palette.primary.dark}` }} />
+          <MenuIcon sx={{ color: `${theme.palette.secondary.main}` }} />
         </Box>
         <Drawer
           open={drawerOpen}

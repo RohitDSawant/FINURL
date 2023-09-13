@@ -1,16 +1,25 @@
 import React from "react";
 import styles from "./../../CSS/homepage.module.css";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import quote_right from "./../../Assets/Images/quote-right.svg";
 
 const HomeFReviews = () => {
+
+  const theme = useTheme()
+
   return (
     <>
       <section id={styles.home_f_sec}>
         <Typography textAlign={"center"} mb={10} mt={5} variant="h5">
           What Our Clients Say
         </Typography>
-        <Grid width={"95%"} gap={"20px"} justifyContent={"space-around"} margin={"auto"} container >
+        <Grid
+          width={"95%"}
+          gap={"20px"}
+          justifyContent={"space-around"}
+          margin={"auto"}
+          container
+        >
           <Grid
             className={styles.testimonials}
             item
@@ -18,8 +27,11 @@ const HomeFReviews = () => {
             md={5}
             sm={5}
             xs={10}
+            data-aos="fade-up"
+            data-aos-duration="1700"
+            data-aos-easing="ease-in-sine"
           >
-            <Box className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.primary.main} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box>
                 <Typography variant="body2">
@@ -40,8 +52,11 @@ const HomeFReviews = () => {
             md={5}
             sm={5}
             xs={10}
+            data-aos="fade-up"
+            data-aos-duration="1700"
+            data-aos-easing="ease-in-sine"
           >
-            <Box className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.primary.main} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box>
                 <Typography variant="body2">
@@ -62,10 +77,13 @@ const HomeFReviews = () => {
             md={5}
             sm={5}
             xs={10}
+            data-aos="fade-up"
+            data-aos-duration="1700"
+            data-aos-easing="ease-in-sine"
           >
-            <Box className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.primary.main} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
-              <Box>
+              <Box  >
                 <Typography variant="body2">
                   Because of Finurl and their tie-ups with multiple banks and
                   NBCs, I was able to get a loan within 48 hours.

@@ -16,8 +16,8 @@ const Homepage = () => {
       <Navbar />
       <HomeA />
       <HomeB />
-      <HomeDSlabs />
       <HomeCLoans />
+      <HomeDSlabs />
       <LoanCalculator />
       <HomeEScore />
       <HomeFReviews />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Grid, Slider, Typography } from "@mui/material";
+import { Box, Grid, Slider, Typography, useTheme } from "@mui/material";
 import TableDetails from "./CalculatorTable";
 
 const LoanCalculator = () => {
@@ -20,10 +20,12 @@ const LoanCalculator = () => {
   );
 
   const TotalAmountOfInterest = Math.round(totalAmt - TotalAmountOfCredit);
-
+    const theme = useTheme()
   return (
     <>
-      <Typography textAlign={"center"} mb={5} variant="h5">EMI calculator</Typography>
+      <Typography textAlign={"center"} mb={5} variant="h5">
+        EMI calculator
+      </Typography>
       <Grid
         width={"95%"}
         margin={"auto"}
@@ -32,10 +34,22 @@ const LoanCalculator = () => {
         container
         spacing={1}
       >
-        <Grid item xs={10} sm={7} md={7} lg={7} >
+        <Grid
+          data-aos="fade-right"
+          data-aos-duration="1500"
+          data-aos-easing="ease-in-sine"
+          item
+          xs={10}
+          sm={7}
+          md={7}
+          lg={7}
+        >
           <Box m={2}>
-            <Typography variant="body1" fontWeight={600}> Loan Amount</Typography>
-            <Slider
+            <Typography variant="body1" fontWeight={600}>
+              {" "}
+              Loan Amount
+            </Typography>
+            <Slider sx={{"color": theme.palette.secondary.main}}
               value={Amount}
               onChange={(event, vAmt) => {
                 setAmount(vAmt);
@@ -45,8 +59,11 @@ const LoanCalculator = () => {
             />
           </Box>
           <Box m={2}>
-            <Typography variant="body1" fontWeight={600}> Interest Rate</Typography>
-            <Slider
+            <Typography variant="body1" fontWeight={600}>
+              {" "}
+              Interest Rate
+            </Typography>
+            <Slider sx={{"color": theme.palette.secondary.main}}
               value={interest}
               onChange={(event, vInt) => {
                 setInterest(vInt);
@@ -56,8 +73,11 @@ const LoanCalculator = () => {
             />
           </Box>
           <Box m={2}>
-            <Typography variant="body1" fontWeight={600}> Tenure (Months)</Typography>
-            <Slider
+            <Typography variant="body1" fontWeight={600}>
+              {" "}
+              Tenure (Months)
+            </Typography>
+            <Slider sx={{"color": theme.palette.secondary.main}}
               value={duration}
               onChange={(event, vDur) => {
                 setDuration(vDur);
@@ -67,7 +87,16 @@ const LoanCalculator = () => {
             />
           </Box>
         </Grid>
-        <Grid item xs={10} sm={4} md={4} lg={3.5} >
+        <Grid
+          data-aos="fade-left"
+          data-aos-duration="1500"
+          data-aos-easing="ease-in-sine"
+          item
+          xs={10}
+          sm={4}
+          md={4}
+          lg={3.5}
+        >
           <TableDetails
             Amount={Amount}
             totalAmt={totalAmt}

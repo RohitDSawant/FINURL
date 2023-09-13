@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import React from "react";
 import styles from "./../../CSS/homepage.module.css";
 import Slider from "react-slick";
@@ -9,10 +9,10 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import theme from "../../Theme/theme";
 
 const InstantLoansCarousel = () => {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const theme = useTheme()
 
   const responsiveSettings = [
     {
@@ -48,7 +48,7 @@ const InstantLoansCarousel = () => {
   const CustomPrevArrow = (props) => {
     const { onClick } = props;
     return (
-      <Box id={styles.slick_prev} onClick={onClick}>
+      <Box sx={{"color": theme.palette.secondary.main}} id={styles.slick_prev} onClick={onClick}>
         <KeyboardArrowLeftIcon />
       </Box>
     );
@@ -57,7 +57,7 @@ const InstantLoansCarousel = () => {
   const CustomNextArrow = (props) => {
     const { onClick } = props;
     return (
-      <Box id={styles.slick_next} onClick={onClick}>
+      <Box sx={{"color": theme.palette.secondary.main}} id={styles.slick_next} onClick={onClick}>
         <KeyboardArrowRightIcon />
       </Box>
     );
@@ -102,8 +102,8 @@ const InstantLoansCarousel = () => {
                   mb={2}
                   fontWeight={600}
                   fontSize={"large"}
-                  color={"primary"}
                   textTransform={"capitalize"}
+                  variant="body2"
                 >
                   {partner.name}
                 </Typography>

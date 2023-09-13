@@ -5,6 +5,10 @@
 .instant_loan_pic{
     height: 45vh;
 }
+.business_loan_pic{
+    height: 60vh;
+    width: 30vw;
+}
 
 .partner_short_logo{
     border: 1px solid;

@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import React from "react";
 import styles from "./../../CSS/footer.module.css";
 import logo from "./../../Assets/Images/circle_log.png";
@@ -8,9 +8,14 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedinIcon from "@mui/icons-material/LinkedIn";
 
 const Footer = () => {
+  const theme = useTheme();
+
   return (
     <>
-      <footer id={styles.footer}>
+      <footer
+        style={{ "background-color": `${theme.palette.primary.main}` }}
+        id={styles.footer}
+      >
         <Box>
           <Grid container justifyContent={"space-around"} spacing={3}>
             <Grid item xs={12} sm={10} lg={4}>
@@ -21,16 +26,22 @@ const Footer = () => {
                 </Box>
                 <Box display={"flex"} mt={5} ml={5} gap={"10px"}>
                   <Box>
-                    <FacebookIcon />
+                    <FacebookIcon
+                      sx={{ color: theme.palette.secondary.main }}
+                    />
                   </Box>
                   <Box>
-                    <InstagramIcon />
+                    <InstagramIcon
+                      sx={{ color: theme.palette.secondary.main }}
+                    />
                   </Box>
                   <Box>
-                    <TwitterIcon />
+                    <TwitterIcon sx={{ color: theme.palette.secondary.main }} />
                   </Box>
                   <Box>
-                    <LinkedinIcon />
+                    <LinkedinIcon
+                      sx={{ color: theme.palette.secondary.main }}
+                    />
                   </Box>
                 </Box>
               </Box>

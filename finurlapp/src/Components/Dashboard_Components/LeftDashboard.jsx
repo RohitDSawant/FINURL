@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
@@ -10,7 +10,6 @@ import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import styles from "./../../CSS/dashboard.module.css";
 import { DasboardContext } from "../../Context/DashboardContext";
 import circle_logo from "./../../Assets/Images/circle_log.png";
-import theme from "./../../Theme/theme";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { persistor } from "../../Redux/store";
 import { Link, useNavigate } from "react-router-dom";
@@ -18,6 +17,7 @@ import { Link, useNavigate } from "react-router-dom";
 const LeftDashboard = () => {
   const { setActiveTab } = useContext(DasboardContext);
   const { toggle } = useContext(DasboardContext);
+  const theme = useTheme();
 
   const handleDashboardSec = () => {
     setActiveTab("dashboard");
@@ -74,10 +74,10 @@ const LeftDashboard = () => {
             </>
           ) : (
             <>
-              <Link style={{"textDecoration": "none"}} to={"/"}>
+              <Link style={{ textDecoration: "none" }} to={"/"}>
                 <Box mt={2} display={"flex"} alignItems={"center"} gap={"15px"}>
                   <img height={"30vh"} src={circle_logo} alt="logo" />
-                  <Typography mt={0.5}  color={"#fff"} variant="h6">
+                  <Typography mt={0.5} variant="h6">
                     FinURL
                   </Typography>
                 </Box>
@@ -88,41 +88,72 @@ const LeftDashboard = () => {
         <Menu>
           <MenuItem
             id={styles.menu_item}
-            icon={<HomeRoundedIcon />}
+            icon={
+              <HomeRoundedIcon sx={{ color: theme.palette.secondary.main }} />
+            }
             onClick={handleDashboardSec}
           >
             <Typography variant="body1"> Dashboard</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
-            icon={<CompareArrowsRoundedIcon />}
+            icon={
+              <CompareArrowsRoundedIcon
+                sx={{ color: theme.palette.secondary.main }}
+              />
+            }
             onClick={handleRecordsSec}
           >
-            Loans Records
+            <Typography variant="body1"> Loans Records</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
-            icon={<CreditScoreRoundedIcon />}
+            icon={
+              <CreditScoreRoundedIcon
+                sx={{ color: theme.palette.secondary.main }}
+              />
+            }
             onClick={handleBankWiseSec}
           >
-            Bank Offers
+            <Typography variant="body1"> Bank Offers</Typography>
           </MenuItem>
-          <MenuItem id={styles.menu_item} icon={<PaymentRoundedIcon />}>
-            Cards
+          <MenuItem
+            id={styles.menu_item}
+            icon={
+              <PaymentRoundedIcon
+                sx={{ color: theme.palette.secondary.main }}
+              />
+            }
+          >
+            <Typography variant="body1"> Cards</Typography>
           </MenuItem>
-          <MenuItem id={styles.menu_item} icon={<LeaderboardRoundedIcon />}>
-            Insights
+          <MenuItem
+            id={styles.menu_item}
+            icon={
+              <LeaderboardRoundedIcon
+                sx={{ color: theme.palette.secondary.main }}
+              />
+            }
+          >
+            <Typography variant="body1">Insights</Typography>
           </MenuItem>
-          <MenuItem id={styles.menu_item} icon={<SettingsRoundedIcon />}>
-            Settings
+          <MenuItem
+            id={styles.menu_item}
+            icon={
+              <SettingsRoundedIcon
+                sx={{ color: theme.palette.secondary.main }}
+              />
+            }
+          >
+            <Typography variant="body1">Settings</Typography>
           </MenuItem>
           <MenuItem
             onClick={handleLogout}
             style={{ marginTop: "70%" }}
             id={styles.menu_item}
-            icon={<LogoutIcon />}
+            icon={<LogoutIcon sx={{ color: theme.palette.secondary.main }} />}
           >
-            Logout
+            <Typography variant="body1">Logout</Typography>
           </MenuItem>
         </Menu>
       </Sidebar>

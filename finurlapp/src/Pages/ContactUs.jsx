@@ -5,17 +5,20 @@ import {
   TextField,
   TextareaAutosize,
   Typography,
+  useTheme,
 } from "@mui/material";
 import React from "react";
 import styles from "./../CSS/contactus.module.css";
 import Navbar from "../Components/Common/Navbar";
-import theme from "../Theme/theme";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CallRoundedIcon from "@mui/icons-material/CallRounded";
 import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Link } from "react-router-dom";
 
 const ContactUs = () => {
+  
+  const theme = useTheme();
+
   return (
     <>
       <section id="contact_us">
@@ -128,7 +131,9 @@ const ContactUs = () => {
               </Link>
             </Grid>
           </Grid>
-          <Typography variant="body2">Just click to mail or make a call</Typography>
+          <Typography variant="body2">
+            Just click to mail or make a call
+          </Typography>
         </Box>
       </section>
     </>

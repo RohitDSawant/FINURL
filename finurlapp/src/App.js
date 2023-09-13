@@ -1,21 +1,31 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import "./App.css";
-import Navbar from "./Components/Common/Navbar";
+// import Navbar from "./Components/Common/Navbar";
 import Router from "./Router/Routes";
-import AOS from "aos"
-import 'aos/dist/aos.css'; 
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { Box, ThemeProvider } from "@mui/material";
+import { ThemeContext } from "./Context/ThemeContext";
+import { darkTheme, lightTheme } from "./Theme/theme";
 
 function App() {
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
-  useEffect(()=>{
-    AOS.init()
-  },[])
+  const { currentTheme } = useContext(ThemeContext);
+
+  const theme = currentTheme === "lightTheme" ?  lightTheme : darkTheme
+    
+  console.log(theme)
 
   return (
-    <div className="App">
+    <Box sx={{backgroundColor: theme.palette.background.default}} className="App">
       {/* <Navbar /> */}
-      <Router />
-    </div>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+    </Box>
   );
 }
 

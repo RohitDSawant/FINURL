@@ -1,7 +1,14 @@
-import { Badge, Box, Button, Menu, MenuItem, Typography } from "@mui/material";
+import {
+  Badge,
+  Box,
+  Button,
+  Menu,
+  MenuItem,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import React, { useContext, useState } from "react";
 import NotificationsNoneRoundedIcon from "@mui/icons-material/NotificationsNoneRounded";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import styles from "./../../CSS/dashboard.module.css";
 import { DasboardContext } from "../../Context/DashboardContext";
@@ -10,11 +17,16 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { persistor } from "../../Redux/store";
 import { useNavigate } from "react-router-dom";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
 import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
+import { ThemeContext } from "../../Context/ThemeContext";
 
 const DashboardNavbar = () => {
   const { activeTab, toggle, setToggle } = useContext(DasboardContext);
   const [userAnchorEl, setAnchorEl] = useState(null);
+  const theme = useTheme();
+  const { setCurrentTheme, currentTheme } = useContext(ThemeContext);
 
   const handleUserMenu = (e) => {
     setAnchorEl(e.currentTarget);
@@ -42,6 +54,11 @@ const DashboardNavbar = () => {
 
   // toggle sidebar
 
+  const handleTheme = () => {
+    if (currentTheme === "lightTheme") setCurrentTheme("darkTheme");
+    else setCurrentTheme("lightTheme");
+  };
+
   const handleToggle = () => {
     setToggle((prev) => !prev);
   };
@@ -50,12 +67,18 @@ const DashboardNavbar = () => {
     <Box className={styles.dashboard_navbar}>
       <Box display={"flex"} alignItems={"center"} gap={"15px"}>
         <Button onClick={handleToggle}>
-          {!toggle ? <FormatAlignLeftIcon /> : <FormatAlignRightIcon />}
+          {!toggle ? (
+            <FormatAlignLeftIcon sx={{ color: theme.palette.secondary.main }} />
+          ) : (
+            <FormatAlignRightIcon
+              sx={{ color: theme.palette.secondary.main }}
+            />
+          )}
         </Button>
         <Typography
           textTransform={"uppercase"}
           fontWeight={600}
-          variant="body1 "
+          variant="body1"
         >
           {activeTab}
         </Typography>
@@ -66,9 +89,13 @@ const DashboardNavbar = () => {
             <NotificationsNoneRoundedIcon />
           </Badge>
         </Typography>
-        <Typography variant="body2">
-          <DarkModeOutlinedIcon />
-        </Typography>
+        <Box onClick={handleTheme}>
+          {theme.palette.mode !== "dark" ? (
+            <DarkModeIcon sx={{"color": theme.palette.secondary.main}} />
+          ) : (
+            <LightModeRoundedIcon sx={{"color": theme.palette.secondary.main}} />
+          )}
+        </Box>
         <Typography onClick={handleUserMenu} variant="body2">
           <AccountCircleRoundedIcon />
         </Typography>

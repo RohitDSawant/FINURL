@@ -18,15 +18,18 @@ import {
   Snackbar,
   Switch,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import auth1 from "./../../Assets/Images/auth_1.jpg";
 import auth2 from "./../../Assets/Images/auth_2.jpg";
 import auth3 from "./../../Assets/Images/auth_3.jpg";
 import Navbar from "./Navbar";
-import theme from "../../Theme/theme";
 
 const LoginPage = () => {
+
+  const theme  = useTheme()
+
   const [activeInput, setActiveInput] = useState(null);
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [activeSlide, setActiveSlide] = useState(1);

@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useState } from "react";
 import TabContext from "@mui/lab/TabContext";
 import styles from "./../../CSS/homepage.module.css";
@@ -12,10 +12,13 @@ import CoomingSoon from "../Carousel_Components/ComingSoon";
 
 const HomeCLoans = () => {
   const [tab, setCurrentTab] = useState("instant");
+  const theme = useTheme()
 
   const handleChange = (event, newValue) => {
     setCurrentTab(newValue);
   };
+
+
 
   return (
     <>
@@ -29,8 +32,8 @@ const HomeCLoans = () => {
         </Typography>
         <Box mt={10} className={styles.loans_sec}>
           <TabContext value={tab}>
-            <Box mb={2} sx={{ borderBottom: 1, borderColor: "divider" }}>
-              <TabList textColor="black"
+            <Box mb={2} sx={{ borderBottom: 1, borderColor: "divider", color: theme.palette.secondary.main }}>
+              <TabList textColor= {theme.palette.primary.main}
                 variant={"scrollable"}
                 scrollButtons={"auto"}
                 onChange={handleChange}

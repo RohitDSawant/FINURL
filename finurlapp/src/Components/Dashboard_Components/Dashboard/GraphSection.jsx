@@ -1,6 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
 import React, { useEffect } from "react";
-import theme from "../../../Theme/theme";
 import { loans } from "../../../Assets/fake-data/loansdata";
 import bar_chart from "./../../../Assets/Images/1197869.png";
 import { getLoansData } from "../../../Redux/Func/Dashboard/dashboardFunc";
@@ -8,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const GraphSection = () => {
   const user = useSelector((state) => state.authReducer.loggedInUser._id);
+  const theme  = useTheme()
 
   const dispatch = useDispatch();
 
@@ -36,7 +36,7 @@ const GraphSection = () => {
               borderRadius: "5px",
             }}
           >
-            <Typography color={theme.palette.primary.dark} variant="subtitle2">
+            <Typography color={theme.palette.secondary.main} variant="subtitle2">
               Recent Loan Processed
             </Typography>
           </Box>
@@ -64,7 +64,7 @@ const GraphSection = () => {
                   >
                     <Box>
                       <Typography
-                        color={theme.palette.primary.dark}
+                        color={theme.palette.secondary.main}
                         fontSize={"x-small"}
                         letterSpacing={1}
                         mb={1}
@@ -73,21 +73,21 @@ const GraphSection = () => {
                         {people.loanID}
                       </Typography>
                       <Typography
-                        color={theme.palette.primary.dark}
+                        color={theme.palette.secondary.main}
                         variant="subtitle2"
                       >
                         {people.name}{" "}
                       </Typography>
                     </Box>
                     <Typography
-                      color={theme.palette.primary.dark}
+                      color={theme.palette.secondary.main}
                       alignSelf={"center"}
                       variant="body2"
                     >
                       {people.date}
                     </Typography>
                     <Typography
-                      color={theme.palette.primary.dark}
+                      color={theme.palette.secondary.main}
                       alignSelf={"center"}
                       variant="body1"
                     >

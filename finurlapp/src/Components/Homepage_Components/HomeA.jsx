@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
-import maintheme from "./../../Assets/Images/main_theme_2.jpg";
+import maintheme from "./../../Assets/Images/main_theme_2_png.png";
 import styles from "./../../CSS/homepage.module.css";
 
 const HomeA = () => {

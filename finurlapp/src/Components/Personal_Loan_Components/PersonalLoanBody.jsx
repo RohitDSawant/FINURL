@@ -336,7 +336,14 @@ const PersonalLoanBody = () => {
         <br />
         <Box width={"80%"} pb={5} margin={"auto"}>
           <Typography variant="body2" m={3}>
-            <Typography variant="body1" m={1} fontWeight={600}>
+            <Typography
+              data-aos="fade-right"
+              data-aos-duration="500"
+              data-aos-easing="ease-in-sine"
+              variant="body1"
+              m={1}
+              fontWeight={600}
+            >
               Wedding:
             </Typography>
             With the help of a marriage loan, you can take care of the seemingly
@@ -346,7 +353,14 @@ const PersonalLoanBody = () => {
             expenses.
           </Typography>
           <Typography variant="body2" m={3}>
-            <Typography variant="body1" m={1} fontWeight={600}>
+            <Typography
+              data-aos="fade-right"
+              data-aos-duration="700"
+              data-aos-easing="ease-in-sine"
+              variant="body1"
+              m={1}
+              fontWeight={600}
+            >
               Travel:
             </Typography>
             You can fulfill your desire to travel to that dream destination with
@@ -355,7 +369,14 @@ const PersonalLoanBody = () => {
             among others.
           </Typography>
           <Typography variant="body2" m={3}>
-            <Typography variant="body1" m={1} fontWeight={600}>
+            <Typography
+              data-aos="fade-right"
+              data-aos-duration="1100"
+              data-aos-easing="ease-in-sine"
+              variant="body1"
+              m={1}
+              fontWeight={600}
+            >
               Home Renovation:
             </Typography>
             If you have been trying to give your home a makeover, an instant
@@ -365,7 +386,14 @@ const PersonalLoanBody = () => {
             Moreover, you can repay it over a flexible tenure of your choice.
           </Typography>
           <Typography variant="body2" m={3}>
-            <Typography variant="body1" m={1} fontWeight={600}>
+            <Typography
+              data-aos="fade-right"
+              data-aos-duration="1500"
+              data-aos-easing="ease-in-sine"
+              variant="body1"
+              m={1}
+              fontWeight={600}
+            >
               Higher Education:
             </Typography>
             A Instant loan can also be used to pay for higher education. Instant
@@ -373,8 +401,15 @@ const PersonalLoanBody = () => {
             travel-related costs, and lodging/accommodation charges, among
             others.
           </Typography>
-          <Typography variant="body2" m={3}>
-            <Typography variant="body1" m={1} fontWeight={600}>
+          <Typography m={3}>
+            <Typography
+              data-aos="fade-right"
+              data-aos-duration="1700"
+              data-aos-easing="ease-in-sine"
+              variant="body1"
+              m={1}
+              fontWeight={600}
+            >
               Medical Emergency:
             </Typography>
             A medical emergency can lead to financial trouble. Such emergencies
@@ -383,7 +418,14 @@ const PersonalLoanBody = () => {
             loan for medical emergencies.
           </Typography>
           <Typography variant="body2" m={3}>
-            <Typography variant="body1" m={1} fontWeight={600}>
+            <Typography
+              data-aos="fade-right"
+              data-aos-duration="1900"
+              data-aos-easing="ease-in-sine"
+              variant="body1"
+              m={1}
+              fontWeight={600}
+            >
               Buying Expensive Gadgets:
             </Typography>
             Consumer durable loans, yet another type of Instant loan, will
