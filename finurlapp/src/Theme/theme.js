@@ -73,7 +73,7 @@ let lightTheme = createTheme({
             border: "1px solid #053B50", // Customize the label color
           },
           "& .MuiInputLabel-root": {
-            color: "#053B50", // Customize the label color
+            color: "#000", // Customize the label color
           },
           "& .MuiInputLabel-shrink": {
             color: "#053B50", // Customize the label color when it's shrunk
@@ -243,7 +243,7 @@ let darkTheme = createTheme({
             color: "#FEFFAC", // Customize the label color when it's shrunk
           },
           "& .MuiInputBase-input": {
-            color: "#FEFFAC",
+            color: "#fff",
             borderBottom: "2px solid #FEFFAC", // Customize the label color
             // Customize the input text color
           },

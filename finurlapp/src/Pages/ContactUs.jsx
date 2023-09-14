@@ -16,76 +16,58 @@ import MailOutlineRoundedIcon from "@mui/icons-material/MailOutlineRounded";
 import { Link } from "react-router-dom";
 
 const ContactUs = () => {
-  
   const theme = useTheme();
 
   return (
     <>
-      <section id="contact_us">
+      <section id={styles.contact_us}>
         <Navbar />
-        <Box
-          sx={{ backgroundColor: theme.palette.primary.main }}
-          className={styles.contact_us_left_sec}
-        >
-          <Typography
-            sx={{ color: theme.palette.primary.dark }}
-            textAlign={"center"}
-            variant="h6"
-          >
+        <Box>
+          <Typography pt={10} mt={5} textAlign={"center"} variant="h6">
             Contact Us:
           </Typography>
           <Grid
             alignItems={"center"}
-            justifyContent={"center"}
+            justifyContent={"space-around"}
             container
-            ml={3}
+            height={"max-content"}
+            m={"auto"}
             mt={5}
+            pr={2}
+            pl={2}
+            pt={4}
+            pb={4}
+            width={"80vw"}
+            bgcolor={theme.palette.primary.main}
+            borderRadius={"10px"}
           >
-            <Grid lg={11} md={11} sm={11} xs={11} item>
-              <Box mb={5} display={"flex"} gap={"15px"}>
-                <Typography
-                  color={"#fff"}
-                  mt={1}
-                  sx={{
-                    lineBreak: "anywhere",
-                    color: theme.palette.primary.dark,
-                  }}
-                  variant="body2"
+          
+            <Grid item lg={4} md={4} sm={4} xs={6}>
+              <Link to={"tel: +919153555550"}>
+                {" "}
+                <Box
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  mb={2}
+                  display={"flex"}
+                  gap={"15px"}
                 >
-                  <LocationOnIcon />
-                </Typography>
-                <Box>
-                  <Typography
-                    sx={{ color: theme.palette.primary.dark }}
-                    variant="subtitle2"
-                  >
-                    Address:{" "}
-                  </Typography>
                   <Typography
                     mt={1}
                     sx={{
                       lineBreak: "anywhere",
-                      color: theme.palette.primary.dark,
+                      color: theme.palette.secondary.main,
                     }}
-                    variant="body2"
+                    variant="subtitle1"
+                    fontWeight={600}
                   >
-                    Mumbai, Maharashtra, India
-                  </Typography>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item lg={11} md={11} sm={11} xs={11}>
-              <Link to={"tel: +919153555550"}>
-                {" "}
-                <Box mb={5} display={"flex"} gap={"15px"}>
-                  <Typography color={"#fff"} variant="h6">
                     <CallRoundedIcon />
                   </Typography>
+
                   <Box>
                     <Typography
-                      sx={{ color: theme.palette.primary.dark }}
-                      variant="subtitle2 "
-                      fontSize={"small"}
+                      sx={{ color: theme.palette.secondary.main }}
+                      variant="body1 "
                     >
                       Phone:{" "}
                     </Typography>
@@ -93,9 +75,10 @@ const ContactUs = () => {
                       mt={1}
                       sx={{
                         lineBreak: "anywhere",
-                        color: theme.palette.primary.dark,
+                        color: theme.palette.secondary.main,
                       }}
-                      variant="body2"
+                      variant="subtitle1"
+                      fontWeight={600}
                     >
                       +91 91535 55550
                     </Typography>
@@ -103,16 +86,30 @@ const ContactUs = () => {
                 </Box>
               </Link>
             </Grid>
-            <Grid lg={11} md={11} sm={11} xs={11} mb={5} gap={"15px"}>
+            <Grid lg={4} md={4} sm={3.5} xs={11} mb={2} gap={"15px"}>
               <Link to={"mailto: infor@finurl.in"}>
-                <Box mb={5} display={"flex"} gap={"15px"}>
-                  <Typography variant color={"#fff"} t="h6">
+                <Box
+                  alignItems={"center"}
+                  justifyContent={"center"}
+                  display={"flex"}
+                  gap={"15px"}
+                >
+                  <Typography
+                    mt={1}
+                    sx={{
+                      lineBreak: "anywhere",
+                      color: theme.palette.secondary.main,
+                    }}
+                    variant="subtitle1"
+                    fontWeight={600}
+                  >
                     <MailOutlineRoundedIcon />
                   </Typography>
+
                   <Box>
                     <Typography
-                      sx={{ color: theme.palette.primary.dark }}
-                      variant="subtitle2"
+                      sx={{ color: theme.palette.secondary.main }}
+                      variant="body1"
                     >
                       Email:
                     </Typography>
@@ -120,9 +117,10 @@ const ContactUs = () => {
                       mt={1}
                       sx={{
                         lineBreak: "anywhere",
-                        color: theme.palette.primary.dark,
+                        color: theme.palette.secondary.main,
                       }}
-                      variant="body2"
+                      variant="subtitle1"
+                      fontWeight={600}
                     >
                       info@finurl.in
                     </Typography>
@@ -131,7 +129,7 @@ const ContactUs = () => {
               </Link>
             </Grid>
           </Grid>
-          <Typography variant="body2">
+          <Typography textAlign={"center"} mt={2} variant="body1">
             Just click to mail or make a call
           </Typography>
         </Box>

@@ -9,8 +9,8 @@
 
 #home_a_sec > div:first-child {
   width: 90vw;
-  /* border: 1px solid; */
   align-items: center;
+  margin: auto;
   justify-content: space-around;
 }
 
@@ -29,7 +29,7 @@
 
 #home_b_sec > div {
   display: flex;
-  width: 85%;
+  width: 85vw;
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -54,13 +54,15 @@
 
 #home_c_sec {
   /* border: 1px solid; */
-  padding: 2% 5%;
+  padding: 2%;
+  width: 100%;
   margin-top: 10%;
   margin-bottom: 7%;
 }
 
 .loans_sec {
-  width: 78%; /* border: 1px solid; */
+  width: 75vw;
+  /* border: 1px solid; */
   margin: auto;
   justify-content: space-between;
 }
@@ -71,6 +73,8 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
+  padding-bottom: 5%;
+  /* border: 1px solid red; */
   height: max-content;
 }
 
@@ -121,7 +125,7 @@
 
 #home_e_sec > div {
   /* border: 1px solid #ccc; */
-  padding: 2%;
+  /* padding: 2%; */
   margin-top: 5%;
   margin-bottom: 5%;
   display: flex;

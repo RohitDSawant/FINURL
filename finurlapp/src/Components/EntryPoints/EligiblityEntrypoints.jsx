@@ -8,15 +8,16 @@ import {
   CircularProgress,
   Snackbar,
   Alert,
+  useTheme,
 } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
-import checking_img from "./../../Assets/Images/eligibility-check.jpg";
+import checking_img from "./../../Assets/Images/eligibility-new.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
 import Navbar from "../Common/Navbar";
-import theme from "../../Theme/theme";
+
 import {
   prefrDedupe,
   prefrDedupeService,
@@ -28,6 +29,8 @@ import {
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 
 const EligiblityEntrypoints = () => {
+
+  const theme = useTheme()
   const location = useLocation();
   const current_path = location.pathname.split("/")[1];
   const dispatch = useDispatch();
@@ -62,6 +65,7 @@ const EligiblityEntrypoints = () => {
     console.log(formData);
 
     if (current_path === "stashfin") {
+      
       dispatch(
         handleStashfinEligibility({
           phone: formData.mobile_no,

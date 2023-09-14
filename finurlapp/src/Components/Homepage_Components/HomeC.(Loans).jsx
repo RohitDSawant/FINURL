@@ -37,6 +37,7 @@ const HomeCLoans = () => {
                 variant={"scrollable"}
                 scrollButtons={"auto"}
                 onChange={handleChange}
+                sx={{ "width":"60vw", "margin":"auto"}}
               >
                 <Tab label="Instant Loan" value="instant" />
                 <Tab label="Personal Loan" value="personal" />

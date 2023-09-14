@@ -206,6 +206,31 @@ export const appReducer = (state = init_state, action) => {
       return { ...state, isLoading: false, isError: true };
     }
 
+
+    // <----------------- Adding form data ----------------> 
+
+    // case types.ADDING_FORM_DATA_REQUEST: {
+    //   return { ...state, isLoading: true };
+    // }
+
+    // case types.ADDING_FORM_DATA_SUCCESS: {
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     formData :{
+    //       ...state.formData, 
+    //     }
+    //   };
+    // }
+
+    // case types.ADDING_FORM_DATA_FAILURE: {
+    //   return { ...state, isLoading: false, isError: true };
+    // }
+
+
+
+
+
     default: {
       return state;
     }
