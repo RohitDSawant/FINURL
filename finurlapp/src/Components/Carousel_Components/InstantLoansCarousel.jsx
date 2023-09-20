@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 
 const InstantLoansCarousel = () => {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
-  const theme = useTheme()
+  const theme = useTheme();
 
   const responsiveSettings = [
     {
@@ -48,7 +48,11 @@ const InstantLoansCarousel = () => {
   const CustomPrevArrow = (props) => {
     const { onClick } = props;
     return (
-      <Box sx={{"color": theme.palette.secondary.main}} id={styles.slick_prev} onClick={onClick}>
+      <Box
+        sx={{ color: theme.palette.primary.dark }}
+        id={styles.slick_prev}
+        onClick={onClick}
+      >
         <KeyboardArrowLeftIcon />
       </Box>
     );
@@ -57,7 +61,11 @@ const InstantLoansCarousel = () => {
   const CustomNextArrow = (props) => {
     const { onClick } = props;
     return (
-      <Box sx={{"color": theme.palette.secondary.main}} id={styles.slick_next} onClick={onClick}>
+      <Box
+        sx={{ color: theme.palette.primary.dark }}
+        id={styles.slick_next}
+        onClick={onClick}
+      >
         <KeyboardArrowRightIcon />
       </Box>
     );
@@ -136,7 +144,7 @@ const InstantLoansCarousel = () => {
                   <Typography variant="body2">{partner.description}</Typography>
                 </Box>
                 <Button
-                  id={styles.carousel_apply_btn}
+                  sx={{ display: "block", margin: "auto" }}
                   onClick={() => {
                     Redirection(partner.path);
                   }}

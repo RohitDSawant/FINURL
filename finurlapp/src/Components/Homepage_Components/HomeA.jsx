@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Grid, Typography } from "@mui/material";
-import maintheme from "./../../Assets/Images/main_theme_2_png.png";
+import { Box, Grid, Typography, useTheme } from "@mui/material";
+import maintheme from "./../../Assets/Images/landing.png";
 import styles from "./../../CSS/homepage.module.css";
+import { Link } from "react-router-dom";
 
 const HomeA = () => {
   return (
@@ -21,7 +22,7 @@ const HomeA = () => {
               Loan method
             </Typography>
             <br />
-            <Typography lineHeight={"1.2rem"} variant="body2">
+            <Typography lineHeight={"1.2rem"} variant="subtitle2">
               Our team of experts uses a methodology to identify the credit
               cards most likely to fit your needs. We examine annual percentage
               rates, annual fees.

@@ -11,12 +11,6 @@
   /* width: 500px; */
 }
 
-.eligibility_check_form {
-  /* border: 1px solid #ccc; */
-  /* border-radius: 10px;
-  padding: 5%; */
-}
-
 #submit_btn {
   color: #fff;
   background-color: #121b28;
@@ -30,10 +24,16 @@
   /* border: 2px solid #121b28; */
 }
 
+.partners_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 
-#application_pencil {
-  height: 60vh;
-  width: 40vw;
+.partners_img {
+  height: 5vh;
+  display: block;
+  margin: auto;
 }
 
 .application_form {

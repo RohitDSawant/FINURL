@@ -103,7 +103,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Box bgcolor={theme.palette.primary.main} className={styles.navbar}>
+      <Box bgcolor={theme.palette.background.default} className={styles.navbar}>
         <Box
           onClick={HomeCall}
           display={"flex"}
@@ -111,11 +111,7 @@ const Navbar = () => {
           alignItems={"center"}
         >
           <img className={styles.nav_logo} src={logo} alt="logo" />
-          <Typography
-            mt={0.5}
-            variant="h6"
-            color={theme.palette.secondary.main}
-          >
+          <Typography mt={0.5} variant="h6">
             FinURL
           </Typography>
         </Box>
@@ -124,21 +120,17 @@ const Navbar = () => {
           <Box>
             {/* Products */}
             <Box onClick={handleShowProducts} id={styles.products_btn}>
-              <Typography
-                color={theme.palette.secondary.main}
-                mr={2}
-                variant="body2"
-              >
+              <Typography mr={2} variant="subtitle2">
                 Products
               </Typography>
               {!productsOpen ? (
                 <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.secondary.main}` }}
+                  sx={{ color: `${theme.palette.primary.light}` }}
                   fontSize="small"
                 />
               ) : (
                 <ExpandLessIcon
-                  sx={{ color: `${theme.palette.secondary.main}` }}
+                  sx={{ color: `${theme.palette.primary.light}` }}
                   fontSize="small"
                 />
               )}
@@ -147,39 +139,39 @@ const Navbar = () => {
             {productsOpen ? (
               <Box
                 className={styles.products_menu}
-                sx={{ background: theme.palette.primary.main }}
+                sx={{ background: theme.palette.background.default }}
               >
                 <Box>
                   <Typography variant="body1" mb={2}>
                     Loans:
                   </Typography>
                   <Link to={"/personal-loan"}>
-                    <Typography variant="body2" m={1}>
+                    <Typography variant="subtitle2" m={1}>
                       🔹 Personal Loan
                     </Typography>
                   </Link>
                   <Link to={"/instant-loan"}>
-                    <Typography variant="body2" m={1}>
+                    <Typography variant="subtitle2" m={1}>
                       🔹 Instant Loan
                     </Typography>
                   </Link>
                   <Link to={"/home-loan"}>
-                    <Typography variant="body2" m={1}>
+                    <Typography variant="subtitle2" m={1}>
                       🔹 Home Loan
                     </Typography>
                   </Link>
                   <Link to={"/business-loan"}>
-                    <Typography variant="body2" m={1}>
+                    <Typography variant="subtitle2" m={1}>
                       🔹 Business Loan
                     </Typography>
                   </Link>
                   <Link to={"/comingsoon"}>
-                    <Typography variant="body2" m={1}>
+                    <Typography variant="subtitle2" m={1}>
                       🔹 Professional Loan
                     </Typography>
                   </Link>
                   <Link to={"/comingsoon"}>
-                    <Typography variant="body2" m={1}>
+                    <Typography variant="subtitle2" m={1}>
                       🔹 Loan against property
                     </Typography>
                   </Link>
@@ -188,7 +180,7 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Card:
                   </Typography>
-                  <Typography variant="body2" m={1}>
+                  <Typography variant="subtitle2" m={1}>
                     🔹 My Card
                   </Typography>
                 </Box>
@@ -196,7 +188,7 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Investment:
                   </Typography>
-                  <Typography variant="body2" m={1}>
+                  <Typography variant="subtitle2" m={1}>
                     🔹 My Investment
                   </Typography>
                 </Box>
@@ -207,21 +199,17 @@ const Navbar = () => {
 
             {/* <---- Resources ----> */}
             <Box onClick={handleShowResources} id={styles.resource_btn}>
-              <Typography
-                color={theme.palette.secondary.main}
-                variant="body2"
-                mr={2}
-              >
+              <Typography variant="subtitle2" mr={2}>
                 Resources
               </Typography>
               {!resourceOpen ? (
                 <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.secondary.main}` }}
+                  sx={{ color: `${theme.palette.primary.light}` }}
                   fontSize="small"
                 />
               ) : (
                 <ExpandLessIcon
-                  sx={{ color: `${theme.palette.secondary.main}` }}
+                  sx={{ color: `${theme.palette.primary.light}` }}
                   fontSize="small"
                 />
               )}
@@ -230,13 +218,13 @@ const Navbar = () => {
             <Box
               style={{ display: resourceOpen ? "flex" : "none" }}
               className={styles.resource_menu}
-              sx={{ background: theme.palette.primary.main }}
+              sx={{ background: theme.palette.background.default }}
             >
               <Box>
                 <Typography variant="body1" mb={2}>
                   Calculator:
                 </Typography>
-                <Typography variant="body2" m={1}>
+                <Typography variant="subtitle2" m={1}>
                   🔹 Calculator
                 </Typography>
               </Box>
@@ -244,7 +232,7 @@ const Navbar = () => {
                 <Typography variant="body1" mb={2}>
                   Financial Literacy
                 </Typography>
-                <Typography variant="body2" m={1}>
+                <Typography variant="subtitle2" m={1}>
                   🔹 Financial Literacy
                 </Typography>
               </Box>
@@ -252,52 +240,47 @@ const Navbar = () => {
                 <Typography variant="body1" mb={2}>
                   Credit Management
                 </Typography>
-                <Typography variant="body2" m={1}>
+                <Typography variant="subtitle2" m={1}>
                   🔹 Credit Management
                 </Typography>
               </Box>
             </Box>
 
-            <Button id={styles.about_btn}>
-              <Typography color={theme.palette.secondary.main} variant="body2">
-                About Us
+            <Typography variant="subtitle2">About Us</Typography>
+            <Link style={{ textDecoration: "none" }} to={"/contactus"}>
+              <Typography
+                textTransform={"capitalize"}
+                mt={0.2}
+                variant="subtitle2"
+              >
+                Contact Us
               </Typography>
-            </Button>
-            <Link to={"/contactus"}>
-              <Button id={styles.about_btn}>
-                <Typography
-                  textTransform={"capitalize"}
-                  mt={0.2}
-                  color={theme.palette.secondary.main}
-                  variant="body2"
-                >
-                  Contact Us
-                </Typography>
-              </Button>
             </Link>
           </Box>
-          <Button
+          <Typography
+            mt={1}
+            mr={2}
             onClick={handleTheme}
-            sx={{ color: theme.palette.secondary.main }}
+            sx={{ color: theme.palette.primary.light }}
           >
             {theme.palette.mode !== "dark" ? (
               <DarkModeIcon />
             ) : (
               <LightModeRoundedIcon />
             )}
-          </Button>
+          </Typography>
           <Box className={styles.user_section}>
             {isAuth ? (
               <>
-                <Button
+                <Typography
                   onClick={handleClick}
                   sx={{ display: "flex", gap: "10px" }}
                 >
                   <AccountCircleIcon
-                    sx={{ color: `${theme.palette.secondary.main}` }}
+                    sx={{ color: `${theme.palette.primary.light}` }}
                     fontSize="large"
                   />
-                </Button>
+                </Typography>
                 <Menu onClose={handleClose} open={openMenu} anchorEl={anchorEl}>
                   {/* <MenuItem>Profile</MenuItem>*/}
                   <MenuItem onClick={NavToDash}>
@@ -316,13 +299,13 @@ const Navbar = () => {
                 <Link to={"/authentication"}>
                   <Button>
                     <LoginIcon
-                      sx={{ color: `${theme.palette.secondary.main}` }}
+                      sx={{ color: `${theme.palette.primary.main}` }}
                     />
                     <Typography
-                      sx={{ color: `${theme.palette.secondary.main}` }}
+                      sx={{ color: `${theme.palette.primary.main}` }}
                       ml={2}
                       textTransform={"capitalize"}
-                      variant="body2"
+                      variant="subtitle2"
                     >
                       Login
                     </Typography>
@@ -334,14 +317,14 @@ const Navbar = () => {
         </Box>
         {/*<--------------- hamburger-menu -------------------> */}
         <Box onClick={handleDrawer} id={styles.hamburger_menu}>
-          <MenuIcon sx={{ color: `${theme.palette.secondary.main}` }} />
+          <MenuIcon sx={{ color: `${theme.palette.primary.main}` }} />
         </Box>
         <Drawer
           open={drawerOpen}
           anchor="left"
           onClose={() => setDrawerOpen(false)}
         >
-          <Box sx={{ backgroundColor: theme.palette.primary.light }}>
+          <Box>
             <Box>
               <Box
                 display={"flex"}
@@ -352,22 +335,32 @@ const Navbar = () => {
                 // justifyContent={"space-evenly"}
               >
                 <img className={styles.drawer_icon} src={logo} alt="logo" />
-                <Typography mt={0.5} variant="h6">
+                <Typography
+                  color={theme.palette.primary.main}
+                  mt={0.5}
+                  variant="h6"
+                >
                   FinURL
                 </Typography>
-                <Button
+                <Typography
+                  mt={1}
+                  ml={5}
                   onClick={handleTheme}
-                  sx={{ color: theme.palette.secondary.main }}
+                  sx={{ color: theme.palette.primary.light }}
                 >
                   {theme.palette.mode !== "dark" ? (
                     <DarkModeIcon />
                   ) : (
                     <LightModeRoundedIcon />
                   )}
-                </Button>{" "}
+                </Typography>{" "}
               </Box>
               <Box className={styles.products_menu_mob} ml={2} mt={2}>
-                <Typography variant="body2" mb={1}>
+                <Typography
+                  color={theme.palette.primary.main}
+                  variant="body2"
+                  mb={1}
+                >
                   Loans :
                 </Typography>
                 <Link to={"/instant-loan"}>
@@ -398,13 +391,21 @@ const Navbar = () => {
                 </Link>
               </Box>
               <Box ml={2} mt={3}>
-                <Typography variant="body2" mb={1}>
+                <Typography
+                  color={theme.palette.primary.main}
+                  variant="body2"
+                  mb={1}
+                >
                   Investments
                 </Typography>
                 <Typography variant={"subtitle2"}>🔹 My Investments</Typography>
               </Box>
               <Box ml={2} mt={3}>
-                <Typography mb={1} variant="body2">
+                <Typography
+                  mb={1}
+                  color={theme.palette.primary.main}
+                  variant="body2"
+                >
                   Cards
                 </Typography>
                 <Typography variant={"subtitle2"}> 🔹 My Card</Typography>
@@ -424,25 +425,36 @@ const Navbar = () => {
               {!isAuth ? (
                 <>
                   <Link
-                    style={{ textDecoration: "none", color: "#fff" }}
+                    style={{ textDecoration: "none" }}
                     to={"/authentication"}
                   >
                     <LoginIcon sx={{ marginRight: "10px" }} />
-                    Login
+                    <Typography
+                      textTransform={"capitalize"}
+                      fontWeight={500}
+                      variant="subtitle2"
+                    >
+                      Login
+                    </Typography>
                   </Link>
                 </>
               ) : (
-                <Button sx={{ color: "#fff" }} onClick={handleLogout}>
-                  <LogoutIcon
-                    fontSize="small"
-                    sx={{ marginRight: "10px", color: "#fff" }}
-                  />
-                  Logout
-                </Button>
+                <Box display={"flex"} gap={"10px"} ml={1}>
+                  <Typography onClick={handleLogout}>
+                    <LogoutIcon fontSize="small" />
+                  </Typography>
+                  <Typography
+                    textTransform={"capitalize"}
+                    fontWeight={500}
+                    variant="subtitle2"
+                  >
+                    Logout
+                  </Typography>
+                </Box>
               )}
             </Box>
 
-            <Box textAlign={"center"} mt={5} width={"95%"}>
+            <Box textAlign={"center"} mt={3} width={"95%"}>
               <Box>
                 <Typography variant={"subtitle2"}>Follow us on:</Typography>
                 <Box
@@ -454,20 +466,20 @@ const Navbar = () => {
                   gap={"30px"}
                 >
                   <Box>
-                    <FacebookIcon />
+                    <FacebookIcon sx={{ color: theme.palette.primary.main }} />
                   </Box>
                   <Box>
-                    <InstagramIcon />
+                    <InstagramIcon sx={{ color: theme.palette.primary.main }} />
                   </Box>
                   <Box>
-                    <TwitterIcon />
+                    <TwitterIcon sx={{ color: theme.palette.primary.main }} />
                   </Box>
                   <Box>
-                    <LinkedinIcon />
+                    <LinkedinIcon sx={{ color: theme.palette.primary.main }} />
                   </Box>
                 </Box>
               </Box>
-              <Typography variant="body2">
+              <Typography variant="subtitle2">
                 Copyright Ⓒ 2023 FinURL. All Rights Reserved.
               </Typography>
             </Box>

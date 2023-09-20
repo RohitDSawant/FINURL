@@ -13,11 +13,10 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
-import checking_img from "./../../Assets/Images/eligibility-new.svg";
+import checking_img from "./../../Assets/Images/check_eligibility.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
 import Navbar from "../Common/Navbar";
-
 import {
   prefrDedupe,
   prefrDedupeService,
@@ -29,8 +28,7 @@ import {
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 
 const EligiblityEntrypoints = () => {
-
-  const theme = useTheme()
+  const theme = useTheme();
   const location = useLocation();
   const current_path = location.pathname.split("/")[1];
   const dispatch = useDispatch();
@@ -65,7 +63,6 @@ const EligiblityEntrypoints = () => {
     console.log(formData);
 
     if (current_path === "stashfin") {
-      
       dispatch(
         handleStashfinEligibility({
           phone: formData.mobile_no,
@@ -95,10 +92,18 @@ const EligiblityEntrypoints = () => {
         }, 3000);
       });
     } else if (current_path === "prefr") {
+      let request_id = "";
+      let start = 0;
+
+      while (start < formData.mobile_no.length) {
+        request_id = request_id + formData.mobile_no[start] + userId[start];
+        start++;
+      }
+
       dispatch(
         prefrDedupeService({
           productName: "pl",
-          requestId: (formData.pan_number + userId).toUpperCase(),
+          requestId: request_id.toUpperCase(),
           hashEnabled: false,
           panNumber: formData.pan_number,
           accountNumber: formData.accountNumber,
@@ -109,7 +114,7 @@ const EligiblityEntrypoints = () => {
           if (res.data === "success") {
             dispatch(
               registerStart({
-                userId: (formData.pan_number + userId).toUpperCase(),
+                userId: (formData.mobile_no + userId).toUpperCase(),
                 mobileNo: formData.mobile_no,
               })
             ).then((res) => {
@@ -118,18 +123,23 @@ const EligiblityEntrypoints = () => {
                 dispatch(
                   gettingWebViewUrl({
                     loanId: res.loanId,
+                    formData: formData,
                   })
                 ).then((res) => {
                   if (res.data === "success") {
-                    window.open(res.data.webviewUrl, "_blank");
-                    navigate("/");
+                    setIsLoading(false);
+                    setShowSuccessSnack(true);
+                    setSnackMsg("Please wait, Generating redirection link...");
+                    setTimeout(() => {
+                      window.open(res.data.webviewUrl, "_blank");
+                      navigate("/");
+                    }, 3000);
                   } else {
+                    setIsLoading(false);
                     setShowErrorSnack(true);
                     setSnackMsg("Oops! Loan ID is missing");
                   }
                 });
-                setShowSuccessSnack(true);
-                setSnackMsg("Please wait, Generating redirection link...");
               } else if (res.data.loanId && !res.data.skipApplicationDetails) {
                 dispatch(settingApplicationID(res.data.loanId));
                 setIsLoading(false);
@@ -141,12 +151,14 @@ const EligiblityEntrypoints = () => {
                   navigate("/prefr/application");
                 }, 4000);
               } else {
+                setIsLoading(false);
                 setShowErrorSnack(true);
                 setSnackMsg("Something went wrong, please try again");
               }
               // console.log(res)
             });
           } else {
+            setIsLoading(false);
             setShowErrorSnack(true);
             setSnackMsg(
               "Something went wrong, please check the details provided"
@@ -154,6 +166,7 @@ const EligiblityEntrypoints = () => {
           }
         })
         .catch((err) => {
+          setIsLoading(false);
           console.log(err);
         });
     }
@@ -174,7 +187,7 @@ const EligiblityEntrypoints = () => {
         <Grid
           container
           spacing={1}
-          justifyContent={"center"}
+          justifyContent={"space-evenly"}
           alignItems={"center"}
         >
           <Grid
@@ -183,7 +196,7 @@ const EligiblityEntrypoints = () => {
             sm={10}
             className={styles.eligibility_left_sec}
             item
-            lg={5}
+            lg={6}
           >
             <Typography mb={1} variant="h6">
               Check Loan Eligibility :
@@ -263,21 +276,21 @@ const EligiblityEntrypoints = () => {
                   required
                   onChange={handleChange}
                 />
-                {current_path === "prefr" ? (
-                  <TextField
-                    size={"small"}
-                    sx={{ margin: "5px" }}
-                    name="accountNumber"
-                    label="Account Number"
-                    variant="standard"
-                    required
-                    onChange={handleChange}
-                  />
-                ) : (
-                  ""
-                )}
 
                 <Box>
+                  {current_path === "prefr" ? (
+                    <TextField
+                      size={"small"}
+                      sx={{ margin: "5px" }}
+                      name="accountNumber"
+                      label="Account Number"
+                      variant="standard"
+                      required
+                      onChange={handleChange}
+                    />
+                  ) : (
+                    ""
+                  )}
                   <TextField
                     size={"small"}
                     sx={{ margin: "5px" }}
@@ -341,6 +354,17 @@ const EligiblityEntrypoints = () => {
               src={checking_img}
               alt="eligibitlty_check_png"
             />
+            <Typography
+              textAlign={"center"}
+              sx={{ width: "55%" }}
+              margin={"auto"}
+              mt={-5}
+              variant="subtitle2"
+            >
+              {" "}
+              We verify the provided details and check if you are Eligible or
+              Not
+            </Typography>
           </Grid>
         </Grid>
       </section>

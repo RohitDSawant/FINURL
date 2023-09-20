@@ -43,7 +43,7 @@ const LeftDashboard = () => {
   return (
     <>
       <Sidebar
-        backgroundColor={theme.palette.primary.main}
+        backgroundColor={theme.palette.secondary.dark}
         id={styles.sidebar}
         collapsedWidth="80px"
         collapsed={toggle}
@@ -77,7 +77,11 @@ const LeftDashboard = () => {
               <Link style={{ textDecoration: "none" }} to={"/"}>
                 <Box mt={2} display={"flex"} alignItems={"center"} gap={"15px"}>
                   <img height={"30vh"} src={circle_logo} alt="logo" />
-                  <Typography mt={0.5} variant="h6">
+                  <Typography
+                    color={theme.palette.primary.main}
+                    mt={0.5}
+                    variant="h6"
+                  >
                     FinURL
                   </Typography>
                 </Box>
@@ -89,71 +93,71 @@ const LeftDashboard = () => {
           <MenuItem
             id={styles.menu_item}
             icon={
-              <HomeRoundedIcon sx={{ color: theme.palette.secondary.main }} />
+              <HomeRoundedIcon sx={{ color: theme.palette.primary.main }} />
             }
             onClick={handleDashboardSec}
           >
-            <Typography variant="body1"> Dashboard</Typography>
+            <Typography variant="body1" color={theme.palette.primary.main}> Dashboard</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
             icon={
               <CompareArrowsRoundedIcon
-                sx={{ color: theme.palette.secondary.main }}
+                sx={{ color: theme.palette.primary.main }}
               />
             }
             onClick={handleRecordsSec}
           >
-            <Typography variant="body1"> Loans Records</Typography>
+            <Typography variant="body1" color={theme.palette.primary.main}> Loans Records</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
             icon={
               <CreditScoreRoundedIcon
-                sx={{ color: theme.palette.secondary.main }}
+                sx={{ color: theme.palette.primary.main }}
               />
             }
             onClick={handleBankWiseSec}
           >
-            <Typography variant="body1"> Bank Offers</Typography>
+            <Typography variant="body1" color={theme.palette.primary.main}> Bank Offers</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
             icon={
               <PaymentRoundedIcon
-                sx={{ color: theme.palette.secondary.main }}
+                sx={{ color: theme.palette.primary.main }}
               />
             }
           >
-            <Typography variant="body1"> Cards</Typography>
+            <Typography variant="body1" color={theme.palette.primary.main}> Cards</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
             icon={
               <LeaderboardRoundedIcon
-                sx={{ color: theme.palette.secondary.main }}
+                sx={{ color: theme.palette.primary.main }}
               />
             }
           >
-            <Typography variant="body1">Insights</Typography>
+            <Typography variant="body1" color={theme.palette.primary.main}>Insights</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
             icon={
               <SettingsRoundedIcon
-                sx={{ color: theme.palette.secondary.main }}
+                sx={{ color: theme.palette.primary.main }}
               />
             }
           >
-            <Typography variant="body1">Settings</Typography>
+            <Typography variant="body1" color={theme.palette.primary.main}>Settings</Typography>
           </MenuItem>
           <MenuItem
             onClick={handleLogout}
             style={{ marginTop: "70%" }}
             id={styles.menu_item}
-            icon={<LogoutIcon sx={{ color: theme.palette.secondary.main }} />}
+            icon={<LogoutIcon sx={{ color: theme.palette.primary.main }} />}
           >
-            <Typography variant="body1">Logout</Typography>
+            <Typography variant="body1" color={theme.palette.primary.main}>Logout</Typography>
           </MenuItem>
         </Menu>
       </Sidebar>

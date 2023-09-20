@@ -7,9 +7,9 @@ import {
   DialogTitle,
   Modal,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import theme from "../../../Theme/theme";
 import styles from "./../../../CSS/dashboard.module.css";
 import data from "../../../Assets/fake-data/loansdata";
 import { useSelector } from "react-redux";
@@ -17,7 +17,7 @@ import { useSelector } from "react-redux";
 const LoanRecords = () => {
   const loans = useSelector((state) => state.authReducer.loans);
   const [ModalStates, setModalStates] = useState(new Map());
-
+  const theme = useTheme();
   const columns = [
     {
       field: "id",
@@ -25,7 +25,7 @@ const LoanRecords = () => {
       width: 70,
       renderCell: (params) => {
         return (
-          <Typography ml={2} variant="body2">
+          <Typography color={theme.palette.primary.main} ml={2} variant="body2">
             {params.value}
           </Typography>
         );
@@ -37,7 +37,7 @@ const LoanRecords = () => {
       width: 290,
       renderCell: (params) => {
         return (
-          <Typography variant="body2">
+          <Typography color={theme.palette.primary.main} variant="body2">
             {params.row.first_name + " " + params.row.last_name}
           </Typography>
         );
@@ -49,7 +49,7 @@ const LoanRecords = () => {
       width: 200,
       renderCell: (params) => {
         return (
-          <Typography variant="body2">
+          <Typography color={theme.palette.primary.main} variant="body2">
             {params.row.results.application_id}
           </Typography>
         );
@@ -60,7 +60,11 @@ const LoanRecords = () => {
       headerName: "Pan Number",
       width: 200,
       renderCell: (params) => {
-        return <Typography variant="body2">{params.value}</Typography>;
+        return (
+          <Typography color={theme.palette.primary.main} variant="body2">
+            {params.value}
+          </Typography>
+        );
       },
     },
     {
@@ -119,7 +123,7 @@ const LoanRecords = () => {
         return (
           <>
             <Button
-              onClick={() => openModal(params.id-1)}
+              onClick={() => openModal(params.id - 1)}
               sx={{
                 backgroundColor: "#12162b",
                 color: "#fff",
@@ -136,13 +140,21 @@ const LoanRecords = () => {
                 onClose={() => closeModal(rowIndex)}
               >
                 <DialogTitle>
-                  <Typography mb={2} variant="body2">
+                  <Typography
+                    color={theme.palette.primary.main}
+                    mb={2}
+                    variant="body2"
+                  >
                     Info:
                   </Typography>
                 </DialogTitle>
                 <DialogContent>
-              
-                  <Typography sx={{"userSelect": "text"}} m={1} variant="body2">
+                  <Typography
+                    color={theme.palette.primary.main}
+                    sx={{ userSelect: "text" }}
+                    m={1}
+                    variant="body2"
+                  >
                     Bank Statement URL :{" "}
                     {loans[rowIndex]?.results?.bank_statement_url ||
                       "URL Not available"}

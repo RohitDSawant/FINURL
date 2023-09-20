@@ -14,16 +14,18 @@ import {
 } from "@mui/material";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
-import application_pencil from "./../../Assets/Images/application-pencil.jpg";
+import application_pencil from "./../../Assets/Images/form2.svg";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../Common/Navbar";
 import { sendApplicationDetails } from "../../Redux/Func/Prefr/SendApplicationDetails";
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
+import { useNavigate } from "react-router-dom";
 
 const PrefrApplication = () => {
   const loanId = useSelector(
-    (state) => state.appReducer.currentProcessDetails.application_id
+    (state) => state.appReducer.NBC.prefr.application_id
   );
+  const navigate = useNavigate()
   const userID = useSelector((state) => state.authReducer.loggedInUser._id);
 
   const [formData, setFormData] = useState({
@@ -36,8 +38,8 @@ const PrefrApplication = () => {
     panNumber: "",
     currentAddress: "",
     currentAddressPincode: "",
-    netMonthlyIncome: "",
-    desiredLoanAmount: "",
+    netMonthlyIncome: 0,
+    desiredLoanAmount: 0,
     employmentType: "",
     partnerSpecificInfo: {
       partnerUserId: userID,
@@ -57,16 +59,44 @@ const PrefrApplication = () => {
   const handleSubmit = (e) => {
     setIsLoading(true);
     e.preventDefault();
-    dispatch(sendApplicationDetails(formData)).then((res) => {
-      if (res.data.status === "success") {
-        dispatch(gettingWebViewUrl(loanId)).then((res) => {
+    dispatch(
+      sendApplicationDetails({
+        loanId: loanId,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        personalEmailId: formData.personalEmailId,
+        gender: formData.gender,
+        dob: formData.dob.split("-").reverse().join("/"),
+        panNumber: formData.panNumber,
+        currentAddress: formData.currentAddress,
+        currentAddressPincode: formData.currentAddressPincode,
+        netMonthlyIncome: Number(formData.netMonthlyIncome),
+        desiredLoanAmount: Number(formData.desiredLoanAmount),
+        employmentType: formData.employmentType,
+        partnerSpecificInfo: formData.partnerSpecificInfo,
+      })
+    ).then((res) => {
+      console.log(res);
+      if (res === "Task already completed") {
+        setIsLoading(false);
+        setShowSuccessSnack(true);
+        setSnackMsg("Sorry, You are already part of Prefr");
+      }
+      if (res === "Invalid fields in the request") {
+        setIsLoading(false);
+        setShowSuccessSnack(true);
+        setSnackMsg("Oops! Please check the details provided");
+      }
+      if (res.status === "success") {
+        dispatch(
+          gettingWebViewUrl({ loanId: loanId, formData: formData })
+        ).then((res) => {
           setIsLoading(false);
           console.log(res);
           if (res.data.status === "success") {
-            setShowSuccessSnack(true);
-            setSnackMsg("Redirecting, Please wait...");
             setTimeout(() => {
               window.open(res.data.data.webviewUrl, "_blank");
+              navigate("/prefr/dedupe")
             }, 3000);
           } else {
             setShowErrorSnack(true);
@@ -101,7 +131,7 @@ const PrefrApplication = () => {
         <Grid
           container
           spacing={1}
-          justifyContent={"center"}
+          justifyContent={"space-evenly"}
           alignItems={"center"}
         >
           <Grid
@@ -285,6 +315,15 @@ const PrefrApplication = () => {
               src={application_pencil}
               alt="eligibitlty_check_png"
             />
+            <Typography
+              textAlign={"center"}
+              sx={{ lineBreak: "anywhere", width: "50%" }}
+              margin={"auto"}
+              mt={-5}
+              variant="subtitle2"
+            >
+              Let's fill up some additional information & you are ready to go...
+            </Typography>
           </Grid>
         </Grid>
         <Snackbar

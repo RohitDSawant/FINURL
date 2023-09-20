@@ -1,9 +1,9 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import styles from "./../../CSS/homepage.module.css";
-import we_handle from "./../../Assets/Images/we_handle.png";
+import we_handle from "./../../Assets/Images/we_handle.svg";
 import card_deal from "./../../Assets/Images/card_deal.svg";
-import easy_billing from "./../../Assets/Images/easy_billing.jpg";
+import easy_billing from "./../../Assets/Images/easy_billing.svg";
 
 const HomeDSlabs = () => {
   return (
@@ -11,7 +11,7 @@ const HomeDSlabs = () => {
       <section id={styles.home_d_sec}>
         <Box>
           <Grid
-            data-aos="fade-left"
+            data-aos="fade-right"
             data-aos-duration="700"
             data-aos-easing="ease-in-sine"
             justifyContent={"space-between"}
@@ -20,7 +20,7 @@ const HomeDSlabs = () => {
             mt={10}
             alignItems={"center"}
           >
-            <Grid item lg={8.5} md={8.5} sm={8.5} xs={8.5}>
+            <Grid item lg={7} md={7} sm={7} xs={7}>
               <Box id={styles.right_slab} className={styles.slab_box}>
                 <Typography variant="h6" fontSize={"medium"}>
                   Easily control your billing & invoicing
@@ -31,14 +31,9 @@ const HomeDSlabs = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid lg={3.5} md={3.5} sm={3.5} xs={3.5}>
+            <Grid lg={4} md={4} sm={4} xs={4}>
               <Box className={styles.slab_circle}>
-                <img
-                  style={{ width: "65%" }}
-                  src={easy_billing}
-                  className={styles.slabs_img}
-                  alt=""
-                />
+                <img src={easy_billing} className={styles.slabs_img} alt="" />
               </Box>
             </Grid>
           </Grid>
@@ -72,12 +67,7 @@ const HomeDSlabs = () => {
             </Grid>
             <Grid item lg={3.5} md={3.5} sm={3.5} xs={3.5}>
               <Box className={styles.slab_circle}>
-                <img
-                  style={{ width: "65%" }}
-                  src={we_handle}
-                  className={styles.slabs_img}
-                  alt=""
-                />
+                <img src={we_handle} className={styles.slabs_img} alt="" />
               </Box>
             </Grid>
           </Grid>

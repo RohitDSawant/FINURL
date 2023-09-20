@@ -9,11 +9,15 @@ import HomeGPartners from "../Components/Homepage_Components/HomeGPartners";
 import LoanCalculator from "../Components/Homepage_Components/LoanCalculator";
 import Footer from "../Components/Common/Footer";
 import Navbar from "../Components/Common/Navbar";
+import { Box } from "@mui/material";
+import styles from  "./../CSS/homepage.module.css";
+  
 
 const Homepage = () => {
   return (
     <>
       <Navbar />
+      <Box className={styles.Home} >
         <HomeA />
         <HomeB />
         <HomeCLoans />
@@ -22,7 +26,8 @@ const Homepage = () => {
         <HomeEScore />
         <HomeFReviews />
         <HomeGPartners />
-      <Footer />
+        <Footer />
+      </Box>
     </>
   );
 };

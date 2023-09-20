@@ -13,6 +13,7 @@ import ComingSoon from "../Pages/ComingSoon";
 import ApplicationProtectedRoute from "../Components/Common/ApplicationRouteProtection";
 import HomeLoan from "../Pages/HomeLoan";
 import PrefrApplication from "../Components/EntryPoints/PrefrApplication";
+import GetStarted from "../Pages/GetStarted";
 const Router = () => {
   return (
     <>
@@ -44,6 +45,8 @@ const Router = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/comingsoon" element={<ComingSoon />} />
+        <Route path="/get-started" element={<GetStarted />} />
+
       </Routes>
     </>
   );

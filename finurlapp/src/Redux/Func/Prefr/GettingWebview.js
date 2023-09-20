@@ -1,13 +1,14 @@
 import axios from "axios";
 
-export const gettingWebViewUrl = (loanID) => async (dispatch) => {
-  dispatch({ type: "GET_WEBVIEW_REQUEST" });
+export const gettingWebViewUrl = (data) => async (dispatch) => {
 
+  dispatch({ type: "GET_WEBVIEW_REQUEST" });
   try {
     return await axios
-      .post("https://api.finurl.in/api/v1/prefr/webview-api", loanID)
+      .post("https://api.finurl.in/api/v1/prefr/webview-api", data)
       .then((res) => {
         dispatch({ type: "GET_WEBVIEW_SUCCESS" });
+        console.log(res.data)
         return res;
       });
   } catch (error) {

@@ -27,8 +27,7 @@ import auth3 from "./../../Assets/Images/auth_3.jpg";
 import Navbar from "./Navbar";
 
 const LoginPage = () => {
-
-  const theme  = useTheme()
+  const theme = useTheme();
 
   const [activeInput, setActiveInput] = useState(null);
   const [isSignUpMode, setIsSignUpMode] = useState(false);
@@ -200,7 +199,10 @@ const LoginPage = () => {
     <>
       <Navbar />
       <main className={!isSignUpMode ? "sign-up-mode" : ""}>
-        <div className="box">
+        <div
+          style={{ backgroundColor: theme.palette.primary.main }}
+          className="box"
+        >
           <div className="inner-box">
             <div className="forms-wrap">
               {!isSignUpMode ? (
@@ -218,21 +220,23 @@ const LoginPage = () => {
 
                     <div className="heading">
                       <Typography
-                        color={theme.palette.primary.main}
+                        color={theme.palette.secondary.main}
                         variant="h6"
                       >
                         Welcome
                       </Typography>
-                      <Typography mb={5} fontSize={"small"} variant="body2">
-                        Not registered yet?{" "}
-                        <a
-                          href="#"
+                      <Box display={"flex"} gap={"10px"}>
+                        <Typography mb={5} fontSize={"small"} variant="body2">
+                          Not registered yet?
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
                           className="toggle"
                           onClick={() => setIsSignUpMode(!isSignUpMode)}
                         >
                           Sign Up
-                        </a>
-                      </Typography>
+                        </Typography>
+                      </Box>
                     </div>
 
                     <div className="actual-form">
@@ -300,12 +304,17 @@ const LoginPage = () => {
                               type="submit"
                               className="sign-btn"
                               sx={{
-                                backgroundColor: `${theme.palette.primary.main}`,
-                                color: "#fff",
+                                backgroundColor: `${theme.palette.secondary.main}`,
                                 marginBottom: "10px",
                               }}
                             >
-                              Sign In
+                              <Typography
+                                color={"teal"}
+                                variant="body2"
+                                fontWeight={500}
+                              >
+                                Sign in
+                              </Typography>
                             </Button>
                             {isLoading ? <CircularProgress size={15} /> : ""}
                           </Box>
@@ -323,12 +332,16 @@ const LoginPage = () => {
                               onClick={verifyOtp}
                               sx={{
                                 background: theme.palette.primary.main,
-                                color: "#fff",
                                 marginBottom: "10px",
-                                textTransform: "capitalize",
                               }}
                             >
-                              Verify OTP
+                              <Typography
+                                variant="body2"
+                                fontWeight={500}
+                                textTransform={"capitalize"}
+                              >
+                                Verify OTP
+                              </Typography>
                             </Button>
                             {isLoading ? (
                               <CircularProgress
@@ -347,10 +360,13 @@ const LoginPage = () => {
                         <></>
                       )}
                       {!showOptSec ? (
-                        <p className="text">
-                          Forgot your password or you login details?
-                          <a href="#"> Get help</a> signing in
-                        </p>
+                        <Typography
+                          variant="body2"
+                          textAlign={"left"}
+                          className="text"
+                        >
+                          Forgot your password?
+                        </Typography>
                       ) : (
                         ""
                       )}
@@ -370,15 +386,19 @@ const LoginPage = () => {
                       <Typography variant="h6">FinURL</Typography>
                     </div>
 
-                    <div className="heading">
+                    <div
+                      style={{ display: "flex", gap: "10px" }}
+                      className="heading"
+                    >
                       <Typography variant="body2" mb={1} fontSize={"small"}>
-                        Get Started, Already have an account.? {"  "}
-                        <a
-                          onClick={() => setIsSignUpMode(!isSignUpMode)}
-                          className="toggle"
-                        >
-                          Sign in
-                        </a>
+                        Get Started, Already have an account.?
+                      </Typography>
+                      <Typography
+                        variant="subtitle2"
+                        onClick={() => setIsSignUpMode(!isSignUpMode)}
+                        className="toggle"
+                      >
+                        Sign in
                       </Typography>
                     </div>
 
@@ -461,11 +481,12 @@ const LoginPage = () => {
                               className="sign-btn"
                               sx={{
                                 background: `${theme.palette.primary.main}`,
-                                color: "#fff",
                                 marginBottom: "10px",
                               }}
                             >
-                              Sign Up
+                              <Typography variant="subtitle2" fontWeight={500}>
+                                Sign Up
+                              </Typography>
                             </Button>
                             {isLoading ? (
                               <CircularProgress
@@ -518,7 +539,7 @@ const LoginPage = () => {
             </div>
 
             <div
-              style={{ background: theme.palette.primary.main }}
+              style={{ background: theme.palette.secondary.main }}
               className="carousel"
             >
               <div className="images-wrapper">
@@ -541,24 +562,33 @@ const LoginPage = () => {
 
               <div className="text-slider">
                 <div className="text-wrap">
-                  <div style={{ color: "black" }} className="text-group">
+                  <div className="text-group">
                     {activeSlide === 1 && (
                       <>
-                        <Typography color={"#fff"} variant="h6">
+                        <Typography
+                          color={theme.palette.primary.main}
+                          variant="h6"
+                        >
                           Find the best loan for you
                         </Typography>
                       </>
                     )}
                     {activeSlide === 2 && (
                       <>
-                        <Typography color={"#fff"} variant="h6">
+                        <Typography
+                          color={theme.palette.primary.main}
+                          variant="h6"
+                        >
                           Loans at best rates possible{" "}
                         </Typography>
                       </>
                     )}
                     {activeSlide === 3 && (
                       <>
-                        <Typography color={"#fff"} variant="h6">
+                        <Typography
+                          color={theme.palette.primary.main}
+                          variant="h6"
+                        >
                           Track your progress in no time
                         </Typography>
                       </>

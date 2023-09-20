@@ -55,9 +55,14 @@ const init_state = {
     pincode: "",
   },
   eligible: false,
-  currentProcessDetails: {
-    client_token: "",
-    application_id: "",
+  NBC: {
+    stashfin: {
+      client_token: "",
+      application_id: "",
+    },
+    prefr: {
+      application_id: "",
+    },
   },
 };
 
@@ -76,9 +81,12 @@ export const appReducer = (state = init_state, action) => {
         ...state,
         isLoading: false,
         eligible: true,
-        currentProcessDetails: {
-          ...state.currentProcessDetails,
-          client_token: payload,
+        NBC: {
+          ...state.NBC,
+          stashfin: {
+            ...state.NBC.stashfin,
+            client_token: payload,
+          },
         },
       };
     }
@@ -97,9 +105,12 @@ export const appReducer = (state = init_state, action) => {
       return {
         ...state,
         isLoading: false,
-        currentProcessDetails: {
-          ...state.currentProcessDetails,
-          application_id: payload,
+        NBC: {
+          ...state.NBC,
+          stashfin: {
+            ...state.NBC.stashfin,
+            application_id: payload,
+          },
         },
       };
     }
@@ -119,10 +130,13 @@ export const appReducer = (state = init_state, action) => {
         ...state,
         isLoading: false,
         eligible: false,
-        currentProcessDetails: {
-          ...state.currentProcessDetails,
-          application_id: "",
-          client_token: "",
+        NBC: {
+          ...state.NBC,
+          stashfin: {
+            ...state.NBC.stashfin,
+            application_id: "",
+            client_token: "",
+          },
         },
       };
     }
@@ -180,9 +194,12 @@ export const appReducer = (state = init_state, action) => {
         ...state,
         isLoading: false,
         eligible: true,
-        currentProcessDetails: {
-          ...state.currentProcessDetails,
-          application_id: payload,
+        NBC: {
+          ...state.NBC,
+          prefr: {
+            ...state.NBC.prefr,
+            application_id: payload,
+          },
         },
       };
     }
@@ -206,8 +223,30 @@ export const appReducer = (state = init_state, action) => {
       return { ...state, isLoading: false, isError: true };
     }
 
+    case types.GET_WEBVIEW_REQUEST: {
+      return { ...state, isLoading: true, isError: true };
+    }
 
-    // <----------------- Adding form data ----------------> 
+    case types.GET_WEBVIEW_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        eligible:false,
+        NBC: {
+          ...state.NBC,
+          prefr: {
+            ...state.NBC.prefr,
+            application_id: "",
+          },
+        },
+      };
+    }
+
+    case types.GET_WEBVIEW_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    // <----------------- Adding form data ---------------->
 
     // case types.ADDING_FORM_DATA_REQUEST: {
     //   return { ...state, isLoading: true };
@@ -218,7 +257,7 @@ export const appReducer = (state = init_state, action) => {
     //     ...state,
     //     isLoading: false,
     //     formData :{
-    //       ...state.formData, 
+    //       ...state.formData,
     //     }
     //   };
     // }
@@ -226,10 +265,6 @@ export const appReducer = (state = init_state, action) => {
     // case types.ADDING_FORM_DATA_FAILURE: {
     //   return { ...state, isLoading: false, isError: true };
     // }
-
-
-
-
 
     default: {
       return state;

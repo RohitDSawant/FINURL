@@ -1,3 +1,7 @@
+.Home{
+  overflow-x: hidden;
+}
+
 #home_a_sec {
   padding-top: 2%;
   display: flex;
@@ -98,8 +102,8 @@
 }
 
 .slabs_img {
-  height: 30vh;
-  width: 100%;
+  height: 40vh;
+  width: 20vw;
   display: block;
   margin: auto;
 }
@@ -297,7 +301,7 @@
 
 @media all and (min-width: 100px) and (max-width: 426px) {
   #home_a_sec {
-    padding-top: 20%;
+    padding-top: 15%;
   }
 
   .home_1_img {

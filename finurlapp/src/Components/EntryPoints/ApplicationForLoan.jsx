@@ -15,7 +15,7 @@ import {
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
-import application_pencil from "./../../Assets/Images/application-pencil.jpg";
+import application_pencil from "./../../Assets/Images/form2.svg";
 import { useDispatch, useSelector } from "react-redux";
 import {
   handleStashfinInitiateApp,
@@ -27,8 +27,8 @@ import { check_status } from "../../Redux/Func/Stashfin/Check_Status";
 
 const ApplicationForLoan = () => {
   const user = useSelector((state) => state.authReducer.loggedInUser._id);
-  const processedApplication = useSelector(
-    (state) => state.appReducer.currentProcessDetails
+  const stashfin_cl_token = useSelector(
+    (state) => state.appReducer.NBC.stashfin.client_token
   );
 
   const [formData, setFormData] = useState({
@@ -83,7 +83,7 @@ const ApplicationForLoan = () => {
         dob: formData.dob,
         income: Number(formData.income),
         pincode: Number(formData.pincode),
-        token: processedApplication.client_token,
+        token: stashfin_cl_token,
         mode_of_income: 1,
         employment_type: 1,
       })
@@ -122,7 +122,7 @@ const ApplicationForLoan = () => {
             console.log(response);
             dispatch(
               check_status({
-                client_token: processedApplication.client_token,
+                client_token: stashfin_cl_token,
                 application_id: response.data.results.application_id,
               })
             );

@@ -2,18 +2,20 @@ import React from "react";
 import DashboardNavbar from "../DashboardNavbar";
 import { DataGrid } from "@mui/x-data-grid";
 import { bankoffers } from "../../../Assets/Images/Partners_data/partners";
-import theme from "../../../Theme/theme";
 import styles from "./../../../CSS/dashboard.module.css"
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 
 const ActualBankWise = () => {
+
+const theme = useTheme()
+
   const columns = [
     {
       field: "id",
       headerName: "Sr.No",
       width: 170,
       renderCell:(params)=>{
-        return <Typography fontSize={"small"} ml={2}>{params.value}</Typography>
+        return <Typography color={theme.palette.primary.main} fontSize={"small"} ml={2}>{params.value}</Typography>
       }
     },
     {
@@ -21,7 +23,7 @@ const ActualBankWise = () => {
       headerName: "Bank Name",
       width: 260,
       renderCell:(params)=>{
-        return <Typography fontSize={"small"} ml={1}>{params.value}</Typography>
+        return <Typography color={theme.palette.primary.main} fontSize={"small"} ml={1}>{params.value}</Typography>
       }
     },
     {
@@ -29,7 +31,7 @@ const ActualBankWise = () => {
       headerName: "Loan upto",
       width: 260,
       renderCell:(params)=>{
-        return <Typography fontSize={"small"} ml={1} >{params.value}</Typography>
+        return <Typography color={theme.palette.primary.main} fontSize={"small"} ml={1} >{params.value}</Typography>
       }
     },
     {
@@ -37,7 +39,7 @@ const ActualBankWise = () => {
       headerName: "Min. ROI",
       width: 260,
       renderCell:(params)=>{
-        return <Typography fontSize={"small"} ml={2}>{params.value}</Typography>
+        return <Typography color={theme.palette.primary.main} fontSize={"small"} ml={2}>{params.value}</Typography>
       }
     },
     {
@@ -45,7 +47,7 @@ const ActualBankWise = () => {
       headerName: "Max. Tenure",
       width: 260,
       renderCell:(params)=>{
-        return <Typography fontSize={"small"} ml={2}>{params.value}</Typography>
+        return <Typography color={theme.palette.primary.main} fontSize={"small"} ml={2}>{params.value}</Typography>
       }
     },
   ];

@@ -66,16 +66,15 @@ const DashboardNavbar = () => {
   return (
     <Box className={styles.dashboard_navbar}>
       <Box display={"flex"} alignItems={"center"} gap={"15px"}>
-        <Button onClick={handleToggle}>
+        <Typography mt={0.5} mr={2} onClick={handleToggle}>
           {!toggle ? (
-            <FormatAlignLeftIcon sx={{ color: theme.palette.secondary.main }} />
+            <FormatAlignLeftIcon sx={{ color: theme.palette.primary.main }} />
           ) : (
-            <FormatAlignRightIcon
-              sx={{ color: theme.palette.secondary.main }}
-            />
+            <FormatAlignRightIcon sx={{ color: theme.palette.primary.main }} />
           )}
-        </Button>
+        </Typography>
         <Typography
+          color={theme.palette.primary.main}
           textTransform={"uppercase"}
           fontWeight={600}
           variant="body1"
@@ -85,27 +84,35 @@ const DashboardNavbar = () => {
       </Box>
       <Box className={styles.dashboard_sub_menu}>
         <Typography variant="body2">
-          <Badge badgeContent={2} color="secondary">
+          <Badge badgeContent={2} color="primary">
             <NotificationsNoneRoundedIcon />
           </Badge>
         </Typography>
         <Box onClick={handleTheme}>
           {theme.palette.mode !== "dark" ? (
-            <DarkModeIcon sx={{"color": theme.palette.secondary.main}} />
+            <DarkModeIcon sx={{ color: theme.palette.primary.main }} />
           ) : (
-            <LightModeRoundedIcon sx={{"color": theme.palette.secondary.main}} />
+            <LightModeRoundedIcon sx={{ color: theme.palette.primary.light }} />
           )}
         </Box>
         <Typography onClick={handleUserMenu} variant="body2">
-          <AccountCircleRoundedIcon />
+          <AccountCircleRoundedIcon
+            sx={{ color: theme.palette.primary.main }}
+          />
         </Typography>
         <Menu open={openUserMenu} onClose={handleClose} anchorEl={userAnchorEl}>
           <MenuItem onClick={handleMenuItemClick}>
-            <EditRoundedIcon fontSize="small" sx={{ marginRight: "10px" }} />
+            <EditRoundedIcon
+              fontSize="small"
+              sx={{ marginRight: "10px", color: theme.palette.primary.main }}
+            />
             Edit Profile
           </MenuItem>
           <MenuItem onClick={handleLogout}>
-            <LogoutRoundedIcon fontSize="small" sx={{ marginRight: "10px" }} />
+            <LogoutRoundedIcon
+              fontSize="small"
+              sx={{ marginRight: "10px", color: theme.palette.primary.main }}
+            />
             Logout
           </MenuItem>
         </Menu>
