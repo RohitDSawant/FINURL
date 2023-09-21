@@ -141,7 +141,6 @@ const LoanRecords = () => {
               >
                 <DialogTitle>
                   <Typography
-                    color={theme.palette.secondary.dark}
                     mb={2}
                     variant="body2"
                   >
@@ -150,7 +149,6 @@ const LoanRecords = () => {
                 </DialogTitle>
                 <DialogContent>
                   <Typography
-                    color={theme.palette.secondary.dark}
                     sx={{ userSelect: "text" }}
                     m={1}
                     variant="body2"

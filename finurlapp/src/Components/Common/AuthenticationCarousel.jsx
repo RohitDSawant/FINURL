@@ -199,7 +199,10 @@ const LoginPage = () => {
     <>
       <Navbar />
       <main className={!isSignUpMode ? "sign-up-mode" : ""}>
-        <div style={{ backgroundColor: theme.palette.secondary.light }} className="box">
+        <div
+          style={{ backgroundColor: theme.palette.secondary.light }}
+          className="box"
+        >
           <div className="inner-box">
             <div className="forms-wrap">
               {!isSignUpMode ? (
@@ -216,19 +219,24 @@ const LoginPage = () => {
                     </div>
 
                     <div className="heading">
-                      <Typography
-                        color={theme.palette.primary.dark}
-                        variant="h6"
-                      >
+                      <Typography mb={1} variant="h6">
                         Welcome
                       </Typography>
-                      <Box display={"flex"} gap={"10px"}>
-                        <Typography mb={5} fontSize={"small"} variant="body2">
+                      <Box
+                        mb={5}
+                        display={"flex"}
+                        alignItems={"center"}
+                        gap={"10px"}
+                      >
+                        <Typography fontSize={"small"} variant="body2">
                           Not registered yet?
                         </Typography>
                         <Typography
-                          variant="subtitle2"
+                          variant="body2"
+                          fontWeight={600}
                           className="toggle"
+                          fontSize={"small"}
+                          color={theme.palette.primary.dark}
                           onClick={() => setIsSignUpMode(!isSignUpMode)}
                         >
                           Sign Up
@@ -383,14 +391,22 @@ const LoginPage = () => {
                     </div>
 
                     <div
-                      style={{ display: "flex", gap: "10px" }}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                      }}
                       className="heading"
                     >
                       <Typography variant="body2" mb={1} fontSize={"small"}>
                         Get Started, Already have an account.?
                       </Typography>
                       <Typography
-                        variant="subtitle2"
+                        variant="body1"
+                        mt={-1}
+                        color={theme.palette.primary.dark}
+                        fontWeight={600}
+                        fontSize={"medium"}
                         onClick={() => setIsSignUpMode(!isSignUpMode)}
                         className="toggle"
                       >
