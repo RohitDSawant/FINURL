@@ -125,12 +125,12 @@ const Navbar = () => {
               </Typography>
               {!productsOpen ? (
                 <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.primary.light}` }}
+                  sx={{ color: `${theme.palette.primary.main}` }}
                   fontSize="small"
                 />
               ) : (
                 <ExpandLessIcon
-                  sx={{ color: `${theme.palette.primary.light}` }}
+                  sx={{ color: `${theme.palette.primary.main}` }}
                   fontSize="small"
                 />
               )}
@@ -204,12 +204,12 @@ const Navbar = () => {
               </Typography>
               {!resourceOpen ? (
                 <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.primary.light}` }}
+                  sx={{ color: `${theme.palette.primary.main}` }}
                   fontSize="small"
                 />
               ) : (
                 <ExpandLessIcon
-                  sx={{ color: `${theme.palette.primary.light}` }}
+                  sx={{ color: `${theme.palette.primary.main}` }}
                   fontSize="small"
                 />
               )}
@@ -261,7 +261,7 @@ const Navbar = () => {
             mt={1}
             mr={2}
             onClick={handleTheme}
-            sx={{ color: theme.palette.primary.light }}
+            sx={{ color: theme.palette.primary.main }}
           >
             {theme.palette.mode !== "dark" ? (
               <DarkModeIcon />
@@ -277,7 +277,7 @@ const Navbar = () => {
                   sx={{ display: "flex", gap: "10px" }}
                 >
                   <AccountCircleIcon
-                    sx={{ color: `${theme.palette.primary.light}` }}
+                    sx={{ color: `${theme.palette.primary.main}` }}
                     fontSize="large"
                   />
                 </Typography>

@@ -34,9 +34,10 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
       })
       .catch((err) => {
         dispatch({ type: "CHECK_ELIGIBILTY_FOR_STASHFIN_FAILURE" });
-        console.log(err);
+        return err
       });
   } catch (error) {
     console.error("Registration error:", error.message);
+    return error
   }
 };

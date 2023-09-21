@@ -49,7 +49,7 @@ const LoanCalculator = () => {
               {" "}
               Loan Amount
             </Typography>
-            <Slider sx={{"color": theme.palette.secondary.main}}
+            <Slider sx={{"color": theme.palette.primary.main}}
               value={Amount}
               onChange={(event, vAmt) => {
                 setAmount(vAmt);
@@ -63,7 +63,7 @@ const LoanCalculator = () => {
               {" "}
               Interest Rate
             </Typography>
-            <Slider sx={{"color": theme.palette.secondary.main}}
+            <Slider sx={{"color": theme.palette.primary.main}}
               value={interest}
               onChange={(event, vInt) => {
                 setInterest(vInt);
@@ -77,7 +77,7 @@ const LoanCalculator = () => {
               {" "}
               Tenure (Months)
             </Typography>
-            <Slider sx={{"color": theme.palette.secondary.main}}
+            <Slider sx={{"color": theme.palette.primary.main}}
               value={duration}
               onChange={(event, vDur) => {
                 setDuration(vDur);

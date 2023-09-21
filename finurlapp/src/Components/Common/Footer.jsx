@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <>
       <footer
-        style={{ "background-color": `${theme.palette.primary.main}` }}
+        style={{ "background-color": `${theme.palette.secondary.main}` }}
         id={styles.footer}
       >
         <Box>

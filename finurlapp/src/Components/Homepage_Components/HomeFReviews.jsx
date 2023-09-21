@@ -31,7 +31,7 @@ const HomeFReviews = () => {
             data-aos-duration="1700"
             data-aos-easing="ease-in-sine"
           >
-            <Box bgcolor={theme.palette.primary.main} className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.secondary.main} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box>
                 <Typography variant="body2">
@@ -56,7 +56,7 @@ const HomeFReviews = () => {
             data-aos-duration="1700"
             data-aos-easing="ease-in-sine"
           >
-            <Box bgcolor={theme.palette.primary.main} className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.secondary.main} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box>
                 <Typography variant="body2">
@@ -81,7 +81,7 @@ const HomeFReviews = () => {
             data-aos-duration="1700"
             data-aos-easing="ease-in-sine"
           >
-            <Box bgcolor={theme.palette.primary.main} className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.secondary.main} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box  >
                 <Typography variant="body2">
