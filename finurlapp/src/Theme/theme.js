@@ -9,13 +9,12 @@ let lightTheme = createTheme({
       dark: "#769FCD",
     },
     secondary: {
-      main: "#F0F5F9",
+      main: "#AED2FF",
       dark: "#C9D6DF",
-      light: "#F0F5F9",
+      light: "#AED2FF",
     },
     background: {
       default: "#F9F9F9",
-      
     },
   },
   typography: {
@@ -66,15 +65,14 @@ let lightTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#1B262C",
-          color:"#fff",
+          color: "#fff",
           "&:hover": {
-            border: "1px solid #F0F5F9", // Customize the border color
+            border: "1px solid #AED2FF", // Customize the border color
             backgroundColor: "#252A34", // Customize the background color on hover
           },
         },
       },
     },
-    
     MuiTextField: {
       styleOverrides: {
         root: {
@@ -118,7 +116,6 @@ let lightTheme = createTheme({
         },
       },
     },
-
     MuiSelect: {
       styleOverrides: {
         root: {
@@ -150,16 +147,16 @@ let lightTheme = createTheme({
     MuiDataGrid: {
       styleOverrides: {
         root: {
-          color: "#C9D6DF",
+          color: "#252A34",
         },
         columnHeader: {
-          color: "#C9D6DF",
-          backgroundColor: "#1B262C",
+          color: "#252A34",
+          backgroundColor: "#C9D6DF",
           fontSize: "small",
         },
         cell: {
           color: "#C9D6DF",
-          backgroundColor: "#1B262C",
+          backgroundColor: "#C9D6DF",
           fontSize: "medium",
         },
       },
@@ -181,7 +178,7 @@ let darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#F0F5F9",
+      main: "#AED2FF",
       dark: "#C9D6DF",
       light: "#F3F8FF",
     },
@@ -198,43 +195,43 @@ let darkTheme = createTheme({
     fontFamily: "Poppins, sans-serif",
     h1: {
       fontSize: "6rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     h2: {
       fontSize: "5rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     h3: {
       fontSize: "4rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     h4: {
       fontSize: "3rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     h5: {
       fontSize: "2rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     h6: {
       fontSize: "1.5rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     body1: {
       fontSize: "1rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     body2: {
       fontSize: "0.8rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     subtitle1: {
       fontSize: "1.25rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
     subtitle2: {
       fontSize: "0.75rem",
-      color: "#F0F5F9",
+      color: "#AED2FF",
     },
   },
   components: {
@@ -242,20 +239,20 @@ let darkTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            border: "1px solid #F0F5F9", // Customize the label color
+            border: "1px solid #AED2FF", // Customize the label color
           },
           "&:after": {
-            border: "1px solid #F0F5F9", // Customize the label color
+            border: "1px solid #AED2FF", // Customize the label color
           },
           "& .MuiInputLabel-root": {
-            color: "#F0F5F9", // Customize the label color
+            color: "#AED2FF", // Customize the label color
           },
           "& .MuiInputLabel-shrink": {
-            color: "#F0F5F9", // Customize the label color when it's shrunk
+            color: "#AED2FF", // Customize the label color when it's shrunk
           },
           "& .MuiInputBase-input": {
             color: "#fff",
-            borderBottom: "2px solid #F0F5F9", // Customize the label color
+            borderBottom: "2px solid #AED2FF", // Customize the label color
             // Customize the input text color
           },
           "& .MuiInputBase-input::placeholder": {
@@ -271,32 +268,32 @@ let darkTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            borderColor: "#F0F5F9", // Customize the label color
-            color: "#F0F5F9", // Customize the option text color
+            borderColor: "#AED2FF", // Customize the label color
+            color: "#AED2FF", // Customize the option text color
           },
           "&:after": {
-            borderColor: "#F0F5F9",
-            color: "#F0F5F9", // Customize the option text color
+            borderColor: "#AED2FF",
+            color: "#AED2FF", // Customize the option text color
             // Customize the label color when selected
           },
         },
         "&:hover": {
-          backgroundColor: "#F0F5F9",
-          color: "red",
+          backgroundColor: "#AED2FF",
+          color: "fff",
         },
       },
     },
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: "#F0F5F9", // Customize the label color
+          color: "#AED2FF", // Customize the label color
         },
       },
     },
     MuiTableCell: {
       styleOverrides: {
         root: {
-          color: "#F0F5F9", // Customize the label color
+          color: "#AED2FF", // Customize the label color
         },
       },
     },
@@ -305,23 +302,23 @@ let darkTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            borderColor: "#F0F5F9", // Customize the label color
-            color: "#F0F5F9", // Customize the option text color
+            borderColor: "#AED2FF", // Customize the label color
+            color: "#AED2FF", // Customize the option text color
           },
           "&:after": {
-            borderColor: "#F0F5F9",
-            color: "#F0F5F9", // Customize the option text color
+            borderColor: "#AED2FF",
+            color: "#AED2FF", // Customize the option text color
             // Customize the label color when selected
           },
           "& .MuiSvgIcon-root": {
-            color: "#F0F5F9", // Customize the arrow icon color
+            color: "#AED2FF", // Customize the arrow icon color
           },
           "& option": {
-            color: "#F0F5F9", // Customize the option text color
+            color: "#AED2FF", // Customize the option text color
           },
           "& .MuiSelect-select:focus": {
             backgroundColor: "#ccc",
-            color: "#F0F5F9", // Remove the focus background color
+            color: "#AED2FF", // Remove the focus background color
           },
           "& .MuiSelect-select::placeholder": {
             color: "#ccc", // Customize the placeholder color
@@ -332,16 +329,20 @@ let darkTheme = createTheme({
     MuiDataGrid: {
       styleOverrides: {
         root: {
-          color: "#F0F5F9",
+          color: "#AED2FF",
         },
         columnHeader: {
-          color: "#F0F5F9",
-          backgroundColor: "#252A34",
+          color: "#AED2FF",
+          backgroundColor: "#1B262C",
           fontSize: "small",
+          // Add styles for the three dots options here
+          "& .MuiDataGrid-menuIcon": {
+            color: "#fff", // Change the color to your desired color
+          },
         },
         cell: {
-          color: "#F0F5F9",
-          backgroundColor: "#252A34",
+          color: "#AED2FF",
+          backgroundColor: "#1B262C",
           fontSize: "medium",
         },
       },
@@ -349,8 +350,8 @@ let darkTheme = createTheme({
     MuiTablePagination: {
       styleOverrides: {
         root: {
-          backgroundColor: "#252A34", // Background color for pagination section
-          color: "#F0F5F9",
+          backgroundColor: "#1B262C", // Background color for pagination section
+          color: "#AED2FF",
           fontWeight: 600,
           fontSize: "small",
         },

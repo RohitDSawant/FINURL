@@ -148,7 +148,7 @@ const InstantLoansCarousel = () => {
                   onClick={() => {
                     Redirection(partner.path);
                   }}
-                  // id={styles.carousel_apply_btn}
+                  id={styles.carousel_apply_btn}
                 >
                   Apply Now
                 </Button>

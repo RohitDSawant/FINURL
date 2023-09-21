@@ -32,8 +32,8 @@ const HomeCLoans = () => {
         </Typography>
         <Box mt={10} className={styles.loans_sec}>
           <TabContext value={tab}>
-            <Box mb={2} sx={{ borderBottom: 1, borderColor: "divider", color: theme.palette.primary.light }}>
-              <TabList textColor= {theme.palette.secondary.main}
+            <Box mb={2} sx={{ borderBottom: 1, borderColor: "divider", color: theme.palette.primary.main }}>
+              <TabList textColor= {theme.palette.primary.main}
                 variant={"scrollable"}
                 scrollButtons={"auto"}
                 onChange={handleChange}
