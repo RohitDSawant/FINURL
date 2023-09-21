@@ -200,7 +200,7 @@ const LoginPage = () => {
       <Navbar />
       <main className={!isSignUpMode ? "sign-up-mode" : ""}>
         <div
-          style={{ backgroundColor: theme.palette.primary.main }}
+          style={{ backgroundColor: "#fff" }}
           className="box"
         >
           <div className="inner-box">
@@ -220,7 +220,7 @@ const LoginPage = () => {
 
                     <div className="heading">
                       <Typography
-                        color={theme.palette.secondary.main}
+                        color={theme.palette.primary.main}
                         variant="h6"
                       >
                         Welcome
@@ -304,7 +304,7 @@ const LoginPage = () => {
                               type="submit"
                               className="sign-btn"
                               sx={{
-                                backgroundColor: `${theme.palette.secondary.main}`,
+                                backgroundColor: `${theme.palette.primary.main}`,
                                 marginBottom: "10px",
                               }}
                             >
@@ -539,7 +539,7 @@ const LoginPage = () => {
             </div>
 
             <div
-              style={{ background: theme.palette.secondary.main }}
+              style={{ background: theme.palette.primary.main }}
               className="carousel"
             >
               <div className="images-wrapper">
