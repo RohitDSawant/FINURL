@@ -296,8 +296,8 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to={"/authentication"}>
-                  <Button>
+                <Link style={{ textDecoration: "none" }} to={"/authentication"}>
+                  <Box display={"flex"} alignItems={"center"}>
                     <LoginIcon
                       sx={{ color: `${theme.palette.primary.main}` }}
                     />
@@ -305,11 +305,12 @@ const Navbar = () => {
                       sx={{ color: `${theme.palette.primary.main}` }}
                       ml={2}
                       textTransform={"capitalize"}
-                      variant="subtitle2"
+                      variant="body2"
+                      fontWeight={500}
                     >
                       Login
                     </Typography>
-                  </Button>
+                  </Box>
                 </Link>
               </>
             )}

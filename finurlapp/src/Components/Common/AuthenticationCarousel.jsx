@@ -199,7 +199,7 @@ const LoginPage = () => {
     <>
       <Navbar />
       <main className={!isSignUpMode ? "sign-up-mode" : ""}>
-        <div style={{ backgroundColor: "#fff" }} className="box">
+        <div style={{ backgroundColor: theme.palette.secondary.light }} className="box">
           <div className="inner-box">
             <div className="forms-wrap">
               {!isSignUpMode ? (
@@ -217,7 +217,7 @@ const LoginPage = () => {
 
                     <div className="heading">
                       <Typography
-                        color={theme.palette.primary.main}
+                        color={theme.palette.primary.dark}
                         variant="h6"
                       >
                         Welcome
@@ -533,7 +533,7 @@ const LoginPage = () => {
             </div>
 
             <div
-              style={{ background: theme.palette.primary.main }}
+              style={{ background: theme.palette.secondary.dark }}
               className="carousel"
             >
               <div className="images-wrapper">
