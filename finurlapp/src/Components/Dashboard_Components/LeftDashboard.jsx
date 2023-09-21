@@ -77,11 +77,7 @@ const LeftDashboard = () => {
               <Link style={{ textDecoration: "none" }} to={"/"}>
                 <Box mt={2} display={"flex"} alignItems={"center"} gap={"15px"}>
                   <img height={"30vh"} src={circle_logo} alt="logo" />
-                  <Typography
-                    color={theme.palette.primary.main}
-                    mt={0.5}
-                    variant="h6"
-                  >
+                  <Typography mt={0.5} variant="h6">
                     FinURL
                   </Typography>
                 </Box>
@@ -97,7 +93,7 @@ const LeftDashboard = () => {
             }
             onClick={handleDashboardSec}
           >
-            <Typography variant="body1" color={theme.palette.primary.main}> Dashboard</Typography>
+            <Typography variant="body1"> Dashboard</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
@@ -108,7 +104,7 @@ const LeftDashboard = () => {
             }
             onClick={handleRecordsSec}
           >
-            <Typography variant="body1" color={theme.palette.primary.main}> Loans Records</Typography>
+            <Typography variant="body1"> Loans Records</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
@@ -119,17 +115,15 @@ const LeftDashboard = () => {
             }
             onClick={handleBankWiseSec}
           >
-            <Typography variant="body1" color={theme.palette.primary.main}> Bank Offers</Typography>
+            <Typography variant="body1"> Bank Offers</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
             icon={
-              <PaymentRoundedIcon
-                sx={{ color: theme.palette.primary.main }}
-              />
+              <PaymentRoundedIcon sx={{ color: theme.palette.primary.main }} />
             }
           >
-            <Typography variant="body1" color={theme.palette.primary.main}> Cards</Typography>
+            <Typography variant="body1"> Cards</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
@@ -139,17 +133,15 @@ const LeftDashboard = () => {
               />
             }
           >
-            <Typography variant="body1" color={theme.palette.primary.main}>Insights</Typography>
+            <Typography variant="body1">Insights</Typography>
           </MenuItem>
           <MenuItem
             id={styles.menu_item}
             icon={
-              <SettingsRoundedIcon
-                sx={{ color: theme.palette.primary.main }}
-              />
+              <SettingsRoundedIcon sx={{ color: theme.palette.primary.main }} />
             }
           >
-            <Typography variant="body1" color={theme.palette.primary.main}>Settings</Typography>
+            <Typography variant="body1">Settings</Typography>
           </MenuItem>
           <MenuItem
             onClick={handleLogout}
@@ -157,7 +149,7 @@ const LeftDashboard = () => {
             id={styles.menu_item}
             icon={<LogoutIcon sx={{ color: theme.palette.primary.main }} />}
           >
-            <Typography variant="body1" color={theme.palette.primary.main}>Logout</Typography>
+            <Typography variant="body1">Logout</Typography>
           </MenuItem>
         </Menu>
       </Sidebar>

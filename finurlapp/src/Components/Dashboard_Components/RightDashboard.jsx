@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { DasboardContext } from "../../Context/DashboardContext";
-import Transaction from "./Transactions/LoanRecords";
+import Transaction from "./Loans_Records/LoanRecords";
 import ActualDashboardSection from "./Dashboard/ActualDashboardSection";
 import ActualBankWise from "./Bank_Wise_Offers/ActualBankWise";
 

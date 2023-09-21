@@ -10,7 +10,7 @@ const HomeFReviews = () => {
   return (
     <>
       <section id={styles.home_f_sec}>
-        <Typography textAlign={"center"} mb={10} mt={5} variant="h5">
+        <Typography color={theme.palette.primary.main} textAlign={"center"} mb={10} mt={5} variant="h5">
           What Our Clients Say
         </Typography>
         <Grid
@@ -31,15 +31,15 @@ const HomeFReviews = () => {
             data-aos-duration="1700"
             data-aos-easing="ease-in-sine"
           >
-            <Box bgcolor={theme.palette.secondary.main} className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.secondary.dark} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box>
-                <Typography variant="body2">
+                <Typography color={theme.palette.primary.main} variant="body2">
                   I had a business registered for 2 years but was unable to get
                   a loan from anywhere. Thanks to Finurl, because of whose
                   timely service I was able to get a loan.
                 </Typography>
-                <Typography variant="body1" mt={3} fontWeight={600}>
+                <Typography color={theme.palette.primary.main} variant="body1" mt={3} fontWeight={600}>
                   Pratik Verma
                 </Typography>
               </Box>
@@ -56,15 +56,15 @@ const HomeFReviews = () => {
             data-aos-duration="1700"
             data-aos-easing="ease-in-sine"
           >
-            <Box bgcolor={theme.palette.secondary.main} className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.secondary.dark} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box>
-                <Typography variant="body2">
+                <Typography color={theme.palette.primary.main} variant="body2">
                   Finurls online platform is so easy to use. I was able to get
                   multiple offers for a loan online from their platform and got
                   the best interest rates.
                 </Typography>
-                <Typography variant="body1" mt={3} fontWeight={600}>
+                <Typography color={theme.palette.primary.main} variant="body1" mt={3} fontWeight={600}>
                   Santosh Joshi
                 </Typography>
               </Box>
@@ -81,14 +81,14 @@ const HomeFReviews = () => {
             data-aos-duration="1700"
             data-aos-easing="ease-in-sine"
           >
-            <Box bgcolor={theme.palette.secondary.main} className={styles.circle_quote}>
+            <Box bgcolor={theme.palette.secondary.dark} className={styles.circle_quote}>
               <img src={quote_right} alt="" />
               <Box  >
-                <Typography variant="body2">
+                <Typography color={theme.palette.primary.main} variant="body2">
                   Because of Finurl and their tie-ups with multiple banks and
                   NBCs, I was able to get a loan within 48 hours.
                 </Typography>
-                <Typography variant="body1" mt={3} fontWeight={600}>
+                <Typography color={theme.palette.primary.main} variant="body1" mt={3} fontWeight={600}>
                   Vijay Kumar
                 </Typography>
               </Box>

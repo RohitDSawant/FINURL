@@ -199,10 +199,7 @@ const LoginPage = () => {
     <>
       <Navbar />
       <main className={!isSignUpMode ? "sign-up-mode" : ""}>
-        <div
-          style={{ backgroundColor: "#fff" }}
-          className="box"
-        >
+        <div style={{ backgroundColor: "#fff" }} className="box">
           <div className="inner-box">
             <div className="forms-wrap">
               {!isSignUpMode ? (
@@ -298,6 +295,7 @@ const LoginPage = () => {
                             display={"flex"}
                             alignItems={"center"}
                             gap={"30px"}
+                            marginBottom={"20px"}
                           >
                             <Button
                               disabled={isLoading}
@@ -305,18 +303,22 @@ const LoginPage = () => {
                               className="sign-btn"
                               sx={{
                                 backgroundColor: `${theme.palette.primary.main}`,
-                                marginBottom: "10px",
+                                marginBottom: "5px",
+                                width: "max-content",
+                                padding: "5px 15px",
                               }}
                             >
                               <Typography
-                                color={"teal"}
                                 variant="body2"
-                                fontWeight={500}
+                                color={theme.palette.secondary.main}
+                                fontWeight={600}
                               >
                                 Sign in
                               </Typography>
                             </Button>
-                            {isLoading ? <CircularProgress size={15} /> : ""}
+                            <Typography>
+                              {isLoading ? <CircularProgress size={20} /> : ""}
+                            </Typography>
                           </Box>
                         </>
                       ) : (
@@ -325,35 +327,29 @@ const LoginPage = () => {
 
                       {showOptSec ? (
                         <>
-                          <Box display={"flex"} gap={"30px"}>
+                          <Box
+                            display={"flex"}
+                            alignItems={"center"}
+                            gap={"30px"}
+                          >
                             <Button
                               disabled={isLoading}
                               className={"sign-btn"}
                               onClick={verifyOtp}
                               sx={{
-                                background: theme.palette.primary.main,
-                                marginBottom: "10px",
+                                width: "max-content",
                               }}
                             >
                               <Typography
                                 variant="body2"
                                 fontWeight={500}
                                 textTransform={"capitalize"}
+                                color={theme.palette.secondary.main}
                               >
                                 Verify OTP
                               </Typography>
                             </Button>
-                            {isLoading ? (
-                              <CircularProgress
-                                size={25}
-                                sx={{
-                                  width: "60%",
-                                  margin: "auto",
-                                }}
-                              />
-                            ) : (
-                              ""
-                            )}
+                            {isLoading ? <CircularProgress size={20} /> : ""}
                           </Box>
                         </>
                       ) : (
@@ -473,32 +469,30 @@ const LoginPage = () => {
                       </Box> */}
                       {!showSuccessSnack && !showErrorSnack ? (
                         <>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            marginBottom={"15px"}
+                            display={"flex"}
+                            alignItems={"center"}
+                            gap={"30px"}
+                          >
                             <Button
                               disabled={isLoading}
                               type="submit"
                               value="Sign Up"
                               className="sign-btn"
-                              sx={{
-                                background: `${theme.palette.primary.main}`,
-                                marginBottom: "10px",
-                              }}
+                              sx={{ width: "max-content" }}
                             >
-                              <Typography variant="subtitle2" fontWeight={500}>
+                              <Typography
+                                color={theme.palette.secondary.main}
+                                variant="body2"
+                                fontWeight={600}
+                              >
                                 Sign Up
                               </Typography>
                             </Button>
-                            {isLoading ? (
-                              <CircularProgress
-                                size={15}
-                                sx={{
-                                  margin: "auto",
-                                  marginTop: "10px",
-                                }}
-                              />
-                            ) : (
-                              ""
-                            )}
+                            <Typography mt={1}>
+                              {isLoading ? <CircularProgress size={20} /> : ""}
+                            </Typography>
                           </Box>
                         </>
                       ) : showSuccessSnack ? (

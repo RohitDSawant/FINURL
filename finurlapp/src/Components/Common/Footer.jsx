@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <>
       <footer
-        style={{ "background-color": `${theme.palette.secondary.main}` }}
+        style={{ "background-color": `${theme.palette.secondary.dark}` }}
         id={styles.footer}
       >
         <Box>
@@ -22,79 +22,79 @@ const Footer = () => {
               <Box className={styles.footer_logo_box}>
                 <Box display={"flex"} gap={"15px"} alignItems={"center"}>
                   <img className={styles.footer_logo} src={logo} alt="logo" />
-                  <Typography variant="h5">FinURL</Typography>
+                  <Typography color={theme.palette.primary.main} variant="h5">FinURL</Typography>
                 </Box>
                 <Box display={"flex"} mt={5} ml={5} gap={"10px"}>
                   <Box>
                     <FacebookIcon
-                      sx={{ color: theme.palette.secondary.main }}
+                      sx={{ color: theme.palette.primary.main }}
                     />
                   </Box>
                   <Box>
                     <InstagramIcon
-                      sx={{ color: theme.palette.secondary.main }}
+                      sx={{ color: theme.palette.primary.main }}
                     />
                   </Box>
                   <Box>
-                    <TwitterIcon sx={{ color: theme.palette.secondary.main }} />
+                    <TwitterIcon sx={{ color: theme.palette.primary.main }} />
                   </Box>
                   <Box>
                     <LinkedinIcon
-                      sx={{ color: theme.palette.secondary.main }}
+                      sx={{ color: theme.palette.primary.main }}
                     />
                   </Box>
                 </Box>
               </Box>
               <Box>
-                <Typography fontSize={"x-small"} variant="body2">
+                <Typography color={theme.palette.primary.main} fontSize={"x-small"} variant="body2">
                   Copyright Ⓒ 2023 FinURL. All Rights Reserved.
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={3} sm={4} lg={2}>
-              <Typography variant="h6" mb={2}>
+              <Typography color={theme.palette.primary.main} variant="h6" mb={2}>
                 Products
               </Typography>
               <Box>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Cards
                 </Typography>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Invenstments
                 </Typography>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Loans
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={3} sm={4} lg={2}>
-              <Typography variant="h6" mb={2}>
+              <Typography color={theme.palette.primary.main} variant="h6" mb={2}>
                 Resources
               </Typography>
               <Box>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Calculator
                 </Typography>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Credit Score
                 </Typography>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Financial Library
                 </Typography>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Credit Management
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={3} sm={4} lg={2}>
-              <Typography variant="h6" mb={2}>
+              <Typography color={theme.palette.primary.main} variant="h6" mb={2}>
                 Partner
               </Typography>
               <Box>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Our Partner's
                 </Typography>
-                <Typography variant="body2" fontSize={"x-small"} mb={1}>
+                <Typography color={theme.palette.primary.main} variant="body2" fontSize={"x-small"} mb={1}>
                   Become a Partner
                 </Typography>
               </Box>

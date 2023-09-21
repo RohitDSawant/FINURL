@@ -1,4 +1,4 @@
-.Home{
+.Home {
   overflow-x: hidden;
 }
 
@@ -78,6 +78,7 @@
   flex-direction: column;
   gap: 50px;
   padding-bottom: 5%;
+  margin-bottom: 5%;
   /* border: 1px solid red; */
   height: max-content;
 }
@@ -162,6 +163,8 @@
   padding-top: 3%;
   border-radius: 5px;
   position: relative;
+  background: #F0F5F9;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .circle_quote {
@@ -320,7 +323,7 @@
   }
 
   .slabs_img {
-    height: 10vh;
+    height: 250px;
   }
 
   .partner_grid {
@@ -344,6 +347,6 @@
   }
 
   .slabs_img {
-    height: 15vh;
+    height: 25vh;
   }
 }

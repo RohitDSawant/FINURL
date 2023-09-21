@@ -9,7 +9,7 @@ const HomeDSlabs = () => {
   return (
     <>
       <section id={styles.home_d_sec}>
-        <Box>
+        <Box >
           <Grid
             data-aos="fade-right"
             data-aos-duration="700"
@@ -20,7 +20,7 @@ const HomeDSlabs = () => {
             mt={10}
             alignItems={"center"}
           >
-            <Grid item lg={7} md={7} sm={7} xs={7}>
+            <Grid item lg={7} md={7} sm={7} xs={8.5}>
               <Box id={styles.right_slab} className={styles.slab_box}>
                 <Typography variant="h6" fontSize={"medium"}>
                   Easily control your billing & invoicing
@@ -31,7 +31,7 @@ const HomeDSlabs = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid lg={4} md={4} sm={4} xs={4}>
+            <Grid lg={4} md={4} sm={4} xs={3.5}>
               <Box className={styles.slab_circle}>
                 <img src={easy_billing} className={styles.slabs_img} alt="" />
               </Box>

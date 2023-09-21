@@ -25,7 +25,7 @@ const LoanRecords = () => {
       width: 70,
       renderCell: (params) => {
         return (
-          <Typography color={theme.palette.primary.main} ml={2} variant="body2">
+          <Typography color={theme.palette.secondary.dark} ml={2} variant="body2">
             {params.value}
           </Typography>
         );
@@ -37,7 +37,7 @@ const LoanRecords = () => {
       width: 290,
       renderCell: (params) => {
         return (
-          <Typography color={theme.palette.primary.main} variant="body2">
+          <Typography color={theme.palette.secondary.dark} variant="body2">
             {params.row.first_name + " " + params.row.last_name}
           </Typography>
         );
@@ -49,7 +49,7 @@ const LoanRecords = () => {
       width: 200,
       renderCell: (params) => {
         return (
-          <Typography color={theme.palette.primary.main} variant="body2">
+          <Typography color={theme.palette.secondary.dark} variant="body2">
             {params.row.results.application_id}
           </Typography>
         );
@@ -61,7 +61,7 @@ const LoanRecords = () => {
       width: 200,
       renderCell: (params) => {
         return (
-          <Typography color={theme.palette.primary.main} variant="body2">
+          <Typography color={theme.palette.secondary.dark} variant="body2">
             {params.value}
           </Typography>
         );
@@ -141,7 +141,7 @@ const LoanRecords = () => {
               >
                 <DialogTitle>
                   <Typography
-                    color={theme.palette.primary.main}
+                    color={theme.palette.secondary.dark}
                     mb={2}
                     variant="body2"
                   >
@@ -150,7 +150,7 @@ const LoanRecords = () => {
                 </DialogTitle>
                 <DialogContent>
                   <Typography
-                    color={theme.palette.primary.main}
+                    color={theme.palette.secondary.dark}
                     sx={{ userSelect: "text" }}
                     m={1}
                     variant="body2"

@@ -31,12 +31,12 @@ const GraphSection = () => {
         <Grid item lg={4.5} height={"40vh"}>
           <Box
             sx={{
-              backgroundColor: theme.palette.primary.main,
+              backgroundColor: theme.palette.primary.dark,
               padding: "15px 20px",
               borderRadius: "5px",
             }}
           >
-            <Typography color={theme.palette.secondary.main} variant="subtitle2">
+            <Typography color={theme.palette.secondary.dark} variant="subtitle2">
               Recent Loan Processed
             </Typography>
           </Box>
@@ -50,7 +50,7 @@ const GraphSection = () => {
               loans.map((people, id) => {
                 return (
                   <Box
-                    sx={{ backgroundColor: theme.palette.primary.main }}
+                    sx={{ backgroundColor: theme.palette.primary.dark }}
                     display={"grid"}
                     gridTemplateColumns={"repeat(3, 1fr)"}
                     key={id}
@@ -64,7 +64,7 @@ const GraphSection = () => {
                   >
                     <Box>
                       <Typography
-                        color={theme.palette.secondary.main}
+                        color={theme.palette.secondary.dark}
                         fontSize={"x-small"}
                         letterSpacing={1}
                         mb={1}
@@ -73,21 +73,21 @@ const GraphSection = () => {
                         {people.loanID}
                       </Typography>
                       <Typography
-                        color={theme.palette.secondary.main}
+                        color={theme.palette.secondary.dark}
                         variant="subtitle2"
                       >
                         {people.name}{" "}
                       </Typography>
                     </Box>
                     <Typography
-                      color={theme.palette.secondary.main}
+                      color={theme.palette.secondary.dark}
                       alignSelf={"center"}
                       variant="body2"
                     >
                       {people.date}
                     </Typography>
                     <Typography
-                      color={theme.palette.secondary.main}
+                      color={theme.palette.secondary.dark}
                       alignSelf={"center"}
                       variant="body1"
                     >

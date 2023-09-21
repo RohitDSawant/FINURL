@@ -4,17 +4,17 @@ let lightTheme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#0F2C59",
-      light: "#0F2C59",
-      dark: "#1B262C",
+      main: "#252A34",
+      light: "#D6E6F2",
+      dark: "#769FCD",
     },
     secondary: {
-      main: "#CFF1EF",
-      dark: "#C6CFFF",
-      light: "#F3F8FF",
+      main: "#F0F5F9",
+      dark: "#C9D6DF",
+      light: "#F0F5F9",
     },
     background: {
-      default: "#fff",
+      default: "#F9F9F9",
       
     },
   },
@@ -22,43 +22,43 @@ let lightTheme = createTheme({
     fontFamily: "Poppins, sans-serif",
     h1: {
       fontSize: "6rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     h2: {
       fontSize: "5rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     h3: {
       fontSize: "4rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     h4: {
       fontSize: "3rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     h5: {
       fontSize: "2rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     h6: {
       fontSize: "1.5rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     body1: {
       fontSize: "1rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     body2: {
       fontSize: "0.8rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     subtitle1: {
       fontSize: "1.25rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
     subtitle2: {
       fontSize: "0.75rem",
-      color: "#0F2C59",
+      color: "#252A34",
     },
   },
   components: {
@@ -66,10 +66,10 @@ let lightTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#1B262C",
-          color:"#CFF1EF",
+          color:"#fff",
           "&:hover": {
-            border: "1px solid #CFF1EF", // Customize the border color
-            backgroundColor: "#0F2C59", // Customize the background color on hover
+            border: "1px solid #F0F5F9", // Customize the border color
+            backgroundColor: "#252A34", // Customize the background color on hover
           },
         },
       },
@@ -79,27 +79,27 @@ let lightTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            border: "1px solid #0F2C59", // Customize the label color
+            border: "1px solid #252A34", // Customize the label color
           },
           "&:after": {
-            border: "1px solid #0F2C59", // Customize the label color
+            border: "1px solid #252A34", // Customize the label color
           },
           "& .MuiInputLabel-root": {
-            color: "#0F2C59", // Customize the label color
+            color: "#252A34", // Customize the label color
           },
           "& .MuiInputLabel-shrink": {
-            color: "#0F2C59", // Customize the label color when it's shrunk
+            color: "#252A34", // Customize the label color when it's shrunk
           },
           "& .MuiInputBase-input": {
-            color: "#0F2C59",
-            borderBottom: "2px solid #0F2C59", // Customize the label color
+            color: "#252A34",
+            borderBottom: "2px solid #252A34", // Customize the label color
             // Customize the input text color
           },
           "& .MuiInputBase-input::placeholder": {
-            color: "#0F2C59", // Customize the placeholder color
+            color: "#252A34", // Customize the placeholder color
           },
           "& .MuiInputBase-select": {
-            color: "#0F2C59", // Customize the input text color
+            color: "#252A34", // Customize the input text color
           },
         },
       },
@@ -107,14 +107,14 @@ let lightTheme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: "#0F2C59", // Customize the label color
+          color: "#252A34", // Customize the label color
         },
       },
     },
     MuiTableCell: {
       styleOverrides: {
         root: {
-          color: "#0F2C59", // Customize the label color
+          color: "#252A34", // Customize the label color
         },
       },
     },
@@ -123,26 +123,26 @@ let lightTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            borderColor: "#0F2C59", // Customize the label color
-            color: "#0F2C59", // Customize the option text color
+            borderColor: "#252A34", // Customize the label color
+            color: "#252A34", // Customize the option text color
           },
           "&:after": {
-            borderColor: "#0F2C59",
-            color: "#0F2C59", // Customize the option text color
+            borderColor: "#252A34",
+            color: "#252A34", // Customize the option text color
             // Customize the label color when selected
           },
           "& .MuiSvgIcon-root": {
-            color: "#0F2C59", // Customize the arrow icon color
+            color: "#252A34", // Customize the arrow icon color
           },
           "& option": {
-            color: "#0F2C59", // Customize the option text color
+            color: "#252A34", // Customize the option text color
           },
           "& .MuiSelect-select:focus": {
             backgroundColor: "#fff",
-            color: "#0F2C59", // Remove the focus background color
+            color: "#252A34", // Remove the focus background color
           },
           "& .MuiSelect-select::placeholder": {
-            color: "#0F2C59", // Customize the placeholder color
+            color: "#252A34", // Customize the placeholder color
           },
         },
       },
@@ -150,16 +150,16 @@ let lightTheme = createTheme({
     MuiDataGrid: {
       styleOverrides: {
         root: {
-          color: "#0F2C59",
+          color: "#C9D6DF",
         },
         columnHeader: {
-          color: "#0F2C59",
-          backgroundColor: "#CFF1EF",
+          color: "#C9D6DF",
+          backgroundColor: "#1B262C",
           fontSize: "small",
         },
         cell: {
-          color: "#0F2C59",
-          backgroundColor: "#CFF1EF",
+          color: "#C9D6DF",
+          backgroundColor: "#1B262C",
           fontSize: "medium",
         },
       },
@@ -167,8 +167,8 @@ let lightTheme = createTheme({
     MuiTablePagination: {
       styleOverrides: {
         root: {
-          backgroundColor: "#CFF1EF", // Background color for pagination section
-          color: "#0F2C59",
+          backgroundColor: "#C9D6DF", // Background color for pagination section
+          color: "#252A34",
           fontWeight: 600,
           fontSize: "small",
         },
@@ -181,13 +181,13 @@ let darkTheme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#CFF1EF",
-      dark: "#C6CFFF",
+      main: "#F0F5F9",
+      dark: "#C9D6DF",
       light: "#F3F8FF",
     },
     secondary: {
       main: "#3F72AF",
-      light: "#0F2C59",
+      light: "#252A34",
       dark: "#1B262C",
     },
     background: {
@@ -198,43 +198,43 @@ let darkTheme = createTheme({
     fontFamily: "Poppins, sans-serif",
     h1: {
       fontSize: "6rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     h2: {
       fontSize: "5rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     h3: {
       fontSize: "4rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     h4: {
       fontSize: "3rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     h5: {
       fontSize: "2rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     h6: {
       fontSize: "1.5rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     body1: {
       fontSize: "1rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     body2: {
       fontSize: "0.8rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     subtitle1: {
       fontSize: "1.25rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
     subtitle2: {
       fontSize: "0.75rem",
-      color: "#CFF1EF",
+      color: "#F0F5F9",
     },
   },
   components: {
@@ -242,20 +242,20 @@ let darkTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            border: "1px solid #CFF1EF", // Customize the label color
+            border: "1px solid #F0F5F9", // Customize the label color
           },
           "&:after": {
-            border: "1px solid #CFF1EF", // Customize the label color
+            border: "1px solid #F0F5F9", // Customize the label color
           },
           "& .MuiInputLabel-root": {
-            color: "#CFF1EF", // Customize the label color
+            color: "#F0F5F9", // Customize the label color
           },
           "& .MuiInputLabel-shrink": {
-            color: "#CFF1EF", // Customize the label color when it's shrunk
+            color: "#F0F5F9", // Customize the label color when it's shrunk
           },
           "& .MuiInputBase-input": {
             color: "#fff",
-            borderBottom: "2px solid #CFF1EF", // Customize the label color
+            borderBottom: "2px solid #F0F5F9", // Customize the label color
             // Customize the input text color
           },
           "& .MuiInputBase-input::placeholder": {
@@ -271,17 +271,17 @@ let darkTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            borderColor: "#CFF1EF", // Customize the label color
-            color: "#CFF1EF", // Customize the option text color
+            borderColor: "#F0F5F9", // Customize the label color
+            color: "#F0F5F9", // Customize the option text color
           },
           "&:after": {
-            borderColor: "#CFF1EF",
-            color: "#CFF1EF", // Customize the option text color
+            borderColor: "#F0F5F9",
+            color: "#F0F5F9", // Customize the option text color
             // Customize the label color when selected
           },
         },
         "&:hover": {
-          backgroundColor: "#CFF1EF",
+          backgroundColor: "#F0F5F9",
           color: "red",
         },
       },
@@ -289,14 +289,14 @@ let darkTheme = createTheme({
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          color: "#CFF1EF", // Customize the label color
+          color: "#F0F5F9", // Customize the label color
         },
       },
     },
     MuiTableCell: {
       styleOverrides: {
         root: {
-          color: "#CFF1EF", // Customize the label color
+          color: "#F0F5F9", // Customize the label color
         },
       },
     },
@@ -305,23 +305,23 @@ let darkTheme = createTheme({
       styleOverrides: {
         root: {
           "&:before": {
-            borderColor: "#CFF1EF", // Customize the label color
-            color: "#CFF1EF", // Customize the option text color
+            borderColor: "#F0F5F9", // Customize the label color
+            color: "#F0F5F9", // Customize the option text color
           },
           "&:after": {
-            borderColor: "#CFF1EF",
-            color: "#CFF1EF", // Customize the option text color
+            borderColor: "#F0F5F9",
+            color: "#F0F5F9", // Customize the option text color
             // Customize the label color when selected
           },
           "& .MuiSvgIcon-root": {
-            color: "#CFF1EF", // Customize the arrow icon color
+            color: "#F0F5F9", // Customize the arrow icon color
           },
           "& option": {
-            color: "#CFF1EF", // Customize the option text color
+            color: "#F0F5F9", // Customize the option text color
           },
           "& .MuiSelect-select:focus": {
             backgroundColor: "#ccc",
-            color: "#CFF1EF", // Remove the focus background color
+            color: "#F0F5F9", // Remove the focus background color
           },
           "& .MuiSelect-select::placeholder": {
             color: "#ccc", // Customize the placeholder color
@@ -332,16 +332,16 @@ let darkTheme = createTheme({
     MuiDataGrid: {
       styleOverrides: {
         root: {
-          color: "#CFF1EF",
+          color: "#F0F5F9",
         },
         columnHeader: {
-          color: "#CFF1EF",
-          backgroundColor: "#0F2C59",
+          color: "#F0F5F9",
+          backgroundColor: "#252A34",
           fontSize: "small",
         },
         cell: {
-          color: "#CFF1EF",
-          backgroundColor: "#0F2C59",
+          color: "#F0F5F9",
+          backgroundColor: "#252A34",
           fontSize: "medium",
         },
       },
@@ -349,8 +349,8 @@ let darkTheme = createTheme({
     MuiTablePagination: {
       styleOverrides: {
         root: {
-          backgroundColor: "#0F2C59", // Background color for pagination section
-          color: "#CFF1EF",
+          backgroundColor: "#252A34", // Background color for pagination section
+          color: "#F0F5F9",
           fontWeight: 600,
           fontSize: "small",
         },
