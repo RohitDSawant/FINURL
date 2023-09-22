@@ -14,6 +14,7 @@ import ApplicationProtectedRoute from "../Components/Common/ApplicationRouteProt
 import HomeLoan from "../Pages/HomeLoan";
 import PrefrApplication from "../Components/EntryPoints/PrefrApplication";
 import GetStarted from "../Pages/GetStarted";
+import AdminDashboard from "../Components/Admin_Dashboard/AdminDashboard";
 const Router = () => {
   return (
     <>
@@ -43,6 +44,7 @@ const Router = () => {
         />
         <Route path="/authentication" element={<AuthenticationCarousel />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/comingsoon" element={<ComingSoon />} />
         <Route path="/get-started" element={<GetStarted />} />
