@@ -19,7 +19,7 @@
 }
 
 .home_1_img {
-  max-width: 100%;
+  width: 32vw;
   max-height: 70vh;
 }
 
@@ -84,7 +84,7 @@
 }
 
 #home_d_sec > div {
-  width: 75%;
+  width: 75vw;
   align-items: center;
   margin: auto;
 }
@@ -97,14 +97,11 @@
   justify-content: center;
 }
 
-.slab_circle {
-  overflow: hidden;
-  border-radius: 2%;
-}
 
-.slabs_img {
-  height: 40vh;
-  width: 20vw;
+
+#slabs_img {
+  height: 50vh;
+  width: 30vw;
   display: block;
   margin: auto;
 }
@@ -304,7 +301,7 @@
 
 @media all and (min-width: 100px) and (max-width: 426px) {
   #home_a_sec {
-    padding-top: 15%;
+    padding-top: 7%;
   }
 
   .home_1_img {
@@ -322,9 +319,11 @@
     height: 15vh;
   }
 
-  .slabs_img {
-    height: 250px;
+  #slabs_img {
+    height: 100px;
   }
+
+  
 
   .partner_grid {
     grid-template-columns: repeat(1, 1fr);
@@ -346,7 +345,7 @@
     width: 45vw;
   }
 
-  .slabs_img {
+  #slabs_img {
     height: 25vh;
   }
 }

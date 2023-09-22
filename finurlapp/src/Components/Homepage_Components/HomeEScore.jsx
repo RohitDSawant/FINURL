@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
 import styles from "./../../CSS/homepage.module.css";
-import credit_score from "./../../Assets/Images/credit_score.jpg";
+import credit_score from "./../../Assets/Images/credit_score.svg";
 
 
 const HomeEScore = () => {

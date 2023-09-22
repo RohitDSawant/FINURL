@@ -33,7 +33,7 @@ const HomeDSlabs = () => {
             </Grid>
             <Grid lg={4} md={4} sm={4} xs={3.5}>
               <Box className={styles.slab_circle}>
-                <img src={easy_billing} className={styles.slabs_img} alt="" />
+                <img src={easy_billing} id={styles.slabs_img} alt="" />
               </Box>
             </Grid>
           </Grid>
@@ -67,7 +67,7 @@ const HomeDSlabs = () => {
             </Grid>
             <Grid item lg={3.5} md={3.5} sm={3.5} xs={3.5}>
               <Box className={styles.slab_circle}>
-                <img src={we_handle} className={styles.slabs_img} alt="" />
+                <img src={we_handle} id={styles.slabs_img} alt="" />
               </Box>
             </Grid>
           </Grid>
@@ -94,7 +94,7 @@ const HomeDSlabs = () => {
             </Grid>
             <Grid item lg={3.5} md={3.5} sm={3.5} xs={3.5}>
               <Box className={styles.slab_circle}>
-                <img src={card_deal} className={styles.slabs_img} alt="" />
+                <img src={card_deal} id={styles.slabs_img} alt="" />
               </Box>
             </Grid>
           </Grid>

@@ -17,14 +17,19 @@ import {
   LinearProgress,
   Snackbar,
   Switch,
+  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import auth1 from "./../../Assets/Images/auth_1.jpg";
-import auth2 from "./../../Assets/Images/auth_2.jpg";
-import auth3 from "./../../Assets/Images/auth_3.jpg";
 import Navbar from "./Navbar";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import auth1 from "./../../Assets/Images/best_loans_for_you.svg";
+import auth3 from "./../../Assets/Images/partners_support.svg";
+import auth2 from "./../../Assets/Images/easy_access.svg";
+import Slider from "react-slick";
 
 const LoginPage = () => {
   const theme = useTheme();
@@ -199,12 +204,17 @@ const LoginPage = () => {
     <>
       <Navbar />
       <main className={!isSignUpMode ? "sign-up-mode" : ""}>
-        <div
-          style={{ backgroundColor: theme.palette.secondary.light }}
+        <Box
+          style={{
+            backgroundColor:
+              theme.palette.mode === "light"
+                ? "#fff"
+                : theme.palette.secondary.light,
+          }}
           className="box"
         >
-          <div className="inner-box">
-            <div className="forms-wrap">
+          <Box className="inner-box">
+            <Box className="forms-wrap">
               {!isSignUpMode ? (
                 <>
                   <form
@@ -213,40 +223,41 @@ const LoginPage = () => {
                     className="sign-up-form"
                     onSubmit={handleSubmitSignIn}
                   >
-                    <div className="logo">
-                      <img src={finurl} alt="easyclass" />
+                    <Box mb={2} gap={"15px"} display={"flex"}>
+                      <img className="logo" src={finurl} alt="easyclass" />
                       <Typography variant="h6">FinURL</Typography>
-                    </div>
+                    </Box>
 
-                    <div className="heading">
-                      <Typography mb={1} variant="h6">
+                    <Box className="heading">
+                      <Typography mb={0.5} variant="h6">
                         Welcome
                       </Typography>
-                      <Box
-                        mb={5}
-                        display={"flex"}
-                        alignItems={"center"}
-                        gap={"10px"}
-                      >
-                        <Typography fontSize={"small"} variant="body2">
-                          Not registered yet?
+                      <Box mb={3} display={"flex"} alignItems={"center"}>
+                        <Typography mr={1} fontSize={"small"} variant="body2">
+                          Not registered yet ?
                         </Typography>
                         <Typography
                           variant="body2"
                           fontWeight={600}
                           className="toggle"
                           fontSize={"small"}
-                          color={theme.palette.primary.dark}
+                          // color={theme.palette.primary.main}
                           onClick={() => setIsSignUpMode(!isSignUpMode)}
                         >
                           Sign Up
                         </Typography>
+                        <Typography mt={0.5}>
+                          <KeyboardDoubleArrowRightIcon fontSize="small" />
+                        </Typography>
                       </Box>
-                    </div>
+                    </Box>
 
-                    <div className="actual-form">
-                      <div className="input-wrap">
-                        <input
+                    <Box className="actual-form">
+                      <Box className="input-wrap">
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          sx={{ width: "85%" }}
                           placeholder="Email"
                           onChange={handleSigninChange}
                           type="email"
@@ -258,10 +269,13 @@ const LoginPage = () => {
                           required
                         />
                         {/* <label>Name</label> */}
-                      </div>
+                      </Box>
 
-                      <div className="input-wrap">
-                        <input
+                      <Box className="input-wrap">
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          sx={{ width: "85%" }}
                           placeholder="Password"
                           onChange={handleSigninChange}
                           type="password"
@@ -273,12 +287,15 @@ const LoginPage = () => {
                           required
                         />
                         {/* <label>Password</label> */}
-                      </div>
+                      </Box>
 
                       {showOptSec ? (
                         <>
-                          <div className="input-wrap">
-                            <input
+                          <Box className="input-wrap">
+                            <TextField
+                              size="small"
+                              variant="standard"
+                              sx={{ width: "85%" }}
                               placeholder="OTP"
                               onChange={handleOtp}
                               type="number"
@@ -291,7 +308,7 @@ const LoginPage = () => {
                               required
                             />
                             {/* <label>Password</label> */}
-                          </div>
+                          </Box>
                         </>
                       ) : (
                         <></>
@@ -374,7 +391,7 @@ const LoginPage = () => {
                       ) : (
                         ""
                       )}
-                    </div>
+                    </Box>
                   </form>
                 </>
               ) : (
@@ -385,38 +402,45 @@ const LoginPage = () => {
                     className="sign-in-form"
                     onSubmit={handleSubmitSignup}
                   >
-                    <div className="logo">
-                      <img src={finurl} alt="easyclass" />
+                    <Box display={"flex"} gap={"10px"} mb={2}>
+                      <img className="logo" src={finurl} alt="easyclass" />
                       <Typography variant="h6">FinURL</Typography>
-                    </div>
+                    </Box>
 
-                    <div
+                    <Box
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "10px",
                       }}
-                      className="heading"
                     >
-                      <Typography variant="body2" mb={1} fontSize={"small"}>
-                        Get Started, Already have an account.?
+                      <Typography
+                        mr={1}
+                        variant="body2"
+                        mb={1}
+                        fontSize={"small"}
+                      >
+                        Already have an account.?
                       </Typography>
                       <Typography
-                        variant="body1"
-                        mt={-1}
-                        color={theme.palette.primary.dark}
+                        variant="body2"
+                        mt={-0.5}
                         fontWeight={600}
-                        fontSize={"medium"}
                         onClick={() => setIsSignUpMode(!isSignUpMode)}
                         className="toggle"
                       >
                         Sign in
                       </Typography>
-                    </div>
+                      <Typography>
+                        <KeyboardDoubleArrowRightIcon fontSize="small" />
+                      </Typography>
+                    </Box>
 
-                    <div className="actual-form">
-                      <div className="input-wrap">
-                        <input
+                    <Box className="actual-form">
+                      <Box className="input-wrap">
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          sx={{ width: "85%" }}
                           placeholder="Full Name"
                           onChange={handleChange}
                           type="text"
@@ -427,10 +451,13 @@ const LoginPage = () => {
                           required
                         />
                         {/* <label>Name</label> */}
-                      </div>
+                      </Box>
 
-                      <div className="input-wrap">
-                        <input
+                      <Box className="input-wrap">
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          sx={{ width: "85%" }}
                           placeholder="Email"
                           onChange={handleChange}
                           type="email"
@@ -440,9 +467,12 @@ const LoginPage = () => {
                           name="email"
                         />
                         {/* <label>Email</label> */}
-                      </div>
-                      <div className="input-wrap">
-                        <input
+                      </Box>
+                      <Box className="input-wrap">
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          sx={{ width: "85%" }}
                           placeholder="PAN No"
                           onChange={handleChange}
                           type="text"
@@ -452,10 +482,13 @@ const LoginPage = () => {
                           name="panNumber"
                         />
                         {/* <label>PAN No</label> */}
-                      </div>
+                      </Box>
 
-                      <div className="input-wrap">
-                        <input
+                      <Box className="input-wrap">
+                        <TextField
+                          size="small"
+                          variant="standard"
+                          sx={{ width: "85%" }}
                           placeholder="Mobile No"
                           onChange={handleChange}
                           type="number"
@@ -466,7 +499,7 @@ const LoginPage = () => {
                           required
                         />
                         {/* <label>Mobile No</label> */}
-                      </div>
+                      </Box>
                       {/* <Box
                         display={"flex"}
                         alignItems={"center"}
@@ -494,9 +527,14 @@ const LoginPage = () => {
                             <Button
                               disabled={isLoading}
                               type="submit"
+                              sx={{
+                                backgroundColor: `${theme.palette.primary.main}`,
+                                marginBottom: "5px",
+                                width: "max-content",
+                                padding: "5px 15px",
+                              }}
                               value="Sign Up"
                               className="sign-btn"
-                              sx={{ width: "max-content" }}
                             >
                               <Typography
                                 color={theme.palette.secondary.main}
@@ -537,88 +575,76 @@ const LoginPage = () => {
                         </Typography>
                       )}
 
-                      <p className="text">
-                        By signing up, I agree to the
-                        <a href="#"> Terms of Services</a> and
-                        <a href="#"> Privacy Policy</a>
-                      </p>
-                    </div>
+                      <Typography fontSize={"small"} textAlign={"center"} color={theme.palette.primary.main} variant="subtitile2">
+                        By signing up, I agree to the Terms of Services and
+                        Privacy Policy
+                      </Typography>
+                    </Box>
                   </form>
                 </>
               )}
-            </div>
+            </Box>
 
-            <div
-              style={{ background: theme.palette.secondary.dark }}
+            <Box
+              style={{ background: theme.palette.primary.main }}
               className="carousel"
             >
-              <div className="images-wrapper">
-                <img
-                  src={auth1}
-                  className={`image img-1 ${activeSlide === 1 ? "show" : ""}`}
-                  alt=""
-                />
-                <img
-                  src={auth2}
-                  className={`image img-2 ${activeSlide === 2 ? "show" : ""}`}
-                  alt=""
-                />
-                <img
-                  src={auth3}
-                  className={`image img-3 ${activeSlide === 3 ? "show" : ""}`}
-                  alt=""
-                />
-              </div>
-
-              <div className="text-slider">
-                <div className="text-wrap">
-                  <div className="text-group">
-                    {activeSlide === 1 && (
-                      <>
-                        <Typography
-                          color={theme.palette.primary.main}
-                          variant="h6"
-                        >
-                          Find the best loan for you
-                        </Typography>
-                      </>
-                    )}
-                    {activeSlide === 2 && (
-                      <>
-                        <Typography
-                          color={theme.palette.primary.main}
-                          variant="h6"
-                        >
-                          Loans at best rates possible{" "}
-                        </Typography>
-                      </>
-                    )}
-                    {activeSlide === 3 && (
-                      <>
-                        <Typography
-                          color={theme.palette.primary.main}
-                          variant="h6"
-                        >
-                          Track your progress in no time
-                        </Typography>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                <div className="bullets">
-                  {Array.from({ length: 3 }).map((_, index) => (
-                    <span
-                      key={index + 1}
-                      className={activeSlide === index + 1 ? "active" : ""}
-                      onClick={() => handleBulletClick(index + 1)}
-                    ></span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+              <Slider dots={false} autoplay={true} infinite={true} speed={500}>
+                <Box>
+                  <img
+                    id="auth_img"
+                    src={auth1}
+                    alt="authentication_carousel"
+                  />
+                  <Typography
+                    mt={1}
+                    variant="body1"
+                    fontSize={"large"}
+                    textAlign={"center"}
+                    color={theme.palette.secondary.main}
+                    fontWeight={600}
+                  >
+                    Find the best loans for you
+                  </Typography>
+                </Box>
+                <Box>
+                  <img
+                    id="auth_img"
+                    src={auth2}
+                    alt="authentication_carousel"
+                  />
+                  <Typography
+                    mt={1}
+                    variant="body1"
+                    fontSize={"large"}
+                    textAlign={"center"}
+                    fontWeight={600}
+                    color={theme.palette.secondary.main}
+                  >
+                    Easy to access from anywhere
+                  </Typography>
+                </Box>
+                <Box>
+                  <img
+                    id="auth_img"
+                    src={auth3}
+                    alt="authentication_carousel"
+                  />
+                  <Typography
+                    mt={1}
+                    variant="body1"
+                    fontSize={"large"}
+                    textAlign={"center"}
+                    fontWeight={600}
+                    color={theme.palette.secondary.main}
+                  >
+                    Best partners for support
+                  </Typography>
+                </Box>
+              </Slider>
+            </Box>
+          </Box>
+        </Box>
         <Snackbar
           color="primary"
           open={showSuccessSnack || showErrorSnack}

@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import styles from "./../../CSS/instantLoan.module.css";
-import personal_loan from "./../../Assets/Images/personal_loan.jpg";
+import personal_loan from "./../../Assets/Images/personal_loan.png";
 
 const PersonalLoanHeader = () => {
   return (

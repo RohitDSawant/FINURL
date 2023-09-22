@@ -347,7 +347,7 @@ const Navbar = () => {
                   mt={1}
                   ml={5}
                   onClick={handleTheme}
-                  sx={{ color: theme.palette.primary.light }}
+                  sx={{ color: theme.palette.primary.main }}
                 >
                   {theme.palette.mode !== "dark" ? (
                     <DarkModeIcon />
@@ -418,9 +418,13 @@ const Navbar = () => {
               </Link>
             </Box>
             <Box ml={1} mt={1}>
-              <Link to={"/dashboard"}>
-                <Typography variant={"subtitle2"}> 🔹 Dashboard</Typography>
-              </Link>
+              {isAuth ? (
+                <Link to={"/dashboard"}>
+                  <Typography variant={"subtitle2"}> 🔹 Dashboard</Typography>
+                </Link>
+              ) : (
+                ""
+              )}
             </Box>
             <Box ml={1} mt={2}>
               {!isAuth ? (
@@ -429,14 +433,18 @@ const Navbar = () => {
                     style={{ textDecoration: "none" }}
                     to={"/authentication"}
                   >
-                    <LoginIcon sx={{ marginRight: "10px" }} />
-                    <Typography
-                      textTransform={"capitalize"}
-                      fontWeight={500}
-                      variant="subtitle2"
-                    >
-                      Login
-                    </Typography>
+                    <Box display={"flex"} gap={"5px"}>
+                      <Typography>
+                        <LoginIcon fontSize="small" />
+                      </Typography>
+                      <Typography
+                        textTransform={"capitalize"}
+                        fontWeight={500}
+                        variant="subtitle2"
+                      >
+                        Login
+                      </Typography>
+                    </Box>
                   </Link>
                 </>
               ) : (
