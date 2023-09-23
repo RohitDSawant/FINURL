@@ -77,7 +77,7 @@ const LoanRecords = () => {
     console.log(formData);
     setIsLoading(true);
     axios
-      .post("https://api.finurl.in/api/v1/leads", formData)
+      .patch("https://api.finurl.in/api/v1/leads", formData)
       .then((res) => {
         console.log(res.data);
         setTimeout(() => {
