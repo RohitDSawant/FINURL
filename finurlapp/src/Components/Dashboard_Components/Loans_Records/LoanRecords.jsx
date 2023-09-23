@@ -1,22 +1,123 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DashboardNavbar from "../DashboardNavbar";
 import {
   Button,
   Dialog,
+  TextField,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
   DialogContent,
   DialogTitle,
-  Modal,
   Typography,
   useTheme,
+  Box,
+  CircularProgress,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import styles from "./../../../CSS/dashboard.module.css";
-import data from "../../../Assets/fake-data/loansdata";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const LoanRecords = () => {
   const loans = useSelector((state) => state.authReducer.loans);
   const [ModalStates, setModalStates] = useState(new Map());
+  const [leadsPunchOpen, setLeadsPunchOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [SnackMsg, SetSnackMsg] = useState("");
+  const [showSuccessSnack, SetShowSuccessSnack] = useState(false);
+  const [showErrorSnack, SetShowErrorSnack] = useState(false);
+  const formRef = useRef(null);
+  const userId = useSelector((state) => state.authReducer.loggedInUser._id);
+
+  const lenderOptions = [
+    "Stashfin",
+    "Prefr",
+    "KreditBee",
+    "CASHe",
+    "TATA Capital",
+    "IIFL BL",
+    "Faircent",
+    "MoneyWide",
+    "Lendingkart",
+    "Nira",
+    "Privo",
+    "L & T Service",
+  ];
+
+  const [formData, setFormData] = useState({
+    loggedInUserId: userId,
+    partner: "",
+    full_name: "",
+    phone_number: "",
+    pan_number: "",
+    aadhar_number: "",
+    amount: "",
+    lender_bank: "",
+  });
+
+  const handleClose = () => {
+    SetShowSuccessSnack(false);
+    SetShowErrorSnack(false);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    setIsLoading(true);
+    axios
+      .post("https://api.finurl.in/api/v1/leads", formData)
+      .then((res) => {
+        console.log(res.data);
+        setTimeout(() => {
+          setIsLoading(false);
+          SetShowSuccessSnack(true);
+          SetSnackMsg("Punched Sucessfully!");
+          setFormData({
+            loggedInUserId: userId,
+            partner: "",
+            full_name: "",
+            phone_number: "",
+            pan_number: "",
+            aadhar_number: "",
+            amount: "",
+            lender_bank: "",
+          });
+          setLeadsPunchOpen(false);
+        }, 3000);
+      })
+      .catch((err) => {
+        setTimeout(() => {
+          setIsLoading(false);
+          SetShowErrorSnack(true);
+          SetSnackMsg("Oops! Data already punched with provided details!");
+          setFormData({
+            loggedInUserId: userId,
+            partner: "",
+            full_name: "",
+            phone_number: "",
+            pan_number: "",
+            aadhar_number: "",
+            amount: "",
+            lender_bank: "",
+          });
+          setLeadsPunchOpen(false);
+        }, 3000);
+        console.log(err.response.data.message);
+      });
+  };
+
   const theme = useTheme();
   const columns = [
     {
@@ -88,6 +189,7 @@ const LoanRecords = () => {
               </Typography>
             ) : params.row.results.application_status === "Eligible" ? (
               <Typography
+                ml={2}
                 textAlign={"center"}
                 sx={{
                   color: "green",
@@ -99,17 +201,143 @@ const LoanRecords = () => {
                 {params.row.results.application_status}
               </Typography>
             ) : (
-              <Typography
-                textAlign={"center"}
-                sx={{
-                  color: "crimson",
-                  fontSize: "small",
-                  fontWeight: 600,
-                }}
-                variant="body2"
-              >
-                {params.row.results.application_status}
-              </Typography>
+              <>
+                <Button onClick={() => setLeadsPunchOpen(true)}>
+                  Disbursed
+                </Button>
+                <Dialog
+                  open={leadsPunchOpen}
+                  onClose={() => setLeadsPunchOpen(false)}
+                >
+                  <Box padding={2}>
+                    <DialogTitle>
+                      <Typography variant="h6">Leads Punching: </Typography>
+                    </DialogTitle>
+                    <DialogContent>
+                      <form ref={formRef} onSubmit={handleSubmit}>
+                        <TextField
+                          required={true}
+                          sx={{ marginBottom: "15px" }}
+                          size="small"
+                          name="partner"
+                          label="Partner Name"
+                          variant="standard"
+                          fullWidth
+                          value={formData.partner}
+                          onChange={handleChange}
+                        />
+                        <TextField
+                          required={true}
+                          sx={{ marginBottom: "15px" }}
+                          size="small"
+                          name="full_name"
+                          label="Full Name"
+                          variant="standard"
+                          fullWidth
+                          value={formData.full_name}
+                          onChange={handleChange}
+                        />
+                        <TextField
+                          required={true}
+                          sx={{ marginBottom: "15px" }}
+                          size="small"
+                          name="phone_number"
+                          label="Phone Number"
+                          variant="standard"
+                          fullWidth
+                          inputProps={{
+                            minLength: 10, // Set the minimum length constraint
+                          }}
+                          value={formData.phone_number}
+                          onChange={handleChange}
+                        />
+                        <TextField
+                          required={true}
+                          sx={{ marginBottom: "15px" }}
+                          size="small"
+                          name="pan_number"
+                          label="PAN Number"
+                          variant="standard"
+                          fullWidth
+                          inputProps={{
+                            minLength: 10, // Set the minimum length constraint
+                          }}
+                          value={formData.pan_number}
+                          onChange={handleChange}
+                        />
+                        <TextField
+                          required={true}
+                          sx={{ marginBottom: "15px" }}
+                          size="small"
+                          name="aadhar_number"
+                          label="Aadhar Number"
+                          variant="standard"
+                          fullWidth
+                          inputProps={{
+                            minLength: 12, // Set the minimum length constraint
+                          }}
+                          value={formData.aadhar_number}
+                          onChange={handleChange}
+                        />
+                        <TextField
+                          required={true}
+                          sx={{ marginBottom: "15px" }}
+                          size="small"
+                          name="amount"
+                          label="Loan Amount"
+                          variant="standard"
+                          fullWidth
+                          value={formData.amount}
+                          onChange={handleChange}
+                        />
+                        <FormControl variant="standard" fullWidth>
+                          <InputLabel>Lender Bank</InputLabel>
+                          <Select
+                            required={true}
+                            size="medium"
+                            name="lender_bank"
+                            value={formData.lender_bank}
+                            onChange={handleChange}
+                            label="Lender Bank"
+                          >
+                            {lenderOptions.map((option) => (
+                              <MenuItem key={option} value={option}>
+                                {option}
+                              </MenuItem>
+                            ))}
+                          </Select>
+                        </FormControl>
+                        <Box
+                          mt={3}
+                          display={"flex"}
+                          gap={"20px"}
+                          alignItems={"center"}
+                        >
+                          <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                          >
+                            Submit
+                          </Button>
+                          {isLoading ? <CircularProgress size={20} /> : ""}
+                        </Box>
+                      </form>
+                    </DialogContent>
+                  </Box>
+                </Dialog>
+              </>
+              // <Typography
+              //   textAlign={"center"}
+              //   sx={{
+              //     color: "crimson",
+              //     fontSize: "small",
+              //     fontWeight: 600,
+              //   }}
+              //   variant="body2"
+              // >
+              //   {params.row.results.application_status}
+              // </Typography>
             )}
           </>
         );
@@ -143,19 +371,12 @@ const LoanRecords = () => {
                 onClose={() => closeModal(rowIndex)}
               >
                 <DialogTitle>
-                  <Typography
-                    mb={2}
-                    variant="body2"
-                  >
+                  <Typography mb={2} variant="body2">
                     Info:
                   </Typography>
                 </DialogTitle>
                 <DialogContent>
-                  <Typography
-                    sx={{ userSelect: "text" }}
-                    m={1}
-                    variant="body2"
-                  >
+                  <Typography sx={{ userSelect: "text" }} m={1} variant="body2">
                     Bank Statement URL :{" "}
                     {loans[rowIndex]?.results?.bank_statement_url ||
                       "URL Not available"}
@@ -197,6 +418,7 @@ const LoanRecords = () => {
   return (
     <>
       <DashboardNavbar />
+
       <DataGrid
         className={styles.back_data_grid}
         sx={{
@@ -216,6 +438,20 @@ const LoanRecords = () => {
         pageSizeOptions={[8, 16]}
         // disableRowSelectionOnClick
       />
+      <Snackbar
+        anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
+        open={showSuccessSnack || showErrorSnack}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity={showSuccessSnack ? "success" : "error"}
+          sx={{ width: "100%" }}
+        >
+          {SnackMsg}
+        </Alert>
+      </Snackbar>
     </>
   );
 };

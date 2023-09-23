@@ -199,7 +199,7 @@ const LeedsData = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/v1/leads/getLeads").then((res) => {
+    axios.get("https://api.finurl.in/api/v1/leads/getLeads").then((res) => {
     console.log(res.data)  
     let arr = [];
       if (res.data.length > 0) {
