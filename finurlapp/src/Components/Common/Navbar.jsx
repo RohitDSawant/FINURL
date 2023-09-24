@@ -119,24 +119,12 @@ const Navbar = () => {
         <Box className={styles.navbar_menu}>
           <Box>
             {/* Products */}
-            <Box onClick={handleShowProducts} id={styles.products_btn}>
-              <Typography mr={2} variant="subtitle2">
-                Products
-              </Typography>
-              {!productsOpen ? (
-                <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.primary.main}` }}
-                  fontSize="small"
-                />
-              ) : (
-                <ExpandLessIcon
-                  sx={{ color: `${theme.palette.primary.main}` }}
-                  fontSize="small"
-                />
-              )}
-            </Box>
-
-            {productsOpen ? (
+            <Box className={styles.subnav}>
+              <Box id={styles.products_btn}>
+                <Typography mr={2} variant="subtitle2">
+                  Products
+                </Typography>
+              </Box>
               <Box
                 className={styles.products_menu}
                 sx={{ background: theme.palette.background.default }}
@@ -146,32 +134,32 @@ const Navbar = () => {
                     Loans:
                   </Typography>
                   <Link to={"/personal-loan"}>
-                    <Typography variant="subtitle2" m={1}>
+                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
                       🔹 Personal Loan
                     </Typography>
                   </Link>
                   <Link to={"/instant-loan"}>
-                    <Typography variant="subtitle2" m={1}>
+                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
                       🔹 Instant Loan
                     </Typography>
                   </Link>
                   <Link to={"/home-loan"}>
-                    <Typography variant="subtitle2" m={1}>
+                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
                       🔹 Home Loan
                     </Typography>
                   </Link>
                   <Link to={"/business-loan"}>
-                    <Typography variant="subtitle2" m={1}>
+                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
                       🔹 Business Loan
                     </Typography>
                   </Link>
                   <Link to={"/comingsoon"}>
-                    <Typography variant="subtitle2" m={1}>
+                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
                       🔹 Professional Loan
                     </Typography>
                   </Link>
                   <Link to={"/comingsoon"}>
-                    <Typography variant="subtitle2" m={1}>
+                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
                       🔹 Loan against property
                     </Typography>
                   </Link>
@@ -180,7 +168,7 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Card:
                   </Typography>
-                  <Typography variant="subtitle2" m={1}>
+                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
                     🔹 My Card
                   </Typography>
                 </Box>
@@ -188,61 +176,48 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Investment:
                   </Typography>
-                  <Typography variant="subtitle2" m={1}>
+                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
                     🔹 My Investment
                   </Typography>
                 </Box>
               </Box>
-            ) : (
-              ""
-            )}
-
-            {/* <---- Resources ----> */}
-            <Box onClick={handleShowResources} id={styles.resource_btn}>
-              <Typography variant="subtitle2" mr={2}>
-                Resources
-              </Typography>
-              {!resourceOpen ? (
-                <ExpandMoreIcon
-                  sx={{ color: `${theme.palette.primary.main}` }}
-                  fontSize="small"
-                />
-              ) : (
-                <ExpandLessIcon
-                  sx={{ color: `${theme.palette.primary.main}` }}
-                  fontSize="small"
-                />
-              )}
             </Box>
 
-            <Box
-              style={{ display: resourceOpen ? "flex" : "none" }}
-              className={styles.resource_menu}
-              sx={{ background: theme.palette.background.default }}
-            >
-              <Box>
-                <Typography variant="body1" mb={2}>
-                  Calculator:
-                </Typography>
-                <Typography variant="subtitle2" m={1}>
-                  🔹 Calculator
+            {/* <---- Resources ----> */}
+            <Box className={styles.subnav}>
+              <Box id={styles.resource_btn}>
+                <Typography variant="subtitle2" mr={2}>
+                  Resources
                 </Typography>
               </Box>
-              <Box>
-                <Typography variant="body1" mb={2}>
-                  Financial Literacy
-                </Typography>
-                <Typography variant="subtitle2" m={1}>
-                  🔹 Financial Literacy
-                </Typography>
-              </Box>
-              <Box>
-                <Typography variant="body1" mb={2}>
-                  Credit Management
-                </Typography>
-                <Typography variant="subtitle2" m={1}>
-                  🔹 Credit Management
-                </Typography>
+              <Box
+                className={styles.resource_menu}
+                sx={{ background: theme.palette.background.default }}
+              >
+                <Box>
+                  <Typography variant="body1" mb={2}>
+                    Calculator:
+                  </Typography>
+                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    🔹 Calculator
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography variant="body1" mb={2}>
+                    Financial Literacy
+                  </Typography>
+                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    🔹 Financial Literacy
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography variant="body1" mb={2}>
+                    Credit Management
+                  </Typography>
+                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    🔹 Credit Management
+                  </Typography>
+                </Box>
               </Box>
             </Box>
 

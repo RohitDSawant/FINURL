@@ -4,25 +4,21 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px; */
   display: flex;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 5% 10px 10%;
-  /* gap: 40% ; */
-  /* background: lightgoldenrodyellow; */
   z-index: 999;
 }
 
-.navbar:hover{
+.navbar:hover {
   cursor: pointer;
 }
 
 .navbar_menu {
   display: flex;
-  /* width: 100%; */
   align-items: center;
   justify-content: space-between;
   gap: 20px;
@@ -51,13 +47,7 @@
   display: flex;
 }
 
-.products_menu {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.products_menu a {
+a {
   text-decoration: none;
 }
 
@@ -79,27 +69,34 @@
   cursor: pointer;
 }
 
-.products_menu p:hover,
-.resource_menu p:hover {
+.submenus:hover {
   font-weight: 600;
 }
 
-.resource_menu,
-.products_menu {
-  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
-  position: absolute;
-  cursor: pointer;
-  top: 100%;
-  width: 40%;
-  padding: 1% 2%;
-  display: flex;
-  justify-content: space-around;
-  gap: 30px;
-  border-radius: 5px;
+.subnav {
+  position: relative;
+  display: inline-block;
 }
 
+.subnav .products_menu,
+.subnav .resource_menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -75%;
+  z-index: 1;
+  padding: 20px;
+  padding-top: 40%;
+  border-radius: 5px;
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
 
-
+.subnav:hover .products_menu,
+.subnav:hover .resource_menu {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+}
 
 @media all and (min-width: 100px) and (max-width: 768px) {
   .navbar {
