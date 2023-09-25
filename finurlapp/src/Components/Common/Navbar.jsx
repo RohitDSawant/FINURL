@@ -440,6 +440,11 @@ const Navbar = () => {
                 <Typography variant={"subtitle2"}> 🔹 Contact Us</Typography>
               </Link>
             </Box>
+            <Box ml={1} mt={2}>
+              <Link to={"/aboutus"}>
+                <Typography variant={"subtitle2"}> 🔹 About Us</Typography>
+              </Link>
+            </Box>
             <Box ml={1} mt={1}>
               {isAuth ? (
                 <Link to={"/dashboard"}>
