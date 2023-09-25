@@ -134,32 +134,56 @@ const Navbar = () => {
                     Loans:
                   </Typography>
                   <Link to={"/personal-loan"}>
-                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
                       🔹 Personal Loan
                     </Typography>
                   </Link>
                   <Link to={"/instant-loan"}>
-                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
                       🔹 Instant Loan
                     </Typography>
                   </Link>
                   <Link to={"/home-loan"}>
-                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
                       🔹 Home Loan
                     </Typography>
                   </Link>
                   <Link to={"/business-loan"}>
-                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
                       🔹 Business Loan
                     </Typography>
                   </Link>
                   <Link to={"/comingsoon"}>
-                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
                       🔹 Professional Loan
                     </Typography>
                   </Link>
                   <Link to={"/comingsoon"}>
-                    <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
                       🔹 Loan against property
                     </Typography>
                   </Link>
@@ -168,7 +192,11 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Card:
                   </Typography>
-                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                  <Typography
+                    variant="subtitle2"
+                    m={1}
+                    className={styles.submenus}
+                  >
                     🔹 My Card
                   </Typography>
                 </Box>
@@ -176,7 +204,11 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Investment:
                   </Typography>
-                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                  <Typography
+                    variant="subtitle2"
+                    m={1}
+                    className={styles.submenus}
+                  >
                     🔹 My Investment
                   </Typography>
                 </Box>
@@ -198,15 +230,25 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Calculator:
                   </Typography>
-                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
-                    🔹 Calculator
-                  </Typography>
+                  <a href="http://localhost:3000#calculator">
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
+                      🔹 Calculator
+                    </Typography>
+                  </a>
                 </Box>
                 <Box>
                   <Typography variant="body1" mb={2}>
                     Financial Literacy
                   </Typography>
-                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                  <Typography
+                    variant="subtitle2"
+                    m={1}
+                    className={styles.submenus}
+                  >
                     🔹 Financial Literacy
                   </Typography>
                 </Box>
@@ -214,14 +256,20 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Credit Management
                   </Typography>
-                  <Typography variant="subtitle2" m={1} className={styles.submenus}>
+                  <Typography
+                    variant="subtitle2"
+                    m={1}
+                    className={styles.submenus}
+                  >
                     🔹 Credit Management
                   </Typography>
                 </Box>
               </Box>
             </Box>
 
-            <Typography variant="subtitle2">About Us</Typography>
+            <Link to={"/aboutus"}>
+              <Typography variant="subtitle2">About Us</Typography>
+            </Link>
             <Link style={{ textDecoration: "none" }} to={"/contactus"}>
               <Typography
                 textTransform={"capitalize"}

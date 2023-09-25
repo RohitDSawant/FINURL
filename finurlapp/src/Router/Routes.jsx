@@ -15,6 +15,7 @@ import HomeLoan from "../Pages/HomeLoan";
 import PrefrApplication from "../Components/EntryPoints/PrefrApplication";
 import GetStarted from "../Pages/GetStarted";
 import AdminDashboard from "../Components/Admin_Dashboard/AdminDashboard";
+import AboutUs from "../Pages/AboutUs";
 const Router = () => {
   return (
     <>
@@ -48,6 +49,7 @@ const Router = () => {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/comingsoon" element={<ComingSoon />} />
         <Route path="/get-started" element={<GetStarted />} />
+        <Route path="/aboutus" element={<AboutUs />} />
 
       </Routes>
     </>

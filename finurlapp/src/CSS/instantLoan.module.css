@@ -1,17 +1,41 @@
-#inst_loan_a{
-    padding-top: 5%;
+#inst_loan_a {
+  padding-top: 5%;
 }
 
-.instant_loan_pic{
-    height: 45vh;
+.instant_loan_pic {
+  height: 45vh;
 }
-.business_loan_pic{
-    height: 60vh;
+.business_loan_pic {
+  height: 70vh;
+  width: max-content;
+  display: block;
+  margin: auto;
+  margin-top: 5%;
+}
+
+.partner_short_logo {
+  border: 1px solid;
+  height: 25px;
+}
+
+@media all and (min-width: 426px) and (max-width: 768px) {
+  .instant_loan_pic {
+    height: 35vh;
+    margin-top: 15%;
+  }
+  .business_loan_pic {
+    height: 50vh;
     width: 30vw;
+  }
 }
 
-.partner_short_logo{
-    border: 1px solid;
-    height: 25px;
+@media all and (min-width: 100px) and (max-width: 425px) {
+  .instant_loan_pic {
+    height: 25vh;
+    margin-top: 15%;
+  }
+  .business_loan_pic {
+    height: 40vh;
+    margin-top: 15%;
+  }
 }
-

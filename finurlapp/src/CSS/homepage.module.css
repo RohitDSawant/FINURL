@@ -97,8 +97,6 @@
   justify-content: center;
 }
 
-
-
 #slabs_img {
   height: 50vh;
   width: 30vw;
@@ -160,7 +158,7 @@
   padding-top: 3%;
   border-radius: 5px;
   position: relative;
-  background: #F0F5F9;
+  background: #f0f5f9;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -322,8 +320,6 @@
   #slabs_img {
     height: 100px;
   }
-
-  
 
   .partner_grid {
     grid-template-columns: repeat(1, 1fr);

@@ -10,7 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import home_loan_img from "./../Assets/Images/personal_loan.jpg";
+import home_loan_img from "./../Assets/Images/home_loan.png"
 import Navbar from "../Components/Common/Navbar";
 import styles from "./../CSS/instantLoan.module.css";
 import Footer from "../Components/Common/Footer";
@@ -20,23 +20,23 @@ const HomeLoan = () => {
     <>
       <Navbar />
       <Grid
-        width={"90%"}
+        width={"95vw"}
         margin={"auto"}
-        mt={10}
-        mb={10}
+        mt={5}
         alignItems={"center"}
         justifyContent={"center"}
         container
-        height={"80vh"}
+        height={"95vh"}
       >
-        <Grid item lg={7} md={6} sm={11} xs={10}>
+        <Grid item lg={6} md={6} sm={11} xs={10}>
           <img
+            style={{"display":"block", "margin": "auto"}}
             className={styles.instant_loan_pic}
             src={home_loan_img}
             alt="home_loan"
           />
         </Grid>
-        <Grid item lg={4} md={6} sm={10} xs={12}>
+        <Grid item lg={5} md={6} sm={10} xs={12}>
           <Box>
             <Typography mb={5} variant="h4">
               Home Loan
