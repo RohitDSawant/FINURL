@@ -21,7 +21,7 @@ const AboutUs = () => {
           width={"85vw"}
           margin={"auto"}
         >
-          <Grid item lg={7} md={7} sm={7} xs={11 }>
+          <Grid item lg={7} md={7} sm={7} xs={11}>
             <Box mt={7}>
               <Typography fontWeight={600} variant="h4">
                 Who are we ?
@@ -34,9 +34,10 @@ const AboutUs = () => {
                   financial vertical. Enhancing its financial hands to all major
                   locations of the country. FinURL is an online focused digital
                   and instant loan aggregator platform with a vision to solve
-                  India's underserved credit needs.Finurl.com is an online portal of Finwurl
-                  Enterprises Private Limited which helps make finance available
-                  at the fingertips for every earning individual of India.
+                  India's underserved credit needs.Finurl.com is an online
+                  portal of Finwurl Enterprises Private Limited which helps make
+                  finance available at the fingertips for every earning
+                  individual of India.
                 </Typography>
                 <Typography mt={2} ml={2} variant="subtitle2">
                   We started with the aim of making the complete loan process as
@@ -51,128 +52,130 @@ const AboutUs = () => {
               </Box>
             </Box>
           </Grid>
-          <Grid item lg={5} md={5} sm={5} xs={10}>
+          <Grid item lg={5} md={5} sm={5} xs={0}>
             <img className={styles.about_us_img} src={about_us_img} alt="" />
           </Grid>
         </Grid>
-       <Box>
-       <Grid
-          justifyContent={"space-between"}
-          width={"90vw"}
-          margin={"auto"}
-          container
-          mt={5}
-        >
+        <Box>
           <Grid
-            lg={3.8}
-            pb={2}
-            md={3.8}
-            sm={4}
-            xs={12}
-            data-aos="fade-up"
-            data-aos-duration="900"
-            item
-            boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-            borderRadius={"10px"}
+            justifyContent={"center"}
+            width={"95vw"}
+            margin={"auto"}
+            container
+            gap={"20px"}
+            mt={5}
+            spacing={1}
+            alignItems={"center"}
           >
-            <Box pt={2} sx={{ background: "#fff", borderRadius: "10px" }}>
-              <img className={styles.goals} src={vision} alt="" />
-            </Box>
-            <Typography
-              mt={2}
-              textAlign={"center"}
-              fontWeight={600}
-              variant="h6"
+            <Grid
+              lg={3.8}
+              pb={2}
+              md={3.8}
+              sm={3}
+              xs={10}
+              sx={{ height: "max-content" }}
+              item
+              boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
+              borderRadius={"10px"}
             >
-              Vision
-            </Typography>
-            <Typography
-              pl={2}
-              pr={2}
-              mt={2}
-              textAlign={"center"}
-              variant="subtitle2"
+              <Box pt={2} sx={{ background: "#fff", borderRadius: "10px" }}>
+                <img className={styles.goals} src={vision} alt="" />
+              </Box>
+              <Typography
+                mt={2}
+                textAlign={"center"}
+                fontWeight={600}
+                variant="h6"
+              >
+                Vision
+              </Typography>
+              <Typography
+                pl={2}
+                pr={2}
+                mt={2}
+                textAlign={"center"}
+                variant="subtitle2"
+              >
+                The only vision of FinURL Enterprises Private Limited is
+                ensuring access to loans for every eligible customer, whether
+                through our lending services or partnerships with other
+                financial institutions.
+              </Typography>
+            </Grid>
+            <Grid
+              lg={3.8}
+              pb={2}
+              md={3.8}
+              sm={3}
+              xs={10}
+              sx={{ height: "max-content" }}
+              data-aos="fade-up"
+              data-aos-duration="900"
+              item
+              boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
+              borderRadius={"10px"}
             >
-              The only vision of FinURL Enterprises Private Limited is to
-              provide the loan to every customer approaching it, either through
-              our lending or from other financial institutions wherever they are
-              eligible.
-            </Typography>
+              <Box pt={2} sx={{ background: "#fff", borderRadius: "10px" }}>
+                <img className={styles.goals} src={mission} alt="" />
+              </Box>
+              <Typography
+                mt={2}
+                textAlign={"center"}
+                fontWeight={600}
+                variant="h6"
+              >
+                Mission
+              </Typography>
+              <Typography
+                pl={2}
+                pr={2}
+                variant="subtitle2"
+                mt={2}
+                textAlign={"center"}
+              >
+                Join our mission to empower every Indian to realize their
+                dreams, regardless of income, occupation, or location. Together,
+                we bridge the gap between aspirations and reality.
+              </Typography>
+            </Grid>
+            <Grid
+              lg={3.8}
+              pb={2}
+              md={3.8}
+              sm={3}
+              xs={10}
+              sx={{ height: "max-content" }}
+              data-aos="fade-up"
+              data-aos-duration="900"
+              item
+              boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
+              borderRadius={"10px"}
+            >
+              <Box pt={2} sx={{ background: "#fff", borderRadius: "10px" }}>
+                <img className={styles.goals} src={motto} alt="" />
+              </Box>
+              <Typography
+                mt={2}
+                textAlign={"center"}
+                fontWeight={600}
+                variant="h6"
+              >
+                Motto
+              </Typography>
+              <Typography
+                pl={2}
+                pr={2}
+                variant="subtitle2"
+                mt={2}
+                textAlign={"center"}
+              >
+                Our goal is to make financial services accessible to all through
+                technology and trust. By 2021, we aim to serve thousands, with
+                even greater reach by 2024.
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid
-            lg={3.8}
-            pb={2}
-            md={3.8}
-            sm={4}
-            xs={12}
-            data-aos="fade-up"
-            data-aos-duration="900"
-            item
-            boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-            borderRadius={"10px"}
-          >
-            <Box pt={2} sx={{ background: "#fff", borderRadius: "10px" }}>
-              <img className={styles.goals} src={mission} alt="" />
-            </Box>
-            <Typography
-              mt={2}
-              textAlign={"center"}
-              fontWeight={600}
-              variant="h6"
-            >
-              Mission
-            </Typography>
-            <Typography
-              pl={2}
-              pr={2}
-              variant="subtitle2"
-              mt={2}
-              textAlign={"center"}
-            >
-              Help fulfil the dreams and aspirations of fellow Indians, no
-              matter how much they earn, what occupation they have, or where
-              they live.
-            </Typography>
-          </Grid>
-          <Grid
-            lg={3.8}
-            pb={2}
-            md={3.8}
-            sm={4}
-            xs={12}
-            data-aos="fade-up"
-            data-aos-duration="900"
-            item
-            boxShadow={"rgba(100, 100, 111, 0.2) 0px 7px 29px 0px"}
-            borderRadius={"10px"}
-          >
-            <Box pt={2} sx={{ background: "#fff", borderRadius: "10px" }}>
-              <img className={styles.goals} src={motto} alt="" />
-            </Box>
-            <Typography
-              mt={2}
-              textAlign={"center"}
-              fontWeight={600}
-              variant="h6"
-            >
-              Motto
-            </Typography>
-            <Typography
-              pl={2}
-              pr={2}
-              variant="subtitle2"
-              mt={2}
-              textAlign={"center"}
-            >
-              We want to impact the maximum number of lives by providing them
-              with wider access to financial services, through the use of
-              technology and by putting trust in our customers. We aspire to
-              serve thousands of customers by 2021 and many more customers by
-              2024.
-            </Typography>
-          </Grid>
-        </Grid>
-       </Box>
+        </Box>
         <Typography
           textAlign={"center"}
           variant="h5"

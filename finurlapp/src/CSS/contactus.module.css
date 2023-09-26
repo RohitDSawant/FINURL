@@ -16,6 +16,13 @@
 
 @media all and (min-width: 100px) and (max-width:425px){
   .contact_us_img{
-    height: 30vh;
+    height: 20vh;
+    margin-top: 10%;
+  }
+}
+
+@media all and (min-width: 768px) and (max-width:1024px){
+  .contact_us_img{
+    height: 35vh;
   }
 }

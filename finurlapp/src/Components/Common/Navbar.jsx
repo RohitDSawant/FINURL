@@ -119,11 +119,26 @@ const Navbar = () => {
         <Box className={styles.navbar_menu}>
           <Box>
             {/* Products */}
-            <Box className={styles.subnav}>
+            <Box
+              onMouseLeave={() => setProductsOpen(false)}
+              onMouseEnter={handleShowProducts}
+              className={styles.subnav}
+            >
               <Box id={styles.products_btn}>
                 <Typography mr={2} variant="subtitle2">
                   Products
                 </Typography>
+                {!productsOpen ? (
+                  <ExpandMoreIcon
+                    fontSize="small"
+                    sx={{ color: theme.palette.primary.main }}
+                  />
+                ) : (
+                  <ExpandLessIcon
+                    fontSize="small"
+                    sx={{ color: theme.palette.primary.main }}
+                  />
+                )}
               </Box>
               <Box
                 className={styles.products_menu}
@@ -216,11 +231,26 @@ const Navbar = () => {
             </Box>
 
             {/* <---- Resources ----> */}
-            <Box className={styles.subnav}>
+            <Box
+              onMouseLeave={() => setResourceOpen(false)}
+              onMouseEnter={handleShowResources}
+              className={styles.subnav}
+            >
               <Box id={styles.resource_btn}>
                 <Typography variant="subtitle2" mr={2}>
                   Resources
                 </Typography>
+                {!resourceOpen ? (
+                  <ExpandMoreIcon
+                    fontSize="small"
+                    sx={{ color: theme.palette.primary.main }}
+                  />
+                ) : (
+                  <ExpandLessIcon
+                    fontSize="small"
+                    sx={{ color: theme.palette.primary.main }}
+                  />
+                )}
               </Box>
               <Box
                 className={styles.resource_menu}
@@ -305,11 +335,10 @@ const Navbar = () => {
                   />
                 </Typography>
                 <Menu onClose={handleClose} open={openMenu} anchorEl={anchorEl}>
-                  {/* <MenuItem>Profile</MenuItem>*/}
                   <MenuItem onClick={NavToDash}>
                     <DashboardCustomizeRoundedIcon
                       sx={{ marginRight: "10px " }}
-                    />{" "}
+                    />
                     Dashboard
                   </MenuItem>
                   <MenuItem onClick={handleLogout}>
@@ -377,7 +406,7 @@ const Navbar = () => {
                   ) : (
                     <LightModeRoundedIcon />
                   )}
-                </Typography>{" "}
+                </Typography>
               </Box>
               <Box className={styles.products_menu_mob} ml={2} mt={2}>
                 <Typography

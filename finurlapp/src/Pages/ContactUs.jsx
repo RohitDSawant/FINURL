@@ -1,4 +1,14 @@
-import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  TextField,
+  TextareaAutosize,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import React from "react";
 import styles from "./../CSS/contactus.module.css";
 import Navbar from "../Components/Common/Navbar";
@@ -16,63 +26,113 @@ const ContactUs = () => {
     <>
       <section id={styles.contact_us}>
         <Navbar />
-        <Grid pb={5} pt={10} width={"90vw"} alignItems={"center"} justifyContent={"center"} margin={"auto"} mt={8} container>
+
+        <Grid
+          pb={5}
+          width={"95vw"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          margin={"auto"}
+          mt={8}
+          container
+        >
           <Grid
             box-shadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
-            // pt={15}
+            pt={5}
+            display="flex"
+            flexDirection={"column"}
+            alignItems={"center"}
             justifyContent={"center"}
-            lg={5} sm={5} xs={10}
-            alignItems={"flex-start"}
+            lg={6}
+            md={6}
+            sm={7}
+            xs={12}
           >
-            <Typography  textAlign={"center"} variant="h6">
-              Contact us :
+            <Typography variant="h6" fontWeight={600}>
+              Contact us:
             </Typography>
-            <Typography
-              textAlign={"center"}
+            <Typography sx={{"textDecoration": "underline"}} mb={3} variant="subtitle2" fontSize={"x-small"}>
+              You can click on icons to Call or Mail{" "}
+            </Typography>
+            <Box
+              display={"flex"}
+              width={"80%"}
+              gap={"20px"}
+              alignItems={"center"}
+              justifyContent={"center"}
               mb={2}
-              fontSize={"x-small"}
-              variant={"body2"}
             >
-              Disclaimer: One click call and email{" "}
-            </Typography>
-
-            <Link to={"tel: +919153555550"}>
-              <Box
-                justifyContent={"center"}
-                alignItems={"center"}
-                display={"flex"}
-                gap={"15px"}
-              >
-                <Typography variant="subtitle1" mt={1} fontWeight={600}>
-                  <CallRoundedIcon />
-                </Typography>
-
-                <Typography variant="subtitle1" fontWeight={600}>
-                  +91 91535 55550
-                </Typography>
+              <Box>
+                <Link to={"tel: +919153555550"}>
+                  <Box
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    display={"flex"}
+                    gap={"10px"}
+                  >
+                    <CallRoundedIcon />
+                    <Typography variant="subtitle2" fontWeight={500} mt={0.5}>
+                      +91 91535 55550
+                    </Typography>
+                  </Box>
+                </Link>
               </Box>
-            </Link>
-            <Link to={"mailto: infor@finurl.in"}>
-              <Box
-                justifyContent={"center"}
-                mt={2}
-                alignItems={"center"}
-                display={"flex"}
-                gap={"15px"}
-              >
-                <Typography variant="subtitle1" fontWeight={600} mt={1}>
-                  <MailOutlineRoundedIcon />
-                </Typography>
-
-                <Box>
-                  <Typography variant="subtitle1" fontWeight={600}>
-                    info@finurl.in
-                  </Typography>
-                </Box>
+              <Box>
+                <Link to={"mailto: infor@finurl.in"}>
+                  <Box
+                    justifyContent={"center"}
+                    alignItems={"center"}
+                    display={"flex"}
+                    gap={"10px"}
+                  >
+                    <MailOutlineRoundedIcon />
+                    <Typography variant="subtitle2" fontWeight={500} mt={0.5}>
+                      info@finurl.in
+                    </Typography>
+                  </Box>
+                </Link>
               </Box>
-            </Link>
+            </Box>
+            <FormControl sx={{ width: "60%" }} component={"form"}>
+              <TextField
+                variant="standard"
+                size="small"
+                sx={{ marginTop: "10px" }}
+                fullWidth
+                label="Full Name"
+                name="email"
+                required={true}
+              />
+              <TextField
+                variant="standard"
+                size="small"
+                sx={{ marginTop: "10px" }}
+                fullWidth
+                label="Email"
+                name="email"
+                required={true}
+              />
+              <TextareaAutosize
+               
+                style={{
+                  marginTop: "15px",
+                  padding: "10px",
+                  fontSize: "large",
+                  resize: false,
+                  background: "none",
+                  borderRadius: "4px"
+                }}
+                placeholder="Enter your message..."
+                minRows={3}
+                name="message"
+                required={true}
+              />
+              <Button sx={{"marginTop":"15px", width: "max-content", "padding": "5px 30px"}} type="submit">
+                Send Message
+              </Button>
+            </FormControl>
           </Grid>
-          <Grid item lg={7} sm={5} xs={10}>
+          <Grid item lg={5} md={5} sm={5} xs={5}>
             <img
               className={styles.contact_us_img}
               src={contact_us}
