@@ -16,6 +16,7 @@ import PrefrApplication from "../Components/EntryPoints/PrefrApplication";
 import GetStarted from "../Pages/GetStarted";
 import AdminDashboard from "../Components/Admin_Dashboard/AdminDashboard";
 import AboutUs from "../Pages/AboutUs";
+import FinancialLiteracy from "../Pages/FinancialLiteracy";
 const Router = () => {
   return (
     <>
@@ -50,6 +51,7 @@ const Router = () => {
         <Route path="/comingsoon" element={<ComingSoon />} />
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/financial-literacy" element={<FinancialLiteracy />} />
 
       </Routes>
     </>

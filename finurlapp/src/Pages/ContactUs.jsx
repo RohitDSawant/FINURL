@@ -33,7 +33,7 @@ const ContactUs = () => {
           alignItems={"center"}
           justifyContent={"center"}
           margin={"auto"}
-          mt={8}
+          mt={6}
           container
         >
           <Grid

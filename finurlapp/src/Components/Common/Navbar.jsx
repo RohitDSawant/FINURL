@@ -274,13 +274,15 @@ const Navbar = () => {
                   <Typography variant="body1" mb={2}>
                     Financial Literacy
                   </Typography>
-                  <Typography
-                    variant="subtitle2"
-                    m={1}
-                    className={styles.submenus}
-                  >
-                    🔹 Financial Literacy
-                  </Typography>
+                  <Link to={"/financial-literacy"}>
+                    <Typography
+                      variant="subtitle2"
+                      m={1}
+                      className={styles.submenus}
+                    >
+                      🔹 Financial Literacy
+                    </Typography>
+                  </Link>
                 </Box>
                 <Box>
                   <Typography variant="body1" mb={2}>
@@ -443,6 +445,24 @@ const Navbar = () => {
                   </Typography>
                 </Link>
               </Box>
+              <Box className={styles.products_menu_mob} ml={2} mt={2}>
+                <Typography
+                  color={theme.palette.primary.main}
+                  variant="body2"
+                  mb={1}
+                >
+                  Products :
+                </Typography>
+                <Link to={"/calculator"}>
+                  <Typography variant={"subtitle2"}>🔹 Calculator</Typography>
+                </Link>
+                <Link to={"/financial-literacy"}>
+                  <Typography variant={"subtitle2"}>
+                    🔹 Financial Literacy
+                  </Typography>
+                </Link>
+              
+              </Box>
               <Box ml={2} mt={3}>
                 <Typography
                   color={theme.palette.primary.main}
@@ -469,7 +489,7 @@ const Navbar = () => {
                 <Typography variant={"subtitle2"}> 🔹 Contact Us</Typography>
               </Link>
             </Box>
-            <Box ml={1} mt={2}>
+            <Box ml={1} mt={1}>
               <Link to={"/aboutus"}>
                 <Typography variant={"subtitle2"}> 🔹 About Us</Typography>
               </Link>
@@ -521,7 +541,7 @@ const Navbar = () => {
             </Box>
 
             <Box textAlign={"center"} mt={3} width={"95%"}>
-              <Box>
+              {/* <Box>
                 <Typography variant={"subtitle2"}>Follow us on:</Typography>
                 <Box
                   display={"flex"}
@@ -544,8 +564,8 @@ const Navbar = () => {
                     <LinkedinIcon sx={{ color: theme.palette.primary.main }} />
                   </Box>
                 </Box>
-              </Box>
-              <Typography variant="subtitle2">
+              </Box> */}
+              <Typography pr={2} fontSize={"x-small"} variant="subtitle2">
                 Copyright Ⓒ 2023 FinURL. All Rights Reserved.
               </Typography>
             </Box>
