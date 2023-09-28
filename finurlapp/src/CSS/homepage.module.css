@@ -389,6 +389,10 @@
     margin: auto;
   }
 
+  .financial_literacy_img {
+    height: 30vh;
+  }
+
 }
 
 @media all and (min-width: 426px) and (max-width: 769px) {
@@ -403,5 +407,9 @@
 
   #slabs_img {
     height: 25vh;
+  }
+
+  .financial_literacy_img {
+    height: 35vh;
   }
 }

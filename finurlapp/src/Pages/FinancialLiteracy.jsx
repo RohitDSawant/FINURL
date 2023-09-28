@@ -38,9 +38,9 @@ const FinancialLiteracy = () => {
         justifyContent={"space-around"}
         alignItems={"center"}
         m="auto"
-        mt={5}
+        mt={3}
       >
-        <Grid lg={4} md={6} sm={10}>
+        <Grid lg={4} md={6} sm={10} xs={10}>
           <img
             className={styles.financial_literacy_img}
             style={{ display: "block", margin: "auto" }}
@@ -48,7 +48,7 @@ const FinancialLiteracy = () => {
             alt="financial_world"
           />
         </Grid>
-        <Grid lg={7} md={6} sm={12}>
+        <Grid lg={7} md={6} sm={12} xs={12} mt={2}>
           <Typography variant="subtitle2" mb={0.5} fontWeight={600}>
             401(k):
           </Typography>
@@ -131,10 +131,10 @@ const FinancialLiteracy = () => {
         alignItems={"center"}
         width={"90vw"}
         m="auto"
-        mt={10}
-        mb={10}
+        mt={5}
+        mb={5}
       >
-        <Grid lg={4} md={6} sm={10}>
+        <Grid lg={4} md={6} sm={10} xs={10} mb={5}>
           <img
             className={styles.financial_literacy_img}
             style={{ display: "block", margin: "auto" }}
@@ -142,7 +142,7 @@ const FinancialLiteracy = () => {
             alt=""
           />
         </Grid>
-        <Grid lg={7} md={6} sm={12}>
+        <Grid lg={7} md={6} sm={12} xs={12} mt={2}>
           <Typography variant="subtitle2" fontWeight={600}>
             Credit limit:
           </Typography>
@@ -206,7 +206,7 @@ const FinancialLiteracy = () => {
         justifyContent={"space-around"}
         alignItems={"center"}
       >
-        <Grid lg={4} md={6} sm={10}>
+        <Grid lg={4} md={6} sm={10} xs={10} mb={5}>
           <img
             className={styles.financial_literacy_img}
             style={{ display: "block", margin: "auto" }}
@@ -214,7 +214,7 @@ const FinancialLiteracy = () => {
             alt=""
           />
         </Grid>
-        <Grid lg={7} md={6} sm={12}>
+        <Grid lg={7} md={6} sm={12} xs={12} mt={2}>
           <Typography variant="subtitle2" fontWeight={600}>
             Debt consolidation:
           </Typography>
@@ -273,10 +273,10 @@ const FinancialLiteracy = () => {
         alignItems={"center"}
         width={"90vw"}
         margin={"auto"}
-        mt={10}
+        mt={5}
       >
         {" "}
-        <Grid lg={4} md={6} sm={10}>
+        <Grid lg={4} md={6} sm={10} xs={10} mb={5}>
           <img
             className={styles.financial_literacy_img}
             style={{ display: "block", margin: "auto" }}
@@ -284,7 +284,7 @@ const FinancialLiteracy = () => {
             alt=""
           />
         </Grid>
-        <Grid mt={5} lg={7} md={6} sm={12}>
+        <Grid mt={3} lg={7} md={6} sm={12} xs={12} mt={2}>
           <Typography variant="subtitle2" fontWeight={600}>
             Hard inquiry (or hard pull ) :
           </Typography>
@@ -340,7 +340,7 @@ const FinancialLiteracy = () => {
           </Typography>
         </Grid>
       </Grid>
-      <Typography mt={5} mb={5} textAlign={"center"} variant="h5">
+      <Typography mt={3} mb={5} textAlign={"center"} variant="h5">
         Know Why ?
       </Typography>
       <Box className={styles.know_why}>
