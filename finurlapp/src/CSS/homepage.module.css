@@ -295,6 +295,48 @@
   padding: 5%;
 }
 
+/* <--------------------- Financial Literacy CSS */
+
+.financial_literacy_img {
+  height: 45vh;
+}
+
+.know_why{
+  display:flex;
+  width:80vw;
+  justify-content:space-around;
+  align-items:center;
+  margin:auto;
+  gap: 20px;
+  margin-bottom: 5%;
+}
+
+
+.know_why div {
+  padding: 5% 4%;
+  width: 45vw;
+  height: 30vh;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.know_why div:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  cursor: pointer;
+}
+
+.know_why div img {
+  height: 20vh;
+  display: block;
+  margin: auto;
+}
+
+.loan_increase_img{
+  height: 50vh;
+  display: block;
+  margin: auto;
+}
+
+
 /* Media queries mobile */
 
 @media all and (min-width: 100px) and (max-width: 426px) {
@@ -329,6 +371,24 @@
     height: 15vh;
     width: 45vw;
   }
+
+  .know_why{
+    flex-direction: column;
+    width: 60%;
+  }
+
+  .know_why div img {
+    height: 15vh;
+    display: block;
+    margin: auto;
+  }
+
+  .loan_increase_img{
+    height: 30vh;
+    display: block;
+    margin: auto;
+  }
+
 }
 
 @media all and (min-width: 426px) and (max-width: 769px) {

@@ -17,6 +17,9 @@ import GetStarted from "../Pages/GetStarted";
 import AdminDashboard from "../Components/Admin_Dashboard/AdminDashboard";
 import AboutUs from "../Pages/AboutUs";
 import FinancialLiteracy from "../Pages/FinancialLiteracy";
+import IncLoanBalance from "../Pages/IncLoanBalance";
+import CreditScoreDrop from "../Pages/CreditScoreDrop";
+
 const Router = () => {
   return (
     <>
@@ -52,6 +55,8 @@ const Router = () => {
         <Route path="/get-started" element={<GetStarted />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/financial-literacy" element={<FinancialLiteracy />} />
+        <Route path="/increase-loan-balance" element={<IncLoanBalance />} />
+        <Route path="/credit-score-drop" element={<CreditScoreDrop />} />
 
       </Routes>
     </>
