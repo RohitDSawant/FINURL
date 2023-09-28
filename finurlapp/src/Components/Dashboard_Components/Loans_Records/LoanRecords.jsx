@@ -202,7 +202,7 @@ const LoanRecords = () => {
               </Typography>
             ) : (
               <>
-                <Button onClick={() => setLeadsPunchOpen(true)}>
+                {/* <Button onClick={() => setLeadsPunchOpen(true)}>
                   Disbursed
                 </Button>
                 <Dialog
@@ -325,19 +325,20 @@ const LoanRecords = () => {
                       </form>
                     </DialogContent>
                   </Box>
-                </Dialog>
+                </Dialog> */}
+                 <Typography ml={1}
+                textAlign={"center"}
+                sx={{
+                  color: "crimson",
+                  fontSize: "small",
+                  fontWeight: 600,
+                }}
+                variant="body2"
+              >
+                {params.row.results.application_status}
+              </Typography>
               </>
-              // <Typography
-              //   textAlign={"center"}
-              //   sx={{
-              //     color: "crimson",
-              //     fontSize: "small",
-              //     fontWeight: 600,
-              //   }}
-              //   variant="body2"
-              // >
-              //   {params.row.results.application_status}
-              // </Typography>
+             
             )}
           </>
         );
