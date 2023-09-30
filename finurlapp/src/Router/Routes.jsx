@@ -19,6 +19,7 @@ import AboutUs from "../Pages/AboutUs";
 import FinancialLiteracy from "../Pages/FinancialLiteracy";
 import IncLoanBalance from "../Pages/IncLoanBalance";
 import CreditScoreDrop from "../Pages/CreditScoreDrop";
+import ForgotPassword from "../Pages/ForgotPassword";
 
 const Router = () => {
   return (
@@ -39,7 +40,7 @@ const Router = () => {
             </ApplicationProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/prefr/application"
           element={
             <ApplicationProtectedRoute>
@@ -57,7 +58,7 @@ const Router = () => {
         <Route path="/financial-literacy" element={<FinancialLiteracy />} />
         <Route path="/increase-loan-balance" element={<IncLoanBalance />} />
         <Route path="/credit-score-drop" element={<CreditScoreDrop />} />
-
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </>
   );

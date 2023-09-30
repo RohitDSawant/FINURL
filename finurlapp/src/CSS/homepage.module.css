@@ -301,16 +301,15 @@
   height: 45vh;
 }
 
-.know_why{
-  display:flex;
-  width:80vw;
-  justify-content:space-around;
-  align-items:center;
-  margin:auto;
+.know_why {
+  display: flex;
+  width: 80vw;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
   gap: 20px;
   margin-bottom: 5%;
 }
-
 
 .know_why div {
   padding: 5% 4%;
@@ -330,11 +329,19 @@
   margin: auto;
 }
 
-.loan_increase_img{
+.loan_increase_img {
   height: 50vh;
   display: block;
   margin: auto;
 }
+
+
+/* Forget-password */
+
+.verifying_user{
+  height: 45vh;
+}
+
 
 
 /* Media queries mobile */
@@ -372,7 +379,7 @@
     width: 45vw;
   }
 
-  .know_why{
+  .know_why {
     flex-direction: column;
     width: 60%;
   }
@@ -383,7 +390,7 @@
     margin: auto;
   }
 
-  .loan_increase_img{
+  .loan_increase_img {
     height: 30vh;
     display: block;
     margin: auto;
@@ -392,7 +399,6 @@
   .financial_literacy_img {
     height: 30vh;
   }
-
 }
 
 @media all and (min-width: 426px) and (max-width: 769px) {

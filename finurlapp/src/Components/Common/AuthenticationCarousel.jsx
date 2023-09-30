@@ -21,7 +21,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import "slick-carousel/slick/slick.css";
@@ -307,7 +307,6 @@ const LoginPage = () => {
                               autoComplete="off"
                               required
                             />
-                            {/* <label>Password</label> */}
                           </Box>
                         </>
                       ) : (
@@ -381,13 +380,16 @@ const LoginPage = () => {
                         <></>
                       )}
                       {!showOptSec ? (
-                        <Typography
-                          variant="body2"
-                          textAlign={"left"}
-                          className="text"
-                        >
-                          Forgot your password?
-                        </Typography>
+                        <Link to={"/forgot-password"}>
+                          <Typography
+                            variant="body2"
+                            textAlign={"left"}
+                            className="text"
+                            id={"forget"}
+                          >
+                            Forgot your password?
+                          </Typography>
+                        </Link>
                       ) : (
                         ""
                       )}
@@ -575,7 +577,12 @@ const LoginPage = () => {
                         </Typography>
                       )}
 
-                      <Typography fontSize={"small"} textAlign={"center"} color={theme.palette.primary.main} variant="subtitile2">
+                      <Typography
+                        fontSize={"small"}
+                        textAlign={"center"}
+                        color={theme.palette.primary.main}
+                        variant="subtitile2"
+                      >
                         By signing up, I agree to the Terms of Services and
                         Privacy Policy
                       </Typography>

@@ -193,6 +193,10 @@ main.sign-up-mode .carousel {
   flex-direction: column;
 }
 
+#forget:hover{
+  font-weight: 600;
+}
+
 .text-wrap {
   max-height: 2.2rem;
   overflow: hidden;
