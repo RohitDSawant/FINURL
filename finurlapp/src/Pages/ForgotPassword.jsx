@@ -53,7 +53,7 @@ const ForgotPassword = () => {
     setIsLoading(true);
 
     await axios
-      .post("http://localhost:4000/api/v1/auth/reset_pass_send_otp", {
+      .post("https://api.finurl.in/api/v1/auth/reset_pass_send_otp", {
         email: requiredEmail,
       })
       .then((res) => {
@@ -121,7 +121,7 @@ const ForgotPassword = () => {
     const enteredOtp = collectOTP();
 
     await axios
-      .post("http://localhost:4000/api/v1/auth/reset_pass_verify_otp", {
+      .post("https://api.finurl.in/api/v1/auth/reset_pass_verify_otp", {
         email: requiredEmail,
         otp: enteredOtp,
       })

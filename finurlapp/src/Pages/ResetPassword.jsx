@@ -42,7 +42,7 @@ const ResetPassword = () => {
 
     if (resetData.newPassword === resetData.confirmPassword) {
       axios
-        .post("http://localhost:4000/api/v1/auth/reset_password", {
+        .post("https://api.finurl.in/api/v1/auth/reset_password", {
           email: applicant_email,
           new_password: resetData.confirmPassword,
         })
