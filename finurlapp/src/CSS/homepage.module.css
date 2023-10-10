@@ -342,6 +342,9 @@
   height: 45vh;
 }
 
+.otp_verify{
+  height: 45vh;
+}
 
 
 /* Media queries mobile */
@@ -399,6 +402,13 @@
   .financial_literacy_img {
     height: 30vh;
   }
+
+  .verifying_user{
+    height: 35vh;
+  }
+  .otp_verify{
+    height: 30vh;
+  }
 }
 
 @media all and (min-width: 426px) and (max-width: 769px) {
@@ -417,5 +427,9 @@
 
   .financial_literacy_img {
     height: 35vh;
+  }
+
+  .otp_verify{
+    height:30vh;
   }
 }

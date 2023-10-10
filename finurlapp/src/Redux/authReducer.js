@@ -7,6 +7,8 @@ const init_state = {
   loggedInUser: {},
   loans: [],
   token: "",
+  reset_password: false,
+  reset_applicant_email: "",
 };
 
 export const authReducer = (state = init_state, action) => {
@@ -18,7 +20,6 @@ export const authReducer = (state = init_state, action) => {
     }
 
     case types.LOGIN_SUCCESS: {
-
       let arr;
 
       if (payload.user.loans.length > 0) {
@@ -42,7 +43,6 @@ export const authReducer = (state = init_state, action) => {
     case types.LOGIN_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
-
 
     case types.GET_DASHBOARD_LOANS_DATA_REQUEST: {
       return { ...state, isLoading: true };
@@ -72,6 +72,39 @@ export const authReducer = (state = init_state, action) => {
       return { ...state, isLoading: false, isError: true };
     }
 
+    case types.RESET_PASSWORD_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.RESET_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        reset_applicant_email: payload.email,
+        reset_password: true,
+      };
+    }
+
+    case types.RESET_PASSWORD_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.RESET_COMPLETION_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.RESET_COMPLETION_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        reset_applicant_email: "",
+        reset_password: false,
+      };
+    }
+
+    case types.RESET_COMPLETION_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
 
     default: {
       return state;

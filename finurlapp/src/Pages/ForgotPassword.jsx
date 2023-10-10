@@ -17,6 +17,8 @@ import otp from "./../Assets/Images/OTP.svg";
 import styles from "./../CSS/homepage.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { reset_password } from "../Redux/Func/Authentication/Authenticate";
 
 const ForgotPassword = () => {
   const [showResetSection, setShowResetSection] = useState(false);
@@ -35,6 +37,7 @@ const ForgotPassword = () => {
     useRef(null),
     useRef(null),
   ];
+  const dispatch = useDispatch();
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -128,6 +131,7 @@ const ForgotPassword = () => {
             setIsLoading(false);
             setShowSuccessSnack(true);
             setSnackMsg("OTP verified successfully");
+            dispatch(reset_password({ email: requiredEmail }));
             navigate("/reset-password");
           }, 2000);
         } else {
@@ -151,7 +155,7 @@ const ForgotPassword = () => {
   return (
     <>
       <Navbar />
-      <Box height={"80vh"} mt={2} pt={15}>
+      <Box height={"80vh"} mt={2} mb={10} pt={15}>
         {!showResetSection ? (
           <>
             <Typography
@@ -171,7 +175,7 @@ const ForgotPassword = () => {
               m={"auto"}
               mt={3}
             >
-              <Grid lg={5}>
+              <Grid lg={5} md={6} sm={7} xs={11}>
                 <FormControl
                   component={"form"}
                   onSubmit={handleSubmitEmail}
@@ -207,7 +211,7 @@ const ForgotPassword = () => {
                   </Box>
                 </FormControl>
               </Grid>
-              <Grid lg={5}>
+              <Grid lg={5} md={5} sm={5} xs={6}>
                 <img
                   className={styles.verifying_user}
                   src={verifying_user}
@@ -224,6 +228,7 @@ const ForgotPassword = () => {
               m={"auto"}
               fontWeight={500}
               variant="h5"
+              mb={5}
             >
               O.T.P Verification
             </Typography>
@@ -231,12 +236,12 @@ const ForgotPassword = () => {
               justifyContent={"space-between"}
               container
               alignItems={"center"}
-              width={"70vw"}
+              width={"80vw"}
               m={"auto"}
             >
-              <Grid item lg={5}>
+              <Grid item lg={5} md={6} sm={7} xs={12}>
                 <Typography variant="body2" fontWeight={600} mb={3}>
-                  Please enter the O.T.P send on your mail
+                  Please enter the O.T.P sent on your email.
                 </Typography>
                 <FormControl onSubmit={handleOTPSubmit} component={"form"}>
                   <Box width={"90%"} display={"flex"} gap={"10px"}>
@@ -244,11 +249,12 @@ const ForgotPassword = () => {
                       <Box key={index}>
                         <TextField
                           onChange={handleOtpInputs}
-                          placeholder="*"
+                          placeholder="-"
                           inputRef={inputRefs[index]}
-                          variant="outlined"
+                          variant="standard"
                           type="text"
-                          sx={{ width: "75%", textAlign: "center" }}
+                      
+                          sx={{ width: "100%", textAlign: "center" }}
                           size="medium"
                           inputProps={{ maxLength: 1 }}
                           onKeyDown={(e) => handleInputKeyDown(e, index)}
@@ -276,8 +282,8 @@ const ForgotPassword = () => {
                   </Box>
                 </FormControl>
               </Grid>
-              <Grid mt={2} lg={5}>
-                <img className={styles.verifying_user} src={otp} alt="" />
+              <Grid mt={2} lg={5} md={5} sm={5} xs={6}>
+                <img className={styles.otp_verify} src={otp} alt="" />
               </Grid>
             </Grid>
           </>

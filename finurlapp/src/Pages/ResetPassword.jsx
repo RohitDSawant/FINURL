@@ -15,6 +15,9 @@ import {
 import reset_password from "./../Assets/Images/reset_password.svg";
 import styles from "./../CSS/homepage.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { reset_completion_password } from "../Redux/Func/Authentication/Authenticate";
 
 const ResetPassword = () => {
   const [showErrorSnack, setShowErrorSnack] = useState(false);
@@ -25,10 +28,46 @@ const ResetPassword = () => {
     newPassword: "",
     confirmPassword: "",
   });
+  const dispatch = useDispatch()
 
-  const handleSubmitReset = (e) => {
+  const navigate = useNavigate();
+  const applicant_email = useSelector(
+    (state) => state.authReducer.reset_applicant_email
+  );
+
+  const handleSubmitReset = async (e) => {
     e.preventDefault();
     console.log(resetData);
+    setIsLoading(true);
+
+    if (resetData.newPassword === resetData.confirmPassword) {
+      axios
+        .post("http://localhost:4000/api/v1/auth/reset_password", {
+          email: applicant_email,
+          new_password: resetData.confirmPassword,
+        })
+        .then((res) => {
+          console.log(res.data);
+          setTimeout(() => {
+            setIsLoading(false);
+            if (res.data.message === "Password updated successfully!") {
+              setSnackMsg("Password updated successfully");
+              setShowSuccessSnack(true);
+              dispatch(reset_completion_password())
+              setTimeout(() => {
+                navigate("/authentication");
+              }, 2000);
+            } else {
+              setSnackMsg("Something went wrong, please try again");
+              setShowErrorSnack(true);
+            }
+          }, 3000);
+        });
+    } else {
+      setIsLoading(false);
+      setSnackMsg("Password didn't matched, please try again");
+      setShowErrorSnack(true);
+    }
   };
 
   const handleClose = (event, reason) => {
@@ -63,6 +102,8 @@ const ResetPassword = () => {
         alignItems={"center"}
         width={"70vw"}
         m={"auto"}
+        pb={5}
+        pt={5}
       >
         <Grid lg={5}>
           <FormControl
@@ -94,17 +135,24 @@ const ResetPassword = () => {
               name="confirmPassword"
               value={resetData.confirmPassword}
             />
-            <Button
-              type="submit"
-              disabled={loading}
-              sx={{
-                marginTop: "25px",
-                width: "max-content",
-                padding: "5px 25px",
-              }}
-            >
-              Reset Password
-            </Button>
+            <Box display={"flex"} alignItems={"center"} gap={"20px"}>
+              <Button
+                type="submit"
+                disabled={loading}
+                sx={{
+                  marginTop: "25px",
+                  width: "max-content",
+                  padding: "5px 25px",
+                }}
+              >
+                Reset Password
+              </Button>
+              {loading ? (
+                <CircularProgress size={25} sx={{ marginTop: "20px" }} />
+              ) : (
+                ""
+              )}
+            </Box>
           </FormControl>
         </Grid>
         <Grid lg={5}>
