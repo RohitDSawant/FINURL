@@ -2,8 +2,8 @@ import React from "react";
 import Navbar from "../Components/Common/Navbar";
 import styles from "./../CSS/aboutus.module.css";
 import { Box, Grid, Typography } from "@mui/material";
-import about_us_img from "./../Assets/Images/about_us.svg";
-import vision from "./../Assets/Images/our_vision.png";
+import about_us_img from "./../Assets/Images/team.svg";
+import vision from "./../Assets/Images/vision.svg";
 import mission from "./../Assets/Images/our_mission.svg";
 import motto from "./../Assets/Images/our_motto.svg";
 import avatar from "./../Assets/Images/avatar.svg";
@@ -22,7 +22,7 @@ const AboutUs = () => {
           margin={"auto"}
         >
           <Grid item lg={7} md={7} sm={7} xs={11}>
-            <Box mt={7}>
+            <Box >
               <Typography fontWeight={600} variant="h4">
                 Who are we ?
               </Typography>

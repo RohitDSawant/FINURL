@@ -21,6 +21,7 @@ import IncLoanBalance from "../Pages/IncLoanBalance";
 import CreditScoreDrop from "../Pages/CreditScoreDrop";
 import ForgotPassword from "../Pages/ForgotPassword";
 import ResetPassword from "../Pages/ResetPassword";
+import ProtectResetRoute from "../Components/Common/ProtectResetRoute";
 
 const Router = () => {
   return (
@@ -60,8 +61,14 @@ const Router = () => {
         <Route path="/increase-loan-balance" element={<IncLoanBalance />} />
         <Route path="/credit-score-drop" element={<CreditScoreDrop />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-
+        <Route
+          path="/reset-password"
+          element={
+            <ProtectResetRoute>
+              <ResetPassword />
+            </ProtectResetRoute>
+          }
+        />
       </Routes>
     </>
   );
