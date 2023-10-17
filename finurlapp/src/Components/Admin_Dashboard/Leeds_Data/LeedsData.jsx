@@ -2,13 +2,24 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styles from "./../../../CSS/dashboard.module.css";
-import { Typography } from "@mui/material";
+import {
+  Button,
+  Typography
+} from "@mui/material";
 import { useTheme } from "@emotion/react";
-
+import { useNavigate } from "react-router-dom";
 
 const LeedsData = () => {
+
   const [rows, setRows] = useState([]);
-  const theme  =  useTheme()
+
+  const theme = useTheme();
+
+  const navigate = useNavigate()
+
+  const showAgentData = (agent) =>{
+    navigate(`/agent/${agent}`)
+  }
 
   const columns = [
     {
@@ -17,191 +28,115 @@ const LeedsData = () => {
       width: 70,
       renderCell: (params) => {
         return (
-          <Typography color={theme.palette.primary.main} ml={2} variant="body2">
+          <Typography
+            color={theme.palette.primary.main}
+            ml={2}
+            variant="subtitle2"
+          >
             {params.value}
           </Typography>
         );
       },
     },
     {
-        field: "_id",
-      headerName: "Application ID",
+      field: "name",
+      headerName: "Name",
       width: 250,
       renderCell: (params) => {
         return (
-          <Typography color={theme.palette.primary.main} variant="body2">
+          <Typography
+            textTransform={"uppercase"}
+            color={theme.palette.primary.main}
+            variant="subtitle2"
+          >
             {params.value}
           </Typography>
         );
+      },
     },
-},
-{
-  field: "full_name",
-  headerName: "Name",
-  width: 200,
-  renderCell: (params) => {
-    return (
-      <Typography color={theme.palette.primary.main} variant="body2">
-        {params.value}
-      </Typography>
-    );
-  },
-},
-{
-    field: "lender_bank",
-    headerName: "Lender",
-    width: 100,
-    renderCell: (params) => {
-      return (
-        <Typography ml={2} color={theme.palette.primary.main} variant="body2">
-          {params.value}
-        </Typography>
-      );
-    },
-  },
+
     {
-      field: "pan_number",
+      field: "panNumber",
       headerName: "Pan Number",
-      width: 140,
+      width: 150,
       renderCell: (params) => {
         return (
-          <Typography color={theme.palette.primary.main} variant="body2">
+          <Typography color={theme.palette.primary.main} variant="subtitle2">
             {params.value}
           </Typography>
         );
       },
     },
+
     {
-        field: "partner",
-        headerName: "Partner Name",
-        width: 250,
-        renderCell: (params) => {
-          return (
-            <Typography color={theme.palette.primary.main} variant="body2">
-              {params.value}
-            </Typography>
-          );
-        },
+      field: "phoneNumber",
+      headerName: "Contact Number",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          <Typography color={theme.palette.primary.main} variant="subtitle2">
+            +91 {params.value}
+          </Typography>
+        );
       },
-      {
-        field: "amount",
-        headerName: "Loan Amount",
-        width: 200,
-        renderCell: (params) => {
-          return (
-            <Typography color={theme.palette.primary.main} variant="body2">
-              {params.value}
-            </Typography>
-          );
-        },
+    },
+
+    {
+      field: "createdAt",
+      headerName: "Joined At",
+      width: 200,
+      renderCell: (params) => {
+        let date = new Date(params.row.createdAt);
+
+        return (
+          <Typography textAlign={"center"} variant="subtitle2">
+            {date.toLocaleString()}
+          </Typography>
+        );
       },
-    // {
-    //   field: "loan_status",
-    //   headerName: "Loan Status",
-    //   width: 200,
-    //   renderCell: (params) => {
-    //     return (
-    //       <>
-    //         {params.row.results.application_status === "In process" ? (
-    //           <Typography
-    //             textAlign={"center"}
-    //             sx={{
-    //               color: "navy",
-    //               fontSize: "small",
-    //               fontWeight: 600,
-    //             }}
-    //             variant="body2"
-    //           >
-    //             {params.row.results.application_status}
-    //           </Typography>
-    //         ) : params.row.results.application_status === "Eligible" ? (
-    //           <Typography
-    //             textAlign={"center"}
-    //             sx={{
-    //               color: "green",
-    //               fontSize: "small",
-    //               fontWeight: 600,
-    //             }}
-    //             variant="body2"
-    //           >
-    //             {params.row.results.application_status}
-    //           </Typography>
-    //         ) : (
-    //           <Typography
-    //             textAlign={"center"}
-    //             sx={{
-    //               color: "crimson",
-    //               fontSize: "small",
-    //               fontWeight: 600,
-    //             }}
-    //             variant="body2"
-    //           >
-    //             {params.row.results.application_status}
-    //           </Typography>
-    //         )}
-    //       </>
-    //     );
-    //   },
-    // },
-    // {
-    //   field: "loan_info",
-    //   headerName: "Loan Info",
-    //   width: 250,
-    //   renderCell: (params) => {
-    //     return (
-    //       <>
-    //         <Button
-    //           onClick={() => openModal(params.id - 1)}
-    //           sx={{
-    //             backgroundColor: "#12162b",
-    //             color: "#fff",
-    //             fontSize: "x-small",
-    //           }}
-    //         >
-    //           Info
-    //         </Button>
-    //         {Array.from(ModalStates.entries()).map(([rowIndex, isOpen]) => (
-    //           <Dialog
-    //             hideBackdrop={true}
-    //             key={rowIndex}
-    //             PaperProps={{
-    //               elevation: 0, // Remove the shadow by setting elevation to 0
-    //             }}
-    //             open={isOpen}
-    //             onClose={() => closeModal(rowIndex)}
-    //           >
-    //             <DialogTitle>
-    //               <Typography
-    //                 mb={2}
-    //                 variant="body2"
-    //               >
-    //                 Info:
-    //               </Typography>
-    //             </DialogTitle>
-    //             <DialogContent>
-    //               <Typography
-    //                 sx={{ userSelect: "text" }}
-    //                 m={1}
-    //                 variant="body2"
-    //               >
-    //                 Bank Statement URL :{" "}
-    //                 {loans[rowIndex]?.results?.bank_statement_url ||
-    //                   "URL Not available"}
-    //               </Typography>
-    //             </DialogContent>
-    //           </Dialog>
-    //         ))}
-    //       </>
-    //     );
-    //   },
-    // },
+    },
+    {
+      field: "updatedAt",
+      headerName: "Last Visit",
+      width: 200,
+      renderCell: (params) => {
+        let date = new Date(params.row.updatedAt);
+        return (
+          <Typography color={theme.palette.primary.main} variant="subtitle2">
+            {date.toLocaleString()}
+          </Typography>
+        );
+      },
+    },
+    {
+      field: "loan_info",
+      headerName: "Deatiled Information",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <>
+            <Button
+              onClick={()=> showAgentData(params.row.name)}
+              sx={{
+                backgroundColor: "#12162b",
+                color: "#fff",
+                fontSize: "x-small",
+                marginLeft: "10px",
+              }}
+            >
+              Click for Details
+            </Button>
+          </>
+          // <Button sx={{ padding: "5px 15px" }}>Details</Button>
+        );
+      },
+    },
   ];
 
-
   useEffect(() => {
-    axios.get("https://api.finurl.in/api/v1/leads/getLeads").then((res) => {
-    console.log(res.data)  
-    let arr = [];
+    axios.get("http://localhost:4000/api/v1/user/all_agents").then((res) => {
+      console.log(res.data);
+      let arr = [];
       if (res.data.length > 0) {
         arr = res.data.map((ele, idx) => {
           return { ...ele, id: idx + 1 };
@@ -211,27 +146,32 @@ const LeedsData = () => {
     });
   }, []);
 
-  return <>
-   <DataGrid
+  return (
+    <>
+      <DataGrid
         className={styles.back_data_grid}
         sx={{
-          width: "95%",
+          width: "80vw",
           margin: "auto",
-          height: "74.5vh",
+          height: "82vh",
         }}
         rows={rows}
         columns={columns}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 8,
+              pageSize: 9,
             },
           },
         }}
-        pageSizeOptions={[8, 16]}
+        pageSizeOptions={[9, 18]}
         // disableRowSelectionOnClick
       />
-  </>;
+      <Typography variant="subtitle2" mt={1} ml={2} fontSize={"x-small"}>
+        * Please hover on the column headers for additional functionalites.
+      </Typography>
+    </>
+  );
 };
 
 export default LeedsData;

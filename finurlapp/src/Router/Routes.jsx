@@ -22,6 +22,7 @@ import CreditScoreDrop from "../Pages/CreditScoreDrop";
 import ForgotPassword from "../Pages/ForgotPassword";
 import ResetPassword from "../Pages/ResetPassword";
 import ProtectResetRoute from "../Components/Common/ProtectResetRoute";
+import AgentData from "../Components/Admin_Dashboard/Leeds_Data/AgentData";
 
 const Router = () => {
   return (
@@ -69,6 +70,7 @@ const Router = () => {
             </ProtectResetRoute>
           }
         />
+        <Route path="/agent/:agent" element={<AgentData />} />
       </Routes>
     </>
   );

@@ -51,3 +51,14 @@
   outline: none;
   /* transition: fade out 5s linear; */
 }
+
+#agent_info{
+  display: grid;
+  padding: 2%;
+  width: 90vw;
+  margin: auto;
+  gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  border-radius: 10px;
+  
+}
