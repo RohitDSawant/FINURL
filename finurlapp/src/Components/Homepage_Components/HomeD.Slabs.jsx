@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import styles from "./../../CSS/homepage.module.css";
 import we_handle from "./../../Assets/Images/we_handle.svg";
-import card_deal from "./../../Assets/Images/card_deal.svg";
+import card_deal from "./../../Assets/Images/card_deal.png";
 import easy_billing from "./../../Assets/Images/billing.svg";
 
 const HomeDSlabs = () => {

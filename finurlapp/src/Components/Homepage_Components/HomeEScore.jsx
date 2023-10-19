@@ -14,7 +14,8 @@ const HomeEScore = () => {
       <section id={styles.home_e_sec}>
         <Box>
           <img className={styles.credit_score_img} src={credit_score} alt="" />
-          <Button sx={{backgroundColor: `${theme.palette.primary.main}`, color:`${theme.palette.secondary.main}`}} >Check Here</Button>
+          <Typography variant="h5" >Check your Credit Score</Typography>
+          <Button sx={{backgroundColor: `${theme.palette.primary.main}`, color:`${theme.palette.secondary.main}`}} >Click Here</Button>
         </Box>
       </section>
     </>

@@ -51,6 +51,12 @@ a {
   text-decoration: none;
 }
 
+
+
+.referral_img{
+  height: 35vh;
+}
+
 #hamburger_menu {
   display: none;
 }

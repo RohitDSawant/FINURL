@@ -28,40 +28,25 @@
 #home_b_sec {
   height: max-content;
   margin: auto;
-  margin-bottom: 7%;
+  margin-bottom: 3%;
 }
 
-#home_b_sec > div {
-  display: flex;
-  width: 85vw;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  padding: 2%;
-}
-
-#home_b_sec > div > div {
-  display: flex;
-  gap: 15px;
-  border-radius: 10px;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 2% 1%;
-}
 
 .home_b_img {
-  height: 15vh;
+  height: 20vh;
   display: block;
   margin: auto;
+  width: auto;
 }
 
 /*  Home C Loans ---------------->  */
 
 #home_c_sec {
   /* border: 1px solid; */
-  padding: 2%;
+  padding: 1%;
   width: 100%;
-  margin-top: 10%;
-  margin-bottom: 7%;
+  margin-top: 8%;
+  margin-bottom: 5%;
 }
 
 .loans_sec {
@@ -79,7 +64,6 @@
   gap: 50px;
   padding-bottom: 5%;
   margin-bottom: 5%;
-  /* border: 1px solid red; */
   height: max-content;
 }
 
@@ -127,7 +111,7 @@
   /* border: 1px solid #ccc; */
   /* padding: 2%; */
   margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -365,9 +349,7 @@
     margin-top: 15%;
   }
 
-  .home_b_img {
-    height: 15vh;
-  }
+  
 
   #slabs_img {
     height: 100px;

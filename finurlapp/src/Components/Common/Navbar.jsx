@@ -1,12 +1,22 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
+  Alert,
   Box,
   Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   Drawer,
-  List,
-  ListItem,
   Menu,
   MenuItem,
+  Snackbar,
+  TextField,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -19,29 +29,27 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import LinkedinIcon from "@mui/icons-material/LinkedIn";
 import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import referral_img from "./../../Assets/Images/referral_img.svg";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import DashboardCustomizeRoundedIcon from "@mui/icons-material/DashboardCustomizeRounded";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { persistor } from "./../../Redux/store";
 import { ThemeContext } from "../../Context/ThemeContext";
+import { PiShareNetworkFill } from "react-icons/pi";
 
 const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [productsVisible, setProductsVisible] = useState(false);
-  const [resourceVisible, setResourceVisible] = useState(false);
   const [resourceOpen, setResourceOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
   const theme = useTheme();
+  const [isCodeCopied, setIsCodeCopied] = useState(false);
   const navigate = useNavigate();
   const { setCurrentTheme, currentTheme } = useContext(ThemeContext);
+  const [referralOpen, setReferralOpen] = useState(false);
 
   const handleLogout = () => {
     persistor.purge();
@@ -100,6 +108,28 @@ const Navbar = () => {
     if (currentTheme === "lightTheme") setCurrentTheme("darkTheme");
     else setCurrentTheme("lightTheme");
   };
+
+  const handleRefferalOpen = useCallback(() => {
+    setReferralOpen(true);
+  }, []);
+
+  const handleRefferalClose = useCallback(() => {
+    setReferralOpen(false);
+  }, []);
+
+  const handleCopyCode = useCallback(() => {
+    const referralCode = "Q45S886SF6Y"; // Replace with your actual referral code
+
+    navigator.clipboard.writeText(referralCode).then(
+      () => {
+        setIsCodeCopied(true);
+        setReferralOpen(false);
+      },
+      (err) => {
+        console.error("Could not copy text: ", err);
+      }
+    );
+  }, []);
 
   return (
     <>
@@ -311,6 +341,94 @@ const Navbar = () => {
                 Contact Us
               </Typography>
             </Link>
+            <Typography
+              onClick={handleRefferalOpen}
+              variant="body1"
+              mt={1}
+              fontWeight={500}
+            >
+              <PiShareNetworkFill />
+            </Typography>
+            <Dialog
+              open={referralOpen}
+              onClose={handleRefferalClose}
+            >
+              <DialogTitle>
+                <Typography
+                  textAlign={"center"}
+                  fontWeight={600}
+                  variant="h6"
+                  sx={{ textDecoration: "underline" }}
+                >
+                  Refer a friend
+                </Typography>
+                <Typography
+                  textAlign={"center"}
+                  fontWeight={500}
+                  variant="body2"
+                  p={1}
+                >
+                  Share this code with others and ask them to sign up. Both of
+                  you will be rewarded with a referral bonus.
+                </Typography>
+              </DialogTitle>
+              <DialogContent>
+                <Box
+                  display={"flex"}
+                  mt={-5}
+                  mr={5}
+                  ml={5}
+                  alignItems={"center"}
+                  gap={"50px"}
+                >
+                  <img
+                    className={styles.referral_img}
+                    src={referral_img}
+                    alt=""
+                  />
+
+                  <Box>
+                    <Typography variant="body2" textAlign={"center"} mb={1}>
+                      Your Referral Code :
+                    </Typography>
+                    <Button
+                      onClick={handleCopyCode}
+                      sx={{ padding: "10px 25px" }}
+                    >
+                      <Typography
+                        color={theme.palette.secondary.main}
+                        variant="body2"
+                        fontSize={"medium"}
+                        fontWeight={500}
+                      >
+                        Q45S886SF6Y
+                      </Typography>
+                    </Button>
+                    <Typography
+                      textAlign={"center"}
+                      fontSize={"x-small"}
+                      mt={1}
+                    >
+                      Click to copy referral code
+                    </Typography>
+                  </Box>
+                </Box>
+              </DialogContent>
+            </Dialog>
+            <Snackbar
+              anchorOrigin={{ vertical: "top", horizontal: "center" }}
+              open={isCodeCopied}
+              autoHideDuration={3000}
+              onClose={() => setIsCodeCopied(false)}
+            >
+              <Alert
+                onClose={() => setIsCodeCopied(false)}
+                severity="success"
+                sx={{ width: "100%" }}
+              >
+                Referral Code copied successfully !
+              </Alert>
+            </Snackbar>
           </Box>
           <Typography
             mt={1}
@@ -461,7 +579,6 @@ const Navbar = () => {
                     🔹 Financial Literacy
                   </Typography>
                 </Link>
-              
               </Box>
               <Box ml={2} mt={3}>
                 <Typography

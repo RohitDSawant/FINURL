@@ -5,6 +5,7 @@ import styles from "./../../../CSS/dashboard.module.css";
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import { useParams } from "react-router-dom";
 import Navbar from "../../Common/Navbar";
+import avatar from "./../../../Assets/Images/avatar.svg";
 
 const AgentData = () => {
   const theme = useTheme();
@@ -136,32 +137,37 @@ const AgentData = () => {
       <Navbar />
       <Box height={"100vh"} pt={12}>
         <Box id={styles.agent_info}>
-          <Box display={"flex"} gap={"15px"} alignItems={"center"}>
-            <Typography variant={"body2"}fontWeight={500} fontSize={"medium"}> Name: </Typography>
-            <Typography variant="body2" fontSize={"medium"} textTransform={"capitalize"}>
+          <Box>
+            <img style={{"height": "15vh"}} src={avatar} alt="avatar" />
+          </Box>
+         <Box>
+         <Box display={"flex"} gap={"15px"} alignItems={"center"}>
+            <Typography variant={"body2"}fontWeight={500} > Name: </Typography>
+            <Typography variant="body2"  textTransform={"capitalize"}>
               {current_agent.name}
             </Typography>
           </Box>
           <Box display={"flex"} gap={"15px"} alignItems={"center"}>
-            <Typography variant={"body2"}fontWeight={500} fontSize={"medium"}>Pan Number: </Typography>
-            <Typography variant="body2" fontSize={"medium"}>{current_agent.panNumber}</Typography>
+            <Typography variant={"body2"}fontWeight={500} >Pan Number: </Typography>
+            <Typography variant="body2" >{current_agent.panNumber}</Typography>
           </Box>
           <Box display={"flex"} gap={"15px"} alignItems={"center"}>
-            <Typography variant={"body2"}fontWeight={500} fontSize={"medium"}>Phone : </Typography>
-            <Typography variant="body2" fontSize={"medium"}>{current_agent.phoneNumber}</Typography>
+            <Typography variant={"body2"}fontWeight={500} >Phone : </Typography>
+            <Typography variant="body2" >{current_agent.phoneNumber}</Typography>
           </Box>
           <Box display={"flex"} gap={"15px"} alignItems={"center"}>
-            <Typography variant={"body2"}fontWeight={500} fontSize={"medium"}>Email Id: </Typography>
-            <Typography variant="body2" fontSize={"medium"}>{current_agent.email}</Typography>
+            <Typography variant={"body2"}fontWeight={500} >Email Id: </Typography>
+            <Typography variant="body2" >{current_agent.email}</Typography>
           </Box>
           <Box display={"flex"} gap={"15px"} alignItems={"center"}>
-            <Typography variant={"body2"}fontWeight={500} fontSize={"medium"}>Joined: </Typography>
-            <Typography variant="body2" fontSize={"medium"}>{joining_date}</Typography>
+            <Typography variant={"body2"}fontWeight={500} >Joined: </Typography>
+            <Typography variant="body2" >{joining_date}</Typography>
           </Box>
           <Box display={"flex"} gap={"15px"} alignItems={"center"}>
-            <Typography variant={"body2"}fontWeight={500} fontSize={"medium"}>Last visited: </Typography>
-            <Typography variant="body2" fontSize={"medium"}>{last_visit}</Typography>
+            <Typography variant={"body2"}fontWeight={500} >Last visited: </Typography>
+            <Typography variant="body2" >{last_visit}</Typography>
           </Box>
+         </Box>
         </Box>
         <Box>
           <DataGrid
