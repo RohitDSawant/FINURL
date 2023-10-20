@@ -36,7 +36,7 @@ const HomeB = () => {
             xs={10}
             sx={{
               "box-shadow": "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-            }}
+            }}borderRadius={"10px"}
           >
             <img
               className={styles.home_b_img}
@@ -64,7 +64,7 @@ const HomeB = () => {
             item
             sx={{
               "box-shadow": "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-            }}
+            }}borderRadius={"10px"}
             px={4}
             py={2}
             lg={3}

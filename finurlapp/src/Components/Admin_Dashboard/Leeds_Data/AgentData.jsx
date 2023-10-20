@@ -21,7 +21,7 @@ const AgentData = () => {
     };
 
     axios
-      .get("http://localhost:4000/api/v1/user/agent_entries", config)
+      .get("https://api.finurl.in/api/v1/user/agent_entries", config)
       .then((res) => {
         console.log(res.data);
         setCurrentAgent(res.data);
