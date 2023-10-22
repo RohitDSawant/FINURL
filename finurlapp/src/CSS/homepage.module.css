@@ -33,7 +33,7 @@
 
 
 .home_b_img {
-  height: 20vh;
+  height: 15vh;
   display: block;
   margin: auto;
   width: auto;
@@ -68,16 +68,17 @@
 }
 
 #home_d_sec > div {
-  width: 75vw;
+  /* width: 75vw; */
   align-items: center;
   margin: auto;
 }
 
 .slab_box {
-  width: 75%;
+  /* border: 1px solid; */
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin: auto;
   justify-content: center;
 }
 
@@ -93,12 +94,12 @@
   flex-direction: row-reverse;
 }
 
-#right_slab {
+/* #right_slab {
   text-align: right;
   align-items: flex-end;
   justify-content: center;
   float: right;
-}
+} */
 
 .slab_box > p,
 .slab_box h5 {
@@ -349,7 +350,9 @@
     margin-top: 15%;
   }
 
-  
+  #home_d_sec > div > div{
+    text-align: center;
+  }
 
   #slabs_img {
     height: 100px;

@@ -21,7 +21,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import "slick-carousel/slick/slick.css";
@@ -33,8 +33,7 @@ import Slider from "react-slick";
 
 const LoginPage = () => {
   const theme = useTheme();
-  const referedBy = useParams();
-  console.log(referedBy);
+
   const [activeInput, setActiveInput] = useState(null);
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [activeSlide, setActiveSlide] = useState(1);
@@ -45,7 +44,7 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [getOTPInputs, setOTPInputs] = useState("");
-  let [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phoneNumber: "",
@@ -87,13 +86,8 @@ const LoginPage = () => {
 
   const handleSubmitSignup = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    
-    if(referedBy){
-      formData = {...formData, referral_link: referedBy}
-    }
-    
     console.log(formData);
+    setIsLoading(true);
     await axios
       .post("http://localhost:4000/api/v1/auth/signup", formData)
       .then((res) => {
@@ -421,23 +415,26 @@ const LoginPage = () => {
                         alignItems: "center",
                       }}
                     >
-                      <Typography mr={1} variant="subtitle2" mb={1}>
+                      <Typography
+                        mr={1}
+                        variant="body2"
+                        mb={1}
+                        fontSize={"small"}
+                      >
                         Already have an account.?
                       </Typography>
-                      <Box display={"flex"} gap={"5px"}>
-                        <Typography
-                          variant="subtitle2"
-                          mt={-0.2}
-                          fontWeight={600}
-                          onClick={() => setIsSignUpMode(!isSignUpMode)}
-                          className="toggle"
-                        >
-                          Sign in
-                        </Typography>
-                        <Typography>
-                          <KeyboardDoubleArrowRightIcon fontSize="smaller" />
-                        </Typography>
-                      </Box>
+                      <Typography
+                        variant="body2"
+                        mt={-0.5}
+                        fontWeight={600}
+                        onClick={() => setIsSignUpMode(!isSignUpMode)}
+                        className="toggle"
+                      >
+                        Sign in
+                      </Typography>
+                      <Typography>
+                        <KeyboardDoubleArrowRightIcon fontSize="small" />
+                      </Typography>
                     </Box>
 
                     <Box className="actual-form">

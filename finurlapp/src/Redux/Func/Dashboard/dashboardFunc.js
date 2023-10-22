@@ -10,7 +10,7 @@ export const getLoansData = (user) => (dispatch) => {
   };
 
   try {
-    return axios.get("https://api.finurl.in/api/v1/user/dashboard", config).then((res) => {
+    return axios.get("http://localhost:4000/api/v1/user/dashboard", config).then((res) => {
       dispatch({ type: "GET_DASHBOARD_LOANS_DATA_SUCCESS", payload: res.data.loans });
     });
   } catch (error) {

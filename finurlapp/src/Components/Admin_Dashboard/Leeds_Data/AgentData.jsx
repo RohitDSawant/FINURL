@@ -8,24 +8,23 @@ import Navbar from "../../Common/Navbar";
 import avatar from "./../../../Assets/Images/avatar.svg";
 
 const AgentData = () => {
+
   const theme = useTheme();
   const [current_agent, setCurrentAgent] = useState({});
   const [agent_entires, setAgentEntires] = useState([]);
+  
   const { agent } = useParams();
+  
+  console.log(agent)
 
   useEffect(() => {
-    let config = {
-      headers: {
-        Authorization: agent,
-      },
-    };
 
     axios
-      .get("https://api.finurl.in/api/v1/user/agent_entries", config)
+      .get(`http://localhost:4000/api/v1/user/agent_loans/${agent}`)
       .then((res) => {
         console.log(res.data);
         setCurrentAgent(res.data);
-        if (res.data.message !== "No entries yet") {
+        if (res.data.message !== "No such agent found") {
           let entries = res.data.loans.map((ele, idx) => {
             return { ...ele, id: idx + 1 };
           });

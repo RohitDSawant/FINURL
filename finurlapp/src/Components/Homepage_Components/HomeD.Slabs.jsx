@@ -20,8 +20,8 @@ const HomeDSlabs = () => {
             mt={10}
             alignItems={"center"}
           >
-            <Grid item lg={7} md={7} sm={7} xs={8.5}>
-              <Box id={styles.right_slab} className={styles.slab_box}>
+            <Grid item lg={7} md={7} sm={7} xs={12}>
+              <Box  className={styles.slab_box}>
                 <Typography variant="h6" fontSize={"medium"}>
                   Easily control your billing & invoicing
                 </Typography>
@@ -31,7 +31,7 @@ const HomeDSlabs = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid lg={4} md={4} sm={4} xs={3.5}>
+            <Grid item lg={5} md={4} sm={4} xs={12}>
               <Box className={styles.slab_circle}>
                 <img src={easy_billing} id={styles.slabs_img} alt="" />
               </Box>
@@ -45,17 +45,17 @@ const HomeDSlabs = () => {
             mt={10}
             alignItems={"center"}
           >
-            <Grid item lg={8.5} md={8.5} sm={8.5} xs={8.5}>
+            <Grid item lg={7} md={8.5} sm={8.5} xs={12}>
               <Box className={styles.slab_box}>
                 <Typography
-                  textAlign={"right"}
+                  // textAlign={"right"}
                   variant="h6"
                   fontSize={"medium"}
                 >
                   You do the business, we’ll handle the money.{" "}
                 </Typography>
                 <Typography
-                  textAlign={"right"}
+                  // textAlign={"right"}
                   variant="body2"
                   fontSize={"small"}
                 >
@@ -65,7 +65,7 @@ const HomeDSlabs = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item lg={3.5} md={3.5} sm={3.5} xs={3.5}>
+            <Grid item lg={5} md={3.5} sm={3.5} xs={12}>
               <Box className={styles.slab_circle}>
                 <img src={we_handle} id={styles.slabs_img} alt="" />
               </Box>
@@ -77,11 +77,12 @@ const HomeDSlabs = () => {
             data-aos-easing="ease-in-sine"
             container
             mt={10}
+            justifyContent={"space-between"}
             flexDirection={"row-reverse"}
             alignItems={"center"}
           >
-            <Grid item lg={8.5} md={8.5} sm={8.5} xs={8.5}>
-              <Box id={styles.right_slab} className={styles.slab_box}>
+            <Grid item lg={7} md={8.5} sm={8.5} xs={12}>
+              <Box  className={styles.slab_box}>
                 <Typography variant="h6" fontSize={"medium"}>
                   Find a better card deal in few easy steps.{" "}
                 </Typography>
@@ -92,7 +93,7 @@ const HomeDSlabs = () => {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item lg={3.5} md={3.5} sm={3.5} xs={3.5}>
+            <Grid item lg={5} md={3.5} sm={3.5} xs={12}>
               <Box className={styles.slab_circle}>
                 <img src={card_deal} id={styles.slabs_img} alt="" />
               </Box>

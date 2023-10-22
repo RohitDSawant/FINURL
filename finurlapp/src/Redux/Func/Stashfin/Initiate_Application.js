@@ -6,7 +6,7 @@ export const handleStashfinInitiateApp = (formData) => async (dispatch) => {
   try {
     return await axios
       .post(
-        "https://api.finurl.in/api/v1/stashfin/initiate-application",
+        "http://localhost:4000/api/v1/stashfin/initiate-application",
         formData
       )
       .then((res) => {

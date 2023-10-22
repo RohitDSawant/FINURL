@@ -15,7 +15,7 @@ export const verifyOtp = (otp) => async (dispatch) => {
   dispatch({ type: "OTP_VERIFY_REQUEST" });
   try {
     return await axios
-      .post("https://api.finurl.in/api/v1/auth/verifyOtp", otp)
+      .post("http://localhost:4000/api/v1/auth/verifyOtp", otp)
       .then((res) => {
         console.log(res.data);
         dispatch({ type: "OTP_VERIFY_SUCCESS" });

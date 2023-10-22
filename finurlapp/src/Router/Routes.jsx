@@ -23,6 +23,7 @@ import ForgotPassword from "../Pages/ForgotPassword";
 import ResetPassword from "../Pages/ResetPassword";
 import ProtectResetRoute from "../Components/Common/ProtectResetRoute";
 import AgentData from "../Components/Admin_Dashboard/Leeds_Data/AgentData";
+import ProtectedRoute from "../Components/Common/ProtectedRoute";
 
 const Router = () => {
   return (
@@ -51,9 +52,24 @@ const Router = () => {
             </ApplicationProtectedRoute>
           }
         />
-        <Route path="/authentication" element={<AuthenticationCarousel />} />
+        <Route
+          path="/authentication/"
+          element={<AuthenticationCarousel />}
+        />
+
+        <Route
+          path="/authentication/referral/:referedBy"
+          element={<AuthenticationCarousel />}
+        />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/comingsoon" element={<ComingSoon />} />
         <Route path="/get-started" element={<GetStarted />} />
@@ -70,7 +86,14 @@ const Router = () => {
             </ProtectResetRoute>
           }
         />
-        <Route path="/agent/:agent" element={<AgentData />} />
+        <Route
+          path="/agent/:agent"
+          element={
+            <ProtectedRoute>
+              <AgentData />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

@@ -36,7 +36,8 @@ const HomeB = () => {
             xs={10}
             sx={{
               "box-shadow": "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-            }}borderRadius={"10px"}
+            }}
+            borderRadius={"10px"}
           >
             <img
               className={styles.home_b_img}
@@ -59,12 +60,12 @@ const HomeB = () => {
           <Grid
             data-aos="fade-down"
             data-aos-duration="1500"
-            alignItems={"center"}
             justifyContent={"center"}
             item
             sx={{
               "box-shadow": "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-            }}borderRadius={"10px"}
+            }}
+            borderRadius={"10px"}
             px={4}
             py={2}
             lg={3}
@@ -97,14 +98,13 @@ const HomeB = () => {
             </Box>
           </Grid>
           <Grid
-           px={4}
-           py={2}
-           sx={{
-            "box-shadow": "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-          }}
+            px={4}
+            py={2}
+            sx={{
+              "box-shadow": "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+            }}
             data-aos="fade-left"
             data-aos-duration="1500"
-            alignItems={"center"}
             justifyContent={"center"}
             item
             lg={3}

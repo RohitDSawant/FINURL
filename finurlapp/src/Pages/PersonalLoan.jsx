@@ -154,8 +154,8 @@ const PersonalLoan = () => {
       <Grid
         container
         justifyContent={"center"}
-        width={"95vw"}
-        gap={15}
+        width={"85vw"}
+        gap={5}
         m={"auto"}
         mt={5}
       >
@@ -164,7 +164,7 @@ const PersonalLoan = () => {
           data-aos-duration="500"
           data-aos-easing="ease-in-sine"
           item
-          lg={6}
+          lg={4}
         >
           <Typography
             textAlign={"center"}
@@ -261,7 +261,7 @@ const PersonalLoan = () => {
           data-aos-duration="500"
           data-aos-easing="ease-in-sine"
           item
-          lg={6}
+          lg={4}
         >
           <Typography
             m={2}
