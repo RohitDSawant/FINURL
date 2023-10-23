@@ -26,7 +26,7 @@ export const settingApplicationID = (id) => async (dispatch) => {
 };
 
 
-export const skipApplicationDetails = () => async (dispatch) => {
+export const skip_Application_Details = () => async (dispatch) => {
   dispatch({ type: "SET_APPLICATION_DETAILS_REQUEST" });
   try {
     await dispatch({ type: "SET_APPLICATION_DETAILS_SUCCESS", payload: false });

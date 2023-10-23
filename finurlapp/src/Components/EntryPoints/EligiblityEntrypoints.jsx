@@ -15,7 +15,10 @@ import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useRef, useState } from "react";
 import checking_img from "./../../Assets/Images/check_eligibility.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { eligibile_for_Stashfin, handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
+import {
+  eligibile_for_Stashfin,
+  handleStashfinEligibility,
+} from "../../Redux/Func/Stashfin/Check_Eligibility";
 import Navbar from "../Common/Navbar";
 import {
   prefrDedupe,
@@ -24,7 +27,7 @@ import {
 import {
   registerStart,
   settingApplicationID,
-  skipApplicationDetails,
+  skip_Application_Details,
 } from "../../Redux/Func/Prefr/Register_Start";
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 import { send_otp, verify_otp } from "../../Redux/Func/Authentication/OTP";
@@ -105,7 +108,7 @@ const EligiblityEntrypoints = () => {
           setIsLoading(false);
           console.log("cmae in");
           if (!response.results) {
-            dispatch(eligibile_for_Stashfin())
+            dispatch(eligibile_for_Stashfin());
             setShowSuccessSnack(true);
             setSnackMsg("Congrats! You are eligible.");
             document.querySelector("form").reset();
@@ -154,7 +157,7 @@ const EligiblityEntrypoints = () => {
                 setShowVerifyOTPsection(true);
               } else if (res.data.loanId && !res.data.skipApplicationDetails) {
                 dispatch(settingApplicationID(res.data.loanId));
-                dispatch(skipApplicationDetails());
+                dispatch(skip_Application_Details());
                 send_otp({ contact: formData.mobile_no, email: partnerEmail });
                 setShowSuccessSnack(true);
                 setSnackMsg(
@@ -220,11 +223,11 @@ const EligiblityEntrypoints = () => {
     e.preventDefault();
     const otp = collectOTP();
     let response;
-    
+
     if (current_path === "stashfin") {
       setTimeout(async () => {
         setIsLoading(false);
-        response = await verify_otp({ email: partnerEmail, otp: otp })
+        response = await verify_otp({ email: partnerEmail, otp: otp });
         console.log(response);
         if (response.message === "OTP verified successfully!") {
           setSnackMsg("OTP verified successfully!");
@@ -238,11 +241,11 @@ const EligiblityEntrypoints = () => {
         }
       }, 3000);
     } else {
-      setTimeout(() => {
+      setTimeout(async () => {
         setIsLoading(true);
-        response = verify_otp({ email: partnerEmail, otp: otp });
+        response = await verify_otp({ email: partnerEmail, otp: otp });
         console.log(response);
-        if (response === "OTP verified successfully!") {
+        if (response.message === "OTP verified successfully!") {
           setSnackMsg("OTP verified successfully !");
           setShowSuccessSnack(true);
 
@@ -307,7 +310,7 @@ const EligiblityEntrypoints = () => {
             item
             lg={6}
           >
-            {showVerifyOTPsection || stashfin_eligible ? (
+            {showVerifyOTPsection || stashfin_eligible || prefr_loan_id ? (
               <>
                 <Typography mb={1} variant="h6">
                   Mobile Number Verification :
