@@ -7,7 +7,7 @@ export const check_status = (data) => (dispatch) => {
   dispatch({ type: "CHECK_STATUS_REQUEST" });
   try {
     return axios
-      .post("http://localhost:4000/api/stashfin-check-status", data)
+      .post("https://api.finurl.in/api/stashfin-check-status", data)
       .then((res) => {
         console.log("response from check status", res.data)
         dispatch({ type: "CHECK_STATUS_SUCCESS" });

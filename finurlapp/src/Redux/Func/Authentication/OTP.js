@@ -3,7 +3,7 @@ import axios from "axios";
 export const send_otp = async (config) => {
 
   await axios
-    .post("http://localhost:4000/api/v1/user/send_otp_to_customer", config)
+    .post("https://api.finurl.in/api/v1/user/send_otp_to_customer", config)
     .then((res) => {
       return res.data;
     })
@@ -15,7 +15,7 @@ export const send_otp = async (config) => {
 
 export const verify_otp = async (config) => {
   try {
-    const response = await axios.post("http://localhost:4000/api/v1/user/verify_customer_otp", config)
+    const response = await axios.post("https://api.finurl.in/api/v1/user/verify_customer_otp", config)
     return response.data;
   } catch (error) {
     console.log(error);

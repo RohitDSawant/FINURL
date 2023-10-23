@@ -20,7 +20,7 @@ const AgentData = () => {
   useEffect(() => {
 
     axios
-      .get(`http://localhost:4000/api/v1/user/agent_loans/${agent}`)
+      .get(`https://api.finurl.in/api/v1/user/agent_loans/${agent}`)
       .then((res) => {
         console.log(res.data);
         setCurrentAgent(res.data);

@@ -134,7 +134,7 @@ const LeedsData = () => {
   ];
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/v1/user/all_agents").then((res) => {
+    axios.get("https://api.finurl.in/api/v1/user/all_agents").then((res) => {
       console.log(res.data);
       let arr = [];
       if (res.data.length > 0) {
