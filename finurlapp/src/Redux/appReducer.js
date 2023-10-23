@@ -57,11 +57,13 @@ const init_state = {
   eligible: false,
   NBC: {
     stashfin: {
+      eligible: false,
       client_token: "",
       application_id: "",
     },
     prefr: {
       application_id: "",
+      skip_application_details: true,
     },
   },
 };
@@ -92,6 +94,28 @@ export const appReducer = (state = init_state, action) => {
     }
 
     case types.CHECK_ELIGIBILITY_FOR_STASHFIN_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.CHECK_ELIGIBLE_FOR_STASHFIN_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.CHECK_ELIGIBLE_FOR_STASHFIN_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        NBC: {
+          ...state.NBC,
+          stashfin: {
+            ...state.NBC.stashfin,
+            eligible: true,
+          },
+        },
+      };
+    }
+
+    case types.CHECK_ELIGIBLE_FOR_STASHFIN_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
 
@@ -136,6 +160,7 @@ export const appReducer = (state = init_state, action) => {
             ...state.NBC.stashfin,
             application_id: "",
             client_token: "",
+            eligible: false,
           },
         },
       };
@@ -162,7 +187,7 @@ export const appReducer = (state = init_state, action) => {
     //                <------------------------------ PREFR  ------------------------------------------>
 
     case types.PREFR_DEDUPE_SERVICE_REQUEST: {
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, isError: false };
     }
 
     case types.PREFR_DEDUPE_SERVICE_SUCCESS: {
@@ -182,7 +207,37 @@ export const appReducer = (state = init_state, action) => {
     }
 
     case types.REGISTER_START_PREFR_FAILURE: {
-      return { ...state, isError: true };
+      return { ...state, isError: true, isLoading: false };
+    }
+
+    case types.SET_APPLICATION_DETAILS_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    }
+
+    case types.SET_APPLICATION_DETAILS_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        NBC: {
+          ...state.NBC,
+          prefr: {
+            ...state.NBC.prefr,
+            skip_application_details: payload,
+          },
+        },
+      };
+    }
+
+    case types.SET_APPLICATION_DETAILS_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
     }
 
     case types.SET_APPLICATION_ID_REQUEST: {
@@ -231,7 +286,7 @@ export const appReducer = (state = init_state, action) => {
       return {
         ...state,
         isLoading: false,
-        eligible:false,
+        eligible: false,
         NBC: {
           ...state.NBC,
           prefr: {

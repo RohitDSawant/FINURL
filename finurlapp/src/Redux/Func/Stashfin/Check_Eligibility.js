@@ -41,3 +41,17 @@ export const handleStashfinEligibility = (formData) => async (dispatch) => {
     return error
   }
 };
+
+
+export const eligibile_for_Stashfin = () => async(dispatch)=>{
+
+  dispatch({ type: "CHECK_ELIGIBLE_FOR_STASHFIN_REQUEST"})
+
+  try{
+    await dispatch({ type: "CHECK_ELIGIBLE_FOR_STASHFIN_SUCCESS" })
+  }
+  catch(err){
+    dispatch({ type: "CHECK_ELIGIBLE_FOR_STASHFIN_FAILURE" })
+  }
+
+}

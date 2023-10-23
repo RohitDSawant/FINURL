@@ -68,6 +68,8 @@ const Navbar = () => {
   };
 
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const User = useSelector((state) => state.authReducer.loggedInUser);
+
 
   const handleDrawer = () => {
     setDrawerOpen((prev) => !prev);
@@ -375,11 +377,9 @@ const Navbar = () => {
               <DialogContent>
                 <Box
                   display={"flex"}
-                  mt={-5}
-                  mr={5}
-                  ml={5}
+                  flexDirection={"column"}
                   alignItems={"center"}
-                  gap={"50px"}
+                  gap={"10px"}
                 >
                   <img
                     className={styles.referral_img}
@@ -392,16 +392,18 @@ const Navbar = () => {
                       Your Referral Code :
                     </Typography>
                     <Button
+                      
                       onClick={handleCopyCode}
                       sx={{ padding: "10px 25px" }}
                     >
                       <Typography
                         color={theme.palette.secondary.main}
-                        variant="body2"
-                        fontSize={"medium"}
+                        variant="subtitle2"
+                        fontSize={"small"}
                         fontWeight={500}
+                        textTransform={"lowercase"}
                       >
-                        Q45S886SF6Y
+                       {User.referral_link}
                       </Typography>
                     </Button>
                     <Typography

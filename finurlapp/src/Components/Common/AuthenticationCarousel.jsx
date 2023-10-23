@@ -33,7 +33,7 @@ import Slider from "react-slick";
 
 const LoginPage = () => {
   const theme = useTheme();
-  const referedBy = useParams();
+  const {referedBy} = useParams();
   console.log(referedBy);
   const [activeInput, setActiveInput] = useState(null);
   const [isSignUpMode, setIsSignUpMode] = useState(false);

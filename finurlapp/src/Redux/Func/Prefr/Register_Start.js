@@ -19,8 +19,18 @@ export const registerStart = (data) => async (dispatch) => {
 export const settingApplicationID = (id) => async (dispatch) => {
   dispatch({ type: "SET_APPLICATION_ID_REQUEST" });
   try {
-    dispatch({ type: "SET_APPLICATION_ID_SUCCESS", payload: id });
+    await dispatch({ type: "SET_APPLICATION_ID_SUCCESS", payload: id });
   } catch (error) {
     dispatch({ type: "SET_APPLICATION_ID_FAILURE" });
+  }
+};
+
+
+export const skipApplicationDetails = () => async (dispatch) => {
+  dispatch({ type: "SET_APPLICATION_DETAILS_REQUEST" });
+  try {
+    await dispatch({ type: "SET_APPLICATION_DETAILS_SUCCESS", payload: false });
+  } catch (error) {
+    dispatch({ type: "SET_APPLICATION_DETAILS_FAILURE" });
   }
 };
