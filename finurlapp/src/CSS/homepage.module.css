@@ -31,7 +31,6 @@
   margin-bottom: 3%;
 }
 
-
 .home_b_img {
   height: 15vh;
   display: block;
@@ -209,7 +208,7 @@
 }
 
 .carousel_img {
-  height: 5vh;
+  height: 4vh;
   width: auto;
   display: block;
   margin: auto;
@@ -217,9 +216,15 @@
   margin-bottom: 15px;
 }
 
-#partner_box {
+
+
+#partner_box > div:first-child {
   /* border: 1px solid blue; */
-  padding: 0 20px;
+  width: 50%;
+  height: 10vh;
+  object-fit: contain;
+  overflow: hidden;
+  margin: auto;
 }
 
 #carousel_apply_btn {
@@ -320,17 +325,15 @@
   margin: auto;
 }
 
-
 /* Forget-password */
 
-.verifying_user{
+.verifying_user {
   height: 45vh;
 }
 
-.otp_verify{
+.otp_verify {
   height: 45vh;
 }
-
 
 /* Media queries mobile */
 
@@ -350,7 +353,7 @@
     margin-top: 15%;
   }
 
-  #home_d_sec > div > div{
+  #home_d_sec > div > div {
     text-align: center;
   }
 
@@ -388,10 +391,10 @@
     height: 30vh;
   }
 
-  .verifying_user{
+  .verifying_user {
     height: 35vh;
   }
-  .otp_verify{
+  .otp_verify {
     height: 30vh;
   }
 }
@@ -414,7 +417,7 @@
     height: 35vh;
   }
 
-  .otp_verify{
-    height:30vh;
+  .otp_verify {
+    height: 30vh;
   }
 }

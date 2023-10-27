@@ -171,7 +171,36 @@ let lightTheme = createTheme({
         },
       },
     },
-    
+    MuiSnackbar: {
+      styleOverrides: {
+        root: {
+          borderRadius: "4px",
+          border: "1px solid",
+        },
+      },
+    },
+    MuiAlert: {
+      styleOverrides: {
+        success: {
+          backgroundColor: "#5FD068",
+          borderColor: "#5BB318",
+        },
+        error: {
+          "&.Mui-error": {
+            backgroundColor: "#FF8787",
+            borderColor: "#FA7070",
+          },
+        },
+        info: {
+          backgroundColor: "#8CC0DE",
+          borderColor: "#73A9AD",
+        },
+        warning: {
+          backgroundColor: "#B33030",
+          borderColor: "#C51605",
+        },
+      },
+    },
   },
 });
 

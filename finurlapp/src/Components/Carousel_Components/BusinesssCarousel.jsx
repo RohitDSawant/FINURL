@@ -8,8 +8,13 @@ import { business_Loans } from "../../Assets/Images/Partners_data/partners";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const BusinessLoansCarousel = () => {
+
+  const isAuth = useSelector((state) => state.authReducer.isAuth);
+
+
     const responsiveSettings = [
       {
         breakpoint: 3000,
@@ -63,8 +68,17 @@ const BusinessLoansCarousel = () => {
 
   const navigate = useNavigate()
   const Redirection = (path)=>{
-    console.log(path)
-    navigate(`/${path}/dedupe`);
+    if (isAuth) {
+      const actual_path = path.split("/")[1];
+      if (actual_path === "stashfin" || actual_path === "prefr") {
+        navigate(`/${actual_path}/dedupe`);
+      } else {
+        const newTab = window.open(path, "_blank");
+        newTab.focus();
+      }
+    } else {
+      navigate("/authentication");
+    }
   }
 
   return (

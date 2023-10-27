@@ -31,6 +31,7 @@ import {
 } from "../../Redux/Func/Prefr/Register_Start";
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 import { send_otp, verify_otp } from "../../Redux/Func/Authentication/OTP";
+import verify_otp_img from "./../../Assets/Images/enterOtp.svg";
 
 const EligiblityEntrypoints = () => {
   const theme = useTheme();
@@ -43,7 +44,7 @@ const EligiblityEntrypoints = () => {
   const [snackMsg, setSnackMsg] = useState("");
   const [showVerifyOTPsection, setShowVerifyOTPsection] = useState(false);
   const [collectOtp, setCollectOtp] = useState(["", "", "", "", "", ""]);
-
+  
   const inputRefs = [
     useRef(null),
     useRef(null),
@@ -60,25 +61,43 @@ const EligiblityEntrypoints = () => {
   const stashfin_eligible = useSelector(
     (state) => state.appReducer.NBC.stashfin.eligible
   );
-
+  
   const prefr_loan_id = useSelector(
     (state) => state.appReducer.NBC.prefr.application_id
-  );
+    );
 
   const skipApplicationDetails = useSelector(
     (state) => state.appReducer.NBC.prefr.skip_application_details
-  );
-
+    );
+    
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     mobile_no: "",
     pan_number: "",
     dob: "",
-    income: "",
+    income: 0,
     pincode: "",
     accountNumber: "",
   });
+  
+  //  Calculate age 
+
+  function CalculateAge (data) {
+
+    const dob = new Date(data);
+    
+    const currentDate = new Date();
+    
+    const age = currentDate.getFullYear() - dob.getFullYear();
+  
+    if (currentDate.getMonth() < dob.getMonth() ||
+      (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() < dob.getDate())) {
+      return age - 1;
+    } else {
+      return age;
+    }
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,7 +109,6 @@ const EligiblityEntrypoints = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log(formData);
 
     if (current_path === "stashfin") {
       dispatch(
@@ -106,24 +124,30 @@ const EligiblityEntrypoints = () => {
         console.log(response);
         setTimeout(() => {
           setIsLoading(false);
-          console.log("cmae in");
-          if (!response.results) {
-            dispatch(eligibile_for_Stashfin());
+
+          if (response.message === "Eligible") {
             setShowSuccessSnack(true);
             setSnackMsg("Congrats! You are eligible.");
             document.querySelector("form").reset();
             send_otp({ contact: formData.mobile_no, email: partnerEmail });
             setTimeout(() => {
+              dispatch(eligibile_for_Stashfin());
               setShowVerifyOTPsection(true);
-            }, 6000);
-          } else {
+            }, 3000);
+          } else if (response.message === "Not Eligible") {
             setShowErrorSnack(true);
             setSnackMsg("Sorry! Currently you are not eligible.");
             document.querySelector("form").reset();
+          } else {
+            setShowErrorSnack(true);
+            setSnackMsg("Oops! Please check the details provided");
           }
         }, 3000);
       });
-    } else if (current_path === "prefr") {
+    }
+
+    // <-------- PREFR ---------->
+    else if (current_path === "prefr") {
       let request_id = "";
       let start = 0;
 
@@ -131,6 +155,8 @@ const EligiblityEntrypoints = () => {
         request_id = request_id + formData.mobile_no[start] + userId[start];
         start++;
       }
+
+      let age = CalculateAge(formData.dob)
 
       dispatch(
         prefrDedupeService({
@@ -140,13 +166,16 @@ const EligiblityEntrypoints = () => {
           panNumber: formData.pan_number,
           accountNumber: formData.accountNumber,
           personalEmailId: formData.email,
+          age: Number(age),
+          pincode: formData.pincode,
+          income: Number(formData.income)
         })
       )
         .then((res) => {
-          if (res.data === "success") {
-            dispatch(
+          if (res.data === "success"){
+          dispatch(
               registerStart({
-                userId: (formData.mobile_no + userId).toUpperCase(),
+                  userId: (formData.mobile_no + userId).toUpperCase(),
                 mobileNo: formData.mobile_no,
               })
             ).then((res) => {
@@ -169,13 +198,27 @@ const EligiblityEntrypoints = () => {
                 setShowErrorSnack(true);
                 setSnackMsg("Something went wrong, please try again");
               }
-              // console.log(res)
             });
-          } else {
+          }
+           else if (res.response.data.message === "Age criteria doesn't meet"){
             setIsLoading(false);
             setShowErrorSnack(true);
             setSnackMsg(
-              "Something went wrong, please check the details provided"
+              "Sorry ! You are not eligible as per Age criteria "
+            );
+          }
+          else if (res.response.data.message === "Income criteria doesn't meet"){
+            setIsLoading(false);
+            setShowErrorSnack(true);
+            setSnackMsg(
+              "Sorry ! Your income doesn't match up for Loan criteria"
+            );
+          }
+          else if (res.response.data.message === "Regional criteria doesn't meet"){
+            setIsLoading(false);
+            setShowErrorSnack(true);
+            setSnackMsg(
+              "Sorry ! Your pincode doesn't match up for regional criteria"
             );
           }
         })
@@ -234,7 +277,7 @@ const EligiblityEntrypoints = () => {
           setShowSuccessSnack(true);
           setTimeout(() => {
             navigate("/application");
-          }, 3000);
+          }, 4000);
         } else {
           setSnackMsg("Invalid OTP !");
           setShowErrorSnack(true);
@@ -312,58 +355,83 @@ const EligiblityEntrypoints = () => {
           >
             {showVerifyOTPsection || stashfin_eligible || prefr_loan_id ? (
               <>
-                <Typography mb={1} variant="h6">
-                  Mobile Number Verification :
-                </Typography>
-                <Typography fontSize={"small"} variant="body2">
-                  Please enter the 6-digit O.T.P received on the provided mobile
-                  number.
-                </Typography>
-                <Typography mb={2} mt={1} fontSize={"x-small"} variant="body2">
-                  * If not received, please wait for couple seconds...
-                </Typography>
+                <Box
+                  display={"flex"}
+                  flexDirection={"column"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  p={2}
+                >
+                  <Typography mb={1} variant="h6">
+                    Mobile Number Verification :
+                  </Typography>
+                  <Typography fontSize={"small"} variant="body2">
+                    Please enter the 6-digit O.T.P received on the provided
+                    mobile number.
+                  </Typography>
+                  <Typography
+                    mb={2}
+                    mt={1}
+                    fontSize={"x-small"}
+                    variant="body2"
+                  >
+                    * If not received, please wait for couple seconds...
+                  </Typography>
 
-                <Box mt={5}>
-                  <FormControl onSubmit={handleOTPSubmit} component={"form"}>
-                    <Box width={"50%"} display={"flex"} gap={"5px"}>
-                      {[0, 1, 2, 3, 4, 5].map((index) => (
-                        <Box key={index}>
-                          <TextField
-                            onChange={handleOtpInputs}
-                            placeholder="-"
-                            inputRef={inputRefs[index]}
-                            variant="standard"
-                            type="text"
-                            sx={{ width: "50%", textAlign: "center" }}
-                            size="medium"
-                            inputProps={{ maxLength: 1 }}
-                            onKeyDown={(e) => handleInputKeyDown(e, index)}
+                  <Box mt={4}>
+                    <FormControl onSubmit={handleOTPSubmit} component={"form"}>
+                      <Box display={"flex"} gap={"2px"}>
+                        {[0, 1, 2, 3, 4, 5].map((index) => (
+                          <Box key={index}>
+                            <TextField
+                              onChange={handleOtpInputs}
+                              placeholder="-"
+                              inputRef={inputRefs[index]}
+                              variant="standard"
+                              type="text"
+                              sx={{ paddingLeft: "15px" }}
+                              size="medium"
+                              inputProps={{ maxLength: 1 }}
+                              onKeyDown={(e) => handleInputKeyDown(e, index)}
+                            />
+                          </Box>
+                        ))}
+                      </Box>
+                      <Box display={"flex"} alignItems={"center"} gap={"20px"}>
+                        <Button
+                          disabled={isLoading}
+                          type={"submit"}
+                          sx={{
+                            width: "max-content",
+                            padding: "5px 25px",
+                            display: "block",
+                            margin: "auto",
+                            marginTop: "30px",
+                          }}
+                        >
+                          Verify OTP
+                        </Button>
+                        {isLoading ? (
+                          <CircularProgress
+                            sx={{ marginTop: "20px" }}
+                            size={25}
                           />
-                        </Box>
-                      ))}
+                        ) : (
+                          ""
+                        )}
+                      </Box>
+                    </FormControl>
+                    <Box mt={5}>
+                      <Typography fontSize={"small"} variant="subtitle2" mt={1}>
+                        * We here verify the mobile number provided by sending
+                        an OTP.
+                      </Typography>
+                      <Typography fontSize={"small"} variant="subtitle2" mt={1}>
+                        * Please keep a note that OTP is valid for only 10
+                        minutes.
+                      </Typography>
                     </Box>
-                    <Box display={"flex"} alignItems={"center"} gap={"20px"}>
-                      <Button
-                        disabled={isLoading}
-                        type={"submit"}
-                        sx={{
-                          marginTop: "20px",
-                          width: "max-content",
-                          padding: "5px 25px",
-                        }}
-                      >
-                        Verify OTP
-                      </Button>
-                      {isLoading ? (
-                        <CircularProgress
-                          sx={{ marginTop: "20px" }}
-                          size={25}
-                        />
-                      ) : (
-                        ""
-                      )}
-                    </Box>
-                  </FormControl>
+                  </Box>
                 </Box>
               </>
             ) : (
@@ -504,13 +572,13 @@ const EligiblityEntrypoints = () => {
                 </Box>
                 <Snackbar
                   open={showSuccessSnack || showErrorSnack}
-                  autoHideDuration={3000}
+                  autoHideDuration={5000}
                   onClose={() => handleClose()}
                   anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
                 >
                   <Alert
                     onClose={() => handleClose()}
-                    severity={showErrorSnack ? "error" : "info"}
+                    severity={showErrorSnack ? "error" : "success"}
                     sx={{ width: "100%" }}
                     color="secondary"
                   >
@@ -521,21 +589,42 @@ const EligiblityEntrypoints = () => {
             )}
           </Grid>
           <Grid md={4} className={styles.eligibility_right_sec} item lg={4}>
-            <img
-              id={styles.eligibility_check}
-              src={checking_img}
-              alt="eligibitlty_check_png"
-            />
-            <Typography
-              textAlign={"center"}
-              sx={{ width: "55%" }}
-              margin={"auto"}
-              mt={-5}
-              variant="subtitle2"
-            >
-              We verify the provided details and check if you are Eligible or
-              Not
-            </Typography>
+            {showVerifyOTPsection || stashfin_eligible ? (
+              <>
+                <img
+                  id={styles.otp_check}
+                  src={verify_otp_img}
+                  alt="eligibitlty_check_png"
+                />
+                <Typography
+                  textAlign={"center"}
+                  sx={{ width: "55%" }}
+                  margin={"auto"}
+                  mt={1}
+                  variant="subtitle2"
+                >
+                  O.T.P verification against the mobile number.
+                </Typography>
+              </>
+            ) : (
+              <>
+                <img
+                  id={styles.eligibility_check}
+                  src={checking_img}
+                  alt="eligibitlty_check_png"
+                />
+                <Typography
+                  textAlign={"center"}
+                  sx={{ width: "55%" }}
+                  margin={"auto"}
+                  mt={-5}
+                  variant="subtitle2"
+                >
+                  We verify the provided details and check if you are Eligible
+                  or Not
+                </Typography>
+              </>
+            )}
           </Grid>
         </Grid>
       </section>

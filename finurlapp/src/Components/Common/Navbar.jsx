@@ -70,7 +70,6 @@ const Navbar = () => {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
   const User = useSelector((state) => state.authReducer.loggedInUser);
 
-
   const handleDrawer = () => {
     setDrawerOpen((prev) => !prev);
   };
@@ -343,18 +342,19 @@ const Navbar = () => {
                 Contact Us
               </Typography>
             </Link>
-            <Typography
-              onClick={handleRefferalOpen}
-              variant="body1"
-              mt={1}
-              fontWeight={500}
-            >
-              <PiShareNetworkFill />
-            </Typography>
-            <Dialog
-              open={referralOpen}
-              onClose={handleRefferalClose}
-            >
+            {isAuth ? (
+              <Typography
+                onClick={handleRefferalOpen}
+                variant="body1"
+                mt={1}
+                fontWeight={500}
+              >
+                <PiShareNetworkFill />
+              </Typography>
+            ) : (
+              ""
+            )}
+            <Dialog open={referralOpen} onClose={handleRefferalClose}>
               <DialogTitle>
                 <Typography
                   textAlign={"center"}
@@ -392,7 +392,6 @@ const Navbar = () => {
                       Your Referral Code :
                     </Typography>
                     <Button
-                      
                       onClick={handleCopyCode}
                       sx={{ padding: "10px 25px" }}
                     >
@@ -403,7 +402,7 @@ const Navbar = () => {
                         fontWeight={500}
                         textTransform={"lowercase"}
                       >
-                       {User.referral_link}
+                        {User.referral_link}
                       </Typography>
                     </Button>
                     <Typography

@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { personal_Loans } from "../../Assets/Images/Partners_data/partners";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import { Link } from "react-router-dom";
 
 const PersonalLoansCarousel = () => {
   const responsiveSettings = [
@@ -104,7 +105,9 @@ const PersonalLoansCarousel = () => {
                   <Typography variant="body2">{partner.roi}</Typography>
                   <Typography variant="body2">{partner.description}</Typography>
                 </Box>
-                <Button id={styles.carousel_apply_btn}>Apply Now</Button>
+                <Link to={`${partner.path}`} target="_blank">
+                  <Button id={styles.carousel_apply_btn}>Apply Now</Button>
+                </Link>
               </Box>
             );
           })}

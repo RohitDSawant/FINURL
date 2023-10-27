@@ -5,10 +5,12 @@
   height: 100vh;
 }
 
+#otp_check {
+  height: 50vh;
+}
 #eligibility_check {
   height: 70vh;
-  /* border: 1px solid #ccc; */
-  /* width: 500px; */
+ 
 }
 
 #submit_btn {

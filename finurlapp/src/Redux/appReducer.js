@@ -54,6 +54,8 @@ const init_state = {
     income: "",
     pincode: "",
   },
+  found_partners: false,
+  found_partners_list: [],
   eligible: false,
   NBC: {
     stashfin: {
@@ -317,9 +319,28 @@ export const appReducer = (state = init_state, action) => {
     //   };
     // }
 
-    // case types.ADDING_FORM_DATA_FAILURE: {
-    //   return { ...state, isLoading: false, isError: true };
-    // }
+    case types.ADDING_FORM_DATA_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.ADDING_FORM_DATA_REQUEST: {
+      return { ...state, isLoading: true };
+    }
+
+    case types.ADDING_FORM_DATA_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        formData :{
+          ...state.formData,
+        }
+      };
+    }
+
+    case types.ADDING_FORM_DATA_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
 
     default: {
       return state;

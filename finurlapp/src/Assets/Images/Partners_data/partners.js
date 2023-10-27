@@ -76,11 +76,11 @@ export const instantLoan_carousel = [
 export const personal_Loans = [
   {
     id: 1,
-    name: "IIFL BL",
+    name: "IIFL PL",
     loans: "30Lakhs",
     roi: "12%",
     description: "72M",
-    path: "https://iifl-loans.finbox.in/?partnerCode=FI_TBBGLY",
+    path: "https://iifl-loans.finbox.in/?partnerCode=FI_XUDIZP",
     imageurl: require("./../partners_logo/iifl1.png"),
   },
   {

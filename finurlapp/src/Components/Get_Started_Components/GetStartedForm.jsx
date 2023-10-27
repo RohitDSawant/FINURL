@@ -14,20 +14,24 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./../../CSS/EligibilityPoint1.module.css";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { handleStashfinEligibility } from "../../Redux/Func/Stashfin/Check_Eligibility";
-import Navbar from "../Common/Navbar";
+import {
+  eligibile_for_Stashfin,
+  handleStashfinEligibility,
+} from "../../Redux/Func/Stashfin/Check_Eligibility";
 import application_img from "../../Assets/Images/form2.svg";
+import {
+  registerStart,
+  settingApplicationID,
+  skip_Application_Details,
+} from "../../Redux/Func/Prefr/Register_Start";
+import { prefrDedupeService } from "../../Redux/Func/Prefr/Dedupe_Service";
 
 const GetStartedForm = () => {
   const theme = useTheme();
   const location = useLocation();
-  const current_path = location.pathname.split("/")[1];
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const [showErrorSnack, setShowErrorSnack] = useState(false);
-  const [showSuccessSnack, setShowSuccessSnack] = useState(false);
-  const [snackMsg, setSnackMsg] = useState("");
-
+  const navigate = useNavigate()
   const userId = useSelector((state) => state.authReducer.loggedInUser._id);
 
   const [formData, setFormData] = useState({
@@ -46,15 +50,63 @@ const GetStartedForm = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
+    e.preventDefault();
+
+    const stashfinPromise = dispatch(
+      handleStashfinEligibility({
+        phone: formData.mobile_no,
+        token: {
+          id: "20395df108eb4c7fb8d94b40f2fb6f8a",
+          client_secret: "BD2y7zO9D9Bq",
+        },
+        email: formData.email,
+      })
+    );
+  
+    let request_id = "";
+    let start = 0;
+  
+    while (start < formData.mobile_no.length) {
+      request_id = request_id + formData.mobile_no[start] + userId[start];
+      start++;
     }
-    setShowSuccessSnack(false);
-    setShowErrorSnack(false);
+  
+    const prefrPromise = dispatch(
+      prefrDedupeService({
+        productName: "pl",
+        requestId: request_id.toUpperCase(),
+        hashEnabled: false,
+        panNumber: formData.pan_number,
+        accountNumber: formData.accountNumber,
+        personalEmailId: formData.email,
+      })
+    );
+  
+    Promise.all([stashfinPromise, prefrPromise])
+      .then((results) => {
+        const stashfinResult = results[0];
+        const prefrResult = results[1];
+        // Handle stashfinResult and prefrResult as needed
+        if (stashfinResult.message === "Eligible") {
+          console.log(stashfinResult);
+          dispatch(eligibile_for_Stashfin());
+        }
+        if (prefrResult.data === "success") {
+          console.log(prefrResult);
+          // Handle success case for prefrDedupeService
+        }
+      })
+      .then(()=>{
+        navigate()
+      })
+      .catch((error) => {
+        // Handle errors here
+        console.log(error)
+      });
   };
+  
 
   return (
     <>
@@ -205,26 +257,14 @@ const GetStartedForm = () => {
               </Box>
             </FormControl>
           </Box>
-
-          <Snackbar
-            open={showSuccessSnack || showErrorSnack}
-            autoHideDuration={3000}
-            onClose={() => handleClose()}
-            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-          >
-            <Alert
-              onClose={() => handleClose()}
-              severity={showErrorSnack ? "error" : "info"}
-              sx={{ width: "100%" }}
-              color="secondary"
-            >
-              {snackMsg}
-            </Alert>
-          </Snackbar>
         </Grid>
         <Grid md={4} className={styles.eligibility_right_sec} item lg={4}>
           <Box>
             <img id={styles.eligibility_check} src={application_img} alt="" />
+            <Typography textAlign={"center"} mt={-5} variant="subtitle2">
+              Fill the application form as we find the best loan partners for
+              you.
+            </Typography>
           </Box>
         </Grid>
       </Grid>
