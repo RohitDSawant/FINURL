@@ -3,14 +3,13 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "../Pages/Homepage";
 import InstantLoan from "../Pages/InstantLoan";
 import EligiblityEntrypoints from "../Components/EntryPoints/EligiblityEntrypoints";
-import ApplicationForLoan from "../Components/EntryPoints/ApplicationForLoan";
+import StashfinApplication from "../Components/EntryPoints/StashfinApplication";
 import AuthenticationCarousel from "../Components/Common/AuthenticationCarousel";
 import Dashboard from "../Pages/Dashboard";
 import ContactUs from "../Pages/ContactUs";
 import PersonalLoan from "../Pages/PersonalLoan";
 import BusinessLoan from "../Pages/BusinessLoan";
 import ComingSoon from "../Pages/ComingSoon";
-import ApplicationProtectedRoute from "../Components/Common/ApplicationRouteProtection";
 import HomeLoan from "../Pages/HomeLoan";
 import PrefrApplication from "../Components/EntryPoints/PrefrApplication";
 import GetStarted from "../Pages/GetStarted";
@@ -24,6 +23,9 @@ import ResetPassword from "../Pages/ResetPassword";
 import ProtectResetRoute from "../Components/Common/ProtectResetRoute";
 import AgentData from "../Components/Admin_Dashboard/Leeds_Data/AgentData";
 import ProtectedRoute from "../Components/Common/ProtectedRoute";
+import FoundPartners from "../Pages/FoundPartners";
+import StashfinApplicationProtectedRoute from "../Components/Common/StashfinApplicationProtectedRoute";
+import PrefrApplicationProtectedRoute from "../Components/Common/PreferApplicationProtectedRoute";
 
 const Router = () => {
   return (
@@ -37,25 +39,22 @@ const Router = () => {
 
         <Route path="/:bank/dedupe" element={<EligiblityEntrypoints />} />
         <Route
-          path="/application"
+          path="/stashfin/application"
           element={
-            <ApplicationProtectedRoute>
-              <ApplicationForLoan />
-            </ApplicationProtectedRoute>
+            <StashfinApplicationProtectedRoute>
+              <StashfinApplication />
+            </StashfinApplicationProtectedRoute>
           }
         />
         <Route
           path="/prefr/application"
           element={
-            <ApplicationProtectedRoute>
+            <PrefrApplicationProtectedRoute>
               <PrefrApplication />
-            </ApplicationProtectedRoute>
+            </PrefrApplicationProtectedRoute>
           }
         />
-        <Route
-          path="/authentication/"
-          element={<AuthenticationCarousel />}
-        />
+        <Route path="/authentication" element={<AuthenticationCarousel />} />
 
         <Route
           path="/authentication/referral/:referedBy"
@@ -94,6 +93,7 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="/found-partners" element={<FoundPartners />} />
       </Routes>
     </>
   );

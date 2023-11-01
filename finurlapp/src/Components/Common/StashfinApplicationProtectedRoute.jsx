@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-const ApplicationProtectedRoute = ({ children }) => {
-    const eligible = useSelector((state) => state.appReducer.eligible);
+const StashfinApplicationProtectedRoute = ({ children }) => {
+    const eligible = useSelector((state) => state.appReducer.NBC.stashfin.eligible);
 
     if (eligible) {
         return children;
@@ -12,4 +12,4 @@ const ApplicationProtectedRoute = ({ children }) => {
     }
 }
 
-export default ApplicationProtectedRoute;
+export default StashfinApplicationProtectedRoute;

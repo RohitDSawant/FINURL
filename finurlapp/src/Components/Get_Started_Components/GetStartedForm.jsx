@@ -25,13 +25,19 @@ import {
   skip_Application_Details,
 } from "../../Redux/Func/Prefr/Register_Start";
 import { prefrDedupeService } from "../../Redux/Func/Prefr/Dedupe_Service";
+import {
+  addPartnerToList,
+  setCurrentDedupeNumber,
+  setPartnersFound,
+} from "../../Redux/Func/Common/Common_Action";
 
 const GetStartedForm = () => {
   const theme = useTheme();
   const location = useLocation();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const userId = useSelector((state) => state.authReducer.loggedInUser._id);
 
   const [formData, setFormData] = useState({
@@ -40,10 +46,29 @@ const GetStartedForm = () => {
     mobile_no: "",
     pan_number: "",
     dob: "",
-    income: "",
-    pincode: "",
+    income: 0,
+    pincode: 0,
     accountNumber: "",
   });
+
+  // calculate age
+  function CalculateAge(data) {
+    const dob = new Date(data);
+
+    const currentDate = new Date();
+
+    const age = currentDate.getFullYear() - dob.getFullYear();
+
+    if (
+      currentDate.getMonth() < dob.getMonth() ||
+      (currentDate.getMonth() === dob.getMonth() &&
+        currentDate.getDate() < dob.getDate())
+    ) {
+      return age - 1;
+    } else {
+      return age;
+    }
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,9 +76,8 @@ const GetStartedForm = () => {
   };
 
   const handleSubmit = (e) => {
-
     e.preventDefault();
-
+    console.log(formData);
     const stashfinPromise = dispatch(
       handleStashfinEligibility({
         phone: formData.mobile_no,
@@ -64,15 +88,17 @@ const GetStartedForm = () => {
         email: formData.email,
       })
     );
-  
+
     let request_id = "";
     let start = 0;
-  
+
     while (start < formData.mobile_no.length) {
       request_id = request_id + formData.mobile_no[start] + userId[start];
       start++;
     }
-  
+
+    let age = CalculateAge(formData.dob);
+
     const prefrPromise = dispatch(
       prefrDedupeService({
         productName: "pl",
@@ -81,32 +107,60 @@ const GetStartedForm = () => {
         panNumber: formData.pan_number,
         accountNumber: formData.accountNumber,
         personalEmailId: formData.email,
+        age: age,
+        pincode: formData.pincode,
+        income: formData.income,
       })
     );
-  
+
     Promise.all([stashfinPromise, prefrPromise])
       .then((results) => {
+        console.log(results);
         const stashfinResult = results[0];
         const prefrResult = results[1];
         // Handle stashfinResult and prefrResult as needed
         if (stashfinResult.message === "Eligible") {
-          console.log(stashfinResult);
+          console.log("stashfinResult");
           dispatch(eligibile_for_Stashfin());
+          dispatch(
+            addPartnerToList({
+              bankName: "Stashfin",
+            })
+          );
+          dispatch(setPartnersFound());
+          dispatch(setCurrentDedupeNumber(formData.pan_number));
         }
         if (prefrResult.data === "success") {
-          console.log(prefrResult);
+          console.log("prefrResult");
+          dispatch(
+            registerStart({
+              userId: (formData.mobile_no + userId).toUpperCase(),
+              mobileNo: formData.mobile_no,
+            })
+          ).then((res) => {
+            console.log(res);
+            if (res.data.loanId && res.data.skipApplicationDetails) {
+              dispatch(settingApplicationID(res.data.loanId));
+            } else if (res.data.loanId && !res.data.skipApplicationDetails) {
+              dispatch(settingApplicationID(res.data.loanId));
+              dispatch(skip_Application_Details());
+            }
+          });
+          dispatch(
+            addPartnerToList({
+              bankName: "Prefer",
+            })
+          );
+          dispatch(setPartnersFound());
+          dispatch(setCurrentDedupeNumber(formData.pan_number));
           // Handle success case for prefrDedupeService
         }
+        navigate("/found-partners")
       })
-      .then(()=>{
-        navigate()
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.log(error)
+      .then(() => {
+        navigate();
       });
   };
-  
 
   return (
     <>

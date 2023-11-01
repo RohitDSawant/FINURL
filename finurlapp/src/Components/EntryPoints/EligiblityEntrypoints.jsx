@@ -32,6 +32,7 @@ import {
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 import { send_otp, verify_otp } from "../../Redux/Func/Authentication/OTP";
 import verify_otp_img from "./../../Assets/Images/enterOtp.svg";
+import { setCurrentDedupeNumber } from "../../Redux/Func/Common/Common_Action";
 
 const EligiblityEntrypoints = () => {
   const theme = useTheme();
@@ -44,7 +45,7 @@ const EligiblityEntrypoints = () => {
   const [snackMsg, setSnackMsg] = useState("");
   const [showVerifyOTPsection, setShowVerifyOTPsection] = useState(false);
   const [collectOtp, setCollectOtp] = useState(["", "", "", "", "", ""]);
-  
+
   const inputRefs = [
     useRef(null),
     useRef(null),
@@ -61,15 +62,15 @@ const EligiblityEntrypoints = () => {
   const stashfin_eligible = useSelector(
     (state) => state.appReducer.NBC.stashfin.eligible
   );
-  
+
   const prefr_loan_id = useSelector(
     (state) => state.appReducer.NBC.prefr.application_id
-    );
+  );
 
   const skipApplicationDetails = useSelector(
     (state) => state.appReducer.NBC.prefr.skip_application_details
-    );
-    
+  );
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -80,19 +81,21 @@ const EligiblityEntrypoints = () => {
     pincode: "",
     accountNumber: "",
   });
-  
-  //  Calculate age 
 
-  function CalculateAge (data) {
+  //  Calculate age
 
+  function CalculateAge(data) {
     const dob = new Date(data);
-    
+
     const currentDate = new Date();
-    
+
     const age = currentDate.getFullYear() - dob.getFullYear();
-  
-    if (currentDate.getMonth() < dob.getMonth() ||
-      (currentDate.getMonth() === dob.getMonth() && currentDate.getDate() < dob.getDate())) {
+
+    if (
+      currentDate.getMonth() < dob.getMonth() ||
+      (currentDate.getMonth() === dob.getMonth() &&
+        currentDate.getDate() < dob.getDate())
+    ) {
       return age - 1;
     } else {
       return age;
@@ -126,6 +129,7 @@ const EligiblityEntrypoints = () => {
           setIsLoading(false);
 
           if (response.message === "Eligible") {
+            dispatch(setCurrentDedupeNumber(formData.pan_number));
             setShowSuccessSnack(true);
             setSnackMsg("Congrats! You are eligible.");
             document.querySelector("form").reset();
@@ -156,7 +160,7 @@ const EligiblityEntrypoints = () => {
         start++;
       }
 
-      let age = CalculateAge(formData.dob)
+      let age = CalculateAge(formData.dob);
 
       dispatch(
         prefrDedupeService({
@@ -168,23 +172,26 @@ const EligiblityEntrypoints = () => {
           personalEmailId: formData.email,
           age: Number(age),
           pincode: formData.pincode,
-          income: Number(formData.income)
+          income: Number(formData.income),
         })
       )
         .then((res) => {
-          if (res.data === "success"){
-          dispatch(
+          if (res.data === "success") {
+            dispatch(setCurrentDedupeNumber(formData.pan_number));
+            dispatch(
               registerStart({
-                  userId: (formData.mobile_no + userId).toUpperCase(),
+                userId: (formData.mobile_no + userId).toUpperCase(),
                 mobileNo: formData.mobile_no,
               })
             ).then((res) => {
               setIsLoading(false);
               if (res.data.loanId && res.data.skipApplicationDetails) {
+                dispatch(setCurrentDedupeNumber(formData.pan_number));
                 dispatch(settingApplicationID(res.data.loanId));
                 send_otp({ contact: formData.mobile_no, email: partnerEmail });
                 setShowVerifyOTPsection(true);
               } else if (res.data.loanId && !res.data.skipApplicationDetails) {
+                dispatch(setCurrentDedupeNumber(formData.pan_number));
                 dispatch(settingApplicationID(res.data.loanId));
                 dispatch(skip_Application_Details());
                 send_otp({ contact: formData.mobile_no, email: partnerEmail });
@@ -199,27 +206,34 @@ const EligiblityEntrypoints = () => {
                 setSnackMsg("Something went wrong, please try again");
               }
             });
-          }
-           else if (res.response.data.message === "Age criteria doesn't meet"){
-            setIsLoading(false);
-            setShowErrorSnack(true);
-            setSnackMsg(
-              "Sorry ! You are not eligible as per Age criteria "
-            );
-          }
-          else if (res.response.data.message === "Income criteria doesn't meet"){
-            setIsLoading(false);
-            setShowErrorSnack(true);
-            setSnackMsg(
-              "Sorry ! Your income doesn't match up for Loan criteria"
-            );
-          }
-          else if (res.response.data.message === "Regional criteria doesn't meet"){
-            setIsLoading(false);
-            setShowErrorSnack(true);
-            setSnackMsg(
-              "Sorry ! Your pincode doesn't match up for regional criteria"
-            );
+          } else if (
+            res.response.data.message === "Age criteria doesn't meet"
+          ) {
+            setTimeout(() => {
+              setIsLoading(false);
+              setShowErrorSnack(true);
+              setSnackMsg("Sorry ! You are not eligible as per Age criteria ");
+            }, 3000);
+          } else if (
+            res.response.data.message === "Income criteria doesn't meet"
+          ) {
+            setTimeout(() => {
+              setIsLoading(false);
+              setShowErrorSnack(true);
+              setSnackMsg(
+                "Sorry ! Your income doesn't match up for Loan criteria"
+              );
+            }, 3000);
+          } else if (
+            res.response.data.message === "Regional criteria doesn't meet"
+          ) {
+            setTimeout(() => {
+              setIsLoading(false);
+              setShowErrorSnack(true);
+              setSnackMsg(
+                "Sorry ! Your pincode doesn't match up for regional criteria"
+              );
+            }, 3000);
           }
         })
         .catch((err) => {
@@ -276,7 +290,7 @@ const EligiblityEntrypoints = () => {
           setSnackMsg("OTP verified successfully!");
           setShowSuccessSnack(true);
           setTimeout(() => {
-            navigate("/application");
+            navigate("/stashfin/application");
           }, 4000);
         } else {
           setSnackMsg("Invalid OTP !");
@@ -291,7 +305,7 @@ const EligiblityEntrypoints = () => {
         if (response.message === "OTP verified successfully!") {
           setSnackMsg("OTP verified successfully !");
           setShowSuccessSnack(true);
-
+            console.log("in prefer")
           if (!skipApplicationDetails) {
             setTimeout(() => {
               navigate("/prefr/application");
@@ -589,7 +603,7 @@ const EligiblityEntrypoints = () => {
             )}
           </Grid>
           <Grid md={4} className={styles.eligibility_right_sec} item lg={4}>
-            {showVerifyOTPsection || stashfin_eligible ? (
+            {showVerifyOTPsection || stashfin_eligible || prefr_loan_id? (
               <>
                 <img
                   id={styles.otp_check}

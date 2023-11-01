@@ -20,12 +20,14 @@ import Navbar from "../Common/Navbar";
 import { sendApplicationDetails } from "../../Redux/Func/Prefr/SendApplicationDetails";
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 import { useNavigate } from "react-router-dom";
+import { resetCurrentDedupeNumber } from "../../Redux/Func/Common/Common_Action";
+import { resetPrefrData } from "../../Redux/Func/Prefr/ResetPrefr";
 
 const PrefrApplication = () => {
   const loanId = useSelector(
     (state) => state.appReducer.NBC.prefr.application_id
   );
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const userID = useSelector((state) => state.authReducer.loggedInUser._id);
 
   const [formData, setFormData] = useState({
@@ -53,60 +55,78 @@ const PrefrApplication = () => {
   const [showErrorSnack, setShowErrorSnack] = useState(false);
   const [showSuccessSnack, setShowSuccessSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState("");
+  const current_dedupe_number = useSelector(
+    (state) => state.appReducer.current_dedupe_number
+  );
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     setIsLoading(true);
     e.preventDefault();
-    dispatch(
-      sendApplicationDetails({
-        loanId: loanId,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        personalEmailId: formData.personalEmailId,
-        gender: formData.gender,
-        dob: formData.dob.split("-").reverse().join("/"),
-        panNumber: formData.panNumber,
-        currentAddress: formData.currentAddress,
-        currentAddressPincode: formData.currentAddressPincode,
-        netMonthlyIncome: Number(formData.netMonthlyIncome),
-        desiredLoanAmount: Number(formData.desiredLoanAmount),
-        employmentType: formData.employmentType,
-        partnerSpecificInfo: formData.partnerSpecificInfo,
-      })
-    ).then((res) => {
-      console.log(res);
-      if (res === "Task already completed") {
-        setIsLoading(false);
-        setShowSuccessSnack(true);
-        setSnackMsg("Sorry, You are already part of Prefr");
-      }
-      if (res === "Invalid fields in the request") {
-        setIsLoading(false);
-        setShowSuccessSnack(true);
-        setSnackMsg("Oops! Please check the details provided");
-      }
-      if (res.status === "success") {
-        dispatch(
-          gettingWebViewUrl({ loanId: loanId, formData: formData })
-        ).then((res) => {
+
+    if (current_dedupe_number === 0 || current_dedupe_number === formData.panNumber) {
+      dispatch(
+        sendApplicationDetails({
+          loanId: loanId,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          personalEmailId: formData.personalEmailId,
+          gender: formData.gender,
+          dob: formData.dob.split("-").reverse().join("/"),
+          panNumber: formData.panNumber,
+          currentAddress: formData.currentAddress,
+          currentAddressPincode: formData.currentAddressPincode,
+          netMonthlyIncome: Number(formData.netMonthlyIncome),
+          desiredLoanAmount: Number(formData.desiredLoanAmount),
+          employmentType: formData.employmentType,
+          partnerSpecificInfo: formData.partnerSpecificInfo,
+        })
+      ).then((res) => {
+        console.log(res);
+        if (res === "Task already completed") {
           setIsLoading(false);
-          console.log(res);
-          if (res.data.status === "success") {
-            setTimeout(() => {
-              window.open(res.data.data.webviewUrl, "_blank");
-              navigate("/prefr/dedupe")
-            }, 3000);
-          } else {
-            setShowErrorSnack(true);
-            setSnackMsg(
-              "Something went wrong, please check the details provided"
-            );
-          }
-        });
-      }
-    });
+          setShowSuccessSnack(true);
+          setSnackMsg("Sorry, You are already part of Prefr");
+        }
+        if (res === "Invalid fields in the request") {
+          setIsLoading(false);
+          setShowSuccessSnack(true);
+          setSnackMsg("Oops! Please check the details provided");
+        }
+        if (res.status === "success") {
+          dispatch(
+            gettingWebViewUrl({ loanId: loanId, formData: formData })
+          ).then((res) => {
+            setIsLoading(false);
+            console.log(res);
+            if (res.data.status === "success") {
+              setTimeout(() => {
+                window.open(res.data.data.webviewUrl, "_blank");
+                navigate("/");
+                dispatch(resetCurrentDedupeNumber())
+                dispatch(resetPrefrData())
+              }, 3000);
+            } else {
+              setShowErrorSnack(true);
+              setSnackMsg(
+                "Something went wrong, please check the details provided"
+              );
+            }
+          });
+        }
+      });
+    } else if (
+      current_dedupe_number !== 0 &&
+      current_dedupe_number !== formData.panNumber
+    ) {
+      setTimeout(() => {
+        setIsLoading(false);
+        setSnackMsg("Please enter the valid PAN details");
+        setShowErrorSnack(true);
+      }, 2000);
+    }
+
     // console.log(formData);
   };
 

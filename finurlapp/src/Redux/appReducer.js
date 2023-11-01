@@ -3,60 +3,9 @@ import * as types from "./actiontypes";
 const init_state = {
   isLoading: false,
   isError: false,
-  // formData: {
-  //   loanId: "",
-  //   firstName: "",
-  //   lastName: "",
-  //   personalEmailId: "",
-  //   mobileNo: 0,
-  //   gender: "",
-  //   dob: "",
-  //   maritalStatus: "",
-  //   panNumber: "",
-  //   currentResidenceType: "",
-  //   currentAddress: "",
-  //   currentAddressPincode: "",
-  //   monthsInCurrentResidence: 0,
-  //   permanentAddressSameAsCurrAddress: false,
-  //   permanentAddress: "",
-  //   permanentAddressPincode: "",
-  //   netMonthlyIncome: 0,
-  //   itrFiled: true,
-  //   gstFiled: true,
-  //   desiredLoanAmount: 0,
-  //   monthlySalaryMode: "",
-  //   companyName: "",
-  //   educationalQualification: "",
-  //   fatherName: "",
-  //   employmentType: "",
-  //   workEmailId: "",
-  //   motherName: "",
-  //   monthsInCurrentCompany: 0,
-  //   monthsInExperience: 0,
-  //   officeAddress: "",
-  //   officePincode: "",
-  //   aadhaarMobileLinked: true,
-  //   bankName: "",
-  //   partnerSpecificInfo: {
-  //     partnerUserId: "",
-  //     preQual: true,
-  //     preQualAmount: 0,
-  //     preQualDataSource: "",
-  //     leadSource: "",
-  //   },
-  // },
-  formData: {
-    fullName: "",
-    email: "",
-    mobile_no: "",
-    pan_number: "",
-    dob: "",
-    income: "",
-    pincode: "",
-  },
   found_partners: false,
   found_partners_list: [],
-  eligible: false,
+  current_dedupe_number: 0,
   NBC: {
     stashfin: {
       eligible: false,
@@ -64,6 +13,7 @@ const init_state = {
       application_id: "",
     },
     prefr: {
+      eligible: false,
       application_id: "",
       skip_application_details: true,
     },
@@ -74,6 +24,30 @@ export const appReducer = (state = init_state, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case types.SET_CURRENT_DEDUPE_NUMBER_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.SET_CURRENT_DEDUPE_NUMBER_SUCCESS: {
+      return { ...state, isLoading: false, current_dedupe_number: payload };
+    }
+
+    case types.SET_CURRENT_DEDUPE_NUMBER_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.RESET_CURRENT_DEDUPE_NUMBER_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.RESET_CURRENT_DEDUPE_NUMBER_SUCCESS: {
+      return { ...state, isLoading: false, current_dedupe_number: 0 };
+    }
+
+    case types.RESET_CURRENT_DEDUPE_NUMBER_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
     //                <------------------------------ STASHFIN  ------------------------------------------>
 
     case types.CHECK_ELIGIBILITY_FOR_STASHFIN_REQUEST: {
@@ -186,7 +160,31 @@ export const appReducer = (state = init_state, action) => {
       return { ...state, isLoading: false, isError: true };
     }
 
-    //                <------------------------------ PREFR  ------------------------------------------>
+    case types.RESET_STASHFIN_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.RESET_STASHFIN_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        NBC: {
+          ...state.NBC,
+          stashfin: {
+            ...state.NBC.stashfin,
+            application_id: "",
+            client_token: "",
+            eligible: false,
+          },
+        },
+      };
+    }
+
+    case types.RESET_STASHFIN_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    //                <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< PREFR  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     case types.PREFR_DEDUPE_SERVICE_REQUEST: {
       return { ...state, isLoading: true, isError: false };
@@ -250,11 +248,11 @@ export const appReducer = (state = init_state, action) => {
       return {
         ...state,
         isLoading: false,
-        eligible: true,
         NBC: {
           ...state.NBC,
           prefr: {
             ...state.NBC.prefr,
+            eligible: true,
             application_id: payload,
           },
         },
@@ -303,6 +301,30 @@ export const appReducer = (state = init_state, action) => {
       return { ...state, isLoading: false, isError: true };
     }
 
+    case types.RESET_PREFR_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.RESET_PREFR_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        NBC: {
+          ...state.NBC,
+          prefr: {
+            ...state.NBC.prefr,
+            application_id: "",
+            skip_application_details: false,
+            eligible: false,
+          },
+        },
+      };
+    }
+
+    case types.RESET_PREFR_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
     // <----------------- Adding form data ---------------->
 
     // case types.ADDING_FORM_DATA_REQUEST: {
@@ -319,10 +341,6 @@ export const appReducer = (state = init_state, action) => {
     //   };
     // }
 
-    case types.ADDING_FORM_DATA_FAILURE: {
-      return { ...state, isLoading: false, isError: true };
-    }
-
     case types.ADDING_FORM_DATA_REQUEST: {
       return { ...state, isLoading: true };
     }
@@ -331,9 +349,9 @@ export const appReducer = (state = init_state, action) => {
       return {
         ...state,
         isLoading: false,
-        formData :{
+        formData: {
           ...state.formData,
-        }
+        },
       };
     }
 
@@ -341,6 +359,50 @@ export const appReducer = (state = init_state, action) => {
       return { ...state, isLoading: false, isError: true };
     }
 
+    // partner found
+
+    case types.ADD_PARTNER_TO_LIST_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.ADD_PARTNER_TO_LIST_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        found_partners_list: [...state.found_partners_list, payload],
+      };
+    }
+
+    case types.ADD_PARTNER_TO_LIST_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    }
+
+    case types.SET_PARTNER_FOUND_REQUEST: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+
+    case types.SET_PARTNER_FOUND_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        found_partners: true,
+      };
+    }
+
+    case types.SET_PARTNER_FOUND_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+      };
+    }
 
     default: {
       return state;

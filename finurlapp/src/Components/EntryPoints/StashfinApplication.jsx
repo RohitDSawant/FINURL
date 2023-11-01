@@ -24,8 +24,9 @@ import {
 import Navbar from "../Common/Navbar";
 import theme from "../../Theme/theme";
 import { check_status } from "../../Redux/Func/Stashfin/Check_Status";
+import { resetStashfinData } from "../../Redux/Func/Stashfin/ResetStashfin";
 
-const ApplicationForLoan = () => {
+const StashfinApplication = () => {
   const user = useSelector((state) => state.authReducer.loggedInUser._id);
   const stashfin_cl_token = useSelector(
     (state) => state.appReducer.NBC.stashfin.client_token
@@ -48,6 +49,9 @@ const ApplicationForLoan = () => {
   const [showErrorSnack, setShowErrorSnack] = useState(false);
   const [showSuccessSnack, setShowSuccessSnack] = useState(false);
   const [snackMsg, setSnackMsg] = useState("");
+  const current_dedupe_number = useSelector(
+    (state) => state.appReducer.current_dedupe_number
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +74,7 @@ const ApplicationForLoan = () => {
     e.preventDefault();
     setIsLoading(true);
 
+   if(current_dedupe_number === 0 ){
     dispatch(
       handleStashfinInitiateApp({
         loggedInUserId: user,
@@ -132,8 +137,9 @@ const ApplicationForLoan = () => {
               window.open(response.data.results.redirect_url, "_blank");
             }, 2000);
             setTimeout(() => {
-              dispatch(turnEligble());
-              navigate("/stashfin/dedupe");
+              dispatch(resetStashfinData())
+              dispatch()
+              navigate("/");
             }, 2000);
             document.querySelector("form").reset();
           }
@@ -142,6 +148,14 @@ const ApplicationForLoan = () => {
       .catch((error) => {
         console.log(error);
       });
+   }
+   else if( current_dedupe_number !== 0 && current_dedupe_number !== formData.pan_number){
+    setTimeout(() => {
+      setIsLoading(false);
+      setSnackMsg("Please enter the valid PAN details");
+      setShowErrorSnack(true);
+    }, 2000);
+   }
   };
 
   return (
@@ -360,4 +374,4 @@ const ApplicationForLoan = () => {
   );
 };
 
-export default ApplicationForLoan;
+export default StashfinApplication;
