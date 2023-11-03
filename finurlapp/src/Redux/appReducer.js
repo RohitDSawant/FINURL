@@ -5,6 +5,7 @@ const init_state = {
   isError: false,
   found_partners: false,
   found_partners_list: [],
+  mobile_to_verify: 0,
   current_dedupe_number: 0,
   NBC: {
     stashfin: {
@@ -45,6 +46,18 @@ export const appReducer = (state = init_state, action) => {
     }
 
     case types.RESET_CURRENT_DEDUPE_NUMBER_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.SET_MOBILE_TO_VERIFY_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.SET_MOBILE_TO_VERIFY_SUCCESS: {
+      return { ...state, isLoading: false, mobile_to_verify: payload };
+    }
+
+    case types.SET_MOBILE_TO_VERIFY_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
 
@@ -168,6 +181,10 @@ export const appReducer = (state = init_state, action) => {
       return {
         ...state,
         isLoading: false,
+        mobile_to_verify: 0,
+        found_partners_list: [],
+        found_partners: false,
+        current_dedupe_number: 0,
         NBC: {
           ...state.NBC,
           stashfin: {
@@ -309,6 +326,10 @@ export const appReducer = (state = init_state, action) => {
       return {
         ...state,
         isLoading: false,
+        mobile_to_verify: 0,
+        found_partners_list: [],
+        found_partners: false,
+        current_dedupe_number: 0,
         NBC: {
           ...state.NBC,
           prefr: {

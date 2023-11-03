@@ -26,6 +26,7 @@ import ProtectedRoute from "../Components/Common/ProtectedRoute";
 import FoundPartners from "../Pages/FoundPartners";
 import StashfinApplicationProtectedRoute from "../Components/Common/StashfinApplicationProtectedRoute";
 import PrefrApplicationProtectedRoute from "../Components/Common/PreferApplicationProtectedRoute";
+import FoundPartnersProtectedRoute from "../Components/Common/FoundPartnersProtectedRoute";
 
 const Router = () => {
   return (
@@ -93,7 +94,14 @@ const Router = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="/found-partners" element={<FoundPartners />} />
+        <Route
+          path="/found-partners"
+          element={
+            <FoundPartnersProtectedRoute>
+              <FoundPartners />
+            </FoundPartnersProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );

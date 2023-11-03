@@ -28,6 +28,7 @@ import { prefrDedupeService } from "../../Redux/Func/Prefr/Dedupe_Service";
 import {
   addPartnerToList,
   setCurrentDedupeNumber,
+  setMobileToVerify,
   setPartnersFound,
 } from "../../Redux/Func/Common/Common_Action";
 
@@ -77,89 +78,95 @@ const GetStartedForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-    const stashfinPromise = dispatch(
-      handleStashfinEligibility({
-        phone: formData.mobile_no,
-        token: {
-          id: "20395df108eb4c7fb8d94b40f2fb6f8a",
-          client_secret: "BD2y7zO9D9Bq",
-        },
-        email: formData.email,
-      })
-    );
+    // console.log(formData)
+    setIsLoading(true);
 
-    let request_id = "";
-    let start = 0;
+    setTimeout(() => {
+      setIsLoading(false);
+      const stashfinPromise = dispatch(
+        handleStashfinEligibility({
+          phone: formData.mobile_no,
+          token: {
+            id: "20395df108eb4c7fb8d94b40f2fb6f8a",
+            client_secret: "BD2y7zO9D9Bq",
+          },
+          email: formData.email,
+        })
+      );
 
-    while (start < formData.mobile_no.length) {
-      request_id = request_id + formData.mobile_no[start] + userId[start];
-      start++;
-    }
+      let request_id = "";
+      let start = 0;
 
-    let age = CalculateAge(formData.dob);
+      while (start < formData.mobile_no.length) {
+        request_id = request_id + formData.mobile_no[start] + userId[start];
+        start++;
+      }
 
-    const prefrPromise = dispatch(
-      prefrDedupeService({
-        productName: "pl",
-        requestId: request_id.toUpperCase(),
-        hashEnabled: false,
-        panNumber: formData.pan_number,
-        accountNumber: formData.accountNumber,
-        personalEmailId: formData.email,
-        age: age,
-        pincode: formData.pincode,
-        income: formData.income,
-      })
-    );
+      let age = CalculateAge(formData.dob);
 
-    Promise.all([stashfinPromise, prefrPromise])
-      .then((results) => {
-        console.log(results);
-        const stashfinResult = results[0];
-        const prefrResult = results[1];
-        // Handle stashfinResult and prefrResult as needed
-        if (stashfinResult.message === "Eligible") {
-          console.log("stashfinResult");
-          dispatch(eligibile_for_Stashfin());
-          dispatch(
-            addPartnerToList({
-              bankName: "Stashfin",
-            })
-          );
-          dispatch(setPartnersFound());
-          dispatch(setCurrentDedupeNumber(formData.pan_number));
-        }
-        if (prefrResult.data === "success") {
-          console.log("prefrResult");
-          dispatch(
-            registerStart({
-              userId: (formData.mobile_no + userId).toUpperCase(),
-              mobileNo: formData.mobile_no,
-            })
-          ).then((res) => {
-            console.log(res);
-            if (res.data.loanId && res.data.skipApplicationDetails) {
-              dispatch(settingApplicationID(res.data.loanId));
-            } else if (res.data.loanId && !res.data.skipApplicationDetails) {
-              dispatch(settingApplicationID(res.data.loanId));
-              dispatch(skip_Application_Details());
-            }
-          });
-          dispatch(
-            addPartnerToList({
-              bankName: "Prefer",
-            })
-          );
-          dispatch(setPartnersFound());
-          dispatch(setCurrentDedupeNumber(formData.pan_number));
-          // Handle success case for prefrDedupeService
-        }
-        navigate("/found-partners")
-      })
-      .then(() => {
-        navigate();
-      });
+      const prefrPromise = dispatch(
+        prefrDedupeService({
+          productName: "pl",
+          requestId: request_id.toUpperCase(),
+          hashEnabled: false,
+          panNumber: formData.pan_number,
+          accountNumber: formData.accountNumber,
+          personalEmailId: formData.email,
+          age: age,
+          pincode: formData.pincode,
+          income: formData.income,
+        })
+      );
+
+      Promise.all([stashfinPromise, prefrPromise])
+        .then((results) => {
+          console.log(results);
+          const stashfinResult = results[0];
+          const prefrResult = results[1];
+          // Handle stashfinResult and prefrResult as needed
+          if (stashfinResult.message === "Eligible") {
+            console.log("stashfinResult");
+            dispatch(eligibile_for_Stashfin());
+            dispatch(
+              addPartnerToList({
+                bankName: "Stashfin",
+              })
+            );
+            dispatch(setPartnersFound());
+            dispatch(setCurrentDedupeNumber(formData.pan_number));
+            dispatch(setMobileToVerify(formData.mobile_no));
+          }
+          if (prefrResult.data === "success") {
+            console.log("prefrResult");
+            dispatch(setMobileToVerify(formData.mobile_no));
+            dispatch(
+              registerStart({
+                userId: (formData.mobile_no + userId).toUpperCase(),
+                mobileNo: formData.mobile_no,
+              })
+            ).then((res) => {
+              console.log(res);
+              if (res.data.loanId && res.data.skipApplicationDetails) {
+                dispatch(settingApplicationID(res.data.loanId));
+              } else if (res.data.loanId && !res.data.skipApplicationDetails) {
+                dispatch(settingApplicationID(res.data.loanId));
+                dispatch(skip_Application_Details());
+              }
+            });
+            dispatch(
+              addPartnerToList({
+                bankName: "Prefer",
+              })
+            );
+            dispatch(setPartnersFound());
+            dispatch(setCurrentDedupeNumber(formData.pan_number));
+            // Handle success case for prefrDedupeService
+          }
+        })
+        .then(() => {
+          navigate("/found-partners");
+        });
+    }, 3000);
   };
 
   return (
@@ -171,6 +178,7 @@ const GetStartedForm = () => {
         spacing={1}
         justifyContent={"space-evenly"}
         alignItems={"center"}
+        pt={5}
       >
         <Grid
           md={7}

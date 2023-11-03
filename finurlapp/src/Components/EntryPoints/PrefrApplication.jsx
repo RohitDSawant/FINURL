@@ -84,7 +84,7 @@ const PrefrApplication = () => {
         })
       ).then((res) => {
         console.log(res);
-        if (res === "Task already completed") {
+        if (res === "Task already completed" || res === "Task mismatch found") {
           setIsLoading(false);
           setShowSuccessSnack(true);
           setSnackMsg("Sorry, You are already part of Prefr");
@@ -96,7 +96,7 @@ const PrefrApplication = () => {
         }
         if (res.status === "success") {
           dispatch(
-            gettingWebViewUrl({ loanId: loanId, formData: formData })
+            gettingWebViewUrl({ loanId: loanId, loggedInUserId: userID, formData: formData })
           ).then((res) => {
             setIsLoading(false);
             console.log(res);

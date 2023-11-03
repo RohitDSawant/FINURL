@@ -34,11 +34,11 @@ const HomeA = () => {
               cards most likely to fit your needs. We examine annual percentage
               rates, annual fees.
             </Typography>
-            {/* <Link to={"/get-started"}>
+            <Link to={"/get-started"}>
               <Button sx={{ marginTop: "15px", padding: "5px 25px" }}>
                 Get Started
               </Button>
-            </Link> */}
+            </Link>
           </Grid>
           <Grid item lg={5} md={5} sm={5} xs={12}>
             <img className={styles.home_1_img} src={maintheme} alt="home1" />
