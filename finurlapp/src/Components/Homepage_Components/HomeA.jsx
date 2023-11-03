@@ -29,13 +29,13 @@ const HomeA = () => {
               Loan method
             </Typography>
             <br />
-            <Typography lineHeight={"1.4rem"} fontWeight={500} variant="body2">
+            <Typography lineHeight={"1.4rem"} fontWeight={500} mb={3} variant="body2">
               Our team of experts uses a methodology to identify the credit
               cards most likely to fit your needs. We examine annual percentage
               rates, annual fees.
             </Typography>
             <Link to={"/get-started"}>
-              <Button sx={{ marginTop: "15px", padding: "5px 25px" }}>
+              <Button id={styles.get_started_btn} >
                 Get Started
               </Button>
             </Link>

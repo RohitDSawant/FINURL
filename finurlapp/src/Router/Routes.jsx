@@ -72,7 +72,14 @@ const Router = () => {
         />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/comingsoon" element={<ComingSoon />} />
-        <Route path="/get-started" element={<GetStarted />} />
+        <Route
+          path="/get-started"
+          element={
+            <ProtectedRoute>
+              <GetStarted />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/financial-literacy" element={<FinancialLiteracy />} />
         <Route path="/increase-loan-balance" element={<IncLoanBalance />} />
