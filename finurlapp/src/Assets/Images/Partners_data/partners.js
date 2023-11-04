@@ -64,7 +64,7 @@ export const instantLoan_carousel = [
   },
   {
     id: 7,
-    name: "L&T service",
+    name: "L&T Finance",
     loans: "7Lakhs",
     roi: "17%",
     description: "48M",

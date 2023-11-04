@@ -49,7 +49,6 @@ const GetStartedForm = () => {
     dob: "",
     income: 0,
     pincode: 0,
-    accountNumber: "",
   });
 
   // calculate age
@@ -110,7 +109,6 @@ const GetStartedForm = () => {
           requestId: request_id.toUpperCase(),
           hashEnabled: false,
           panNumber: formData.pan_number,
-          accountNumber: formData.accountNumber,
           personalEmailId: formData.email,
           age: age,
           pincode: formData.pincode,
@@ -219,7 +217,7 @@ const GetStartedForm = () => {
                 name="fullName"
                 label="Full Name"
                 variant="standard"
-                required
+                required={true}
                 onChange={handleChange}
               />
               <TextField
@@ -229,7 +227,7 @@ const GetStartedForm = () => {
                 label="Email"
                 type="email"
                 variant="standard"
-                required
+                required={true}
                 onChange={handleChange}
               />
               <Box>
@@ -239,7 +237,7 @@ const GetStartedForm = () => {
                   name="mobile_no"
                   label="Mobile No."
                   variant="standard"
-                  required
+                  required={true}
                   inputProps={{ maxLength: 10 }}
                   onChange={handleChange}
                 />
@@ -250,7 +248,7 @@ const GetStartedForm = () => {
                   name="pan_number"
                   label="PAN Number"
                   variant="standard"
-                  required
+                  required={true}
                   onChange={handleChange}
                 />
               </Box>
@@ -264,19 +262,11 @@ const GetStartedForm = () => {
                   shrink: true,
                 }}
                 variant="standard"
-                required
+                required={true}
                 onChange={handleChange}
               />
 
-              <TextField
-                size={"small"}
-                sx={{ margin: "5px" }}
-                name="accountNumber"
-                label="Account Number"
-                variant="standard"
-                required
-                onChange={handleChange}
-              />
+           
 
               <Box>
                 <TextField
@@ -285,7 +275,7 @@ const GetStartedForm = () => {
                   name="income"
                   label="Income"
                   variant="standard"
-                  required
+                  required={true}
                   onChange={handleChange}
                 />
 
@@ -295,7 +285,7 @@ const GetStartedForm = () => {
                   name="pincode"
                   label="Pincode"
                   variant="standard"
-                  required
+                  required={true}
                   onChange={handleChange}
                 />
               </Box>
@@ -321,7 +311,7 @@ const GetStartedForm = () => {
           </Box>
         </Grid>
         <Grid md={4} className={styles.eligibility_right_sec} item lg={4}>
-          <Box>
+          <Box mt={-5}>
             <img id={styles.eligibility_check} src={application_img} alt="" />
             <Typography textAlign={"center"} mt={-5} variant="subtitle2">
               Fill the application form as we find the best loan partners for

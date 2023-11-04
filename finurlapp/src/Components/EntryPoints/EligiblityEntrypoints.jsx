@@ -79,7 +79,6 @@ const EligiblityEntrypoints = () => {
     dob: "",
     income: 0,
     pincode: "",
-    accountNumber: "",
   });
 
   //  Calculate age
@@ -305,7 +304,7 @@ const EligiblityEntrypoints = () => {
         if (response.message === "OTP verified successfully!") {
           setSnackMsg("OTP verified successfully !");
           setShowSuccessSnack(true);
-            console.log("in prefer")
+          console.log("in prefer");
           if (!skipApplicationDetails) {
             setTimeout(() => {
               navigate("/prefr/application");
@@ -481,7 +480,7 @@ const EligiblityEntrypoints = () => {
                       name="fullName"
                       label="Full Name"
                       variant="standard"
-                      required
+                      required={true}
                       onChange={handleChange}
                     />
                     <TextField
@@ -491,7 +490,7 @@ const EligiblityEntrypoints = () => {
                       label="Email"
                       type="email"
                       variant="standard"
-                      required
+                      required={true}
                       onChange={handleChange}
                     />
                     <Box>
@@ -501,7 +500,7 @@ const EligiblityEntrypoints = () => {
                         name="mobile_no"
                         label="Mobile No."
                         variant="standard"
-                        required
+                        required={true}
                         inputProps={{ maxLength: 10 }}
                         onChange={handleChange}
                       />
@@ -512,7 +511,7 @@ const EligiblityEntrypoints = () => {
                         name="pan_number"
                         label="PAN Number"
                         variant="standard"
-                        required
+                        required={true}
                         onChange={handleChange}
                       />
                     </Box>
@@ -526,31 +525,18 @@ const EligiblityEntrypoints = () => {
                         shrink: true,
                       }}
                       variant="standard"
-                      required
+                      required={true}
                       onChange={handleChange}
                     />
 
                     <Box>
-                      {current_path === "prefr" ? (
-                        <TextField
-                          size={"small"}
-                          sx={{ margin: "5px" }}
-                          name="accountNumber"
-                          label="Account Number"
-                          variant="standard"
-                          required
-                          onChange={handleChange}
-                        />
-                      ) : (
-                        ""
-                      )}
                       <TextField
                         size={"small"}
                         sx={{ margin: "5px" }}
                         name="income"
                         label="Income"
                         variant="standard"
-                        required
+                        required={true}
                         onChange={handleChange}
                       />
 
@@ -560,7 +546,7 @@ const EligiblityEntrypoints = () => {
                         name="pincode"
                         label="Pincode"
                         variant="standard"
-                        required
+                        required={true}
                         onChange={handleChange}
                       />
                     </Box>
@@ -603,7 +589,7 @@ const EligiblityEntrypoints = () => {
             )}
           </Grid>
           <Grid md={4} className={styles.eligibility_right_sec} item lg={4}>
-            {showVerifyOTPsection || stashfin_eligible || prefr_loan_id? (
+            {showVerifyOTPsection || stashfin_eligible || prefr_loan_id ? (
               <>
                 <img
                   id={styles.otp_check}
