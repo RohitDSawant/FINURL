@@ -68,7 +68,7 @@ const Footer = () => {
                   fontSize={"x-small"}
                   variant="body2"
                 >
-                  Copyright Ⓒ 2023 FinURL. All Rights Reserved.
+                  Copyright Ⓒ 2023 FINWURL ENTERPRISES PVT. LTD. All Rights Reserved.
                 </Typography>
               </Box>
             </Grid>

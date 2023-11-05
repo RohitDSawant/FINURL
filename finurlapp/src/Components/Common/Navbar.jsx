@@ -20,6 +20,10 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedinIcon from "@mui/icons-material/LinkedIn";
 import styles from "./../../CSS/navbar.module.css";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import logo from "./../../Assets/Images/circle_log.png";
@@ -499,36 +503,36 @@ const Navbar = () => {
           onClose={() => setDrawerOpen(false)}
         >
           <Box>
-            <Box>
-              <Box
-                display={"flex"}
-                alignItems={"center"}
-                marginLeft={"10%"}
-                gap={"20px"}
-                // border={"1px solid "}
-                // justifyContent={"space-evenly"}
+            <Box
+              display={"flex"}
+              alignItems={"center"}
+              marginLeft={"10%"}
+              gap={"20px"}
+              // border={"1px solid "}
+              // justifyContent={"space-evenly"}
+            >
+              <img className={styles.drawer_icon} src={logo} alt="logo" />
+              <Typography
+                color={theme.palette.primary.main}
+                mt={0.5}
+                variant="h6"
               >
-                <img className={styles.drawer_icon} src={logo} alt="logo" />
-                <Typography
-                  color={theme.palette.primary.main}
-                  mt={0.5}
-                  variant="h6"
-                >
-                  FinURL
-                </Typography>
-                <Typography
-                  mt={1}
-                  ml={5}
-                  onClick={handleTheme}
-                  sx={{ color: theme.palette.primary.main }}
-                >
-                  {theme.palette.mode !== "dark" ? (
-                    <DarkModeIcon />
-                  ) : (
-                    <LightModeRoundedIcon />
-                  )}
-                </Typography>
-              </Box>
+                FinURL
+              </Typography>
+              <Typography
+                mt={1}
+                ml={5}
+                onClick={handleTheme}
+                sx={{ color: theme.palette.primary.main }}
+              >
+                {theme.palette.mode !== "dark" ? (
+                  <DarkModeIcon />
+                ) : (
+                  <LightModeRoundedIcon />
+                )}
+              </Typography>
+            </Box>
+            <Box height={"90vh"} overflow={"scroll"}>
               <Box className={styles.products_menu_mob} ml={2} mt={2}>
                 <Typography
                   color={theme.palette.primary.main}
@@ -601,91 +605,106 @@ const Navbar = () => {
                 </Typography>
                 <Typography variant={"subtitle2"}> 🔹 My Card</Typography>
               </Box>
-            </Box>
-            <Box ml={1} mt={2}>
-              <Link to={"/contactus"}>
-                <Typography variant={"subtitle2"}> 🔹 Contact Us</Typography>
-              </Link>
-            </Box>
-            <Box ml={1} mt={1}>
-              <Link to={"/aboutus"}>
-                <Typography variant={"subtitle2"}> 🔹 About Us</Typography>
-              </Link>
-            </Box>
-            <Box ml={1} mt={1}>
-              {isAuth ? (
-                <Link to={"/dashboard"}>
-                  <Typography variant={"subtitle2"}> 🔹 Dashboard</Typography>
+              <Box ml={1} mt={2}>
+                <Link to={"/contactus"}>
+                  <Typography variant={"subtitle2"}> 🔹 Contact Us</Typography>
                 </Link>
-              ) : (
-                ""
-              )}
-            </Box>
-            <Box ml={1} mt={2}>
-              {!isAuth ? (
-                <>
-                  <Link
-                    style={{ textDecoration: "none" }}
-                    to={"/authentication"}
-                  >
-                    <Box display={"flex"} gap={"5px"}>
-                      <Typography>
-                        <LoginIcon fontSize="small" />
-                      </Typography>
-                      <Typography
-                        textTransform={"capitalize"}
-                        fontWeight={500}
-                        variant="subtitle2"
-                      >
-                        Login
-                      </Typography>
-                    </Box>
+              </Box>
+              <Box ml={1} mt={1}>
+                <Link to={"/aboutus"}>
+                  <Typography variant={"subtitle2"}> 🔹 About Us</Typography>
+                </Link>
+              </Box>
+              <Box ml={1} mt={1}>
+                {isAuth ? (
+                  <Link to={"/dashboard"}>
+                    <Typography variant={"subtitle2"}> 🔹 Dashboard</Typography>
                   </Link>
-                </>
-              ) : (
-                <Box display={"flex"} gap={"10px"} ml={1}>
-                  <Typography onClick={handleLogout}>
-                    <LogoutIcon fontSize="small" />
-                  </Typography>
-                  <Typography
-                    textTransform={"capitalize"}
-                    fontWeight={500}
-                    variant="subtitle2"
+                ) : (
+                  ""
+                )}
+              </Box>
+              <Box ml={1} mt={2}>
+                {!isAuth ? (
+                  <>
+                    <Link
+                      style={{ textDecoration: "none" }}
+                      to={"/authentication"}
+                    >
+                      <Box display={"flex"} gap={"5px"}>
+                        <Typography>
+                          <LoginIcon fontSize="small" />
+                        </Typography>
+                        <Typography
+                          textTransform={"capitalize"}
+                          fontWeight={500}
+                          variant="subtitle2"
+                        >
+                          Login
+                        </Typography>
+                      </Box>
+                    </Link>
+                  </>
+                ) : (
+                  <Box display={"flex"} gap={"10px"} ml={1}>
+                    <Typography onClick={handleLogout}>
+                      <LogoutIcon fontSize="small" />
+                    </Typography>
+                    <Typography
+                      textTransform={"capitalize"}
+                      fontWeight={500}
+                      variant="subtitle2"
+                    >
+                      Logout
+                    </Typography>
+                  </Box>
+                )}
+              </Box>
+              <Box pb={2} textAlign={"center"} mt={3} width={"95%"}>
+                <Box>
+                  <Typography variant={"subtitle2"}>Follow us on:</Typography>
+                  <Box
+                    display={"flex"}
+                    margin={"auto"}
+                    width={"max-content"}
+                    mt={2}
+                    mb={2}
+                    gap={"30px"}
                   >
-                    Logout
-                  </Typography>
+                    <Box>
+                      <Link
+                        target="_blank"
+                        to={"https://www.instagram.com/finurl.in/"}
+                      >
+                        <InstagramIcon
+                          sx={{ color: theme.palette.primary.main }}
+                        />
+                      </Link>
+                    </Box>
+                    <Box>
+                      <FacebookIcon
+                        sx={{ color: theme.palette.primary.main }}
+                      />
+                    </Box>
+                    <Box>
+                      <Link
+                        target="_blank"
+                        to={"https://www.linkedin.com/company/finurl"}
+                      >
+                        <LinkedinIcon
+                          sx={{ color: theme.palette.primary.main }}
+                        />
+                      </Link>
+                    </Box>
+                    <Box>
+                      <TwitterIcon sx={{ color: theme.palette.primary.main }} />
+                    </Box>
+                  </Box>
                 </Box>
-              )}
-            </Box>
-
-            <Box textAlign={"center"} mt={3} width={"95%"}>
-              {/* <Box>
-                <Typography variant={"subtitle2"}>Follow us on:</Typography>
-                <Box
-                  display={"flex"}
-                  margin={"auto"}
-                  width={"max-content"}
-                  mt={2}
-                  mb={2}
-                  gap={"30px"}
-                >
-                  <Box>
-                    <FacebookIcon sx={{ color: theme.palette.primary.main }} />
-                  </Box>
-                  <Box>
-                    <InstagramIcon sx={{ color: theme.palette.primary.main }} />
-                  </Box>
-                  <Box>
-                    <TwitterIcon sx={{ color: theme.palette.primary.main }} />
-                  </Box>
-                  <Box>
-                    <LinkedinIcon sx={{ color: theme.palette.primary.main }} />
-                  </Box>
-                </Box>
-              </Box> */}
-              <Typography pr={2} fontSize={"x-small"} variant="subtitle2">
-                Copyright Ⓒ 2023 FinURL. All Rights Reserved.
-              </Typography>
+                <Typography pr={2} fontSize={"x-small"} variant="subtitle2">
+                  Copyright Ⓒ 2023 FinURL. All Rights Reserved.
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </Drawer>

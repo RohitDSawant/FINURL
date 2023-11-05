@@ -1,14 +1,23 @@
 import React from "react";
-import { Box, Button, Grid, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import maintheme from "./../../Assets/Images/landing.png";
 import styles from "./../../CSS/homepage.module.css";
 import { Link } from "react-router-dom";
 
 const HomeA = () => {
+  const isSmallScreen = useMediaQuery("(min-width:600px)");
+
   return (
     <>
       <section id={styles.home_a_sec}>
-        <Grid container spacing={5}>
+        <Grid container flexDirection={ !isSmallScreen ? "column-reverse": "row"} spacing={5}>
           <Grid
             data-aos="fade-left"
             data-aos-duration="1500"
@@ -29,15 +38,18 @@ const HomeA = () => {
               Loan method
             </Typography>
             <br />
-            <Typography lineHeight={"1.4rem"} fontWeight={500} mb={3} variant="body2">
+            <Typography
+              lineHeight={"1.4rem"}
+              fontWeight={500}
+              mb={3}
+              variant="body2"
+            >
               Our team of experts uses a methodology to identify the credit
               cards most likely to fit your needs. We examine annual percentage
               rates, annual fees.
             </Typography>
             <Link to={"/get-started"}>
-              <Button id={styles.get_started_btn} >
-                Get Started
-              </Button>
+              <Button id={styles.get_started_btn}>Get Started</Button>
             </Link>
           </Grid>
           <Grid item lg={5} md={5} sm={5} xs={12}>
