@@ -38,6 +38,11 @@ const GetStartedForm = () => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const [showSuccessSnack, setShowSuccessSnack] = useState(false);
+  const [snackMsg, setSnackMsg] = useState("");
+  const found_partners = useSelector(
+    (state) => state.appReducer.found_partners
+  );
 
   const userId = useSelector((state) => state.authReducer.loggedInUser._id);
 
@@ -75,13 +80,12 @@ const GetStartedForm = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(formData)
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
+    setTimeout(async () => {
       const stashfinPromise = dispatch(
         handleStashfinEligibility({
           phone: formData.mobile_no,
@@ -116,54 +120,78 @@ const GetStartedForm = () => {
         })
       );
 
-      Promise.all([stashfinPromise, prefrPromise])
-        .then((results) => {
-          console.log(results);
-          const stashfinResult = results[0];
-          const prefrResult = results[1];
-          // Handle stashfinResult and prefrResult as needed
-          if (stashfinResult.message === "Eligible") {
-            console.log("stashfinResult");
-            dispatch(eligibile_for_Stashfin());
-            dispatch(
-              addPartnerToList({
-                bankName: "Stashfin",
-              })
-            );
-            dispatch(setPartnersFound());
-            dispatch(setCurrentDedupeNumber(formData.pan_number));
-            dispatch(setMobileToVerify(formData.mobile_no));
-          }
-          if (prefrResult.data === "success") {
-            console.log("prefrResult");
-            dispatch(setMobileToVerify(formData.mobile_no));
-            dispatch(
-              registerStart({
-                userId: (formData.mobile_no + userId).toUpperCase(),
-                mobileNo: formData.mobile_no,
-              })
-            ).then((res) => {
-              console.log(res);
-              if (res.data.loanId && res.data.skipApplicationDetails) {
-                dispatch(settingApplicationID(res.data.loanId));
-              } else if (res.data.loanId && !res.data.skipApplicationDetails) {
-                dispatch(settingApplicationID(res.data.loanId));
-                dispatch(skip_Application_Details());
-              }
-            });
-            dispatch(
-              addPartnerToList({
-                bankName: "Prefer",
-              })
-            );
-            dispatch(setPartnersFound());
-            dispatch(setCurrentDedupeNumber(formData.pan_number));
-            
-          }
-          navigate("/found-partners");
-        })
-      
+      await Promise.all([stashfinPromise, prefrPromise]).then((results) => {
+        console.log(results);
+        const stashfinResult = results[0];
+        const prefrResult = results[1];
+        // Handle stashfinResult and prefrResult as needed
+        if (stashfinResult.message === "Eligible") {
+          console.log("stashfinResult");
+          dispatch(eligibile_for_Stashfin());
+          dispatch(
+            addPartnerToList({
+              bankName: "Stashfin",
+            })
+          );
+          dispatch(setPartnersFound());
+          dispatch(setCurrentDedupeNumber(formData.pan_number));
+          dispatch(setMobileToVerify(formData.mobile_no));
+        }
+        if (prefrResult.data === "success") {
+          console.log("prefrResult");
+          dispatch(setPartnersFound());
+          dispatch(setMobileToVerify(formData.mobile_no));
+          dispatch(
+            registerStart({
+              userId: (formData.mobile_no + userId).toUpperCase(),
+              mobileNo: formData.mobile_no,
+            })
+          ).then((res) => {
+            console.log(res);
+            if (res.data.loanId && res.data.skipApplicationDetails) {
+              dispatch(settingApplicationID(res.data.loanId));
+            } else if (res.data.loanId && !res.data.skipApplicationDetails) {
+              dispatch(settingApplicationID(res.data.loanId));
+              dispatch(skip_Application_Details());
+            }
+          });
+          dispatch(
+            addPartnerToList({
+              bankName: "Prefer",
+            })
+          );
+          dispatch(setCurrentDedupeNumber(formData.pan_number));
+        }
+        
+
+        if (prefrResult.data === "success" || stashfinResult.message === "Eligible" ) {
+          setSnackMsg("Please wait, we are redirecting....");
+          setShowSuccessSnack(true);
+          setTimeout(() => {
+            navigate("/found-partners");
+          }, 5000);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+          setSnackMsg(
+            "Sorry ! The details provided does not meet loan application criteria."
+          );
+          setShowSuccessSnack(true);
+          setTimeout(() => {
+            document.querySelector("form").reset();
+          }, 2000);
+        }
+        
+      });
     }, 3000);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setShowSuccessSnack(false);
   };
 
   return (
@@ -176,6 +204,7 @@ const GetStartedForm = () => {
         justifyContent={"space-evenly"}
         alignItems={"center"}
         pt={5}
+        
       >
         <Grid
           md={7}
@@ -183,7 +212,8 @@ const GetStartedForm = () => {
           sm={10}
           className={styles.eligibility_left_sec}
           item
-          lg={5}
+          ml={-10}
+          lg={6}
         >
           <Typography mb={1} variant="h6">
             Please fill out the details:
@@ -265,8 +295,6 @@ const GetStartedForm = () => {
                 onChange={handleChange}
               />
 
-           
-
               <Box>
                 <TextField
                   size={"small"}
@@ -318,6 +346,21 @@ const GetStartedForm = () => {
             </Typography>
           </Box>
         </Grid>
+        <Snackbar
+          open={showSuccessSnack}
+          autoHideDuration={5000}
+          onClose={() => handleClose()}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        >
+          <Alert
+            onClose={() => handleClose()}
+            severity={"info"}
+            color="secondary"
+            sx={{ width: "100%" }}
+          >
+            {snackMsg}
+          </Alert>
+        </Snackbar>
       </Grid>
     </>
   );

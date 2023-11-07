@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 const FoundPartnersProtectedRoute = ({ children }) => {
     const found = useSelector((state) => state.appReducer.found_partners);
 
-    if (!found) {
+    if (found) {
         return children;
     } else {
         return <Navigate to="/get-started" />;
