@@ -158,12 +158,11 @@ const GetStartedForm = () => {
             );
             dispatch(setPartnersFound());
             dispatch(setCurrentDedupeNumber(formData.pan_number));
-            // Handle success case for prefrDedupeService
+            
           }
-        })
-        .then(() => {
           navigate("/found-partners");
-        });
+        })
+      
     }, 3000);
   };
 
