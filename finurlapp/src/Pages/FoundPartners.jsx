@@ -44,7 +44,7 @@ const FoundPartners = () => {
       dispatch(resetCurrentDedupeNumber());
       setIsLoading(false);
       navigate("/");
-    }, 2000);
+    }, 1500);
   };
 
   return (

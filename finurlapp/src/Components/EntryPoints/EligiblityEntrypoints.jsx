@@ -136,7 +136,7 @@ const EligiblityEntrypoints = () => {
             setTimeout(() => {
               dispatch(eligibile_for_Stashfin());
               setShowVerifyOTPsection(true);
-            }, 3000);
+            }, 2000);
           } else if (response.message === "Not Eligible") {
             setShowErrorSnack(true);
             setSnackMsg("Sorry! Currently you are not eligible.");
@@ -145,7 +145,7 @@ const EligiblityEntrypoints = () => {
             setShowErrorSnack(true);
             setSnackMsg("Oops! Please check the details provided");
           }
-        }, 3000);
+        }, 1000);
       });
     }
 
@@ -212,7 +212,7 @@ const EligiblityEntrypoints = () => {
               setIsLoading(false);
               setShowErrorSnack(true);
               setSnackMsg("Sorry ! You are not eligible as per Age criteria ");
-            }, 3000);
+            }, 1000);
           } else if (
             res.response.data.message === "Income criteria doesn't meet"
           ) {
@@ -222,7 +222,7 @@ const EligiblityEntrypoints = () => {
               setSnackMsg(
                 "Sorry ! Your income doesn't match up for Loan criteria"
               );
-            }, 3000);
+            }, 1000);
           } else if (
             res.response.data.message === "Regional criteria doesn't meet"
           ) {
@@ -232,7 +232,7 @@ const EligiblityEntrypoints = () => {
               setSnackMsg(
                 "Sorry ! Your pincode doesn't match up for regional criteria"
               );
-            }, 3000);
+            }, 1000);
           }
         })
         .catch((err) => {
@@ -290,12 +290,12 @@ const EligiblityEntrypoints = () => {
           setShowSuccessSnack(true);
           setTimeout(() => {
             navigate("/stashfin/application");
-          }, 4000);
+          }, 2000);
         } else {
           setSnackMsg("Invalid OTP !");
           setShowErrorSnack(true);
         }
-      }, 3000);
+      }, 2000);
     } else {
       setTimeout(async () => {
         setIsLoading(true);
@@ -308,7 +308,7 @@ const EligiblityEntrypoints = () => {
           if (!skipApplicationDetails) {
             setTimeout(() => {
               navigate("/prefr/application");
-            }, 3000);
+            }, 1500);
           } else {
             setIsLoading(true);
             dispatch(
@@ -324,7 +324,7 @@ const EligiblityEntrypoints = () => {
                 setTimeout(() => {
                   window.open(res.data.webviewUrl, "_blank");
                   navigate("/");
-                }, 3000);
+                }, 1500);
               } else {
                 setIsLoading(false);
                 setShowErrorSnack(true);

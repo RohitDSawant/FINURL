@@ -69,3 +69,13 @@
   grid-template-columns: repeat(3, 1fr);
   border-radius: 10px;
 }
+
+/*  loans records css */
+
+.loan_records_card_details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 7px;
+  column-gap: 10px;
+  width: 85%;
+}

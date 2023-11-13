@@ -107,7 +107,7 @@ const LoginPage = () => {
 
           setTimeout(() => {
             document.querySelector(".toggle").click();
-          }, 2000);
+          }, 1000);
         } else {
           setIsLoading(false);
           setShowErrorSnack(true);
@@ -194,9 +194,9 @@ const LoginPage = () => {
               );
               setTimeout(() => {
                 navigate("/");
-              }, 3000);
+              }, 1000);
             }
-          }, 3000);
+          }, 2000);
         });
     } catch (error) {
       console.log(error.message);

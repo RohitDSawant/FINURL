@@ -56,12 +56,12 @@ const ResetPassword = () => {
               dispatch(reset_completion_password())
               setTimeout(() => {
                 navigate("/authentication");
-              }, 2000);
+              }, 1500);
             } else {
               setSnackMsg("Something went wrong, please try again");
               setShowErrorSnack(true);
             }
-          }, 3000);
+          }, 1500);
         });
     } else {
       setIsLoading(false);

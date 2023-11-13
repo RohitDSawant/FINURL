@@ -16,14 +16,25 @@ import {
   CircularProgress,
   Snackbar,
   Alert,
+  Autocomplete,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import styles from "./../../../CSS/dashboard.module.css";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import stashfin_logo from "./../../../Assets/Images/partners_logo/stashfin.png";
+import prefr_logo from "./../../../Assets/Images/partners_logo/prefr.png";
+
+import {
+  prefr_dummy,
+  stashfin_dummy,
+} from "../../../Assets/fake-data/loansdata";
 
 const LoanRecords = () => {
   const loans = useSelector((state) => state.authReducer.loans);
+
+  const [displyEntries, setDisplayEntries] = useState([]);
+  const [panList, SetPanlist] = useState([]);
   const [ModalStates, setModalStates] = useState(new Map());
   const [leadsPunchOpen, setLeadsPunchOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -83,7 +94,7 @@ const LoanRecords = () => {
         setTimeout(() => {
           setIsLoading(false);
           SetShowSuccessSnack(true);
-          SetSnackMsg("Punched Sucessfully!");
+          SetSnackMsg("Punched Successfully!");
           setFormData({
             loggedInUserId: userId,
             partner: "",
@@ -95,7 +106,7 @@ const LoanRecords = () => {
             lender_bank: "",
           });
           setLeadsPunchOpen(false);
-        }, 3000);
+        }, 2000);
       })
       .catch((err) => {
         setTimeout(() => {
@@ -113,283 +124,12 @@ const LoanRecords = () => {
             lender_bank: "",
           });
           setLeadsPunchOpen(false);
-        }, 3000);
+        }, 2000);
         console.log(err.response.data.message);
       });
   };
 
   const theme = useTheme();
-  const columns = [
-    {
-      field: "id",
-      headerName: "Sr.No",
-      width: 70,
-      renderCell: (params) => {
-        return (
-          <Typography color={theme.palette.primary.main} ml={2} variant="body2">
-            {params.value}
-          </Typography>
-        );
-      },
-    },
-    {
-      field: "name",
-      headerName: "Name",
-      width: 290,
-      renderCell: (params) => {
-        return (
-          <Typography color={theme.palette.primary.main} variant="body2">
-            {params.row.first_name + " " + params.row.last_name}
-          </Typography>
-        );
-      },
-    },
-    {
-      field: "application_id",
-      headerName: "Application ID",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <Typography color={theme.palette.primary.main} variant="body2">
-            {params.row.results.application_id}
-          </Typography>
-        );
-      },
-    },
-    {
-      field: "pan_number",
-      headerName: "Pan Number",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <Typography color={theme.palette.primary.main} variant="body2">
-            {params.value}
-          </Typography>
-        );
-      },
-    },
-    {
-      field: "loan_status",
-      headerName: "Loan Status",
-      width: 200,
-      renderCell: (params) => {
-        return (
-          <>
-            {params.row.results.application_status === "In process" ? (
-              <Typography
-                textAlign={"center"}
-                sx={{
-                  color: "navy",
-                  fontSize: "small",
-                  fontWeight: 600,
-                }}
-                variant="body2"
-              >
-                {params.row.results.application_status}
-              </Typography>
-            ) : params.row.results.application_status === "Eligible" ? (
-              <Typography
-                ml={2}
-                textAlign={"center"}
-                sx={{
-                  color: "green",
-                  fontSize: "small",
-                  fontWeight: 600,
-                }}
-                variant="body2"
-              >
-                {params.row.results.application_status}
-              </Typography>
-            ) : (
-              <>
-                {/* <Button onClick={() => setLeadsPunchOpen(true)}>
-                  Disbursed
-                </Button>
-                <Dialog
-                  open={leadsPunchOpen}
-                  onClose={() => setLeadsPunchOpen(false)}
-                >
-                  <Box padding={2}>
-                    <DialogTitle>
-                      <Typography variant="h6">Leads Punching: </Typography>
-                    </DialogTitle>
-                    <DialogContent>
-                      <form ref={formRef} onSubmit={handleSubmit}>
-                        <TextField
-                          required={true}
-                          sx={{ marginBottom: "15px" }}
-                          size="small"
-                          name="partner"
-                          label="Partner Name"
-                          variant="standard"
-                          fullWidth
-                          value={formData.partner}
-                          onChange={handleChange}
-                        />
-                        <TextField
-                          required={true}
-                          sx={{ marginBottom: "15px" }}
-                          size="small"
-                          name="full_name"
-                          label="Full Name"
-                          variant="standard"
-                          fullWidth
-                          value={formData.full_name}
-                          onChange={handleChange}
-                        />
-                        <TextField
-                          required={true}
-                          sx={{ marginBottom: "15px" }}
-                          size="small"
-                          name="phone_number"
-                          label="Phone Number"
-                          variant="standard"
-                          fullWidth
-                          inputProps={{
-                            minLength: 10, // Set the minimum length constraint
-                          }}
-                          value={formData.phone_number}
-                          onChange={handleChange}
-                        />
-                        <TextField
-                          required={true}
-                          sx={{ marginBottom: "15px" }}
-                          size="small"
-                          name="pan_number"
-                          label="PAN Number"
-                          variant="standard"
-                          fullWidth
-                          inputProps={{
-                            minLength: 10, // Set the minimum length constraint
-                          }}
-                          value={formData.pan_number}
-                          onChange={handleChange}
-                        />
-                        <TextField
-                          required={true}
-                          sx={{ marginBottom: "15px" }}
-                          size="small"
-                          name="aadhar_number"
-                          label="Aadhar Number"
-                          variant="standard"
-                          fullWidth
-                          inputProps={{
-                            minLength: 12, // Set the minimum length constraint
-                          }}
-                          value={formData.aadhar_number}
-                          onChange={handleChange}
-                        />
-                        <TextField
-                          required={true}
-                          sx={{ marginBottom: "15px" }}
-                          size="small"
-                          name="amount"
-                          label="Loan Amount"
-                          variant="standard"
-                          fullWidth
-                          value={formData.amount}
-                          onChange={handleChange}
-                        />
-                        <FormControl variant="standard" fullWidth>
-                          <InputLabel>Lender Bank</InputLabel>
-                          <Select
-                            required={true}
-                            size="medium"
-                            name="lender_bank"
-                            value={formData.lender_bank}
-                            onChange={handleChange}
-                            label="Lender Bank"
-                          >
-                            {lenderOptions.map((option) => (
-                              <MenuItem key={option} value={option}>
-                                {option}
-                              </MenuItem>
-                            ))}
-                          </Select>
-                        </FormControl>
-                        <Box
-                          mt={3}
-                          display={"flex"}
-                          gap={"20px"}
-                          alignItems={"center"}
-                        >
-                          <Button
-                            type="submit"
-                            variant="contained"
-                            color="primary"
-                          >
-                            Submit
-                          </Button>
-                          {isLoading ? <CircularProgress size={20} /> : ""}
-                        </Box>
-                      </form>
-                    </DialogContent>
-                  </Box>
-                </Dialog> */}
-                 <Typography ml={1}
-                textAlign={"center"}
-                sx={{
-                  color: "crimson",
-                  fontSize: "small",
-                  fontWeight: 600,
-                }}
-                variant="body2"
-              >
-                {params.row.results.application_status}
-              </Typography>
-              </>
-             
-            )}
-          </>
-        );
-      },
-    },
-    {
-      field: "loan_info",
-      headerName: "Loan Info",
-      width: 250,
-      renderCell: (params) => {
-        return (
-          <>
-            <Button
-              onClick={() => openModal(params.id - 1)}
-              sx={{
-                backgroundColor: "#12162b",
-                color: "#fff",
-                fontSize: "x-small",
-              }}
-            >
-              Info
-            </Button>
-            {Array.from(ModalStates.entries()).map(([rowIndex, isOpen]) => (
-              <Dialog
-                hideBackdrop={true}
-                key={rowIndex}
-                PaperProps={{
-                  elevation: 0, // Remove the shadow by setting elevation to 0
-                }}
-                open={isOpen}
-                onClose={() => closeModal(rowIndex)}
-              >
-                <DialogTitle>
-                  <Typography mb={2} variant="body2">
-                    Info:
-                  </Typography>
-                </DialogTitle>
-                <DialogContent>
-                  <Typography sx={{ userSelect: "text" }} m={1} variant="body2">
-                    Bank Statement URL :{" "}
-                    {loans[rowIndex]?.results?.bank_statement_url ||
-                      "URL Not available"}
-                  </Typography>
-                </DialogContent>
-              </Dialog>
-            ))}
-          </>
-        );
-      },
-    },
-  ];
 
   useEffect(() => {
     // Initialize modal states for each row to false
@@ -398,47 +138,678 @@ const LoanRecords = () => {
       initialStates.set(index, false);
     });
     setModalStates(initialStates);
+
+    let panList = loans.map((loan, id) => {
+      return {label: id , value: loan.panNumber};
+    });
+
+    SetPanlist(panList);
   }, [loans]);
 
-  const openModal = (rowIndex) => {
-    setModalStates((prevStates) => {
-      const newState = new Map(prevStates);
-      newState.set(rowIndex, true);
-      return newState;
-    });
+  console.log(panList)
+
+  const openModal = (index) => {
+    setModalStates((prevStates) => new Map(prevStates.set(index, true)));
   };
 
-  const closeModal = (rowIndex) => {
-    setModalStates((prevStates) => {
-      const newState = new Map(prevStates);
-      newState.set(rowIndex, false);
-      return newState;
-    });
+  const closeModal = (index) => {
+    setModalStates((prevStates) => new Map(prevStates.set(index, false)));
   };
+
+  // const handleSort = (e) => {
+  //   let value = e.target.value;
+
+  //   if (value === "asc") {
+  //     let arr = displyEntries.sort((a, b) => a.firstName - b.firstName);
+  //     setDisplayEntries(arr);
+  //   } else if (value === "desc") {
+  //     let arr = displyEntries.sort((a, b) => b.firstName - a.firstName);
+  //     setDisplayEntries(arr);
+  //   }
+  // };
+
+  const handleFilter = (e) => {
+    let value = e.target.value;
+    let arr;
+    if (value === "stashfin") {
+      arr = loans.filter((loan) => {
+        return loan.bank_name === "stashfin";
+      });
+      console.log(arr);
+      setDisplayEntries(arr);
+    } else if (value === "prefr") {
+      arr = loans.filter((loan) => {
+        return loan.bank_name === "prefr";
+      });
+      setDisplayEntries(arr);
+      console.log(arr);
+    }
+  };
+
+  useEffect(() => {
+    setDisplayEntries(loans);
+  }, [loans]);
 
   return (
     <>
       <DashboardNavbar />
+      <Box
+        display={"flex"}
+        gap={"15px"}
+        justifyContent={"space-between"}
+        width={"95%"}
+        m={"auto"}
+        mb={2}
+      >
+        <Box width={"35%"} display={"flex"} gap={"10px"}>
+          {/* <FormControl size="small" fullWidth>
+            <InputLabel id="demo-simple-select-label">Sort by</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Sort By"
+              onChange={handleSort}
+            >
+              <MenuItem value={"asc"}>New to Old entries</MenuItem>
+              <MenuItem value={"desc"}>Old to New entries</MenuItem>
+            </Select>
+          </FormControl> */}
+          <FormControl size="small" fullWidth>
+            <InputLabel id="demo-simple-select-label">Banks</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Filter  By"
+              onChange={handleFilter}
+            >
+              <MenuItem value={"prefr"}>Prefr</MenuItem>
+              <MenuItem value={"stashfin"}>Stashfin</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
 
-      <DataGrid
-        className={styles.back_data_grid}
-        sx={{
-          width: "95%",
-          margin: "auto",
-          height: "74.5vh",
-        }}
-        rows={loans}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 8,
-            },
-          },
-        }}
-        pageSizeOptions={[8, 16]}
-        // disableRowSelectionOnClick
-      />
+        <Box>
+          <Autocomplete
+            size="small"
+            disablePortal
+            id="combo-box-demo"
+            options={panList}
+            getOptionLabel={(panList) => panList.value}
+            sx={{ width: 300, border: "none" }}
+            renderInput={(params) => (
+              <TextField {...params} label="Search by PAN" />
+            )}
+          />
+        </Box>
+      </Box>
+      <Box
+        width={"99%"}
+        height={"73vh"}
+        sx={{ overflowX: "hidden" }}
+        overflow={"scroll"}
+        display={"flex"}
+        flexDirection={"column"}
+        gap={"10px"}
+        py={1.5}
+        px={1.5}
+      >
+        {displyEntries &&
+          displyEntries.map((loan, index) => {
+            return loan.bank_name === "stashfin" ? (
+              <Box
+                key={index}
+                width={"98%"}
+                justifyContent={"space-between"}
+                gap={"25px"}
+                alignItems={"center"}
+                p={1.5}
+                borderRadius={"5px"}
+                m="auto"
+                display={"flex"}
+                boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
+              >
+                <Box width={"7%"} height={"3vh"}>
+                  <img
+                    style={{ height: "100%", display: "block", margin: "auto" }}
+                    src={stashfin_logo}
+                    alt=""
+                  />
+                </Box>
+                <Box className={styles.loan_records_card_details}>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      First Name:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.firstName ? loan.first_name : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Last Name:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.lastName ? loan.last_name : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      D.O.B:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.dob ? loan.dob : " -"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Email Id:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.email ? loan.email : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Mobile:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.phone ? loan.phone : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Income
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.income ? loan.income : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      PAN Number:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.panNumber ? loan.panNumber : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Pincode:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.pincode ? loan.pincode : "-"}
+                    </Typography>
+                  </Box>
+                  {/* Add other fields as needed */}
+                </Box>
+                <Box width={"10%"}>
+                  <Button
+                    sx={{ padding: "5px 15px", fontSize: "10px" }}
+                    onClick={() => openModal(index)}
+                  >
+                    Loan Details
+                  </Button>
+                </Box>
+                <Dialog
+                  open={ModalStates.get(index)}
+                  onClose={() => closeModal(index)}
+                >
+                  <DialogTitle>Info:</DialogTitle>
+                  <DialogContent>
+                    {loan.results ? (
+                      <>
+                        <Box>
+                          <Typography variant={"subtitle2"}>
+                            {loan.results.application_id}
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.results.application_status}
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.results.bank_statement_url}
+                          </Typography>
+                        </Box>
+                      </>
+                    ) : (
+                      <Typography>No info found.</Typography>
+                    )}
+                  </DialogContent>
+                </Dialog>
+              </Box>
+            ) : loan.bank_name === "prefr" ? (
+              <Box
+                key={index}
+                width={"98%"}
+                justifyContent={"space-between"}
+                gap={"25px"}
+                alignItems={"center"}
+                p={0.5}
+                borderRadius={"5px"}
+                m="auto"
+                display={"flex"}
+                boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
+              >
+                <Box width={"7%"} height={"4vh"}>
+                  <img
+                    style={{ height: "100%", display: "block", margin: "auto" }}
+                    src={prefr_logo}
+                    alt=""
+                  />
+                  {/* <Typography variant="subtitle2" textAlign={"center"}>Prefr</Typography> */}
+                </Box>
+                <Box className={styles.loan_records_card_details}>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      First Name:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.firstName ? loan.firstName : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Last Name:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.lastName ? loan.lastName : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      D.O.B:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.dob ? loan.dob : "-"}{" "}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Email Id:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.personalEmailId ? loan.personalEmailId : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Mobile:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.phone ? loan.phone : "-"}{" "}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Income
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.netMonthlyIncome ? loan.netMonthlyIncome : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      PAN Number:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.panNumber ? loan.panNumber : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Pincode:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.currentAddressPincode
+                        ? loan.currentAddressPincode
+                        : "-"}
+                    </Typography>
+                  </Box>
+                  {/* Add other fields as needed */}
+                </Box>
+                <Box width={"10%"}>
+                  <Button
+                    sx={{ padding: "5px 15px", fontSize: "10px" }}
+                    onClick={() => openModal(index)}
+                  >
+                    Loan Details
+                  </Button>
+                </Box>
+                <Dialog
+                  maxWidth={"xs"}
+                  fullWidth={true}
+                  open={ModalStates.get(index)}
+                  onClose={() => closeModal(index)}
+                >
+                  <DialogTitle>Info:</DialogTitle>
+                  <DialogContent>
+                    {loan.data ? (
+                      <Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>Event Name:</Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.eventName}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>
+                            Loan Amount:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.loanAmount}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>
+                            Rate Of Interest:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.roi} %
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>Tenure:</Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.tenure} months
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"subtitle2"}>
+                            Pre-Emi Interest:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.preEmiInterest}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"subtitle2"}>
+                            Final Processing Fee:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.finalProcessingFee}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"subtitle2"}>
+                            First Emi Date:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.firstEmiDate}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    ) : (
+                      <Typography>No Loan Info.</Typography>
+                    )}
+                  </DialogContent>
+                </Dialog>
+              </Box>
+            ) : (
+              <Box
+                key={index}
+                width={"98%"}
+                justifyContent={"space-between"}
+                gap={"25px"}
+                alignItems={"center"}
+                p={0.5}
+                borderRadius={"5px"}
+                m="auto"
+                display={"flex"}
+                boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
+              >
+                <Box width={"7%"} height={"3vh"}>
+                  <img
+                    style={{ height: "100%", display: "block", margin: "auto" }}
+                    src={stashfin_logo}
+                    alt=""
+                  />
+                  {/* <Typography variant="subtitle2" textAlign={"center"}>Prefr</Typography> */}
+                </Box>
+                <Box className={styles.loan_records_card_details}>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      First Name:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.firstName ? loan.firstName : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Last Name:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.lastName ? loan.lastName : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      D.O.B:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.dob ? loan.dob : "-"}{" "}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Email Id:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.personalEmailId ? loan.personalEmailId : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Mobile:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.phone ? loan.phone : "-"}{" "}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Income
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.netMonthlyIncome ? loan.netMonthlyIncome : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      PAN Number:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.panNumber ? loan.panNumber : "-"}
+                    </Typography>
+                  </Box>
+                  <Box display={"flex"} gap={"10px"}>
+                    <Typography
+                      variant="subtitle2"
+                      fontWeight={500}
+                      color={"gray"}
+                    >
+                      Pincode:
+                    </Typography>
+                    <Typography variant="subtitle2">
+                      {loan.currentAddressPincode
+                        ? loan.currentAddressPincode
+                        : "-"}
+                    </Typography>
+                  </Box>
+                  {/* Add other fields as needed */}
+                </Box>
+                <Box width={"10%"}>
+                  <Button
+                    sx={{ padding: "5px 15px", fontSize: "10px" }}
+                    onClick={() => openModal(index)}
+                  >
+                    Loan Details
+                  </Button>
+                </Box>
+                <Dialog
+                  maxWidth={"xs"}
+                  fullWidth={true}
+                  open={ModalStates.get(index)}
+                  onClose={() => closeModal(index)}
+                >
+                  <DialogTitle>Info:</DialogTitle>
+                  <DialogContent>
+                    {loan.data ? (
+                      <Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>Event Name:</Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.eventName}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>
+                            Loan Amount:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.loanAmount}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>
+                            Rate Of Interest:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.roi} %
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"body2"}>Tenure:</Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.tenure} months
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"subtitle2"}>
+                            Pre-Emi Interest:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.preEmiInterest}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"subtitle2"}>
+                            Final Processing Fee:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.finalProcessingFee}
+                          </Typography>
+                        </Box>
+                        <Box display={"flex"} gap={"10px"}>
+                          <Typography variant={"subtitle2"}>
+                            First Emi Date:
+                          </Typography>
+                          <Typography variant={"subtitle2"}>
+                            {loan.data.selectedOfferDetails.firstEmiDate}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    ) : (
+                      <Typography>No Loan Info.</Typography>
+                    )}
+                  </DialogContent>
+                </Dialog>
+              </Box>
+            );
+          })}
+      </Box>
+
       <Snackbar
         anchorOrigin={{ horizontal: "center", vertical: "bottom" }}
         open={showSuccessSnack || showErrorSnack}

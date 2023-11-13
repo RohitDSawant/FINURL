@@ -106,7 +106,7 @@ const PrefrApplication = () => {
                 navigate("/");
                 dispatch(resetCurrentDedupeNumber())
                 dispatch(resetPrefrData())
-              }, 3000);
+              }, 1500);
             } else {
               setShowErrorSnack(true);
               setSnackMsg(
@@ -124,7 +124,7 @@ const PrefrApplication = () => {
         setIsLoading(false);
         setSnackMsg("Please enter the valid PAN details");
         setShowErrorSnack(true);
-      }, 2000);
+      }, 1500);
     }
 
     // console.log(formData);

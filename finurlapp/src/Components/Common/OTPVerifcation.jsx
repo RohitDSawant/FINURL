@@ -83,12 +83,12 @@ const OTPVerifcation = ({ path }) => {
         setShowSuccessSnack(true);
         setTimeout(() => {
           navigate(path);
-        }, 4000);
+        }, 1500);
       } else {
         setSnackMsg("Invalid OTP !");
         setShowErrorSnack(true);
       }
-    }, 3000);
+    }, 2000);
   };
 
   const handleClose = (event, reason) => {

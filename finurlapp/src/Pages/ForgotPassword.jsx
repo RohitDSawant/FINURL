@@ -133,13 +133,13 @@ const ForgotPassword = () => {
             setSnackMsg("OTP verified successfully");
             dispatch(reset_password({ email: requiredEmail }));
             navigate("/reset-password");
-          }, 2000);
+          }, 1500);
         } else {
           setTimeout(() => {
             setIsLoading(false);
             setShowErrorSnack(true);
             setSnackMsg("Please enter correct OTP");
-          }, 2000);
+          }, 1500);
         }
       })
       .catch((err) => {

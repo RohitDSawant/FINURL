@@ -169,7 +169,7 @@ const GetStartedForm = () => {
           setShowSuccessSnack(true);
           setTimeout(() => {
             navigate("/found-partners");
-          }, 5000);
+          }, 2000);
           setIsLoading(false);
         } else {
           setIsLoading(false);
@@ -179,11 +179,11 @@ const GetStartedForm = () => {
           setShowSuccessSnack(true);
           setTimeout(() => {
             document.querySelector("form").reset();
-          }, 2000);
+          }, 1000);
         }
         
       });
-    }, 3000);
+    }, 2000);
   };
 
   const handleClose = (event, reason) => {

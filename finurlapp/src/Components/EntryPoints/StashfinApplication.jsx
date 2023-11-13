@@ -135,7 +135,7 @@ const StashfinApplication = () => {
             setSnackMsg("Please wait while we redirect you...");
             setTimeout(() => {
               window.open(response.data.results.redirect_url, "_blank");
-            }, 2000);
+            }, 1000);
             setTimeout(() => {
               dispatch(resetStashfinData())
               dispatch()
@@ -143,7 +143,7 @@ const StashfinApplication = () => {
             }, 2000);
             document.querySelector("form").reset();
           }
-        }, 3000);
+        }, 2000);
       })
       .catch((error) => {
         console.log(error);
