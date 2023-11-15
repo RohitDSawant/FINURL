@@ -105,27 +105,6 @@ const AgentData = () => {
             </Box>
           </Box>
         </Box>
-        {/* <Box>
-          <DataGrid
-            className={styles.back_data_grid}
-            sx={{
-              width: "90vw",
-              margin: "auto",
-              height: "67vh",
-            }}
-            rows={agent_entires}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 7,
-                },
-              },
-            }}
-            pageSizeOptions={[7, 14]}
-            // disableRowSelectionOnClick
-          />
-        </Box> */}
         <Box
           width={"99%"}
           height={"65vh"}
@@ -134,8 +113,8 @@ const AgentData = () => {
           display={"flex"}
           flexDirection={"column"}
           gap={"10px"}
-          py={1.5}
-          px={1.5}
+          py={.5}
+          px={.5}
         >
           {agent_entires &&
             agent_entires.map((loan, index) => {

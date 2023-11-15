@@ -51,15 +51,7 @@ const DashboardHeader = () => {
             gap={"10px"}
             alignItems={"center"}
           >
-            <Box>
-              <Typography variant="body1" fontWeight={600} mb={1}>
-                Loan Processed
-              </Typography>
-              <Typography variant="subtitle1" fontWeight={600}>
-              ₹ 432,441
-              </Typography>
-            </Box>
-            <CircularProgress sx={{"color": theme.palette.primary.main}} value={80} variant="determinate" size={30} />
+           
           </Box>
         </Grid>
         <Grid

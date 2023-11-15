@@ -1,8 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
-import CompareArrowsRoundedIcon from "@mui/icons-material/CompareArrowsRounded";
+import { FaList } from "react-icons/fa";
 import CreditScoreRoundedIcon from "@mui/icons-material/CreditScoreRounded";
 import PaymentRoundedIcon from "@mui/icons-material/PaymentRounded";
 import LeaderboardRoundedIcon from "@mui/icons-material/LeaderboardRounded";
@@ -18,10 +17,6 @@ const LeftDashboard = () => {
   const { setActiveTab } = useContext(DasboardContext);
   const { toggle } = useContext(DasboardContext);
   const theme = useTheme();
-
-  const handleDashboardSec = () => {
-    setActiveTab("dashboard");
-  };
 
   const handleRecordsSec = () => {
     setActiveTab("records");
@@ -89,16 +84,7 @@ const LeftDashboard = () => {
           <MenuItem
             id={styles.menu_item}
             icon={
-              <HomeRoundedIcon sx={{ color: theme.palette.primary.main }} />
-            }
-            onClick={handleDashboardSec}
-          >
-            <Typography variant="body1"> Dashboard</Typography>
-          </MenuItem>
-          <MenuItem
-            id={styles.menu_item}
-            icon={
-              <CompareArrowsRoundedIcon
+              <FaList
                 sx={{ color: theme.palette.primary.main }}
               />
             }

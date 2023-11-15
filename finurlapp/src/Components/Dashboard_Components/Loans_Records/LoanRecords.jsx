@@ -25,11 +25,6 @@ import axios from "axios";
 import stashfin_logo from "./../../../Assets/Images/partners_logo/stashfin.png";
 import prefr_logo from "./../../../Assets/Images/partners_logo/prefr.png";
 
-import {
-  prefr_dummy,
-  stashfin_dummy,
-} from "../../../Assets/fake-data/loansdata";
-
 const LoanRecords = () => {
   const loans = useSelector((state) => state.authReducer.loans);
 
@@ -140,13 +135,15 @@ const LoanRecords = () => {
     setModalStates(initialStates);
 
     let panList = loans.map((loan, id) => {
-      return {label: id , value: loan.panNumber};
+      if (loan.panNumber) {
+        return { label: id, value: loan.panNumber };
+      } else return { label: id, value: loan.pan_number };
     });
 
     SetPanlist(panList);
   }, [loans]);
 
-  console.log(panList)
+  console.log(panList);
 
   const openModal = (index) => {
     setModalStates((prevStates) => new Map(prevStates.set(index, true)));
@@ -190,9 +187,69 @@ const LoanRecords = () => {
     setDisplayEntries(loans);
   }, [loans]);
 
+  const handleSearchedPan = (e, value) => {
+    console.log(value.value);
+  };
+
   return (
     <>
       <DashboardNavbar />
+      <Box mb={4} display={"flex"} justifyContent={"space-around"}>
+        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}> 
+          <Typography
+            variant="body1"
+            fontWeight={500}
+            textAlign={"center"}
+            mb={1}
+          >
+            Total Loan Processed:
+          </Typography>
+
+          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+            ₹ 0
+          </Typography>
+        </Box>
+        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}>           <Typography
+            variant="body1"
+            fontWeight={500}
+            textAlign={"center"}
+            mb={1}
+          >
+            Total Loan Disbursed:
+          </Typography>
+
+          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+            ₹ 0
+          </Typography>
+        </Box>
+        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}>           <Typography
+            variant="body1"
+            fontWeight={500}
+            textAlign={"center"}
+            mb={1}
+          >
+            Total Payout Amount:
+          </Typography>
+
+          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+            ₹ 0
+          </Typography>
+        </Box>
+
+        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}>           <Typography
+            variant="body1"
+            fontWeight={500}
+            textAlign={"center"}
+            mb={1}
+          >
+            Total Redeemed Amount:
+          </Typography>
+
+          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+            ₹ 0
+          </Typography>
+        </Box>
+      </Box>
       <Box
         display={"flex"}
         gap={"15px"}
@@ -233,6 +290,7 @@ const LoanRecords = () => {
             size="small"
             disablePortal
             id="combo-box-demo"
+            onChange={handleSearchedPan}
             options={panList}
             getOptionLabel={(panList) => panList.value}
             sx={{ width: 300, border: "none" }}
@@ -244,12 +302,13 @@ const LoanRecords = () => {
       </Box>
       <Box
         width={"99%"}
-        height={"73vh"}
+        height={"62vh"}
         sx={{ overflowX: "hidden" }}
         overflow={"scroll"}
         display={"flex"}
         flexDirection={"column"}
         gap={"10px"}
+        justifyContent={"start"}
         py={1.5}
         px={1.5}
       >
@@ -276,99 +335,107 @@ const LoanRecords = () => {
                   />
                 </Box>
                 <Box className={styles.loan_records_card_details}>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       First Name:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.firstName ? loan.first_name : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Last Name:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.lastName ? loan.last_name : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       D.O.B:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.dob ? loan.dob : " -"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Email Id:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.email ? loan.email : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Mobile:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.phone ? loan.phone : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Income
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.income ? loan.income : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       PAN Number:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.panNumber ? loan.panNumber : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Pincode:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.pincode ? loan.pincode : "-"}
                     </Typography>
                   </Box>
@@ -391,16 +458,185 @@ const LoanRecords = () => {
                     {loan.results ? (
                       <>
                         <Box>
-                          <Typography variant={"subtitle2"}>
-                            {loan.results.application_id}
-                          </Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.results.application_status}
-                          </Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.results.bank_statement_url}
-                          </Typography>
+                          <Box
+                            display={"flex"}
+                            justifyContent={"space-between"}
+                            m={1}
+                            gap={"20px"}
+                          >
+                            <Typography variant={"subtitle2"}>
+                              Application ID:
+                            </Typography>
+                            <Typography variant={"subtitle2"}>
+                              {loan.results.application_id}
+                            </Typography>
+                          </Box>
+                          <Box
+                            display={"flex"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
+                            <Typography variant={"subtitle2"}>
+                              Application Status:
+                            </Typography>
+                            <Typography variant={"subtitle2"}>
+                              {loan.results.application_status}
+                            </Typography>
+                          </Box>
+
+                          {loan.results.bank_statement_url ? (
+                            <Box
+                              display={"flex"}
+                              justifyContent={"space-between"}
+                              m={1}
+                              mb={4}
+                              gap={"20px"}
+                            >
+                              <Typography variant={"subtitle2"}>
+                                Bank UTM Link:
+                              </Typography>
+                              <Typography variant={"subtitle2"}>
+                                {loan.results.bank_statement_url}
+                              </Typography>
+                            </Box>
+                          ) : (
+                            ""
+                          )}
                         </Box>
+                        {loan.results.application_status === "Eligible" ? (
+                          <Button onClick={() => setLeadsPunchOpen(true)}>
+                            Punch Leed
+                          </Button>
+                        ) : (
+                          ""
+                        )}
+                        <Dialog
+                          open={leadsPunchOpen}
+                          onClose={() => setLeadsPunchOpen(false)}
+                        >
+                          <Box padding={2}>
+                            <DialogTitle>
+                              <Typography variant="h6">
+                                Leads Punching:
+                              </Typography>
+                            </DialogTitle>
+                            <DialogContent>
+                              <form ref={formRef} onSubmit={handleSubmit}>
+                                <TextField
+                                  required={true}
+                                  sx={{ marginBottom: "15px" }}
+                                  size="small"
+                                  name="partner"
+                                  label="Partner Name"
+                                  variant="standard"
+                                  fullWidth
+                                  value={formData.partner}
+                                  onChange={handleChange}
+                                />
+                                <TextField
+                                  required={true}
+                                  sx={{ marginBottom: "15px" }}
+                                  size="small"
+                                  name="full_name"
+                                  label="Full Name"
+                                  variant="standard"
+                                  fullWidth
+                                  value={formData.full_name}
+                                  onChange={handleChange}
+                                />
+                                <TextField
+                                  required={true}
+                                  sx={{ marginBottom: "15px" }}
+                                  size="small"
+                                  name="phone_number"
+                                  label="Phone Number"
+                                  variant="standard"
+                                  fullWidth
+                                  inputProps={{
+                                    minLength: 10, // Set the minimum length constraint
+                                  }}
+                                  value={formData.phone_number}
+                                  onChange={handleChange}
+                                />
+                                <TextField
+                                  required={true}
+                                  sx={{ marginBottom: "15px" }}
+                                  size="small"
+                                  name="pan_number"
+                                  label="PAN Number"
+                                  variant="standard"
+                                  fullWidth
+                                  inputProps={{
+                                    minLength: 10, // Set the minimum length constraint
+                                  }}
+                                  value={formData.pan_number}
+                                  onChange={handleChange}
+                                />
+                                <TextField
+                                  required={true}
+                                  sx={{ marginBottom: "15px" }}
+                                  size="small"
+                                  name="aadhar_number"
+                                  label="Aadhar Number"
+                                  variant="standard"
+                                  fullWidth
+                                  inputProps={{
+                                    minLength: 12, // Set the minimum length constraint
+                                  }}
+                                  value={formData.aadhar_number}
+                                  onChange={handleChange}
+                                />
+                                <TextField
+                                  required={true}
+                                  sx={{ marginBottom: "15px" }}
+                                  size="small"
+                                  name="amount"
+                                  label="Loan Amount"
+                                  variant="standard"
+                                  fullWidth
+                                  value={formData.amount}
+                                  onChange={handleChange}
+                                />
+                                <FormControl variant="standard" fullWidth>
+                                  <InputLabel>Lender Bank</InputLabel>
+                                  <Select
+                                    required={true}
+                                    size="medium"
+                                    name="lender_bank"
+                                    value={formData.lender_bank}
+                                    onChange={handleChange}
+                                    label="Lender Bank"
+                                  >
+                                    {lenderOptions.map((option) => (
+                                      <MenuItem key={option} value={option}>
+                                        {option}
+                                      </MenuItem>
+                                    ))}
+                                  </Select>
+                                </FormControl>
+                                <Box
+                                  mt={3}
+                                  display={"flex"}
+                                  gap={"20px"}
+                                  alignItems={"center"}
+                                >
+                                  <Button
+                                    type="submit"
+                                    variant="contained"
+                                    color="primary"
+                                  >
+                                    Submit
+                                  </Button>
+                                  {isLoading ? (
+                                    <CircularProgress size={20} />
+                                  ) : (
+                                    ""
+                                  )}
+                                </Box>
+                              </form>
+                            </DialogContent>
+                          </Box>
+                        </Dialog>
                       </>
                     ) : (
                       <Typography>No info found.</Typography>
@@ -408,14 +644,14 @@ const LoanRecords = () => {
                   </DialogContent>
                 </Dialog>
               </Box>
-            ) : loan.bank_name === "prefr" ? (
+            ) : (
               <Box
                 key={index}
                 width={"98%"}
                 justifyContent={"space-between"}
                 gap={"25px"}
                 alignItems={"center"}
-                p={0.5}
+                p={1.5}
                 borderRadius={"5px"}
                 m="auto"
                 display={"flex"}
@@ -430,99 +666,107 @@ const LoanRecords = () => {
                   {/* <Typography variant="subtitle2" textAlign={"center"}>Prefr</Typography> */}
                 </Box>
                 <Box className={styles.loan_records_card_details}>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       First Name:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.firstName ? loan.firstName : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Last Name:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.lastName ? loan.lastName : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       D.O.B:
                     </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.dob ? loan.dob : "-"}{" "}
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
+                      {loan.dob ? loan.dob : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Email Id:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.personalEmailId ? loan.personalEmailId : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Mobile:
                     </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.phone ? loan.phone : "-"}{" "}
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
+                      {loan.phone ? loan.phone : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Income
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.netMonthlyIncome ? loan.netMonthlyIncome : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       PAN Number:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.panNumber ? loan.panNumber : "-"}
                     </Typography>
                   </Box>
-                  <Box display={"flex"} gap={"10px"}>
+                  <Box display={"flex"} gap={"10px"} alignItems={"center"}>
                     <Typography
                       variant="subtitle2"
                       fontWeight={500}
                       color={"gray"}
+                      fontSize={"x-small"}
                     >
                       Pincode:
                     </Typography>
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" fontSize={"x-small"}>
                       {loan.currentAddressPincode
                         ? loan.currentAddressPincode
                         : "-"}
@@ -544,17 +788,33 @@ const LoanRecords = () => {
                   open={ModalStates.get(index)}
                   onClose={() => closeModal(index)}
                 >
-                  <DialogTitle>Info:</DialogTitle>
+                  <DialogTitle>
+                    <Typography variant="body1" textAlign={"center"}>
+                      Info:
+                    </Typography>
+                  </DialogTitle>
                   <DialogContent>
                     {loan.data ? (
                       <Box>
-                        <Box display={"flex"} gap={"10px"}>
+                        <Box
+                          display={"flex"}
+                          gap={"10px"}
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                          m={1}
+                        >
                           <Typography variant={"body2"}>Event Name:</Typography>
                           <Typography variant={"subtitle2"}>
                             {loan.eventName}
                           </Typography>
                         </Box>
-                        <Box display={"flex"} gap={"10px"}>
+                        <Box
+                          display={"flex"}
+                          gap={"10px"}
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                          m={1}
+                        >
                           <Typography variant={"body2"}>
                             Loan Amount:
                           </Typography>
@@ -562,7 +822,13 @@ const LoanRecords = () => {
                             {loan.data.selectedOfferDetails.loanAmount}
                           </Typography>
                         </Box>
-                        <Box display={"flex"} gap={"10px"}>
+                        <Box
+                          display={"flex"}
+                          gap={"10px"}
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                          m={1}
+                        >
                           <Typography variant={"body2"}>
                             Rate Of Interest:
                           </Typography>
@@ -570,13 +836,25 @@ const LoanRecords = () => {
                             {loan.data.selectedOfferDetails.roi} %
                           </Typography>
                         </Box>
-                        <Box display={"flex"} gap={"10px"}>
+                        <Box
+                          display={"flex"}
+                          gap={"10px"}
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                          m={1}
+                        >
                           <Typography variant={"body2"}>Tenure:</Typography>
                           <Typography variant={"subtitle2"}>
                             {loan.data.selectedOfferDetails.tenure} months
                           </Typography>
                         </Box>
-                        <Box display={"flex"} gap={"10px"}>
+                        <Box
+                          display={"flex"}
+                          gap={"10px"}
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                          m={1}
+                        >
                           <Typography variant={"subtitle2"}>
                             Pre-Emi Interest:
                           </Typography>
@@ -584,7 +862,13 @@ const LoanRecords = () => {
                             {loan.data.selectedOfferDetails.preEmiInterest}
                           </Typography>
                         </Box>
-                        <Box display={"flex"} gap={"10px"}>
+                        <Box
+                          display={"flex"}
+                          gap={"10px"}
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                          m={1}
+                        >
                           <Typography variant={"subtitle2"}>
                             Final Processing Fee:
                           </Typography>
@@ -592,206 +876,13 @@ const LoanRecords = () => {
                             {loan.data.selectedOfferDetails.finalProcessingFee}
                           </Typography>
                         </Box>
-                        <Box display={"flex"} gap={"10px"}>
-                          <Typography variant={"subtitle2"}>
-                            First Emi Date:
-                          </Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.data.selectedOfferDetails.firstEmiDate}
-                          </Typography>
-                        </Box>
-                      </Box>
-                    ) : (
-                      <Typography>No Loan Info.</Typography>
-                    )}
-                  </DialogContent>
-                </Dialog>
-              </Box>
-            ) : (
-              <Box
-                key={index}
-                width={"98%"}
-                justifyContent={"space-between"}
-                gap={"25px"}
-                alignItems={"center"}
-                p={0.5}
-                borderRadius={"5px"}
-                m="auto"
-                display={"flex"}
-                boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
-              >
-                <Box width={"7%"} height={"3vh"}>
-                  <img
-                    style={{ height: "100%", display: "block", margin: "auto" }}
-                    src={stashfin_logo}
-                    alt=""
-                  />
-                  {/* <Typography variant="subtitle2" textAlign={"center"}>Prefr</Typography> */}
-                </Box>
-                <Box className={styles.loan_records_card_details}>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      First Name:
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.firstName ? loan.firstName : "-"}
-                    </Typography>
-                  </Box>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      Last Name:
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.lastName ? loan.lastName : "-"}
-                    </Typography>
-                  </Box>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      D.O.B:
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.dob ? loan.dob : "-"}{" "}
-                    </Typography>
-                  </Box>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      Email Id:
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.personalEmailId ? loan.personalEmailId : "-"}
-                    </Typography>
-                  </Box>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      Mobile:
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.phone ? loan.phone : "-"}{" "}
-                    </Typography>
-                  </Box>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      Income
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.netMonthlyIncome ? loan.netMonthlyIncome : "-"}
-                    </Typography>
-                  </Box>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      PAN Number:
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.panNumber ? loan.panNumber : "-"}
-                    </Typography>
-                  </Box>
-                  <Box display={"flex"} gap={"10px"}>
-                    <Typography
-                      variant="subtitle2"
-                      fontWeight={500}
-                      color={"gray"}
-                    >
-                      Pincode:
-                    </Typography>
-                    <Typography variant="subtitle2">
-                      {loan.currentAddressPincode
-                        ? loan.currentAddressPincode
-                        : "-"}
-                    </Typography>
-                  </Box>
-                  {/* Add other fields as needed */}
-                </Box>
-                <Box width={"10%"}>
-                  <Button
-                    sx={{ padding: "5px 15px", fontSize: "10px" }}
-                    onClick={() => openModal(index)}
-                  >
-                    Loan Details
-                  </Button>
-                </Box>
-                <Dialog
-                  maxWidth={"xs"}
-                  fullWidth={true}
-                  open={ModalStates.get(index)}
-                  onClose={() => closeModal(index)}
-                >
-                  <DialogTitle>Info:</DialogTitle>
-                  <DialogContent>
-                    {loan.data ? (
-                      <Box>
-                        <Box display={"flex"} gap={"10px"}>
-                          <Typography variant={"body2"}>Event Name:</Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.eventName}
-                          </Typography>
-                        </Box>
-                        <Box display={"flex"} gap={"10px"}>
-                          <Typography variant={"body2"}>
-                            Loan Amount:
-                          </Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.data.selectedOfferDetails.loanAmount}
-                          </Typography>
-                        </Box>
-                        <Box display={"flex"} gap={"10px"}>
-                          <Typography variant={"body2"}>
-                            Rate Of Interest:
-                          </Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.data.selectedOfferDetails.roi} %
-                          </Typography>
-                        </Box>
-                        <Box display={"flex"} gap={"10px"}>
-                          <Typography variant={"body2"}>Tenure:</Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.data.selectedOfferDetails.tenure} months
-                          </Typography>
-                        </Box>
-                        <Box display={"flex"} gap={"10px"}>
-                          <Typography variant={"subtitle2"}>
-                            Pre-Emi Interest:
-                          </Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.data.selectedOfferDetails.preEmiInterest}
-                          </Typography>
-                        </Box>
-                        <Box display={"flex"} gap={"10px"}>
-                          <Typography variant={"subtitle2"}>
-                            Final Processing Fee:
-                          </Typography>
-                          <Typography variant={"subtitle2"}>
-                            {loan.data.selectedOfferDetails.finalProcessingFee}
-                          </Typography>
-                        </Box>
-                        <Box display={"flex"} gap={"10px"}>
+                        <Box
+                          display={"flex"}
+                          gap={"10px"}
+                          alignItems={"center"}
+                          justifyContent={"space-between"}
+                          m={1}
+                        >
                           <Typography variant={"subtitle2"}>
                             First Emi Date:
                           </Typography>
