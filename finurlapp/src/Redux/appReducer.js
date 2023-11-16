@@ -4,6 +4,7 @@ const init_state = {
   isLoading: false,
   isError: false,
   found_partners: false,
+  formData: {},
   found_partners_list: [],
   mobile_to_verify: 0,
   current_dedupe_number: 0,
@@ -34,6 +35,18 @@ export const appReducer = (state = init_state, action) => {
     }
 
     case types.SET_CURRENT_DEDUPE_NUMBER_FAILURE: {
+      return { ...state, isLoading: false, isError: true };
+    }
+
+    case types.SET_FORMDATA_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case types.SET_FORMDATA_SUCCESS: {
+      return { ...state, isLoading: false, formData: payload };
+    }
+
+    case types.SET_FORMDATA_FAILURE: {
       return { ...state, isLoading: false, isError: true };
     }
 
@@ -184,6 +197,7 @@ export const appReducer = (state = init_state, action) => {
         mobile_to_verify: 0,
         found_partners_list: [],
         found_partners: false,
+        formData: {},
         current_dedupe_number: 0,
         NBC: {
           ...state.NBC,
@@ -329,6 +343,7 @@ export const appReducer = (state = init_state, action) => {
         mobile_to_verify: 0,
         found_partners_list: [],
         found_partners: false,
+        formData:{},
         current_dedupe_number: 0,
         NBC: {
           ...state.NBC,

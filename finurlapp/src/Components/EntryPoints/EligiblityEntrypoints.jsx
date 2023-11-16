@@ -32,7 +32,7 @@ import {
 import { gettingWebViewUrl } from "../../Redux/Func/Prefr/GettingWebview";
 import { send_otp, verify_otp } from "../../Redux/Func/Authentication/OTP";
 import verify_otp_img from "./../../Assets/Images/enterOtp.svg";
-import { setCurrentDedupeNumber } from "../../Redux/Func/Common/Common_Action";
+import { setCurrentDedupeNumber, setDedupeFormData } from "../../Redux/Func/Common/Common_Action";
 
 const EligiblityEntrypoints = () => {
   const theme = useTheme();
@@ -128,6 +128,16 @@ const EligiblityEntrypoints = () => {
           setIsLoading(false);
 
           if (response.message === "Eligible") {
+            dispatch(
+              setDedupeFormData({
+                firstName: formData.fullName.split(" ")[0],
+                lastName: formData.fullName.split(" ")[1],
+                email: formData.email,
+                panNumber: formData.pan_number,
+                phoneNumber: formData.mobile_no,
+                pincode: formData.pincode,
+              })
+            );
             dispatch(setCurrentDedupeNumber(formData.pan_number));
             setShowSuccessSnack(true);
             setSnackMsg("Congrats! You are eligible.");
@@ -176,6 +186,16 @@ const EligiblityEntrypoints = () => {
       )
         .then((res) => {
           if (res.data === "success") {
+            dispatch(
+              setDedupeFormData({
+                firstName: formData.fullName.split(" ")[0],
+                lastName: formData.fullName.split(" ")[1],
+                email: formData.email,
+                panNumber: formData.pan_number,
+                phoneNumber: formData.mobile_no,
+                pincode: formData.pincode,
+              })
+            );
             dispatch(setCurrentDedupeNumber(formData.pan_number));
             dispatch(
               registerStart({

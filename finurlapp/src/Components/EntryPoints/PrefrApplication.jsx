@@ -58,6 +58,7 @@ const PrefrApplication = () => {
   const current_dedupe_number = useSelector(
     (state) => state.appReducer.current_dedupe_number
   );
+  const DedupeFormData = useSelector((state) => state.appReducer.formData)
 
   const dispatch = useDispatch();
 
@@ -75,6 +76,7 @@ const PrefrApplication = () => {
           gender: formData.gender,
           dob: formData.dob.split("-").reverse().join("/"),
           panNumber: formData.panNumber,
+          mobileNumber: DedupeFormData.phoneNumber,
           currentAddress: formData.currentAddress,
           currentAddressPincode: formData.currentAddressPincode,
           netMonthlyIncome: Number(formData.netMonthlyIncome),
@@ -181,6 +183,7 @@ const PrefrApplication = () => {
                     name="firstName"
                     label="First Name"
                     variant="standard"
+                    value={DedupeFormData.firstName || ""}
                     required
                     onChange={handleChange}
                   />
@@ -191,6 +194,7 @@ const PrefrApplication = () => {
                     label="Last Name"
                     variant="standard"
                     required
+                    value={DedupeFormData.lastName || ""}
                     onChange={handleChange}
                   />
                   <TextField
@@ -200,6 +204,7 @@ const PrefrApplication = () => {
                     label="Email"
                     type="email"
                     variant="standard"
+                    value={DedupeFormData.email || ""}
                     required
                     onChange={handleChange}
                   />
@@ -225,6 +230,7 @@ const PrefrApplication = () => {
                     name="panNumber"
                     label="PAN Number"
                     variant="standard"
+                    value={DedupeFormData.panNumber || ""}
                     required
                     onChange={handleChange}
                   />
@@ -293,6 +299,7 @@ const PrefrApplication = () => {
                     name="netMonthlyIncome"
                     label="Income"
                     type="number"
+                    value={DedupeFormData.income || ""}
                     variant="standard"
                     required
                     onChange={handleChange}
@@ -303,6 +310,7 @@ const PrefrApplication = () => {
                     name="currentAddressPincode"
                     label="Pincode"
                     variant="standard"
+                    value={DedupeFormData.pincode || ""}
                     required
                     onChange={handleChange}
                   />

@@ -45,3 +45,12 @@ export const setMobileToVerify = (number) => async (dispatch) => {
     dispatch({ type: "SET_MOBILE_TO_VERIFY_FAILURE" });
   }
 };
+
+export const setDedupeFormData = (data) => async (dispatch) => {
+  dispatch({ type: "SET_FORMDATA_REQUEST" });
+  try {
+    await dispatch({ type: "SET_FORMDATA_SUCCESS", payload: data });
+  } catch (error) {
+    dispatch({ type: "SET_FORMDATA_FAILURE" });
+  }
+};

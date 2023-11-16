@@ -28,6 +28,7 @@ import { prefrDedupeService } from "../../Redux/Func/Prefr/Dedupe_Service";
 import {
   addPartnerToList,
   setCurrentDedupeNumber,
+  setDedupeFormData,
   setMobileToVerify,
   setPartnersFound,
 } from "../../Redux/Func/Common/Common_Action";
@@ -129,6 +130,16 @@ const GetStartedForm = () => {
           console.log("stashfinResult");
           dispatch(eligibile_for_Stashfin());
           dispatch(
+            setDedupeFormData({
+              firstName: formData.fullName.split(" ")[0],
+              lastName: formData.fullName.split(" ")[1],
+              email: formData.email,
+              panNumber: formData.pan_number,
+              phoneNumber: formData.mobile_no,
+              pincode: formData.pincode,
+            })
+          );
+          dispatch(
             addPartnerToList({
               bankName: "Stashfin",
             })
@@ -140,6 +151,14 @@ const GetStartedForm = () => {
         if (prefrResult.data === "success") {
           console.log("prefrResult");
           dispatch(setPartnersFound());
+          setDedupeFormData({
+            firstName: formData.fullName.split(" ")[0],
+            lastName: formData.fullName.split(" ")[1],
+            email: formData.email,
+            panNumber: formData.pan_number,
+            phoneNumber: formData.mobile_no,
+            pincode: formData.pincode,
+          });
           dispatch(setMobileToVerify(formData.mobile_no));
           dispatch(
             registerStart({
@@ -162,9 +181,11 @@ const GetStartedForm = () => {
           );
           dispatch(setCurrentDedupeNumber(formData.pan_number));
         }
-        
 
-        if (prefrResult.data === "success" || stashfinResult.message === "Eligible" ) {
+        if (
+          prefrResult.data === "success" ||
+          stashfinResult.message === "Eligible"
+        ) {
           setSnackMsg("Please wait, we are redirecting....");
           setShowSuccessSnack(true);
           setTimeout(() => {
@@ -181,7 +202,6 @@ const GetStartedForm = () => {
             document.querySelector("form").reset();
           }, 1000);
         }
-        
       });
     }, 2000);
   };
@@ -204,7 +224,6 @@ const GetStartedForm = () => {
         justifyContent={"space-evenly"}
         alignItems={"center"}
         pt={5}
-        
       >
         <Grid
           md={7}

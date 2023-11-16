@@ -12,6 +12,13 @@ import { useSelector } from "react-redux";
 
 const InstantLoansCarousel = () => {
   const isAuth = useSelector((state) => state.authReducer.isAuth);
+  const prefrEligible = useSelector(
+    (state) => state.appReducer.NBC.prefr.eligible
+  );
+  const stashfinEligible = useSelector(
+    (state) => state.appReducer.NBC.stashfin.eligible
+  );
+
   const theme = useTheme();
 
   const responsiveSettings = [
@@ -76,7 +83,9 @@ const InstantLoansCarousel = () => {
     if (isAuth) {
       const actual_path = path.split("/")[1];
       if (actual_path === "stashfin" || actual_path === "prefr") {
-        navigate(`/${actual_path}/dedupe`);
+        if (stashfinEligible || prefrEligible) {
+          navigate(`/${actual_path}/application`);
+        } else navigate(`/${actual_path}/dedupe`);
       } else {
         const newTab = window.open(path, "_blank");
         newTab.focus();
@@ -127,25 +136,31 @@ const InstantLoansCarousel = () => {
                     >
                       Loan upto
                     </Typography>
-                    <Typography variant="subtitle2" textAlign={"center"}>{partner.loans}</Typography>
+                    <Typography variant="subtitle2" textAlign={"center"}>
+                      {partner.loans}
+                    </Typography>
                   </Box>
 
                   <Box>
                     <Typography
                       color={"gray"}
                       fontSize={"x-small"}
-                      variant="subtitle2" textAlign={"center"}
+                      variant="subtitle2"
+                      textAlign={"center"}
                     >
                       Min ROi
                     </Typography>
-                    <Typography variant="subtitle2" textAlign={"center"}>{partner.roi}</Typography>
+                    <Typography variant="subtitle2" textAlign={"center"}>
+                      {partner.roi}
+                    </Typography>
                   </Box>
 
                   <Box>
                     <Typography
                       color={"gray"}
                       fontSize={"x-small"}
-                      variant="subtitle2" textAlign={"center"}
+                      variant="subtitle2"
+                      textAlign={"center"}
                     >
                       Max Tenure
                     </Typography>
