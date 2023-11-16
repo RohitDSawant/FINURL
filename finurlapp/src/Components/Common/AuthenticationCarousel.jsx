@@ -196,7 +196,7 @@ const LoginPage = () => {
                 navigate("/");
               }, 1000);
             }
-          }, 2000);
+          }, 1500);
         });
     } catch (error) {
       console.log(error.message);

@@ -78,13 +78,8 @@ const OTPVerifcation = ({ path }) => {
       setIsLoading(false);
       response = await verify_otp({ email: partnerEmail, otp: otp });
       console.log(response);
-      if (response.message === "OTP verified successfully!") {
-        setSnackMsg("OTP verified successfully!");
-        setShowSuccessSnack(true);
-        setTimeout(() => {
-          navigate(path);
-        }, 1500);
-      } else {
+      if (response.message === "OTP verified successfully!") navigate(path)
+      else {
         setSnackMsg("Invalid OTP !");
         setShowErrorSnack(true);
       }
@@ -173,9 +168,7 @@ const OTPVerifcation = ({ path }) => {
           </Box>
         </Grid>
         <Grid item lg={6} md={6} sm={6} xs={4}>
-          {!isSmallScreen ? (
-            null
-          ) : (
+          {!isSmallScreen ? null : (
             <>
               <img
                 id={styles.otp_check}

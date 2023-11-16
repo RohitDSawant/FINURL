@@ -188,14 +188,32 @@ const LoanRecords = () => {
   }, [loans]);
 
   const handleSearchedPan = (e, value) => {
-    console.log(value.value);
+    if (value) {
+      let searchValue = value.value;
+      let result = loans.filter((loan) => {
+        return (
+          loan.panNumber === searchValue || loan.pan_number === searchValue
+        );
+      });
+      setDisplayEntries(result);
+    } else {
+      setDisplayEntries(loans);
+    }
   };
+
+
+  console.log(loans)
 
   return (
     <>
       <DashboardNavbar />
       <Box mb={4} display={"flex"} justifyContent={"space-around"}>
-        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}> 
+        <Box
+          boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
+          px={3}
+          py={1}
+          borderRadius={"7px"}
+        >
           <Typography
             variant="body1"
             fontWeight={500}
@@ -205,11 +223,22 @@ const LoanRecords = () => {
             Total Loan Processed:
           </Typography>
 
-          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+          <Typography
+            fontFamily={"sans-serif"}
+            variant="subtitle1"
+            fontWeight={600}
+            textAlign={"center"}
+          >
             ₹ 0
           </Typography>
         </Box>
-        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}>           <Typography
+        <Box
+          boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
+          px={3}
+          py={1}
+          borderRadius={"7px"}
+        >
+          <Typography
             variant="body1"
             fontWeight={500}
             textAlign={"center"}
@@ -217,12 +246,22 @@ const LoanRecords = () => {
           >
             Total Loan Disbursed:
           </Typography>
-
-          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+          <Typography
+            fontFamily={"sans-serif"}
+            variant="subtitle1"
+            fontWeight={600}
+            textAlign={"center"}
+          >
             ₹ 0
           </Typography>
         </Box>
-        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}>           <Typography
+        <Box
+          boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
+          px={3}
+          py={1}
+          borderRadius={"7px"}
+        >
+          <Typography
             variant="body1"
             fontWeight={500}
             textAlign={"center"}
@@ -230,13 +269,23 @@ const LoanRecords = () => {
           >
             Total Payout Amount:
           </Typography>
-
-          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+          <Typography
+            fontFamily={"sans-serif"}
+            variant="subtitle1"
+            fontWeight={600}
+            textAlign={"center"}
+          >
             ₹ 0
           </Typography>
         </Box>
 
-        <Box boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"} px={3} py={1} borderRadius={"7px"}>           <Typography
+        <Box
+          boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
+          px={3}
+          py={1}
+          borderRadius={"7px"}
+        >
+          <Typography
             variant="body1"
             fontWeight={500}
             textAlign={"center"}
@@ -244,8 +293,12 @@ const LoanRecords = () => {
           >
             Total Redeemed Amount:
           </Typography>
-
-          <Typography fontFamily={"sans-serif"} variant="subtitle1" fontWeight={600} textAlign={"center"}>
+          <Typography
+            fontFamily={"sans-serif"}
+            variant="subtitle1"
+            fontWeight={600}
+            textAlign={"center"}
+          >
             ₹ 0
           </Typography>
         </Box>
@@ -302,7 +355,8 @@ const LoanRecords = () => {
       </Box>
       <Box
         width={"99%"}
-        height={"62vh"}
+        height={"max-content"}
+        maxHeight={"60vh"}
         sx={{ overflowX: "hidden" }}
         overflow={"scroll"}
         display={"flex"}
@@ -327,7 +381,7 @@ const LoanRecords = () => {
                 display={"flex"}
                 boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
               >
-                <Box width={"7%"} height={"3vh"}>
+                <Box m={1} width={"7%"} height={"3vh"}>
                   <img
                     style={{ height: "100%", display: "block", margin: "auto" }}
                     src={stashfin_logo}
@@ -657,7 +711,7 @@ const LoanRecords = () => {
                 display={"flex"}
                 boxShadow={"rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"}
               >
-                <Box width={"7%"} height={"4vh"}>
+                <Box m={1} width={"7%"} height={"4vh"}>
                   <img
                     style={{ height: "100%", display: "block", margin: "auto" }}
                     src={prefr_logo}
