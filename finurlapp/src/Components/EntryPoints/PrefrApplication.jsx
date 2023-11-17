@@ -91,6 +91,11 @@ console.log(DedupeFormData)
           setIsLoading(false);
           setShowSuccessSnack(true);
           setSnackMsg("Sorry, You are already part of Prefr");
+          setTimeout(() => {
+            navigate("/");
+            dispatch(resetCurrentDedupeNumber())
+            dispatch(resetPrefrData())
+          }, 1500);
         }
         if (res === "Invalid fields in the request") {
           setIsLoading(false);
