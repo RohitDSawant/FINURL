@@ -1,7 +1,7 @@
 import { Box, Button, Typography, useTheme } from "@mui/material";
 import React, { useContext, useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { FaList } from "react-icons/fa";
+import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import CreditScoreRoundedIcon from "@mui/icons-material/CreditScoreRounded";
 import PaymentRoundedIcon from "@mui/icons-material/PaymentRounded";
 import LeaderboardRoundedIcon from "@mui/icons-material/LeaderboardRounded";
@@ -9,6 +9,7 @@ import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import styles from "./../../CSS/dashboard.module.css";
 import { DasboardContext } from "../../Context/DashboardContext";
 import circle_logo from "./../../Assets/Images/circle_log.png";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import { persistor } from "../../Redux/store";
 import { Link, useNavigate } from "react-router-dom";
@@ -84,7 +85,7 @@ const LeftDashboard = () => {
           <MenuItem
             id={styles.menu_item}
             icon={
-              <FaList
+              <FormatListBulletedIcon
                 sx={{ color: theme.palette.primary.main }}
               />
             }

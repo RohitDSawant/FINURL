@@ -123,7 +123,7 @@ const Navbar = () => {
   }, []);
 
   const handleCopyCode = useCallback(() => {
-    const referralCode = "Q45S886SF6Y"; // Replace with your actual referral code
+    const referralCode = User.referral_link ; // Replace with your actual referral code
 
     navigator.clipboard.writeText(referralCode).then(
       () => {
@@ -134,7 +134,7 @@ const Navbar = () => {
         console.error("Could not copy text: ", err);
       }
     );
-  }, []);
+  }, [User.referral_link]);
 
   return (
     <>

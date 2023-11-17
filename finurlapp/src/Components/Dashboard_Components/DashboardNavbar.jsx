@@ -17,7 +17,7 @@ import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
 import { persistor } from "../../Redux/store";
 import { useNavigate } from "react-router-dom";
 import FormatAlignLeftIcon from "@mui/icons-material/FormatAlignLeft";
-import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import FormatAlignRightIcon from "@mui/icons-material/FormatAlignRight";
 import { ThemeContext } from "../../Context/ThemeContext";
@@ -92,7 +92,7 @@ const DashboardNavbar = () => {
           {theme.palette.mode !== "dark" ? (
             <DarkModeIcon sx={{ color: theme.palette.primary.main }} />
           ) : (
-            <LightModeRoundedIcon sx={{ color: theme.palette.primary.light }} />
+            <LightModeIcon sx={{ color: theme.palette.primary.main }} />
           )}
         </Box>
         <Typography onClick={handleUserMenu} variant="body2">

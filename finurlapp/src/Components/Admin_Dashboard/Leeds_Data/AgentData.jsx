@@ -113,8 +113,8 @@ const AgentData = () => {
           display={"flex"}
           flexDirection={"column"}
           gap={"10px"}
-          py={.5}
-          px={.5}
+          py={0.5}
+          px={0.5}
         >
           {agent_entires &&
             agent_entires.map((loan, index) => {
@@ -258,15 +258,50 @@ const AgentData = () => {
                       {loan.results ? (
                         <>
                           <Box>
-                            <Typography variant={"subtitle2"}>
-                              {loan.results.application_id}
-                            </Typography>
-                            <Typography variant={"subtitle2"}>
-                              {loan.results.application_status}
-                            </Typography>
-                            <Typography variant={"subtitle2"}>
-                              {loan.results.bank_statement_url}
-                            </Typography>
+                            <Box
+                              display={"flex"}
+                              justifyContent={"space-between"}
+                              m={1}
+                              gap={"20px"}
+                            >
+                              <Typography variant={"subtitle2"}>
+                                Application ID:
+                              </Typography>
+                              <Typography variant={"subtitle2"}>
+                                {loan.results.application_id}
+                              </Typography>
+                            </Box>
+                            <Box
+                              display={"flex"}
+                              justifyContent={"space-between"}
+                              m={1}
+                            >
+                              <Typography variant={"subtitle2"}>
+                                Application Status:
+                              </Typography>
+                              <Typography variant={"subtitle2"}>
+                                {loan.results.application_status}
+                              </Typography>
+                            </Box>
+
+                            {loan.results.bank_statement_url ? (
+                              <Box
+                                display={"flex"}
+                                justifyContent={"space-between"}
+                                m={1}
+                                mb={4}
+                                gap={"20px"}
+                              >
+                                <Typography variant={"subtitle2"}>
+                                  Bank UTM Link:
+                                </Typography>
+                                <Typography variant={"subtitle2"}>
+                                  {loan.results.bank_statement_url}
+                                </Typography>
+                              </Box>
+                            ) : (
+                              <Typography>No info found.</Typography>
+                            )}
                           </Box>
                         </>
                       ) : (
@@ -419,7 +454,13 @@ const AgentData = () => {
                     <DialogContent>
                       {loan.data ? (
                         <Box>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            display={"flex"}
+                            gap={"10px"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
                             <Typography variant={"body2"}>
                               Event Name:
                             </Typography>
@@ -427,7 +468,13 @@ const AgentData = () => {
                               {loan.eventName}
                             </Typography>
                           </Box>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            display={"flex"}
+                            gap={"10px"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
                             <Typography variant={"body2"}>
                               Loan Amount:
                             </Typography>
@@ -435,7 +482,13 @@ const AgentData = () => {
                               {loan.data.selectedOfferDetails.loanAmount}
                             </Typography>
                           </Box>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            display={"flex"}
+                            gap={"10px"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
                             <Typography variant={"body2"}>
                               Rate Of Interest:
                             </Typography>
@@ -443,13 +496,25 @@ const AgentData = () => {
                               {loan.data.selectedOfferDetails.roi} %
                             </Typography>
                           </Box>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            display={"flex"}
+                            gap={"10px"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
                             <Typography variant={"body2"}>Tenure:</Typography>
                             <Typography variant={"subtitle2"}>
                               {loan.data.selectedOfferDetails.tenure} months
                             </Typography>
                           </Box>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            display={"flex"}
+                            gap={"10px"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
                             <Typography variant={"subtitle2"}>
                               Pre-Emi Interest:
                             </Typography>
@@ -457,7 +522,13 @@ const AgentData = () => {
                               {loan.data.selectedOfferDetails.preEmiInterest}
                             </Typography>
                           </Box>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            display={"flex"}
+                            gap={"10px"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
                             <Typography variant={"subtitle2"}>
                               Final Processing Fee:
                             </Typography>
@@ -468,7 +539,13 @@ const AgentData = () => {
                               }
                             </Typography>
                           </Box>
-                          <Box display={"flex"} gap={"10px"}>
+                          <Box
+                            display={"flex"}
+                            gap={"10px"}
+                            alignItems={"center"}
+                            justifyContent={"space-between"}
+                            m={1}
+                          >
                             <Typography variant={"subtitle2"}>
                               First Emi Date:
                             </Typography>

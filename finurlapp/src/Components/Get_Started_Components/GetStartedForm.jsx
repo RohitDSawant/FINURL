@@ -137,6 +137,7 @@ const GetStartedForm = () => {
               panNumber: formData.pan_number,
               phoneNumber: formData.mobile_no,
               pincode: formData.pincode,
+              income: formData.income
             })
           );
           dispatch(
@@ -151,14 +152,15 @@ const GetStartedForm = () => {
         if (prefrResult.data === "success") {
           console.log("prefrResult");
           dispatch(setPartnersFound());
-          setDedupeFormData({
+          dispatch(setDedupeFormData({
             firstName: formData.fullName.split(" ")[0],
             lastName: formData.fullName.split(" ")[1],
             email: formData.email,
             panNumber: formData.pan_number,
             phoneNumber: formData.mobile_no,
             pincode: formData.pincode,
-          });
+            income: formData.income
+          }))
           dispatch(setMobileToVerify(formData.mobile_no));
           dispatch(
             registerStart({

@@ -509,7 +509,7 @@ const LoanRecords = () => {
                 >
                   <DialogTitle>Info:</DialogTitle>
                   <DialogContent>
-                    {loan.results ? (
+                  {loan.results ? (
                       <>
                         <Box>
                           <Box
@@ -554,7 +554,7 @@ const LoanRecords = () => {
                               </Typography>
                             </Box>
                           ) : (
-                            ""
+                            <Typography>No info found.</Typography>
                           )}
                         </Box>
                         {loan.results.application_status === "Eligible" ? (
