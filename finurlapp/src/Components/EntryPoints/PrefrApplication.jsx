@@ -29,18 +29,19 @@ const PrefrApplication = () => {
   );
   const navigate = useNavigate();
   const userID = useSelector((state) => state.authReducer.loggedInUser._id);
-
+  const DedupeFormData = useSelector((state) => state.appReducer.formData)
+console.log(DedupeFormData)
   const [formData, setFormData] = useState({
     loanId: loanId,
-    firstName: "",
-    lastName: "",
-    personalEmailId: "",
+    firstName: DedupeFormData.firstName || "",
+    lastName: DedupeFormData.lastName||"",
+    personalEmailId: DedupeFormData.email|| "",
     gender: "",
     dob: "",
-    panNumber: "",
+    panNumber: DedupeFormData.panNumber||"",
     currentAddress: "",
-    currentAddressPincode: "",
-    netMonthlyIncome: 0,
+    currentAddressPincode: DedupeFormData.pincode|| "",
+    netMonthlyIncome: DedupeFormData.income || 0,
     desiredLoanAmount: 0,
     employmentType: "",
     partnerSpecificInfo: {
@@ -58,11 +59,11 @@ const PrefrApplication = () => {
   const current_dedupe_number = useSelector(
     (state) => state.appReducer.current_dedupe_number
   );
-  const DedupeFormData = useSelector((state) => state.appReducer.formData)
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
+    console.log(formData)
     setIsLoading(true);
     e.preventDefault();
 
