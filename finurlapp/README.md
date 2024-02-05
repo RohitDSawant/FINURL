@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# FinURL
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# About
 
-## Available Scripts
+- Fintech Platform incepted in December 2021 headquartered in
+  Kolkata, India finurl.com is formed to sell financial service
+  primarily focusing on Indian internet users, starting with the
+  financial vertical. Enhancing its financial hands to all major
+  locations of the country.
+- The main feature of the website is to provide smart and simple User interface to the customers for the loan journey, as we check the eligibility and provide the best partners out ther for the loan process.
 
-In the project directory, you can run:
+## Tech Used
 
-### `npm start`
+- Frontend: 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    - HTML / CSS / JavaScript
+    - React.js
+    - MUI
+    - Redux
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Backend:
 
-### `npm test`
+    - Express.js
+    - MongoDB
+    
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Links
 
-### `npm run build`
+- Deployed Link: https://www.finurl.in/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Snapshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Home Page
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Home Page](<./src/ScreenShots/Screenshot%20(871).png>)
 
-### `npm run eject`
+### Loan Journey (Eligibility Check)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Loan Journey](<./src/ScreenShots/Screenshot%20(872).png>)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Authentication
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Authentication](<../src/ScreenShots/Screenshot%20(873).png>)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Mobile OTP Verification
 
-## Learn More
+![OTP Verification](<./src/ScreenShots/Screenshot%20(877).png>)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Loan Partners
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Loan Partners](<./src/ScreenShots/Screenshot%20(874).png>)
 
-### Code Splitting
+### Contact us Page
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![OTP Verification](<./src/ScreenShots/Screenshot%20(875).png>)
 
-### Analyzing the Bundle Size
+### Motto & Vission
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![OTP Verification](<./src/ScreenShots/Screenshot%20(877).png>)
