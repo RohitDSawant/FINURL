@@ -1,6 +1,4 @@
-﻿# FINURL
 # FINURL
-
-# Deployed Link: www.finurl.in
+visit : www.finurl.in
 
 
