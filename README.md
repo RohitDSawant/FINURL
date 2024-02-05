@@ -40,7 +40,7 @@
 
 ### Authentication
 
-![Authentication](<../ScreenShots/Screenshot%20(873).png>)
+![Authentication](<./ScreenShots/Screenshot%20(873).png>)
 
 ### Mobile OTP Verification
 
