@@ -44,7 +44,7 @@
 
 ### Mobile OTP Verification
 
-![OTP Verification](<./ScreenShots/Screenshot%20(877).png>)
+![OTP Verification](<./ScreenShots/Screenshot%20(875).png>)
 
 ### Loan Partners
 
@@ -52,8 +52,8 @@
 
 ### Contact us Page
 
-![OTP Verification](<./ScreenShots/Screenshot%20(875).png>)
+![OTP Verification](<./ScreenShots/Screenshot%20(876).png>)
 
 ### Motto & Vission
 
-![OTP Verification](<./ScreenShots/Screenshot%20(876).png>)
+![OTP Verification](<./ScreenShots/Screenshot%20(877).png>)
