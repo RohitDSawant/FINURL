@@ -201,6 +201,10 @@ const BusinessLoan = () => {
           </Typography>
 
           <Typography textAlign={"center"} m={2} variant="subtitle2">
+            Protium 
+          </Typography>
+
+          <Typography textAlign={"center"} m={2} variant="subtitle2">
             KreditBee
           </Typography>
 

@@ -125,6 +125,16 @@ export const business_Loans = [
 
   {
     id: 3,
+    imageurl: require("./../partners_logo/Logo-protium.png"),
+    name: "Protium",
+    loans: "30Lakhs",
+    roi: "12%",
+    description: "72M",
+    path: "https://dbl.protium.co.in/?utm_source=finurl_dsa&utm_medium=digital&utm_campaign=website",
+  },
+
+  {
+    id: 4,
     imageurl: require("./../partners_logo/lending2.png"),
     name: " Lendingkart",
     loans: "50Lakhs",
@@ -146,6 +156,9 @@ export const partners_img = [
   // },
   {
     url: require("./../partners_logo/cashe.png"),
+  },
+  {
+    url: require("./../partners_logo/Logo-protium.png"),
   },
   {
     url: require("./../partners_logo/faircent2.png"),
@@ -216,8 +229,19 @@ export const bankoffers = [
     path: "/Registration",
     imageurl: require("./../partners_logo/cashe.png"),
   },
+
+{
+  id: 3,
+    imageurl: require("./../partners_logo/Logo-protium.png"),
+    name: "Protium",
+    loans: "30Lakhs",
+    roi: "12%",
+    description: "72M",
+    path: "/https://dbl.protium.co.in/?utm_source=finurl_dsa&utm_medium=digital&utm_campaign=website",
+  },
+
   {
-    id: 3,
+    id: 4,
     name: "Stashfin",
     loans: "5 Lakhs",
     roi: "12%",
@@ -226,7 +250,7 @@ export const bankoffers = [
     imageurl: require("./../partners_logo/stashfin.png"),
   },
   {
-    id: 4,
+    id: 5,
     name: "Prefr",
     loans: "3 Lakhs",
     roi: "14%",
@@ -235,7 +259,7 @@ export const bankoffers = [
     imageurl: require("./../partners_logo/prefr.png"),
   },
   {
-    id: 5,
+    id: 6,
     name: "TATA Capital",
     loans: "2 Lakhs",
     roi: "12%",
@@ -244,7 +268,7 @@ export const bankoffers = [
     imageurl: require("./../partners_logo/tata2.png"),
   },
   {
-    id: 6,
+    id: 7,
     name: "Privo",
     loans: "10 Lakhs",
     roi: "15%",
@@ -253,7 +277,7 @@ export const bankoffers = [
     imageurl: require("./../partners_logo/privo.png"),
   },
   {
-    id: 7,
+    id: 8,
     name: "L&T service",
     loans: "7 Lakhs",
     roi: "17%",
@@ -262,7 +286,7 @@ export const bankoffers = [
     imageurl: require("./../partners_logo/l&t.jpg"),
   },
   {
-    id: 8,
+    id: 9,
     name: "NIRA",
     loans: "1 Lakh",
     roi: "14%",
@@ -271,7 +295,7 @@ export const bankoffers = [
     imageurl: require("./../partners_logo/nira2.png"),
   },
   {
-    id: 9,
+    id: 10,
     name: "IIFL BL",
     loans: "30 Lakhs",
     roi: "12%",
@@ -280,7 +304,7 @@ export const bankoffers = [
     imageurl: require("./../partners_logo/iifl1.png"),
   },
   {
-    id: 10,
+    id: 11,
     imageurl: require("./../partners_logo/faircent2.png"),
     name: "Faircent",
     loans: "10 Lakhs",
@@ -289,7 +313,7 @@ export const bankoffers = [
     path: "/Registration",
   },
   {
-    id: 11,
+    id: 12,
     imageurl: require("./../partners_logo/moneywide2.png"),
     name: "MoneyWide",
     loans: "3 Lakhs",
@@ -298,7 +322,7 @@ export const bankoffers = [
     path: "/Registration",
   },
   {
-    id: 12,
+    id: 13,
     imageurl: require("./../partners_logo/iifl1.png"),
     name: "IIFL BL",
     loans: "30 Lakhs",
@@ -307,7 +331,7 @@ export const bankoffers = [
     path: "/Registration",
   },
   {
-    id: 13,
+    id: 14,
     imageurl: require("./../partners_logo/faircent2.png"),
     name: "Faircent",
     loans: "10 Lakhs",
@@ -317,7 +341,7 @@ export const bankoffers = [
   },
 
   {
-    id: 14,
+    id: 15,
     imageurl: require("./../partners_logo/lending2.png"),
     name: " Lendingkart",
     loans: "50 Lakhs",

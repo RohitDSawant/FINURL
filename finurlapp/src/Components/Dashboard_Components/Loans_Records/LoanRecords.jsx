@@ -47,6 +47,7 @@ const LoanRecords = () => {
     "TATA Capital",
     "IIFL BL",
     "Faircent",
+    "Protium",
     "MoneyWide",
     "Lendingkart",
     "Nira",
